@@ -1,0 +1,254 @@
+⨯ ./src/app/(pages)/markets/commodities/page.tsx:6:1
+Module not found: Can't resolve '@/components/ui/CommoditiesSetupOrbitSection'
+  [90m4 |[0m [36mimport[0m [33mCommoditiesPriceViewSection[0m [36mfrom[0m [32m"@/components/ui/CommoditiesPriceViewSection"[0m;
+  [90m5 |[0m [36mimport[0m [33mCommoditiesQuickAccessSection[0m [36mfrom[0m [32m"@/components/ui/CommoditiesQuickAccessSection"[0m;
+[31m[1m>[0m [90m6 |[0m [36mimport[0m [33mCommoditiesSetupOrbitSection[0m [36mfrom[0m [32m"@/components/ui/CommoditiesSetupOrbitSection"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m7 |[0m
+  [90m8 |[0m [36mexport[0m [36mdefault[0m [36mfunction[0m [33mCommoditiesPage[0m() {
+  [90m9 |[0m   [36mreturn[0m (
+
+Import map: aliased to relative './src/components/ui/CommoditiesSetupOrbitSection' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/(pages)/markets/commodities/page.tsx:6:1
+Module not found: Can't resolve '@/components/ui/CommoditiesSetupOrbitSection'
+  [90m4 |[0m [36mimport[0m [33mCommoditiesPriceViewSection[0m [36mfrom[0m [32m"@/components/ui/CommoditiesPriceViewSection"[0m;
+  [90m5 |[0m [36mimport[0m [33mCommoditiesQuickAccessSection[0m [36mfrom[0m [32m"@/components/ui/CommoditiesQuickAccessSection"[0m;
+[31m[1m>[0m [90m6 |[0m [36mimport[0m [33mCommoditiesSetupOrbitSection[0m [36mfrom[0m [32m"@/components/ui/CommoditiesSetupOrbitSection"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m7 |[0m
+  [90m8 |[0m [36mexport[0m [36mdefault[0m [36mfunction[0m [33mCommoditiesPage[0m() {
+  [90m9 |[0m   [36mreturn[0m (
+
+Import map: aliased to relative './src/components/ui/CommoditiesSetupOrbitSection' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[browser] Uncaught Error: ./src/app/(pages)/markets/commodities/page.tsx:6:1
+Module not found: Can't resolve '@/components/ui/CommoditiesSetupOrbitSection'
+  4 | import CommoditiesPriceViewSection from "@/components/ui/CommoditiesPriceViewSection";
+  5 | import CommoditiesQuickAccessSection from "@/components/ui/CommoditiesQuickAccessSection";
+> 6 | import CommoditiesSetupOrbitSection from "@/components/ui/CommoditiesSetupOrbitSection";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function CommoditiesPage() {
+  9 |   return (
+
+Import map: aliased to relative './src/components/ui/CommoditiesSetupOrbitSection' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./src/app/(pages)/markets/commodities/page.tsx:6:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (Error: (./src/app/(pages)/markets/commodities/page.tsx:6:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+[browser] ./src/app/(pages)/markets/commodities/page.tsx:6:1
+Module not found: Can't resolve '@/components/ui/CommoditiesSetupOrbitSection'
+  4 | import CommoditiesPriceViewSection from "@/components/ui/CommoditiesPriceViewSection";
+  5 | import CommoditiesQuickAccessSection from "@/components/ui/CommoditiesQuickAccessSection";
+> 6 | import CommoditiesSetupOrbitSection from "@/components/ui/CommoditiesSetupOrbitSection";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function CommoditiesPage() {
+  9 |   return (
+
+Import map: aliased to relative './src/components/ui/CommoditiesSetupOrbitSection' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found 
+    at handleErrors (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2773:21)
+    at processMessage (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2834:28)
+    at <unknown> (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2679:13)
+    at WebSocket.handleMessage (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2324:17) (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2773:21)
+[browser] Uncaught Error: ./src/app/(pages)/markets/commodities/page.tsx:6:1
+Module not found: Can't resolve '@/components/ui/CommoditiesSetupOrbitSection'
+  4 | import CommoditiesPriceViewSection from "@/components/ui/CommoditiesPriceViewSection";
+  5 | import CommoditiesQuickAccessSection from "@/components/ui/CommoditiesQuickAccessSection";
+> 6 | import CommoditiesSetupOrbitSection from "@/components/ui/CommoditiesSetupOrbitSection";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function CommoditiesPage() {
+  9 |   return (
+
+Import map: aliased to relative './src/components/ui/CommoditiesSetupOrbitSection' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./src/app/(pages)/markets/commodities/page.tsx:6:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (Error: (./src/app/(pages)/markets/commodities/page.tsx:6:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+[browser] ./src/app/(pages)/markets/commodities/page.tsx:6:1
+Module not found: Can't resolve '@/components/ui/CommoditiesSetupOrbitSection'
+  4 | import CommoditiesPriceViewSection from "@/components/ui/CommoditiesPriceViewSection";
+  5 | import CommoditiesQuickAccessSection from "@/components/ui/CommoditiesQuickAccessSection";
+> 6 | import CommoditiesSetupOrbitSection from "@/components/ui/CommoditiesSetupOrbitSection";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function CommoditiesPage() {
+  9 |   return (
+
+Import map: aliased to relative './src/components/ui/CommoditiesSetupOrbitSection' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found 
+    at handleErrors (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2773:21)
+    at processMessage (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2834:28)
+    at <unknown> (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2679:13)
+    at WebSocket.handleMessage (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2324:17) (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2773:21)
+[browser] Uncaught Error: ./src/app/(pages)/markets/commodities/page.tsx:6:1
+Module not found: Can't resolve '@/components/ui/CommoditiesSetupOrbitSection'
+  4 | import CommoditiesPriceViewSection from "@/components/ui/CommoditiesPriceViewSection";
+  5 | import CommoditiesQuickAccessSection from "@/components/ui/CommoditiesQuickAccessSection";
+> 6 | import CommoditiesSetupOrbitSection from "@/components/ui/CommoditiesSetupOrbitSection";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function CommoditiesPage() {
+  9 |   return (
+
+Import map: aliased to relative './src/components/ui/CommoditiesSetupOrbitSection' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./src/app/(pages)/markets/commodities/page.tsx:6:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (Error: (./src/app/(pages)/markets/commodities/page.tsx:6:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+[browser] ./src/app/(pages)/markets/commodities/page.tsx:6:1
+Module not found: Can't resolve '@/components/ui/CommoditiesSetupOrbitSection'
+  4 | import CommoditiesPriceViewSection from "@/components/ui/CommoditiesPriceViewSection";
+  5 | import CommoditiesQuickAccessSection from "@/components/ui/CommoditiesQuickAccessSection";
+> 6 | import CommoditiesSetupOrbitSection from "@/components/ui/CommoditiesSetupOrbitSection";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function CommoditiesPage() {
+  9 |   return (
+
+Import map: aliased to relative './src/components/ui/CommoditiesSetupOrbitSection' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found 
+    at handleErrors (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2773:21)
+    at processMessage (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2834:28)
+    at <unknown> (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2679:13)
+    at WebSocket.handleMessage (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2324:17) (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2773:21)
+[browser] Uncaught Error: ./src/app/(pages)/markets/commodities/page.tsx:6:1
+Module not found: Can't resolve '@/components/ui/CommoditiesSetupOrbitSection'
+  4 | import CommoditiesPriceViewSection from "@/components/ui/CommoditiesPriceViewSection";
+  5 | import CommoditiesQuickAccessSection from "@/components/ui/CommoditiesQuickAccessSection";
+> 6 | import CommoditiesSetupOrbitSection from "@/components/ui/CommoditiesSetupOrbitSection";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function CommoditiesPage() {
+  9 |   return (
+
+Import map: aliased to relative './src/components/ui/CommoditiesSetupOrbitSection' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./src/app/(pages)/markets/commodities/page.tsx:6:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (Error: (./src/app/(pages)/markets/commodities/page.tsx:6:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+[browser] ./src/app/(pages)/markets/commodities/page.tsx:6:1
+Module not found: Can't resolve '@/components/ui/CommoditiesSetupOrbitSection'
+  4 | import CommoditiesPriceViewSection from "@/components/ui/CommoditiesPriceViewSection";
+  5 | import CommoditiesQuickAccessSection from "@/components/ui/CommoditiesQuickAccessSection";
+> 6 | import CommoditiesSetupOrbitSection from "@/components/ui/CommoditiesSetupOrbitSection";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function CommoditiesPage() {
+  9 |   return (
+
+Import map: aliased to relative './src/components/ui/CommoditiesSetupOrbitSection' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found 
+    at handleErrors (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2773:21)
+    at processMessage (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2834:28)
+    at <unknown> (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2679:13)
+    at WebSocket.handleMessage (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2324:17) (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2773:21)
+[browser] Uncaught Error: ./src/app/(pages)/markets/commodities/page.tsx:6:1
+Module not found: Can't resolve '@/components/ui/CommoditiesSetupOrbitSection'
+  4 | import CommoditiesPriceViewSection from "@/components/ui/CommoditiesPriceViewSection";
+  5 | import CommoditiesQuickAccessSection from "@/components/ui/CommoditiesQuickAccessSection";
+> 6 | import CommoditiesSetupOrbitSection from "@/components/ui/CommoditiesSetupOrbitSection";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function CommoditiesPage() {
+  9 |   return (
+
+Import map: aliased to relative './src/components/ui/CommoditiesSetupOrbitSection' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./src/app/(pages)/markets/commodities/page.tsx:6:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (Error: (./src/app/(pages)/markets/commodities/page.tsx:6:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+[browser] ./src/app/(pages)/markets/commodities/page.tsx:6:1
+Module not found: Can't resolve '@/components/ui/CommoditiesSetupOrbitSection'
+  4 | import CommoditiesPriceViewSection from "@/components/ui/CommoditiesPriceViewSection";
+  5 | import CommoditiesQuickAccessSection from "@/components/ui/CommoditiesQuickAccessSection";
+> 6 | import CommoditiesSetupOrbitSection from "@/components/ui/CommoditiesSetupOrbitSection";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function CommoditiesPage() {
+  9 |   return (
+
+Import map: aliased to relative './src/components/ui/CommoditiesSetupOrbitSection' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found 
+    at handleErrors (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2773:21)
+    at processMessage (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2834:28)
+    at <unknown> (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2679:13)
+    at WebSocket.handleMessage (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2324:17) (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2773:21)
+[browser] Uncaught Error: ./src/app/(pages)/markets/commodities/page.tsx:6:1
+Module not found: Can't resolve '@/components/ui/CommoditiesSetupOrbitSection'
+  4 | import CommoditiesPriceViewSection from "@/components/ui/CommoditiesPriceViewSection";
+  5 | import CommoditiesQuickAccessSection from "@/components/ui/CommoditiesQuickAccessSection";
+> 6 | import CommoditiesSetupOrbitSection from "@/components/ui/CommoditiesSetupOrbitSection";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function CommoditiesPage() {
+  9 |   return (
+
+Import map: aliased to relative './src/components/ui/CommoditiesSetupOrbitSection' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./src/app/(pages)/markets/commodities/page.tsx:6:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (Error: (./src/app/(pages)/markets/commodities/page.tsx:6:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+[browser] ./src/app/(pages)/markets/commodities/page.tsx:6:1
+Module not found: Can't resolve '@/components/ui/CommoditiesSetupOrbitSection'
+  4 | import CommoditiesPriceViewSection from "@/components/ui/CommoditiesPriceViewSection";
+  5 | import CommoditiesQuickAccessSection from "@/components/ui/CommoditiesQuickAccessSection";
+> 6 | import CommoditiesSetupOrbitSection from "@/components/ui/CommoditiesSetupOrbitSection";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export default function CommoditiesPage() {
+  9 |   return (
+
+Import map: aliased to relative './src/components/ui/CommoditiesSetupOrbitSection' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found 
+    at handleErrors (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2773:21)
+    at processMessage (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2834:28)
+    at <unknown> (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2679:13)
+    at WebSocket.handleMessage (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2324:17) (file://C:/Users/Siddhartha Saw/Desktop/Ayan/Achiver_landing/achiver-landing/.next/dev/static/chunks/node_modules_next_dist_client_0pe1dg-._.js:2773:21)

@@ -1,0 +1,88 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" rx="48" fill="#040814"/>
+  <rect width="1200" height="900" rx="48" fill="url(#bgGlow)"/>
+  <g opacity="0.22">
+    <path d="M0 120H1200" stroke="#7DD3FC" stroke-width="1"/>
+    <path d="M0 240H1200" stroke="#7DD3FC" stroke-width="1"/>
+    <path d="M0 360H1200" stroke="#7DD3FC" stroke-width="1"/>
+    <path d="M0 480H1200" stroke="#7DD3FC" stroke-width="1"/>
+    <path d="M0 600H1200" stroke="#7DD3FC" stroke-width="1"/>
+    <path d="M0 720H1200" stroke="#7DD3FC" stroke-width="1"/>
+    <path d="M150 0V900" stroke="#7DD3FC" stroke-width="1"/>
+    <path d="M300 0V900" stroke="#7DD3FC" stroke-width="1"/>
+    <path d="M450 0V900" stroke="#7DD3FC" stroke-width="1"/>
+    <path d="M600 0V900" stroke="#7DD3FC" stroke-width="1"/>
+    <path d="M750 0V900" stroke="#7DD3FC" stroke-width="1"/>
+    <path d="M900 0V900" stroke="#7DD3FC" stroke-width="1"/>
+    <path d="M1050 0V900" stroke="#7DD3FC" stroke-width="1"/>
+  </g>
+
+  <circle cx="934" cy="188" r="186" fill="#0EA5E9" fill-opacity="0.18"/>
+  <circle cx="264" cy="722" r="210" fill="#2563EB" fill-opacity="0.14"/>
+
+  <g opacity="0.95">
+    <path d="M104 646C194 610 252 566 316 454C380 342 442 302 544 332C622 356 662 448 746 448C854 448 904 262 1032 232" stroke="url(#lineMain)" stroke-width="10" stroke-linecap="round"/>
+    <path d="M104 646C194 610 252 566 316 454C380 342 442 302 544 332C622 356 662 448 746 448C854 448 904 262 1032 232V770H104V646Z" fill="url(#areaMain)"/>
+  </g>
+
+  <g opacity="0.78">
+    <path d="M118 254C174 224 212 212 266 214C316 216 350 250 398 254C472 260 532 168 616 174C694 180 730 278 816 288C888 296 946 246 1072 124" stroke="#FB923C" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 10"/>
+  </g>
+
+  <g filter="url(#barGlow)">
+    <rect x="172" y="648" width="24" height="124" rx="12" fill="#38BDF8" fill-opacity="0.8"/>
+    <rect x="274" y="592" width="24" height="180" rx="12" fill="#38BDF8" fill-opacity="0.78"/>
+    <rect x="378" y="540" width="24" height="232" rx="12" fill="#38BDF8" fill-opacity="0.82"/>
+    <rect x="482" y="610" width="24" height="162" rx="12" fill="#38BDF8" fill-opacity="0.78"/>
+    <rect x="586" y="486" width="24" height="286" rx="12" fill="#38BDF8" fill-opacity="0.9"/>
+    <rect x="690" y="570" width="24" height="202" rx="12" fill="#38BDF8" fill-opacity="0.76"/>
+    <rect x="794" y="508" width="24" height="264" rx="12" fill="#38BDF8" fill-opacity="0.84"/>
+    <rect x="898" y="426" width="24" height="346" rx="12" fill="#38BDF8" fill-opacity="0.92"/>
+    <rect x="1002" y="378" width="24" height="394" rx="12" fill="#38BDF8" fill-opacity="0.95"/>
+  </g>
+
+  <g filter="url(#bullGlow)">
+    <path d="M234 650C208 650 180 626 160 602C138 576 126 542 126 500C126 468 136 446 160 422C182 400 216 384 252 384C286 384 316 394 336 410C350 390 378 374 414 374C448 374 476 386 492 402C504 376 536 352 576 352C612 352 648 364 672 388C692 408 704 436 704 466C704 494 692 520 672 538C682 552 688 568 688 586C688 608 678 628 662 640C638 658 604 662 578 662C546 662 516 656 492 648C468 672 434 686 394 686C356 686 324 674 298 652C276 662 254 666 234 666V650Z" fill="url(#bullFill)" fill-opacity="0.7"/>
+    <path d="M244 642C220 642 194 620 176 596C156 570 146 540 146 502C146 472 156 452 178 430C198 410 228 396 260 396C292 396 320 406 340 422C356 404 382 390 414 390C444 390 472 400 490 418C504 392 532 370 568 370C600 370 632 382 654 404C672 422 684 446 684 470C684 496 674 518 656 536C664 550 668 564 668 580C668 598 660 614 646 624C626 640 598 644 576 644C544 644 516 636 494 624C474 646 442 658 404 658C370 658 340 648 316 630C294 638 270 642 244 642Z" stroke="#7DD3FC" stroke-width="5"/>
+    <path d="M170 430C138 410 118 376 118 340C118 300 142 268 188 244" stroke="#7DD3FC" stroke-width="6" stroke-linecap="round"/>
+    <path d="M664 414C706 392 734 358 744 316C754 272 738 226 700 192" stroke="#7DD3FC" stroke-width="6" stroke-linecap="round"/>
+    <path d="M236 518C256 506 274 500 300 500C332 500 354 510 376 528" stroke="#0F172A" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="432" cy="470" r="12" fill="#0F172A"/>
+  </g>
+
+  <rect x="84" y="82" width="248" height="78" rx="24" fill="#08111F" fill-opacity="0.82" stroke="#38BDF8" stroke-opacity="0.22"/>
+  <circle cx="128" cy="121" r="8" fill="#67E8F9"/>
+  <text x="150" y="112" fill="#94A3B8" font-family="Arial, sans-serif" font-size="20" letter-spacing="4">GLOBAL MARKET</text>
+  <text x="150" y="138" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="28" font-weight="700">Indices Outlook</text>
+
+  <defs>
+    <radialGradient id="bgGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(840 180) rotate(123.582) scale(850.445 1124.49)">
+      <stop stop-color="#0F172A"/>
+      <stop offset="0.5" stop-color="#07101C"/>
+      <stop offset="1" stop-color="#040814"/>
+    </radialGradient>
+    <linearGradient id="lineMain" x1="104" y1="232" x2="1032" y2="646" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#67E8F9"/>
+      <stop offset="1" stop-color="#2563EB"/>
+    </linearGradient>
+    <linearGradient id="areaMain" x1="568" y1="232" x2="568" y2="770" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#38BDF8" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#38BDF8" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="bullFill" x1="156" y1="350" x2="704" y2="670" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1D4ED8" stop-opacity="0.85"/>
+      <stop offset="0.45" stop-color="#38BDF8" stop-opacity="0.65"/>
+      <stop offset="1" stop-color="#0F172A" stop-opacity="0.84"/>
+    </linearGradient>
+    <filter id="barGlow" x="132" y="338" width="934" height="494" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feGaussianBlur stdDeviation="20" result="effect1_foregroundBlur_0_1"/>
+    </filter>
+    <filter id="bullGlow" x="92" y="164" width="678" height="556" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feGaussianBlur stdDeviation="10" result="effect1_foregroundBlur_0_1"/>
+    </filter>
+  </defs>
+</svg>
