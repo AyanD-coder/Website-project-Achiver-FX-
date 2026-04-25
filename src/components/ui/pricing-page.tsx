@@ -77,12 +77,15 @@ function PricingCard({ plan }: PricingCardProps) {
   ];
 
   return (
-    <article className="relative flex w-full max-w-[19rem] flex-col rounded-[2rem] border border-white/15 bg-[#07111f] px-7 pb-8 pt-10 shadow-[0_16px_44px_rgba(2,8,23,0.34)] transition-colors duration-200 [.light_&]:border-[#1a8bff]/80 [.light_&]:bg-white [.light_&]:shadow-[0_10px_30px_rgba(37,99,235,0.08)]">
+    <article
+      className="relative flex w-full max-w-[19rem] flex-col rounded-[2rem] border border-white/15 bg-[#07111f] px-7 pb-8 pt-10 shadow-[0_16px_44px_rgba(2,8,23,0.34)] transition-colors duration-200 [.light_&]:border-[#1a8bff]/80 [.light_&]:bg-white [.light_&]:shadow-[0_10px_30px_rgba(37,99,235,0.08)]"
+      style={{ contain: "layout paint style" }}
+    >
       {plan.recommended && (
         <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-[130%]">
-          {/* <span className="inline-flex rounded-full border border-[#d3a100] bg-[#f5cf1a] px-5 py-1 text-xs font-semibold text-[#111827] shadow-sm">
+          <span className="inline-flex rounded-full border border-[#d3a100] bg-[#f5cf1a] px-5 py-1 text-xs font-semibold text-[#111827] shadow-sm">
             Recommended
-          </span> */}
+          </span>
         </div>
       )}
 
@@ -116,6 +119,11 @@ export default function PricingPage() {
     <section
       id="pricing"
       className="relative w-full px-4 py-16 sm:px-6 lg:px-8 lg:py-24"
+      style={{
+        contentVisibility: "auto",
+        containIntrinsicSize: "1px 960px",
+        contain: "layout paint style",
+      }}
     >
       <div className="mx-auto max-w-6xl">
         <div className="mb-14 text-center">

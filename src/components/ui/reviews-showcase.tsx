@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight, ExternalLink, Quote, Star } from "lucide-rea
 
 import { cn } from "@/lib/utils";
 import { useDeferredMount } from "@/lib/useDeferredMount";
+import { useMediaQuery } from "@/lib/useMediaQuery";
 import { usePageVisibility } from "@/lib/usePageVisibility";
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/Card";
@@ -40,10 +41,12 @@ export function ReviewsShowcase({
     once: false,
     rootMargin: "180px 0px",
   });
+  const isCompactViewport = useMediaQuery("(max-width: 1023px)");
   const isPageVisible = usePageVisibility();
+  const shouldAutoplay = autoplay && !isCompactViewport;
 
   React.useEffect(() => {
-    if (!autoplay || reviews.length < 2 || !isInView || !isPageVisible) {
+    if (!shouldAutoplay || reviews.length < 2 || !isInView || !isPageVisible) {
       return;
     }
 
@@ -52,14 +55,24 @@ export function ReviewsShowcase({
     }, 5000);
 
     return () => window.clearInterval(interval);
-  }, [autoplay, isInView, isPageVisible, reviews.length]);
+  }, [isInView, isPageVisible, reviews.length, shouldAutoplay]);
+
+  const activeReview = React.useMemo(
+    () => reviews[active] ?? reviews[0],
+    [active, reviews],
+  );
+  const averageRating = React.useMemo(
+    () =>
+      (
+        reviews.reduce((total, review) => total + review.rating, 0) /
+        reviews.length
+      ).toFixed(1),
+    [reviews],
+  );
 
   if (!reviews.length) {
     return null;
   }
-
-  const activeReview = reviews[active] ?? reviews[0];
-  const averageRating = (reviews.reduce((total, review) => total + review.rating, 0) / reviews.length).toFixed(1);
 
   const handleNext = () => {
     setActive((current) => (current + 1) % reviews.length);
@@ -73,8 +86,17 @@ export function ReviewsShowcase({
     <SectionWrapper
       id="reviews"
       className={cn("relative overflow-hidden bg-transparent", className)}
+      style={{
+        contentVisibility: "auto",
+        containIntrinsicSize: "1px 1180px",
+        contain: "layout paint style",
+      }}
     >
-      <div ref={ref} className="mx-auto w-full max-w-6xl">
+      <div
+        ref={ref}
+        className="mx-auto w-full max-w-6xl"
+        style={{ contain: "layout paint style" }}
+      >
         <div className="mb-12 flex flex-col items-center justify-center text-center md:mb-16">
           <div className="inline-flex rounded-full border border-brand-primary/25 bg-white/5 px-4 py-1 text-sm font-medium text-brand-glow backdrop-blur-sm [.light_&]:border-blue-200 [.light_&]:bg-white [.light_&]:text-blue-700">
             KNOW WHAT PEOPLE SAY ABOUT US!
@@ -103,7 +125,7 @@ export function ReviewsShowcase({
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)]">
-          <Card className="border-white/10 bg-white/[0.04] shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur-xl [.light_&]:border-gray-200 [.light_&]:bg-white [.light_&]:shadow-[0_16px_40px_rgba(0,0,0,0.08)]">
+          <Card className="border-white/10 bg-white/[0.04] shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur-sm [.light_&]:border-gray-200 [.light_&]:bg-white [.light_&]:shadow-[0_16px_40px_rgba(0,0,0,0.08)]">
             <CardHeader className="flex flex-col gap-5 border-b border-white/10 p-6 sm:flex-row sm:items-start sm:justify-between [.light_&]:border-gray-200">
               <div className="flex items-center gap-4">
                 <Image
