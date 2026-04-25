@@ -63,29 +63,22 @@ export default function FeaturesGrid() {
   return (
     <SectionWrapper
       id="features"
-      className="-mt-[330px] bg-transparent pb-20 pt-24 lg:-mt-[340px] lg:pb-28 lg:pt-32"
+      className="relative z-10 !m-0 !-mt-[180px] bg-transparent !p-0 !px-0 !py-0 sm:!-mt-[280px] lg:!-mt-[520px] lg:!p-0 lg:!px-0 lg:!py-0"
     >
-      <section className="relative">
-        <div className="pointer-events-none absolute left-1/2 top-[-10rem] h-72 w-[52rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(56,189,248,0.12),transparent_65%)] blur-3xl" />
-        <div className="pointer-events-none absolute inset-x-0 top-[-4rem] h-32 bg-gradient-to-b from-transparent via-[#060b15]/35 to-transparent blur-2xl" />
-
-        <div className="relative overflow-hidden rounded-[32px] bg-[linear-gradient(180deg,rgba(5,10,22,0.62)_0%,rgba(4,8,20,0.82)_18%,rgba(2,6,16,0.92)_100%)] shadow-[0_30px_90px_rgba(15,23,42,0.18)] backdrop-blur-xl">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.10),transparent_24%),radial-gradient(circle_at_50%_24%,rgba(37,99,235,0.10),transparent_34%)]" />
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-white/[0.03] to-transparent" />
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-
-          <div className="relative px-6 py-6 sm:px-8 flex flex-col items-center text-center">
-            <h3 className="text-2xl font-semibold text-white sm:text-3xl">
-              Fuel Your Strategy with Intelligence
-            </h3>
-            <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300">
-              Utilize cutting-edge technology and insights to gain an edge in today&apos;s fast-paced forex markets.
-            </p>
+      <section className="relative left-1/2 w-screen max-w-none -translate-x-1/2">
+        <div className="relative flex min-h-[100svh] flex-col overflow-visible rounded-none bg-transparent shadow-none backdrop-blur-none sm:min-h-0 sm:rounded-none sm:bg-transparent sm:shadow-none sm:backdrop-blur-none">
+          <div className="relative z-0 flex-1 min-h-0">
+            <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-24 bg-transparent" />
+            <RadialOrbitalTimeline timelineData={timelineData} />
           </div>
 
-          <div className="relative">
-            <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-24 bg-gradient-to-b from-[#060b15]/70 via-[#060b15]/20 to-transparent" />
-            <RadialOrbitalTimeline timelineData={timelineData} />
+          <div className="relative z-20 -mt-20 px-4 pb-8 text-center sm:m-[2px] sm:mt-0 sm:flex sm:flex-col sm:items-center sm:p-[2px]">
+            <h3 className="text-2xl font-semibold text-white [.light_&]:text-black sm:text-3xl sm:[.light_&]:text-white">
+              Fuel Your Strategy with Intelligence
+            </h3>
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300 [.light_&]:text-slate-800 sm:[.light_&]:text-slate-300">
+              Utilize cutting-edge technology and insights to gain an edge in today&apos;s fast-paced forex markets.
+            </p>
           </div>
         </div>
       </section>

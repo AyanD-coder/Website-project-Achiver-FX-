@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+
+import { Button as JolyButton } from "@/components/ui/joly-button";
+import { useMediaQuery } from "@/lib/useMediaQuery";
 
 interface ElasticHueSliderProps {
   value: number;
@@ -52,25 +55,25 @@ function ElasticHueSlider({
           onMouseUp={() => setIsDragging(false)}
           onTouchStart={() => setIsDragging(true)}
           onTouchEnd={() => setIsDragging(false)}
-          className="absolute inset-0 z-20 h-full w-full cursor-pointer appearance-none bg-transparent opacity-0"
+          className="absolute inset-0 z-40 h-full w-full cursor-pointer appearance-none bg-transparent opacity-0"
           style={{ WebkitAppearance: "none" }}
         />
 
         <div className="absolute left-0 z-0 h-1 w-full rounded-full bg-gray-700" />
 
-        <div
-          className="absolute left-0 z-10 h-1 rounded-full bg-blue-500"
-          style={{ width: `${thumbPosition}%` }}
-        />
+          <div
+            className="absolute left-0 z-10 h-1 rounded-full bg-blue-500"
+            style={{ width: `${thumbPosition}%` }}
+          />
 
-        <motion.div
-          className="absolute top-1/2 z-30 -translate-x-1/2 -translate-y-1/2"
-          style={{ left: `${thumbPosition}%` }}
-          animate={{ scale: isDragging ? 1.2 : 1 }}
-          transition={{ type: "spring", stiffness: 500, damping: isDragging ? 20 : 30 }}
-        >
-          <div className="h-4 w-4 rounded-full border border-white/40 bg-white shadow-[0_0_24px_rgba(59,130,246,0.75)]" />
-        </motion.div>
+          <motion.div
+            className="absolute top-1/2 z-30 -translate-x-1/2 -translate-y-1/2"
+            style={{ left: `${thumbPosition}%` }}
+            animate={{ scale: isDragging ? 1.2 : 1 }}
+            transition={{ type: "spring", stiffness: 500, damping: isDragging ? 20 : 30 }}
+          >
+            <div className="h-4 w-4 rounded-full border border-white/40 bg-white shadow-[0_0_24px_rgba(59,130,246,0.75)]" />
+          </motion.div>
       </div>
 
       <AnimatePresence mode="wait">
@@ -101,6 +104,8 @@ interface LightningProps {
   speed?: number;
   intensity?: number;
   size?: number;
+  active?: boolean;
+  maxFPS?: number;
 }
 
 function Lightning({
@@ -109,6 +114,8 @@ function Lightning({
   speed = 1,
   intensity = 1,
   size = 1,
+  active = true,
+  maxFPS = 30,
 }: LightningProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -116,19 +123,21 @@ function Lightning({
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const resizeCanvas = () => {
-      canvas.width = canvas.clientWidth;
-      canvas.height = canvas.clientHeight;
-    };
-
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-
     const gl = canvas.getContext("webgl");
     if (!gl) {
-      console.error("WebGL not supported");
-      return () => window.removeEventListener("resize", resizeCanvas);
+      return;
     }
+
+    const syncCanvasSize = () => {
+      const nextWidth = Math.max(1, Math.round(canvas.clientWidth));
+      const nextHeight = Math.max(1, Math.round(canvas.clientHeight));
+
+      if (canvas.width !== nextWidth || canvas.height !== nextHeight) {
+        canvas.width = nextWidth;
+        canvas.height = nextHeight;
+        gl.viewport(0, 0, nextWidth, nextHeight);
+      }
+    };
 
     const vertexShaderSource = `
       attribute vec2 aPosition;
@@ -235,13 +244,11 @@ function Lightning({
     const fragmentShader = compileShader(fragmentShaderSource, gl.FRAGMENT_SHADER);
 
     if (!vertexShader || !fragmentShader) {
-      window.removeEventListener("resize", resizeCanvas);
       return;
     }
 
     const program = gl.createProgram();
     if (!program) {
-      window.removeEventListener("resize", resizeCanvas);
       gl.deleteShader(vertexShader);
       gl.deleteShader(fragmentShader);
       return;
@@ -253,7 +260,6 @@ function Lightning({
 
     if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
       console.error("Program linking error:", gl.getProgramInfoLog(program));
-      window.removeEventListener("resize", resizeCanvas);
       gl.deleteProgram(program);
       gl.deleteShader(vertexShader);
       gl.deleteShader(fragmentShader);
@@ -269,7 +275,6 @@ function Lightning({
 
     const vertexBuffer = gl.createBuffer();
     if (!vertexBuffer) {
-      window.removeEventListener("resize", resizeCanvas);
       gl.deleteProgram(program);
       gl.deleteShader(vertexShader);
       gl.deleteShader(fragmentShader);
@@ -293,32 +298,121 @@ function Lightning({
 
     const startTime = performance.now();
     let animationFrameId = 0;
+    let resizeObserver: ResizeObserver | null = null;
+    let destroyed = false;
+    let isInViewport = true;
+    let isPageVisible =
+      typeof document === "undefined" || document.visibilityState !== "hidden";
+    let lastFrameTime = 0;
+    const frameIntervalMs = 1000 / Math.max(1, maxFPS);
 
-    const render = () => {
-      resizeCanvas();
-      gl.viewport(0, 0, canvas.width, canvas.height);
+    const drawFrame = (elapsedTime: number) => {
+      syncCanvasSize();
       gl.uniform2f(iResolutionLocation, canvas.width, canvas.height);
-      gl.uniform1f(iTimeLocation, (performance.now() - startTime) / 1000);
+      gl.uniform1f(iTimeLocation, elapsedTime);
       gl.uniform1f(uHueLocation, hue);
       gl.uniform1f(uXOffsetLocation, xOffset);
       gl.uniform1f(uSpeedLocation, speed);
       gl.uniform1f(uIntensityLocation, intensity);
       gl.uniform1f(uSizeLocation, size);
       gl.drawArrays(gl.TRIANGLES, 0, 6);
+    };
+
+    const stopAnimation = () => {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = 0;
+      }
+    };
+
+    const render = (currentTime: number) => {
+      animationFrameId = 0;
+
+      if (destroyed || !active || !isInViewport || !isPageVisible) {
+        return;
+      }
+
+      if (currentTime - lastFrameTime >= frameIntervalMs) {
+        lastFrameTime = currentTime;
+        drawFrame((currentTime - startTime) / 1000);
+      }
+
       animationFrameId = requestAnimationFrame(render);
     };
 
-    animationFrameId = requestAnimationFrame(render);
+    const ensureAnimation = () => {
+      if (
+        !destroyed &&
+        !animationFrameId &&
+        active &&
+        isInViewport &&
+        isPageVisible
+      ) {
+        animationFrameId = requestAnimationFrame(render);
+      }
+    };
+
+    const handleVisibilityChange = () => {
+      isPageVisible =
+        typeof document === "undefined" ||
+        document.visibilityState !== "hidden";
+
+      if (isPageVisible) {
+        ensureAnimation();
+      } else {
+        stopAnimation();
+      }
+    };
+
+    syncCanvasSize();
+
+    if (typeof ResizeObserver !== "undefined") {
+      resizeObserver = new ResizeObserver(() => {
+        syncCanvasSize();
+      });
+      resizeObserver.observe(canvas);
+    } else {
+      window.addEventListener("resize", syncCanvasSize);
+    }
+
+    let viewportObserver: IntersectionObserver | null = null;
+    if (typeof IntersectionObserver !== "undefined") {
+      viewportObserver = new IntersectionObserver(
+        (entries) => {
+          const nextEntry = entries[0];
+          isInViewport = nextEntry?.isIntersecting ?? true;
+
+          if (isInViewport) {
+            ensureAnimation();
+          } else {
+            stopAnimation();
+          }
+        },
+        { rootMargin: "200px 0px" },
+      );
+
+      viewportObserver.observe(canvas);
+    }
+
+    if (typeof document !== "undefined") {
+      document.addEventListener("visibilitychange", handleVisibilityChange);
+    }
+
+    ensureAnimation();
 
     return () => {
-      window.removeEventListener("resize", resizeCanvas);
-      cancelAnimationFrame(animationFrameId);
+      destroyed = true;
+      stopAnimation();
+      resizeObserver?.disconnect();
+      viewportObserver?.disconnect();
+      window.removeEventListener("resize", syncCanvasSize);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       gl.deleteBuffer(vertexBuffer);
       gl.deleteProgram(program);
       gl.deleteShader(vertexShader);
       gl.deleteShader(fragmentShader);
     };
-  }, [hue, intensity, size, speed, xOffset]);
+  }, [active, hue, intensity, maxFPS, size, speed, xOffset]);
 
   return <canvas ref={canvasRef} className="relative h-full w-full" />;
 }
@@ -341,12 +435,25 @@ function FeatureItem({ name, value, position }: FeatureItemProps) {
   );
 }
 
+
+
 interface HeroSectionProps {
   sliderLabelClassName?: string;
 }
 
 export function HeroSection({ sliderLabelClassName }: HeroSectionProps = {}) {
   const [lightningHue, setLightningHue] = useState(220);
+  const shouldReduceMotion = useReducedMotion();
+  const isMobileViewport = useMediaQuery("(max-width: 767px)");
+  const dynamicAccent = {
+    start: `hsl(${(lightningHue - 16 + 360) % 360} 94% 68%)`,
+    mid: `hsl(${lightningHue} 96% 60%)`,
+    end: `hsl(${(lightningHue + 22) % 360} 92% 54%)`,
+    soft: `hsl(${(lightningHue + 6) % 360} 100% 82%)`,
+    glow: `hsla(${lightningHue} 100% 62% / 0.34)`,
+    glowStrong: `hsla(${lightningHue} 100% 62% / 0.52)`,
+    border: `hsla(${lightningHue} 100% 84% / 0.24)`,
+  };
   const tradeAnywhereStyle = {
     "--trade-anywhere-dark-start": `hsl(${(lightningHue - 18 + 360) % 360} 92% 72%)`,
     "--trade-anywhere-dark-mid": `hsl(${lightningHue} 94% 64%)`,
@@ -354,6 +461,11 @@ export function HeroSection({ sliderLabelClassName }: HeroSectionProps = {}) {
   } as CSSProperties;
   const heroSubtitleStyle = {
     "--hero-subtitle-dark": `hsl(${lightningHue} 78% 84%)`,
+  } as CSSProperties;
+  const ctaButtonStyle = {
+    backgroundImage: `linear-gradient(135deg, ${dynamicAccent.start}, ${dynamicAccent.mid}, ${dynamicAccent.end})`,
+    boxShadow: `0 16px 36px ${dynamicAccent.glow}, inset 0 1px 0 rgba(255,255,255,0.18)`,
+    borderColor: dynamicAccent.border,
   } as CSSProperties;
 
   const containerVariants = {
@@ -378,6 +490,33 @@ export function HeroSection({ sliderLabelClassName }: HeroSectionProps = {}) {
       },
     },
   };
+
+  useEffect(() => {
+    const root = document.documentElement;
+
+    root.style.setProperty("--achiever-lightning-start", dynamicAccent.start);
+    root.style.setProperty("--achiever-lightning-mid", dynamicAccent.mid);
+    root.style.setProperty("--achiever-lightning-end", dynamicAccent.end);
+    root.style.setProperty("--achiever-lightning-soft", dynamicAccent.soft);
+    root.style.setProperty("--achiever-lightning-glow", dynamicAccent.glow);
+    root.style.setProperty("--achiever-lightning-glow-strong", dynamicAccent.glowStrong);
+
+    return () => {
+      root.style.removeProperty("--achiever-lightning-start");
+      root.style.removeProperty("--achiever-lightning-mid");
+      root.style.removeProperty("--achiever-lightning-end");
+      root.style.removeProperty("--achiever-lightning-soft");
+      root.style.removeProperty("--achiever-lightning-glow");
+      root.style.removeProperty("--achiever-lightning-glow-strong");
+    };
+  }, [
+    dynamicAccent.end,
+    dynamicAccent.glow,
+    dynamicAccent.glowStrong,
+    dynamicAccent.mid,
+    dynamicAccent.soft,
+    dynamicAccent.start,
+  ]);
 
   return (
     <div className="relative min-h-[115vh] w-full overflow-visible bg-transparent text-white">
@@ -448,14 +587,15 @@ export function HeroSection({ sliderLabelClassName }: HeroSectionProps = {}) {
             Everything you need to trade Forex in one place.
           </motion.p>
 
-          <motion.button
-            variants={itemVariants}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="mt-14 rounded-full bg-white/10 px-8 py-3 backdrop-blur-xl transition-colors hover:bg-white/20 sm:mt-24"
-          >
-            GET STARTED TODAY
-          </motion.button>
+          <motion.div variants={itemVariants}>
+            <JolyButton
+              size="lg"
+              className="rounded-full border text-black"
+              style={ctaButtonStyle}
+            >
+              GET STARTED TODAY
+            </JolyButton>
+          </motion.div>
         </motion.div>
       </div>
 
@@ -463,7 +603,7 @@ export function HeroSection({ sliderLabelClassName }: HeroSectionProps = {}) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className="absolute inset-x-0 top-0 -bottom-48 z-0"
+        className="pointer-events-none absolute inset-x-0 top-0 -bottom-[36rem] z-0 sm:-bottom-[42rem] lg:-bottom-[56rem]"
       >
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,5,12,0.92)_0%,rgba(4,8,20,0.72)_38%,rgba(4,8,20,0.38)_75%,rgba(4,8,20,0)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(56,189,248,0.12),transparent_24%),radial-gradient(circle_at_50%_55%,rgba(37,99,235,0.10),transparent_28%)]" />
@@ -471,15 +611,19 @@ export function HeroSection({ sliderLabelClassName }: HeroSectionProps = {}) {
         <div className="absolute inset-0 bg-black/56" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(8,12,24,0.14),rgba(3,6,16,0.58)_58%,rgba(2,4,12,0.82)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.3)_24%,rgba(0,0,0,0.38)_68%,rgba(0,0,0,0.68)_100%)]" />
-        <div className="absolute left-1/2 top-[55%] h-[900px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-b from-blue-500/20 to-purple-600/10 blur-3xl" />
-        <div className="absolute left-1/2 top-[72%] h-[560px] w-[1200px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(56,189,248,0.14),transparent_60%)] blur-3xl" />
 
         <div className="absolute left-1/2 top-0 h-full w-[125%] -translate-x-1/2 opacity-90">
-          <Lightning hue={lightningHue} xOffset={0} speed={1.6} intensity={0.20} size={2.15} />
+          <Lightning
+            hue={lightningHue}
+            xOffset={0}
+            speed={1.6}
+            intensity={0.20}
+            size={2.15}
+            active={!shouldReduceMotion}
+            maxFPS={isMobileViewport ? 18 : 30}
+          />
         </div>
-
-        <div className="absolute left-1/2 top-[55%] z-10 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_25%_90%,_#1e386b_15%,_#000000de_70%,_#000000ed_100%)] opacity-90 backdrop-blur-3xl" />
-        <div className="absolute inset-x-0 bottom-0 h-80 bg-gradient-to-b from-transparent via-[#050914]/55 to-[#050914]" />
+        <div className="absolute inset-x-0 bottom-0 h-80 bg-transparent" />
       </motion.div>
     </div>
   );

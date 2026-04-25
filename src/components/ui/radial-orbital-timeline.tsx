@@ -11,9 +11,9 @@ import {
   User,
 } from "lucide-react";
 
-import AnimatedShaderBackground from "@/components/ui/animated-shader-background";
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
+import { usePageVisibility } from "@/lib/usePageVisibility";
 
 interface TimelineItem {
   id: number;
@@ -41,6 +41,8 @@ const iconMap = {
 };
 
 const AUTO_ROTATE_DEGREES_PER_SECOND = 6;
+const ROTATION_FRAME_INTERVAL_MS = 1000 / 24;
+const MOBILE_ROTATION_FRAME_INTERVAL_MS = 1000 / 18;
 
 export default function RadialOrbitalTimeline({
   timelineData,
@@ -48,19 +50,19 @@ export default function RadialOrbitalTimeline({
   const [expandedItems, setExpandedItems] = useState<Record<number, boolean>>({});
   const [rotationAngle, setRotationAngle] = useState(0);
   const [autoRotate, setAutoRotate] = useState(true);
-  const [pulseEffect, setPulseEffect] = useState<Record<number, boolean>>({});
-  const [centerOffset] = useState({ x: 0, y: 0 });
   const [activeNodeId, setActiveNodeId] = useState<number | null>(null);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const [isContainerInView, setIsContainerInView] = useState(true);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const orbitRef = useRef<HTMLDivElement>(null);
   const nodeRefs = useRef<Record<number, HTMLDivElement | null>>({});
+  const isPageVisible = usePageVisibility();
 
   const handleContainerClick = (event: MouseEvent<HTMLDivElement>) => {
     if (event.target === containerRef.current || event.target === orbitRef.current) {
       setExpandedItems({});
       setActiveNodeId(null);
-      setPulseEffect({});
       setAutoRotate(true);
     }
   };
@@ -93,20 +95,10 @@ export default function RadialOrbitalTimeline({
       if (!previous[id]) {
         setActiveNodeId(id);
         setAutoRotate(false);
-
-        const relatedItems = getRelatedItems(id);
-        const nextPulseEffect: Record<number, boolean> = {};
-
-        relatedItems.forEach((relatedId) => {
-          nextPulseEffect[relatedId] = true;
-        });
-
-        setPulseEffect(nextPulseEffect);
         centerViewOnNode(id);
       } else {
         setActiveNodeId(null);
         setAutoRotate(true);
-        setPulseEffect({});
       }
 
       return next;
@@ -114,25 +106,88 @@ export default function RadialOrbitalTimeline({
   };
 
   useEffect(() => {
-    if (!autoRotate) {
+    const container = containerRef.current;
+
+    if (!container) {
+      return;
+    }
+
+    const syncWidth = (nextWidth: number) => {
+      setContainerWidth((current) =>
+        current === nextWidth ? current : nextWidth,
+      );
+    };
+
+    syncWidth(container.clientWidth);
+
+    if (typeof ResizeObserver === "undefined") {
+      const handleResize = () => syncWidth(container.clientWidth);
+
+      window.addEventListener("resize", handleResize);
+
+      return () => window.removeEventListener("resize", handleResize);
+    }
+
+    const observer = new ResizeObserver((entries) => {
+      const nextWidth = entries[0]?.contentRect.width ?? container.clientWidth;
+      syncWidth(nextWidth);
+    });
+
+    observer.observe(container);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const container = containerRef.current;
+
+    if (!container || typeof IntersectionObserver === "undefined") {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const nextEntry = entries[0];
+        setIsContainerInView(nextEntry?.isIntersecting ?? true);
+      },
+      { rootMargin: "200px 0px" },
+    );
+
+    observer.observe(container);
+
+    return () => observer.disconnect();
+  }, []);
+
+  const isMobileLayout = containerWidth > 0 && containerWidth < 640;
+  const rotationFrameInterval = isMobileLayout
+    ? MOBILE_ROTATION_FRAME_INTERVAL_MS
+    : ROTATION_FRAME_INTERVAL_MS;
+  const shouldAnimateOrbit = autoRotate && isPageVisible && isContainerInView;
+
+  useEffect(() => {
+    if (!shouldAnimateOrbit) {
       return;
     }
 
     let animationFrameId = 0;
-    let previousTime: number | null = null;
+    let previousTime = 0;
 
     const animate = (currentTime: number) => {
-      if (previousTime === null) {
+      if (previousTime === 0) {
         previousTime = currentTime;
       }
 
       const deltaTime = currentTime - previousTime;
-      previousTime = currentTime;
 
-      setRotationAngle((previous) => {
-        const next = previous + (deltaTime / 1000) * AUTO_ROTATE_DEGREES_PER_SECOND;
-        return next % 360;
-      });
+      if (deltaTime >= rotationFrameInterval) {
+        previousTime = currentTime;
+
+        setRotationAngle((previous) => {
+          const next =
+            previous + (deltaTime / 1000) * AUTO_ROTATE_DEGREES_PER_SECOND;
+          return next % 360;
+        });
+      }
 
       animationFrameId = window.requestAnimationFrame(animate);
     };
@@ -142,15 +197,58 @@ export default function RadialOrbitalTimeline({
     return () => {
       window.cancelAnimationFrame(animationFrameId);
     };
-  }, [autoRotate]);
+  }, [rotationFrameInterval, shouldAnimateOrbit]);
+  const centerOffset = {
+    x: 0,
+    y:
+      containerWidth <= 0
+        ? 56
+        : containerWidth < 640
+          ? 24
+          : containerWidth < 1024
+            ? 40
+            : 64,
+  };
+
+  const orbitRadius =
+    containerWidth <= 0
+      ? 300
+      : containerWidth < 640
+        ? Math.max(92, Math.min(118, containerWidth * 0.3))
+        : containerWidth < 1024
+          ? Math.max(180, Math.min(240, containerWidth * 0.3))
+          : 300;
+
+  const orbitDiameter = orbitRadius * 2;
+  const innerRingSize = orbitDiameter * 0.84;
+  const centerNodeSize = isMobileLayout ? 56 : 64;
+  const iconSize = isMobileLayout ? 16 : 18;
+  const backgroundGlobeOffsetY = isMobileLayout ? -220 : 0;
+  const detailCardWidth = isMobileLayout
+    ? "min(16rem, calc(100vw - 2.5rem))"
+    : "18rem";
+  const centerNodeStyle = {
+    width: `${centerNodeSize}px`,
+    height: `${centerNodeSize}px`,
+    transform: `translateY(${backgroundGlobeOffsetY}px)`,
+    backgroundImage:
+      "linear-gradient(135deg, var(--achiever-lightning-start, #38bdf8), var(--achiever-lightning-mid, #3b82f6), var(--achiever-lightning-end, #22d3ee))",
+    boxShadow: "0 0 32px var(--achiever-lightning-glow, rgba(59,130,246,0.34))",
+  };
+  const centerNodeSoftStyle = {
+    color: "var(--achiever-lightning-soft, rgba(224,242,254,0.82))",
+    textShadow: "0 0 18px var(--achiever-lightning-glow, rgba(59,130,246,0.34))",
+  };
+  const centerNodeTextStyle = {
+    textShadow: "0 0 20px var(--achiever-lightning-glow-strong, rgba(59,130,246,0.52))",
+  };
 
   const calculateNodePosition = (index: number, total: number) => {
     const angle = ((index / total) * 360 + rotationAngle) % 360;
-    const radius = 200;
     const radian = (angle * Math.PI) / 180;
 
-    const x = radius * Math.cos(radian) + centerOffset.x;
-    const y = radius * Math.sin(radian) + centerOffset.y;
+    const x = orbitRadius * Math.cos(radian);
+    const y = orbitRadius * Math.sin(radian) + backgroundGlobeOffsetY;
     const zIndex = Math.round(100 + 50 * Math.cos(radian));
     const opacity = Math.max(0.72, Math.min(1, 0.72 + 0.28 * ((1 + Math.sin(radian)) / 2)));
 
@@ -164,15 +262,11 @@ export default function RadialOrbitalTimeline({
 
   return (
     <div
-      className="relative flex h-[680px] w-full flex-col items-center justify-center overflow-hidden rounded-[30px] bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.22),transparent_28%),linear-gradient(180deg,#020617_0%,#050b16_48%,#020617_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] after:pointer-events-none after:absolute after:inset-0 after:bg-[radial-gradient(circle_at_center,transparent_38%,rgba(1,7,18,0.62)_100%)]"
+      className="relative flex h-full min-h-[40rem] w-full flex-col items-center justify-center overflow-visible rounded-none bg-transparent shadow-none after:pointer-events-none after:absolute after:inset-0 after:bg-none sm:h-[820px] sm:min-h-0 sm:overflow-visible sm:rounded-none sm:bg-transparent sm:shadow-none sm:after:bg-none lg:h-[960px]"
       ref={containerRef}
       onClick={handleContainerClick}
     >
-      <AnimatedShaderBackground className="pointer-events-none absolute inset-0 z-0 opacity-50" />
-      <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.16),transparent_30%),radial-gradient(circle_at_bottom,rgba(14,165,233,0.16),transparent_26%),radial-gradient(circle_at_center,rgba(8,15,30,0.12),transparent_60%)]" />
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(180deg,rgba(1,6,18,0.14),rgba(1,6,18,0.04)_24%,rgba(1,6,18,0.2)_58%,rgba(1,6,18,0.28)_100%),radial-gradient(circle_at_center,rgba(8,15,30,0.02),rgba(2,8,23,0.24)_70%,rgba(2,8,23,0.48)_100%)]" />
-
-      <div className="relative flex h-full w-full max-w-5xl items-center justify-center">
+      <div className="relative flex h-full w-full max-w-5xl items-center justify-center px-3 sm:px-6 lg:px-0">
         <div
           className="absolute flex h-full w-full items-center justify-center"
           ref={orbitRef}
@@ -181,50 +275,74 @@ export default function RadialOrbitalTimeline({
             transform: `translate(${centerOffset.x}px, ${centerOffset.y}px)`,
           }}
         >
-          <div className="absolute z-10 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 via-blue-500 to-teal-400 shadow-[0_0_35px_rgba(56,189,248,0.38)]">
-            <div className="absolute h-20 w-20 animate-ping rounded-full border border-cyan-100/30 opacity-80" />
-            <div
-              className="absolute h-24 w-24 animate-ping rounded-full border border-cyan-100/20 opacity-60"
-              style={{ animationDelay: "0.5s" }}
-            />
+          <div
+            data-orbit-center-anchor
+            className="absolute z-10 flex items-center justify-center rounded-full bg-gradient-to-br from-sky-500 via-blue-500 to-cyan-400"
+            style={centerNodeStyle}
+          >
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute text-[44px] font-black leading-none text-cyan-200/70 blur-[3px] drop-shadow-[0_0_22px_rgba(56,189,248,0.82)]"
+              className="pointer-events-none absolute text-[38px] font-black leading-none sm:text-[44px]"
+              style={centerNodeSoftStyle}
             >
               $
             </span>
-            <span className="relative translate-y-[-1px] text-[40px] font-black leading-none text-white drop-shadow-[0_0_18px_rgba(14,165,233,0.7)]">
+            <span
+              className="relative translate-y-[-1px] text-[34px] font-black leading-none text-white sm:text-[40px]"
+              style={centerNodeTextStyle}
+            >
               $
             </span>
           </div>
 
-          <div className="pointer-events-none absolute flex items-center justify-center">
-            <div className="absolute h-[28rem] w-[28rem] rounded-full bg-cyan-400/[0.12] blur-3xl" />
-            <div className="absolute h-[23rem] w-[23rem] rounded-full bg-[radial-gradient(circle,rgba(56,189,248,0.12),transparent_68%)] blur-3xl" />
-            <div className="absolute h-[25rem] w-[25rem] rounded-full border border-cyan-400/[0.22] shadow-[0_0_65px_rgba(56,189,248,0.18),inset_0_0_22px_rgba(56,189,248,0.12)]" />
-            <div className="absolute h-[25rem] w-[25rem] rounded-full border border-dashed border-white/[0.16] opacity-90" />
-            <div className="absolute h-[21rem] w-[21rem] rounded-full border border-white/[0.09]" />
+          {!isMobileLayout ? (
+            <>
+              <div
+                className="pointer-events-none absolute h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle_at_25%_90%,_#1e386b_15%,_#000000de_70%,_#000000ed_100%)] opacity-90 backdrop-blur-3xl"
+                style={{ transform: `translateY(${backgroundGlobeOffsetY}px)` }}
+              />
+              <div
+                className="pointer-events-none absolute h-[900px] w-[900px] rounded-full bg-gradient-to-b from-blue-500/20 to-purple-600/10 blur-3xl"
+                style={{ transform: `translateY(${backgroundGlobeOffsetY}px)` }}
+              />
+            </>
+          ) : null}
+
+          <div
+            className="pointer-events-none absolute flex items-center justify-center"
+            style={{
+              transform: `translateY(${backgroundGlobeOffsetY}px)`,
+            }}
+          >
             <div
-              className="absolute h-[25rem] w-[25rem] rounded-full opacity-85 blur-[1px]"
+              className="absolute rounded-full border border-white/12"
               style={{
-                background:
-                  "conic-gradient(from 180deg at 50% 50%, rgba(56,189,248,0) 0deg, rgba(56,189,248,0.5) 40deg, rgba(56,189,248,0) 92deg, rgba(125,211,252,0.14) 180deg, rgba(56,189,248,0) 298deg, rgba(56,189,248,0.42) 338deg, rgba(56,189,248,0) 360deg)",
-                animation: "spin 26s linear infinite",
-                WebkitMask:
-                  "radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 1px))",
-                mask:
-                  "radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 1px))",
+                width: `${orbitDiameter}px`,
+                height: `${orbitDiameter}px`,
               }}
             />
-            <div className="absolute left-1/2 top-0 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-200 shadow-[0_0_22px_rgba(125,211,252,0.95)]" />
-            <div className="absolute bottom-0 left-1/2 h-2.5 w-2.5 -translate-x-1/2 translate-y-1/2 rounded-full bg-blue-300 shadow-[0_0_18px_rgba(96,165,250,0.9)]" />
+            <div
+              className="absolute rounded-full border border-dashed border-white/[0.16] opacity-90"
+              style={{
+                width: `${orbitDiameter}px`,
+                height: `${orbitDiameter}px`,
+              }}
+            />
+            <div
+              className="absolute rounded-full border border-white/[0.09]"
+              style={{
+                width: `${innerRingSize}px`,
+                height: `${innerRingSize}px`,
+              }}
+            />
+            <div className="absolute left-1/2 top-0 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/55" />
+            <div className="absolute bottom-0 left-1/2 h-2.5 w-2.5 -translate-x-1/2 translate-y-1/2 rounded-full bg-white/35" />
           </div>
 
           {timelineData.map((item, index) => {
             const position = calculateNodePosition(index, timelineData.length);
             const isExpanded = expandedItems[item.id];
             const isRelated = isRelatedToActive(item.id);
-            const isPulsing = pulseEffect[item.id];
             const Icon = iconMap[item.icon];
 
             return (
@@ -250,47 +368,38 @@ export default function RadialOrbitalTimeline({
                 suppressHydrationWarning
                 >
                 <div
-                  className={`absolute -inset-1 rounded-full blur-xl ${isPulsing ? "animate-pulse duration-1000 opacity-100" : "opacity-80"}`}
-                  style={{
-                    background:
-                      "radial-gradient(circle, rgba(103,232,249,0.38) 0%, rgba(56,189,248,0.2) 38%, rgba(255,255,255,0) 74%)",
-                    width: `${item.energy * 0.5 + 40}px`,
-                    height: `${item.energy * 0.5 + 40}px`,
-                    left: `-${(item.energy * 0.5 + 40 - 40) / 2}px`,
-                    top: `-${(item.energy * 0.5 + 40 - 40) / 2}px`,
-                  }}
-                />
-
-                <div
                   className={`
-                    relative flex h-10 w-10 items-center justify-center rounded-full border-2 backdrop-blur-md transition-all duration-300 before:absolute before:inset-[-8px] before:-z-10 before:rounded-full before:bg-cyan-300/18 before:blur-xl
-                    ${isExpanded ? "scale-150 border-cyan-100 bg-white text-slate-950 shadow-[0_0_36px_rgba(255,255,255,0.35)]" : ""}
-                    ${!isExpanded && isRelated ? "animate-pulse border-cyan-100/85 bg-cyan-100/80 text-slate-950 shadow-[0_0_34px_rgba(125,211,252,0.5)]" : ""}
-                    ${!isExpanded && !isRelated ? "border-cyan-200/60 bg-[radial-gradient(circle_at_30%_30%,rgba(56,189,248,0.24),rgba(2,6,23,0.96)_72%)] text-white shadow-[0_0_30px_rgba(56,189,248,0.42)] group-hover:scale-105 group-hover:border-cyan-200/80 group-hover:text-white group-hover:shadow-[0_0_42px_rgba(56,189,248,0.72)]" : ""}
+                    relative flex h-9 w-9 items-center justify-center rounded-full border-2 transition-all duration-300 sm:h-10 sm:w-10
+                    ${isExpanded ? "scale-125 border-white/40 bg-white/10 text-white shadow-none" : ""}
+                    ${!isExpanded && isRelated ? "animate-pulse border-white/35 bg-white/10 text-white shadow-none" : ""}
+                    ${!isExpanded && !isRelated ? "border-white/20 bg-black/45 text-white shadow-none group-hover:scale-105 group-hover:border-white/30 group-hover:bg-black/55 group-hover:text-white" : ""}
                   `}
                 >
                   <Icon
-                    size={18}
+                    size={iconSize}
                     className={
                       isExpanded || isRelated
-                        ? "text-slate-950 drop-shadow-[0_0_6px_rgba(255,255,255,0.18)]"
-                        : "text-white drop-shadow-[0_0_10px_rgba(125,211,252,0.8)]"
+                        ? "text-white"
+                        : "text-white"
                     }
                   />
                 </div>
 
                 <div
                   className={`
-                    absolute top-12 whitespace-nowrap rounded-full border border-cyan-200/15 bg-slate-950/84 px-4 py-1.5 text-xs font-semibold tracking-[0.18em] text-white/95 shadow-[0_0_24px_rgba(56,189,248,0.18)] backdrop-blur-md drop-shadow-[0_0_10px_rgba(56,189,248,0.5)] transition-all duration-300 [.light_&]:border-blue-200/80 [.light_&]:bg-white/96 [.light_&]:text-slate-700 [.light_&]:shadow-[0_12px_28px_rgba(37,99,235,0.12)] [.light_&]:drop-shadow-none
-                    ${isExpanded ? "scale-125 border-cyan-300/30 bg-cyan-500/12 text-white shadow-[0_0_28px_rgba(56,189,248,0.28)] [.light_&]:border-blue-200 [.light_&]:bg-blue-50 [.light_&]:text-blue-700 [.light_&]:shadow-[0_14px_30px_rgba(37,99,235,0.16)]" : "group-hover:border-cyan-300/30 group-hover:bg-cyan-500/12 group-hover:text-white group-hover:shadow-[0_0_32px_rgba(56,189,248,0.32)] [.light_&]:group-hover:border-blue-300/70 [.light_&]:group-hover:bg-blue-50 [.light_&]:group-hover:text-blue-700 [.light_&]:group-hover:shadow-[0_16px_34px_rgba(37,99,235,0.18)]"}
+                    absolute left-1/2 top-11 w-32 -translate-x-1/2 rounded-full border border-white/10 bg-black/55 px-3 py-1.5 text-center text-[10px] font-semibold leading-4 tracking-[0.12em] text-white/95 shadow-none backdrop-blur-none drop-shadow-none transition-all duration-300 whitespace-normal [.light_&]:border-slate-200/80 [.light_&]:bg-white/96 [.light_&]:text-slate-700 [.light_&]:shadow-none [.light_&]:drop-shadow-none sm:left-0 sm:top-12 sm:w-auto sm:translate-x-0 sm:px-4 sm:text-xs sm:leading-normal sm:tracking-[0.18em] sm:whitespace-nowrap
+                    ${isExpanded ? "scale-110 border-white/20 bg-black/70 text-white [.light_&]:border-slate-300 [.light_&]:bg-slate-50 [.light_&]:text-slate-700" : "group-hover:border-white/15 group-hover:bg-black/65 group-hover:text-white [.light_&]:group-hover:border-slate-300/70 [.light_&]:group-hover:bg-slate-50 [.light_&]:group-hover:text-slate-700"}
                   `}
                 >
                   {item.title}
                 </div>
 
                 {isExpanded ? (
-                  <Card className="absolute left-1/2 top-20 w-72 -translate-x-1/2 overflow-visible border-cyan-300/20 bg-slate-950/88 shadow-[0_24px_60px_rgba(2,12,27,0.55),0_0_35px_rgba(56,189,248,0.16)] backdrop-blur-xl [.light_&]:border-gray-200 [.light_&]:bg-white/[0.98] [.light_&]:shadow-[0_24px_60px_rgba(37,99,235,0.12)]">
-                    <div className="absolute -top-3 left-1/2 h-3 w-px -translate-x-1/2 bg-cyan-200/60 [.light_&]:bg-blue-300/70" />
+                  <Card
+                    className="absolute left-1/2 top-20 -translate-x-1/2 overflow-visible border-white/10 bg-black/80 shadow-[0_24px_60px_rgba(2,12,27,0.45)] backdrop-blur-none [.light_&]:border-gray-200 [.light_&]:bg-white/[0.98] [.light_&]:shadow-[0_24px_60px_rgba(15,23,42,0.08)]"
+                    style={{ width: detailCardWidth }}
+                  >
+                    <div className="absolute -top-3 left-1/2 h-3 w-px -translate-x-1/2 bg-white/25 [.light_&]:bg-slate-300/70" />
                     <CardHeader className="pb-2">
                       <CardTitle className="mt-2 text-sm tracking-[0.02em] text-white [.light_&]:text-slate-900">
                         {item.title}

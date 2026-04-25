@@ -112,7 +112,7 @@ function NavItem({
       <div className="flex flex-col border-b border-white/5 pb-2">
         <button
           onClick={() => setIsOpen((open) => !open)}
-          className="flex w-full items-center justify-between py-2 text-base font-medium text-text-primary transition-colors hover:text-brand-glow"
+          className="flex w-full items-center justify-between py-2 text-base font-medium text-text-primary transition-colors hover:text-brand-glow [.light_&]:text-slate-700 [.light_&]:hover:text-blue-700"
           aria-expanded={isOpen}
         >
           {title}
@@ -282,7 +282,7 @@ export default function Navbar({
         </div>
 
         <button
-          className="relative z-50 text-text-secondary transition-colors hover:text-white lg:hidden [.light_&]:hover:text-slate-900"
+          className="relative z-50 text-text-secondary transition-colors hover:text-white lg:hidden [.light_&]:text-slate-500 [.light_&]:hover:text-slate-900"
           onClick={() => setMobileMenuOpen((open) => !open)}
           aria-label="Toggle mobile menu"
         >
@@ -304,7 +304,7 @@ export default function Navbar({
               />
             ))}
           </nav>
-          <div className="mt-auto flex flex-col gap-3 border-t border-white/5 pt-6">
+          <div className="mt-auto flex flex-col gap-3 border-t border-white/5 pt-6 [.light_&]:border-gray-200">
             <ThemeSwitch />
             <Button variant="outline" className="w-full">
               Login

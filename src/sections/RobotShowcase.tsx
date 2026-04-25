@@ -35,15 +35,13 @@ const featureCards = [
 
 export default function RobotShowcase() {
   return (
-    <SectionWrapper id="robot-showcase" className="relative z-30 -mt-28 bg-transparent pb-24 pt-0 lg:-mt-44 lg:pb-32 [.light_&]:bg-transparent">
-      <div className="pointer-events-none absolute inset-x-0 -top-24 bottom-0">
-        <div className="absolute left-1/2 top-0 h-80 w-[1100px] -translate-x-1/2 bg-[radial-gradient(circle,rgba(56,189,248,0.16),transparent_58%)] blur-3xl" />
-        <div className="absolute right-[-12%] top-28 h-72 w-72 rounded-full bg-brand-primary/10 blur-3xl" />
-        <div className="absolute left-[-8%] bottom-10 h-72 w-72 rounded-full bg-brand-secondary/10 blur-3xl" />
-      </div>
+    <SectionWrapper id="robot-showcase" className="relative z-30 !m-0 bg-transparent !p-0 !px-0 !py-0 md:!mt-0 md:!pt-0 lg:!mt-0 lg:!p-0 lg:!px-0 lg:!py-0 [.light_&]:bg-transparent">
+      <div className="relative">
+        <div className="pointer-events-none absolute inset-0 hidden rounded-[2rem] [.light_&]:block [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.82),rgba(248,250,252,0.96))] [.light_&]:shadow-[0_24px_60px_rgba(15,23,42,0.08)]" />
+        <div className="pointer-events-none absolute inset-0 hidden rounded-[2rem] [.light_&]:block [.light_&]:bg-[radial-gradient(circle_at_top_left,rgba(59,130,246,0.10),transparent_34%),radial-gradient(circle_at_78%_72%,rgba(14,165,233,0.08),transparent_38%)]" />
 
-      <div className="relative grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-        <div className="space-y-6">
+        <div className="relative grid items-center gap-10 rounded-[2rem] p-4 sm:p-6 lg:grid-cols-[0.95fr_1.05fr] lg:p-8">
+          <div className="space-y-6">
           <div className="space-y-4">
             <h2 className="text-3xl font-extrabold tracking-tight text-white md:text-5xl [.light_&]:text-[#111827]">
               Power-Packed Forex Features
@@ -58,10 +56,10 @@ export default function RobotShowcase() {
                 <Card
                   key={feature.title}
                   variant="outline"
-                  className="group relative flex flex-col items-center justify-start border border-white/0 bg-white/[0.03] shadow-[0_20px_60px_rgba(2,8,23,0.45)] backdrop-blur-2xl transition-all duration-300 hover:z-10 hover:scale-105 hover:border-t hover:border-brand-primary/50 hover:bg-[linear-gradient(180deg,rgba(14,165,233,0.1)_0%,rgba(2,8,23,0)_100%)] hover:shadow-[0_0_40px_rgba(56,189,248,0.1)] [.light_&]:border-gray-200 [.light_&]:bg-white [.light_&]:shadow-[0_10px_30px_rgba(0,0,0,0.06)] [.light_&]:hover:shadow-[0_15px_40px_rgba(14,165,233,0.15)]"
+                  className="group relative flex flex-col items-center justify-start border border-white/0 bg-white/[0.03] shadow-[0_20px_60px_rgba(2,8,23,0.45)] backdrop-blur-2xl transition-all duration-300 hover:z-10 hover:scale-105 hover:border-t hover:border-brand-primary/50 hover:bg-[linear-gradient(180deg,rgba(14,165,233,0.1)_0%,rgba(2,8,23,0)_100%)] hover:shadow-[0_0_40px_rgba(56,189,248,0.1)] [.light_&]:border-slate-200/90 [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(248,250,252,0.92))] [.light_&]:shadow-[0_10px_30px_rgba(15,23,42,0.06)] [.light_&]:hover:border-blue-200/80 [.light_&]:hover:bg-[linear-gradient(180deg,rgba(239,246,255,0.96),rgba(248,250,252,0.92))] [.light_&]:hover:shadow-[0_15px_40px_rgba(14,165,233,0.12)]"
                 >
                   <CardHeader className="flex flex-col items-center pb-3 pt-8">
-                    <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-brand-primary/10 text-brand-glow shadow-[0_0_24px_rgba(56,189,248,0.18)] transition-all duration-300 group-hover:border group-hover:border-brand-primary/50 group-hover:bg-brand-primary group-hover:text-white group-hover:shadow-[0_0_30px_rgba(56,189,248,0.5)]">
+                    <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-brand-primary/10 text-brand-glow shadow-[0_0_24px_rgba(56,189,248,0.18)] transition-all duration-300 group-hover:border group-hover:border-brand-primary/50 group-hover:bg-brand-primary group-hover:text-white group-hover:shadow-[0_0_30px_rgba(56,189,248,0.5)] [.light_&]:bg-blue-50 [.light_&]:text-blue-600 [.light_&]:shadow-none [.light_&]:group-hover:border-blue-200 [.light_&]:group-hover:bg-blue-600 [.light_&]:group-hover:text-white [.light_&]:group-hover:shadow-[0_12px_28px_rgba(37,99,235,0.18)]">
                       <Icon className="h-[22px] w-[22px] transition-transform duration-300 group-hover:scale-125" />
                     </div>
                     <CardTitle className="text-center text-lg font-bold transition-colors duration-300 group-hover:text-white [.light_&]:group-hover:text-slate-900">{feature.title}</CardTitle>
@@ -75,31 +73,27 @@ export default function RobotShowcase() {
               );
             })}
           </div>
-        </div>
+          </div>
 
-        <div className="relative isolate min-h-[420px] sm:min-h-[520px]">
-          <div className="absolute inset-x-8 top-6 h-32 rounded-full bg-[radial-gradient(circle,rgba(56,189,248,0.20),transparent_65%)] blur-3xl" />
-          <div className="absolute inset-0 rounded-[2.5rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.05)_0%,rgba(255,255,255,0.02)_35%,rgba(2,8,23,0)_100%)] backdrop-blur-[3px]" />
-          <div className="absolute inset-0 rounded-[2.5rem] bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.08),transparent_35%),radial-gradient(circle_at_50%_72%,rgba(37,99,235,0.10),transparent_42%)]" />
+          <div className="relative min-h-[420px] sm:min-h-[520px]">
+            <div className="absolute inset-0 hidden rounded-[2.5rem] [.light_&]:block [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(241,245,249,0.88))] [.light_&]:shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_20px_50px_rgba(15,23,42,0.08)]" />
+            <div className="absolute inset-0 hidden rounded-[2.5rem] [.light_&]:block [.light_&]:bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.10),transparent_34%),radial-gradient(circle_at_74%_70%,rgba(14,165,233,0.10),transparent_42%)]" />
 
-          <div className="relative h-[420px] overflow-hidden rounded-[2.5rem] sm:h-[520px]">
-            <InteractiveRobotSpline
-              scene={ROBOT_SCENE_URL}
-              className="absolute inset-[-8%] h-[116%] w-[116%]"
-            />
+            <div className="relative h-[420px] overflow-hidden rounded-[2.5rem] bg-transparent sm:h-[520px]">
+              <InteractiveRobotSpline
+                scene={ROBOT_SCENE_URL}
+                className="absolute inset-[-8%] h-[116%] w-[116%]"
+              />
 
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,transparent,rgba(4,8,20,0.08)_45%,rgba(4,8,20,0.28)_100%)]" />
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#040814] via-[#040814]/38 to-transparent" />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#040814] via-[#040814]/72 to-transparent" />
-
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 p-6 sm:p-8">
-              <div className="mx-auto max-w-md text-center">
-                <p className="mb-2 text-sm uppercase tracking-[0.25em] text-brand-glow">
-                  {/* Whobee Demo */}
-                </p>
-                <h3 className="text-2xl font-bold text-white sm:text-3xl">
-                  {/* This is interactive 3D robot Whobee */}
-                </h3>
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 p-6 sm:p-8">
+                <div className="mx-auto max-w-md text-center">
+                  <p className="mb-2 text-sm uppercase tracking-[0.25em] text-brand-glow">
+                    {/* Whobee Demo */}
+                  </p>
+                  <h3 className="text-2xl font-bold text-white sm:text-3xl [.light_&]:text-slate-900">
+                    {/* This is interactive 3D robot Whobee */}
+                  </h3>
+                </div>
               </div>
             </div>
           </div>
