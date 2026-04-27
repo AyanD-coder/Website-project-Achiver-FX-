@@ -294,10 +294,10 @@ export default function PartnershipPage() {
                   <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-300/18 bg-cyan-400/10 text-cyan-100 transition-transform duration-300 group-hover:scale-105 [.light_&]:border-sky-200 [.light_&]:bg-sky-50 [.light_&]:text-sky-700">
                     <benefit.icon className="h-6 w-6" />
                   </div>
-                  <h3 className="text-xl font-semibold text-white [.light_&]:text-slate-950">
+                  <h3 className="text-xl font-semibold text-white [.light_&]:text-primary">
                     {benefit.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-6 text-slate-400 [.light_&]:text-slate-600">
+                  <p className="mt-3 text-sm leading-6 text-slate-400 [.light_&]:text-slate-300">
                     {benefit.description}
                   </p>
                 </div>
