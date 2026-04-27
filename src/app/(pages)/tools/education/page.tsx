@@ -1,12 +1,7 @@
-import type { Metadata } from "next";
-
 import { DiscoverPage, discoverPages } from "@/components/ui/discover-page";
+import { createPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Education | Achiever",
-  description:
-    "Learn trading foundations, risk habits, chart reading, and platform skills with Achiever education resources.",
-};
+export const metadata = createPageMetadata("/tools/education");
 
 export default function EducationPage() {
   return <DiscoverPage page={discoverPages.education} />;

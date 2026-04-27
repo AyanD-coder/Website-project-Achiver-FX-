@@ -1,12 +1,7 @@
-import type { Metadata } from "next";
-
 import { DiscoverPage, discoverPages } from "@/components/ui/discover-page";
+import { createPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Blogs | Achiever",
-  description:
-    "Explore Achiever trading blogs with market explainers, platform tips, and practical trading perspectives.",
-};
+export const metadata = createPageMetadata("/tools/blogs");
 
 export default function BlogsPage() {
   return <DiscoverPage page={discoverPages.blogs} />;

@@ -2,6 +2,9 @@ import PageLayout from "@/components/ui/PageLayout";
 import EquitiesFeatureOrbit from "@/components/ui/EquitiesFeatureOrbit";
 import EquitiesFaqSection from "@/components/ui/EquitiesFaqSection";
 import EquitiesGlobalMarketsSection from "@/components/ui/EquitiesGlobalMarketsSection";
+import { createPageMetadata } from "@/lib/page-metadata";
+
+export const metadata = createPageMetadata("/markets/equities");
 
 export default function EquitiesPage() {
   return (

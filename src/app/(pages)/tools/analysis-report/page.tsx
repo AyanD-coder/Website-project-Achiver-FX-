@@ -1,12 +1,7 @@
-import type { Metadata } from "next";
-
 import { DiscoverPage, discoverPages } from "@/components/ui/discover-page";
+import { createPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "News & Analysis | Achiever",
-  description:
-    "Read Achiever market analysis reports with technical context, macro themes, and trade preparation insights.",
-};
+export const metadata = createPageMetadata("/tools/analysis-report");
 
 export default function AnalysisReportPage() {
   return <DiscoverPage page={discoverPages.analysisReport} />;

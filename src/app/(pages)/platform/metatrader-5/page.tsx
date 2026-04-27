@@ -1,5 +1,8 @@
 import PageLayout from "@/components/ui/PageLayout";
 import MetaTrader5PlatformPage from "@/components/ui/MetaTrader5PlatformPage";
+import { createPageMetadata } from "@/lib/page-metadata";
+
+export const metadata = createPageMetadata("/platform/metatrader-5");
 
 export default function MetaTrader5Page() {
   return (

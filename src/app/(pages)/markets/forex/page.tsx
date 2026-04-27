@@ -3,6 +3,9 @@ import StatsSection from "@/components/ui/StatsSection";
 import WhyTradeSection from "@/components/ui/WhyTradeSection";
 import FAQSection from "@/components/ui/FAQSection";
 import TradingSection from "@/sections/TradingSection";
+import { createPageMetadata } from "@/lib/page-metadata";
+
+export const metadata = createPageMetadata("/markets/forex");
 
 export default function ForexPage() {
   return (

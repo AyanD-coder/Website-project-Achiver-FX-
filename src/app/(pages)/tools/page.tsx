@@ -1,12 +1,7 @@
-import type { Metadata } from "next";
-
 import { DiscoverPage, discoverPages } from "@/components/ui/discover-page";
+import { createPageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Trading Tools | Achiever",
-  description:
-    "Explore Achiever trading tools for analysis, economic events, and daily market preparation.",
-};
+export const metadata = createPageMetadata("/tools");
 
 export default function ToolsPage() {
   return <DiscoverPage page={discoverPages.tradingTools} />;

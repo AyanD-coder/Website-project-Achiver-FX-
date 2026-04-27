@@ -1,5 +1,8 @@
 import PageLayout from "@/components/ui/PageLayout";
 import RTX5PlatformPage from "@/components/ui/RTX5PlatformPage";
+import { createPageMetadata } from "@/lib/page-metadata";
+
+export const metadata = createPageMetadata("/platform");
 
 export default function PlatformPage() {
   return (

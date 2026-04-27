@@ -3,6 +3,9 @@ import CommoditiesTradeSection from "@/components/ui/CommoditiesTradeSection";
 import CommoditiesPriceViewSection from "@/components/ui/CommoditiesPriceViewSection";
 import CommoditiesQuickAccessSection from "@/components/ui/CommoditiesQuickAccessSection";
 import CommoditiesSetupOrbitSection from "@/components/ui/CommoditiesSetupOrbitSection";
+import { createPageMetadata } from "@/lib/page-metadata";
+
+export const metadata = createPageMetadata("/markets/commodities");
 
 export default function CommoditiesPage() {
   return (

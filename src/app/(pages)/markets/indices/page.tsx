@@ -2,6 +2,9 @@ import PageLayout from "@/components/ui/PageLayout";
 import IndicesHero from "@/components/ui/IndicesHero";
 import GradientCardShowcase from "@/components/ui/gradient-card-showcase";
 import IndicesWhyTradeSection from "@/components/ui/IndicesWhyTradeSection";
+import { createPageMetadata } from "@/lib/page-metadata";
+
+export const metadata = createPageMetadata("/markets/indices");
 
 export default function IndicesPage() {
   return (

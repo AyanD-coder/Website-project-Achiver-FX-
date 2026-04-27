@@ -8,6 +8,9 @@ import Pricing from "@/sections/Pricing";
 import Testimonials from "@/sections/Testimonials";
 import Subscribe from "@/sections/Subscribe";
 import Footer from "@/sections/Footer";
+import { createPageMetadata } from "@/lib/page-metadata";
+
+export const metadata = createPageMetadata("/");
 
 export default function Home() {
   return (

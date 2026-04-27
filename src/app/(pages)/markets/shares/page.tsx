@@ -1,5 +1,8 @@
 import PageLayout from "@/components/ui/PageLayout";
 import SharesTradingPage from "@/components/ui/SharesTradingPage";
+import { createPageMetadata } from "@/lib/page-metadata";
+
+export const metadata = createPageMetadata("/markets/shares");
 
 export default function SharesPage() {
   return (

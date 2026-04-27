@@ -10,6 +10,9 @@ import {
 
 import { Button } from "@/components/ui/Button";
 import PageLayout from "@/components/ui/PageLayout";
+import { createPageMetadata } from "@/lib/page-metadata";
+
+export const metadata = createPageMetadata("/markets/crypto");
 
 type CryptoRow = {
   symbol: string;

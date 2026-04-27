@@ -2,6 +2,9 @@ import PageLayout from "@/components/ui/PageLayout";
 import OrbitalFeatures from "@/components/ui/OrbitalFeatures";
 import FAQSection from "@/components/ui/FAQSection";
 import TradingSection from "@/sections/TradingSection";
+import { createPageMetadata } from "@/lib/page-metadata";
+
+export const metadata = createPageMetadata("/markets/market-overview");
 
 export default function MarketOverviewPage() {
   return (

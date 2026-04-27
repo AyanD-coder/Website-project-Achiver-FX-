@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Manrope, Sora } from "next/font/google";
+
+import { defaultMetadata } from "@/lib/page-metadata";
+
 import "./globals.css";
 
 const manrope = Manrope({
@@ -13,10 +16,7 @@ const sora = Sora({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Achiver Landing",
-  description: "A simple and scalable Next.js project",
-};
+export const metadata: Metadata = defaultMetadata;
 
 export default function RootLayout({
   children,
