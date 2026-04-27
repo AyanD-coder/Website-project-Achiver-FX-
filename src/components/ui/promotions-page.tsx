@@ -278,7 +278,7 @@ export default function PromotionsPage() {
                 />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,8,20,0.18),rgba(2,8,20,0.78))] [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0),rgba(15,23,42,0.42))]" />
               </div>
-              <div className="absolute inset-x-5 bottom-5 rounded-2xl border border-white/12 bg-[#050914]/86 p-5 backdrop-blur-md [.light_&]:border-white/70 [.light_&]:bg-white/88">
+              <div className="hidden sm:block absolute inset-x-5 bottom-5 rounded-2xl border border-white/12 bg-[#050914]/86 p-5 backdrop-blur-md [.light_&]:border-white/70 [.light_&]:bg-white/88">
                 <div className="flex items-center gap-4">
                   <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-cyan-400/10 text-cyan-100 [.light_&]:bg-sky-50 [.light_&]:text-sky-700">
                     <ShieldCheck className="h-7 w-7" />

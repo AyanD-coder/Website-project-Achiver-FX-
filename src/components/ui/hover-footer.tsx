@@ -289,7 +289,7 @@ function FooterSection({
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col mb-2 sm:mb-10">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex w-full items-center justify-between py-4 sm:py-0 sm:mb-6"
@@ -300,17 +300,17 @@ function FooterSection({
         <ChevronDown
           size={16}
           className={cn(
-            "text-slate-500 transition-transform duration-300 sm:hidden",
+            "text-slate-500 transition-transform duration-300 md:hidden",
             isOpen && "rotate-180"
           )}
         />
       </button>
       <div className={cn(
-        "overflow-hidden transition-all duration-300 ease-in-out sm:max-h-none sm:opacity-100",
-        isOpen ? "max-h-[500px] opacity-100 mb-6" : "max-h-0 opacity-0 sm:mb-0"
+        "overflow-hidden transition-all duration-300 ease-in-out md:max-h-none sm:opacity-100",
+        isOpen ? "max-h-[500px] opacity-100 mb-6" : "max-h-0 opacity-0 md:mb-0"
       )}>
         {links ? (
-          <ul className="space-y-3.5 pb-4 sm:pb-0">
+          <ul className="space-y-3.5 pb-4 md:pb-0">
             {links.map((link) => (
               <li key={link.label}>
                 <Link
