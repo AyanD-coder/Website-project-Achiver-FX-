@@ -1,9 +1,10 @@
 "use client";
 
 import type { SVGProps } from "react";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { ChevronDown, Mail, MapPin, Phone } from "lucide-react";
 
 import BrandLogo from "@/components/ui/brand-logo";
 import { cn } from "@/lib/utils";
@@ -179,23 +180,49 @@ const XIcon = (props: SVGProps<SVGSVGElement>) => (
 
 const footerColumns = [
   {
-    title: "Documents",
+    title: "Markets",
     links: [
-      { label: "Privacy Policy", href: "#" },
-      { label: "Risk Disclosure", href: "#" },
-      { label: "Client Agreement", href: "#" },
-      { label: "Complaint Handling", href: "#" },
-      { label: "AML Policy", href: "#" },
+      { label: "Overview", href: "/markets/market-overview" },
+      { label: "Account Types", href: "/markets/account-types" },
+      { label: "Forex Trading", href: "/markets/forex" },
+      { label: "Crypto CFDs", href: "/markets/crypto" },
+      { label: "Stock Indices", href: "/markets/indices" },
+      { label: "Equities", href: "/markets/equities" },
+      { label: "Commodities", href: "/markets/commodities" },
+      { label: "Precious Metals", href: "/markets/precious-metals" },
+      { label: "Energies", href: "/markets/energies" },
+      { label: "Shares", href: "/markets/shares" },
     ],
   },
   {
-    title: "Quick Links",
+    title: "Discover",
     links: [
-      { label: "Markets", href: "#" },
-      { label: "Platform", href: "#" },
-      { label: "Tools", href: "#" },
-      { label: "Company", href: "#" },
-      { label: "Partner", href: "#" },
+      { label: "Trading Academy", href: "/tools/education" },
+      { label: "Market Blogs", href: "/tools/blogs" },
+      { label: "Trading Tools", href: "/tools" },
+      { label: "Economic Calendar", href: "/tools/economic-calendar" },
+      { label: "Special Offerings", href: "/tools/offerings" },
+      { label: "News & Analysis", href: "/tools/analysis-report" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "About Achiever", href: "/company" },
+      { label: "Career", href: "/company/career" },
+      { label: "Legal Documents", href: "/company/legal-documents" },
+      { label: "Customer Protection", href: "/company/customer-protection" },
+      { label: "Contact Us", href: "/company/contact-us" },
+    ],
+  },
+  {
+    title: "Support",
+    links: [
+      { label: "Latest Promotions", href: "/promotions" },
+      { label: "Partnership Program", href: "/partner" },
+      { label: "RTX 5 Platform", href: "/platform" },
+      { label: "MetaTrader 5", href: "/platform/metatrader-5" },
+      { label: "Help Center", href: "/company/contact-us" },
     ],
   },
 ];
@@ -250,6 +277,60 @@ const socialLinks = [
   },
 ];
 
+function FooterSection({
+  title,
+  links,
+  isContact = false,
+  children
+}: {
+  title: string;
+  links?: { label: string; href: string }[];
+  isContact?: boolean;
+  children?: React.ReactNode;
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="flex flex-col">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex w-full items-center justify-between py-4 sm:py-0 sm:mb-6"
+      >
+        <h4 className="text-sm font-bold uppercase tracking-wider text-white [.light_&]:text-[#111827]">
+          {title}
+        </h4>
+        <ChevronDown
+          size={16}
+          className={cn(
+            "text-slate-500 transition-transform duration-300 sm:hidden",
+            isOpen && "rotate-180"
+          )}
+        />
+      </button>
+      <div className={cn(
+        "overflow-hidden transition-all duration-300 ease-in-out sm:max-h-none sm:opacity-100",
+        isOpen ? "max-h-[500px] opacity-100 mb-6" : "max-h-0 opacity-0 sm:mb-0"
+      )}>
+        {links ? (
+          <ul className="space-y-3.5 pb-4 sm:pb-0">
+            {links.map((link) => (
+              <li key={link.label}>
+                <Link
+                  href={link.href}
+                  className="text-sm text-slate-300/85 transition-colors hover:text-[#3ca2fa] [.light_&]:text-slate-600 [.light_&]:hover:text-blue-600"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ) : children}
+      </div>
+      <div className="h-px w-full bg-white/5 sm:hidden" />
+    </div>
+  );
+}
+
 export default function HoverFooter() {
   return (
     <footer className="relative m-4 overflow-hidden rounded-[32px] border border-white/10 bg-[#07101f]/55 text-slate-300 shadow-[0_30px_120px_rgba(0,0,0,0.4)] backdrop-blur-2xl md:m-8 [.light_&]:border-gray-200 [.light_&]:bg-white/88 [.light_&]:text-slate-600 [.light_&]:shadow-[0_20px_60px_rgba(14,165,233,0.08)]">
@@ -260,14 +341,14 @@ export default function HoverFooter() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl p-8 md:p-12 lg:p-14">
-        <div className="grid grid-cols-1 gap-12 pb-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-16">
-          <div className="flex flex-col space-y-4">
+        <div className="grid grid-cols-1 gap-0 pb-10 md:grid-cols-2 md:gap-12 lg:grid-cols-3 xl:grid-cols-6 lg:gap-x-8 lg:gap-y-12">
+          <div className="mb-12 flex flex-col space-y-6 md:col-span-2 md:mb-0 lg:col-span-3 xl:col-span-2">
             <BrandLogo className="w-[220px] sm:w-[250px] [.light_&]:brightness-[0.18] [.light_&]:contrast-[1.35]" />
-            <p className="max-w-sm text-sm leading-relaxed text-slate-300/90 [.light_&]:text-slate-600">
+            <p className="self-center max-w-sm text-sm leading-relaxed text-slate-300/90 [.light_&]:text-slate-600">
               Here at Achiever Financials Ltd, we provide one of the safest
               online trading platforms to our clients and partners.
             </p>
-            <div className="flex flex-wrap items-center gap-4 pt-4">
+            <div className="self-center flex flex-wrap items-center gap-1 sm:gap-2 md:gap-4 2xl:gap-6 pt-4">
               {socialLinks.map((item) => (
                 <a
                   key={item.label}
@@ -282,48 +363,31 @@ export default function HoverFooter() {
           </div>
 
           {footerColumns.map((section) => (
-            <div key={section.title}>
-              <h4 className="mb-6 text-lg font-semibold text-white [.light_&]:text-[#111827]">
-                {section.title}
-              </h4>
-              <ul className="space-y-4">
-                {section.links.map((link) => (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="text-sm text-slate-300/85 transition-colors hover:text-[#3ca2fa] [.light_&]:text-slate-600 [.light_&]:hover:text-blue-600"
-                    >
-                      {link.label}
-                    </a>
+            <FooterSection key={section.title} title={section.title} links={section.links} />
+          ))}
+
+          <div className="md:col-span-2 lg:col-span-1 xl:col-span-2">
+            <FooterSection title="Contact Us" isContact>
+              <ul className="space-y-6 pb-4 sm:pb-0">
+                {contactInfo.map((item) => (
+                  <li key={item.text} className="flex items-start gap-3">
+                    <span className="mt-0.5 shrink-0">{item.icon}</span>
+                    {item.href ? (
+                      <a
+                        href={item.href}
+                        className="text-sm leading-6 text-slate-300/85 transition-colors hover:text-[#3ca2fa] [.light_&]:text-slate-600 [.light_&]:hover:text-blue-600"
+                      >
+                        {item.text}
+                      </a>
+                    ) : (
+                      <span className="text-sm leading-6 text-slate-300/85 [.light_&]:text-slate-600">
+                        {item.text}
+                      </span>
+                    )}
                   </li>
                 ))}
               </ul>
-            </div>
-          ))}
-
-          <div>
-            <h4 className="mb-6 text-lg font-semibold text-white [.light_&]:text-[#111827]">
-              Contact Us
-            </h4>
-            <ul className="space-y-6">
-              {contactInfo.map((item) => (
-                <li key={item.text} className="flex items-start gap-3">
-                  <span className="mt-0.5 shrink-0">{item.icon}</span>
-                  {item.href ? (
-                    <a
-                      href={item.href}
-                      className="text-sm leading-6 text-slate-300/85 transition-colors hover:text-[#3ca2fa] [.light_&]:text-slate-600 [.light_&]:hover:text-blue-600"
-                    >
-                      {item.text}
-                    </a>
-                  ) : (
-                    <span className="text-sm leading-6 text-slate-300/85 [.light_&]:text-slate-600">
-                      {item.text}
-                    </span>
-                  )}
-                </li>
-              ))}
-            </ul>
+            </FooterSection>
           </div>
         </div>
 

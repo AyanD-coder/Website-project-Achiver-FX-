@@ -147,9 +147,9 @@ export default function OrbitalFeatures() {
               Market Overview
             </span>
 
-            <h1 className="max-w-[16rem] bg-gradient-to-b from-white via-cyan-100 to-cyan-400 bg-clip-text text-center text-3xl font-semibold leading-tight tracking-[-0.05em] text-transparent sm:max-w-[20rem] sm:text-4xl lg:max-w-[24rem] lg:text-5xl [.light_&]:from-[#111827] [.light_&]:via-[#2563EB] [.light_&]:to-[#0EA5E9]">
-              Smart Investment with Achiever FX
-            </h1>
+            <h2 className="max-w-[16rem] bg-gradient-to-b from-white via-cyan-100 to-cyan-400 bg-clip-text text-center text-3xl font-semibold leading-tight tracking-[-0.05em] text-transparent sm:max-w-[20rem] sm:text-4xl lg:max-w-[24rem] lg:text-5xl [.light_&]:from-[#111827] [.light_&]:via-[#2563EB] [.light_&]:to-[#0EA5E9]">
+              Choose your market category
+            </h2>
 
             <p className="mt-5 max-w-xs text-sm leading-6 text-slate-300 sm:text-[0.95rem] [.light_&]:text-slate-600">
               {currentFeature.description}

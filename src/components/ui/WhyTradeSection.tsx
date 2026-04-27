@@ -99,7 +99,7 @@ function FeatureCard({
   const rotateY = useSpring(0, { stiffness: 220, damping: 22 });
   const glowX = useMotionValue(50);
   const glowY = useMotionValue(50);
-  const glow = useMotionTemplate`radial-gradient(circle at ${glowX}% ${glowY}%, rgba(103, 232, 249, 0.18), transparent 42%)`;
+  const glow = useMotionTemplate`radial-gradient(circle at ${glowX}% ${glowY}%, var(--color-brand-glow)/0.18, transparent 42%)`;
   const Icon = feature.icon;
 
   const handleMouseMove = (event: MouseEvent<HTMLElement>) => {
@@ -128,15 +128,15 @@ function FeatureCard({
     <div className="relative h-full [perspective:1600px]">
       {side === "left" ? (
         <>
-          <div className="pointer-events-none absolute -right-28 top-1/2 z-0 hidden h-px w-28 -translate-y-1/2 bg-gradient-to-r from-cyan-300/90 via-sky-300/45 to-transparent xl:block [.light_&]:from-sky-300/90 [.light_&]:via-blue-200/40" />
-          <div className="pointer-events-none absolute -right-28 top-1/2 z-0 hidden h-6 w-28 -translate-y-1/2 bg-[radial-gradient(circle_at_left,rgba(56,189,248,0.38),transparent_68%)] blur-sm xl:block [.light_&]:bg-[radial-gradient(circle_at_left,rgba(37,99,235,0.28),transparent_68%)]" />
-          <div className="pointer-events-none absolute -right-1 top-1/2 z-10 hidden h-2 w-2 -translate-y-1/2 rounded-full bg-cyan-300 shadow-[0_0_14px_rgba(103,232,249,0.95)] xl:block [.light_&]:bg-sky-300 [.light_&]:shadow-[0_0_12px_rgba(37,99,235,0.45)]" />
+          <div className="pointer-events-none absolute -right-28 top-1/2 z-0 hidden h-px w-28 -translate-y-1/2 bg-gradient-to-r from-brand-glow/90 via-brand-secondary/45 to-transparent xl:block [.light_&]:from-brand-primary/90 [.light_&]:via-brand-secondary/40" />
+          <div className="pointer-events-none absolute -right-28 top-1/2 z-0 hidden h-6 w-28 -translate-y-1/2 bg-[radial-gradient(circle_at_left,var(--color-brand-glow)/0.38),transparent_68%)] blur-sm xl:block [.light_&]:bg-[radial-gradient(circle_at_left,var(--color-brand-primary)/0.28),transparent_68%)]" />
+          <div className="pointer-events-none absolute -right-1 top-1/2 z-10 hidden h-2 w-2 -translate-y-1/2 rounded-full bg-brand-glow shadow-[0_0_14px_var(--color-brand-glow)/0.95] xl:block [.light_&]:bg-brand-primary [.light_&]:shadow-[0_0_12px_var(--color-brand-primary)/0.45]" />
         </>
       ) : (
         <>
-          <div className="pointer-events-none absolute -left-28 top-1/2 z-0 hidden h-px w-28 -translate-y-1/2 bg-gradient-to-l from-cyan-300/90 via-sky-300/45 to-transparent xl:block [.light_&]:from-sky-300/90 [.light_&]:via-blue-200/40" />
-          <div className="pointer-events-none absolute -left-28 top-1/2 z-0 hidden h-6 w-28 -translate-y-1/2 bg-[radial-gradient(circle_at_right,rgba(56,189,248,0.38),transparent_68%)] blur-sm xl:block [.light_&]:bg-[radial-gradient(circle_at_right,rgba(37,99,235,0.28),transparent_68%)]" />
-          <div className="pointer-events-none absolute -left-1 top-1/2 z-10 hidden h-2 w-2 -translate-y-1/2 rounded-full bg-cyan-300 shadow-[0_0_14px_rgba(103,232,249,0.95)] xl:block [.light_&]:bg-sky-300 [.light_&]:shadow-[0_0_12px_rgba(37,99,235,0.45)]" />
+          <div className="pointer-events-none absolute -left-28 top-1/2 z-0 hidden h-px w-28 -translate-y-1/2 bg-gradient-to-l from-brand-glow/90 via-brand-secondary/45 to-transparent xl:block [.light_&]:from-brand-primary/90 [.light_&]:via-brand-secondary/40" />
+          <div className="pointer-events-none absolute -left-28 top-1/2 z-0 hidden h-6 w-28 -translate-y-1/2 bg-[radial-gradient(circle_at_right,var(--color-brand-glow)/0.38),transparent_68%)] blur-sm xl:block [.light_&]:bg-[radial-gradient(circle_at_right,var(--color-brand-primary)/0.28),transparent_68%)]" />
+          <div className="pointer-events-none absolute -left-1 top-1/2 z-10 hidden h-2 w-2 -translate-y-1/2 rounded-full bg-brand-glow shadow-[0_0_14px_var(--color-brand-glow)/0.95] xl:block [.light_&]:bg-brand-primary [.light_&]:shadow-[0_0_12px_var(--color-brand-primary)/0.45]" />
         </>
       )}
       <motion.article
@@ -164,9 +164,9 @@ function FeatureCard({
           style={{ background: glow }}
         />
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),transparent_34%,rgba(255,255,255,0.02)_100%)] [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.72),transparent_34%,rgba(248,250,252,0.4)_100%)]" />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-100 [.light_&]:via-sky-300/70" />
-        <div className="pointer-events-none absolute -right-10 top-6 h-28 w-28 rounded-full bg-blue-500/12 blur-3xl transition-opacity duration-300 group-hover:opacity-90 [.light_&]:bg-sky-300/10" />
-        <div className="pointer-events-none absolute -left-8 bottom-0 h-24 w-24 rounded-full bg-cyan-400/10 blur-3xl transition-opacity duration-300 group-hover:opacity-90 [.light_&]:bg-sky-400/10" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-glow/70 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-100 [.light_&]:via-brand-primary/70" />
+        <div className="pointer-events-none absolute -right-10 top-6 h-28 w-28 rounded-full bg-brand-primary/12 blur-3xl transition-opacity duration-300 group-hover:opacity-90 [.light_&]:bg-brand-secondary/10" />
+        <div className="pointer-events-none absolute -left-8 bottom-0 h-24 w-24 rounded-full bg-brand-glow/10 blur-3xl transition-opacity duration-300 group-hover:opacity-90 [.light_&]:bg-brand-secondary/10" />
 
         <div className="relative z-10 flex h-full flex-col" style={{ transform: "translateZ(48px)" }}>
           <div className="flex items-start justify-between gap-4">
@@ -209,7 +209,7 @@ function CenterDevice() {
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       className="relative mx-auto w-full max-w-[22rem]"
     >
-      <div className="pointer-events-none absolute inset-x-6 top-8 h-64 rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.24),transparent_68%)] blur-3xl [.light_&]:bg-[radial-gradient(circle,rgba(37,99,235,0.2),transparent_68%)]" />
+      <div className="pointer-events-none absolute inset-x-6 top-8 h-64 rounded-full bg-[radial-gradient(circle,var(--color-brand-glow)/0.24,transparent_68%)] blur-3xl [.light_&]:bg-[radial-gradient(circle,var(--color-brand-primary)/0.2,transparent_68%)]" />
 
       <motion.div
         animate={
@@ -356,7 +356,7 @@ export default function WhyTradeSection() {
   return (
     <section className="relative w-full px-4 pb-24 sm:px-6 lg:px-8 lg:pb-28">
       <div className="mx-auto max-w-7xl">
-        <div className="relative overflow-hidden rounded-[2rem] bg-[linear-gradient(180deg,rgba(3,8,20,0.96),rgba(1,5,16,0.98))] px-6 py-12 shadow-[0_28px_90px_rgba(2,12,27,0.56)] sm:px-8 lg:px-10 lg:py-14 [.light_&]:border [.light_&]:border-gray-200 [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.94))] [.light_&]:shadow-[0_24px_60px_rgba(15,23,42,0.06)]">
+        <div className="relative overflow-hidden rounded-[2rem] bg-bg-dark px-6 py-12 shadow-[0_28px_90px_rgba(2,12,27,0.56)] sm:px-8 lg:px-10 lg:py-14 [.light_&]:border [.light_&]:border-gray-200 [.light_&]:bg-surface [.light_&]:shadow-[0_24px_60px_rgba(15,23,42,0.06)]">
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(56,189,248,0.14),transparent_24%),radial-gradient(circle_at_82%_16%,rgba(59,130,246,0.14),transparent_22%),linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0))] [.light_&]:bg-[radial-gradient(circle_at_18%_18%,rgba(37,99,235,0.12),transparent_24%),radial-gradient(circle_at_82%_16%,rgba(14,165,233,0.08),transparent_22%),linear-gradient(180deg,rgba(255,255,255,0.5),rgba(255,255,255,0))]" />
             <div className="absolute -left-14 top-20 h-52 w-52 rounded-full bg-cyan-400/10 blur-3xl [.light_&]:bg-sky-400/10" />
@@ -496,7 +496,7 @@ export default function WhyTradeSection() {
               the profit
             </p>
             <div className="mt-6 flex justify-center">
-              <Button asChild className="h-12 rounded-full px-7">
+              <Button asChild className="w-full sm:w-auto h-12 rounded-full px-7">
                 <Link href="/markets/account-types" className="inline-flex items-center gap-2">
                   Explore All
                   <ArrowRight size={16} />

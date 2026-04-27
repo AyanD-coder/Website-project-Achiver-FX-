@@ -99,7 +99,11 @@ function CommodityCardItem({
   );
 }
 
-export default function CommoditiesTradeSection() {
+export default function CommoditiesTradeSection({
+  compact = false,
+}: {
+  compact?: boolean;
+} = {}) {
   const shouldReduceMotion = useReducedMotion() ?? false;
 
   return (
@@ -130,14 +134,15 @@ export default function CommoditiesTradeSection() {
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="mx-auto max-w-4xl pb-12 text-center sm:pb-14 lg:pb-16">
           <p className="text-[0.78rem] font-semibold uppercase tracking-[0.34em] text-cyan-100/65 [.light_&]:text-sky-700/70">
-            Welcome to Commodities
+            {compact ? "Commodity Access" : "Welcome to Commodities"}
           </p>
-          <h1 className="mt-5 bg-gradient-to-b from-white to-white/70 bg-clip-text text-4xl font-bold tracking-tighter text-transparent md:text-6xl [.light_&]:from-slate-950 [.light_&]:to-sky-700">
-            Discover new ways to trade Commodities
-          </h1>
+          <h2 className="mt-5 bg-gradient-to-b from-white to-white/70 bg-clip-text text-4xl font-bold tracking-tighter text-transparent md:text-6xl [.light_&]:from-slate-950 [.light_&]:to-sky-700">
+            {compact ? "A focused view across soft commodities" : "Discover new ways to trade Commodities"}
+          </h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-400 [.light_&]:text-slate-600">
-            Trade commodities with confidence using advanced tools and expert
-            support.
+            {compact
+              ? "Scan coffee, sugar, cocoa, and cotton opportunities with the same visual rhythm used across Achiever pages."
+              : "Trade commodities with confidence using advanced tools and expert support."}
           </p>
         </div>
 
@@ -161,12 +166,12 @@ export default function CommoditiesTradeSection() {
 
               <div className="relative z-10 space-y-5">
                 <span className="inline-flex items-center rounded-full border border-cyan-300/18 bg-cyan-400/10 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.32em] text-cyan-100/80 shadow-[0_0_22px_rgba(56,189,248,0.12)] [.light_&]:border-sky-200 [.light_&]:bg-white/86 [.light_&]:text-sky-700 [.light_&]:shadow-[0_14px_32px_rgba(14,165,233,0.12)]">
-                  COMMODITIES
+                  {compact ? "MARKET TYPES" : "COMMODITIES"}
                 </span>
 
-                <h1 className="max-w-xl text-4xl font-semibold leading-[1.05] tracking-[-0.05em] text-white sm:text-5xl [.light_&]:text-slate-950">
-                  Trade Commodities With Achiever
-                </h1>
+                <h2 className="max-w-xl text-4xl font-semibold leading-[1.05] tracking-[-0.05em] text-white sm:text-5xl [.light_&]:text-slate-950">
+                  {compact ? "Market diversity at your fingertips" : "Trade Commodities With Achiever"}
+                </h2>
 
                 <p className="max-w-xl text-base leading-8 text-slate-400 sm:text-lg [.light_&]:text-slate-600">
                   Explore market diversity with metals, energy, and agriculture

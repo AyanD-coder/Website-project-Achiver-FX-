@@ -421,10 +421,15 @@ function SupportSeal() {
   );
 }
 
-export default function RTX5PlatformPage() {
+export default function RTX5PlatformPage({
+  showHero = true,
+}: {
+  showHero?: boolean;
+} = {}) {
   return (
     <div className="w-full">
-      <section className="relative mx-auto w-full max-w-7xl px-4 pb-12 pt-16 sm:px-6 lg:px-8">
+      {showHero ? (
+        <section className="relative mx-auto w-full max-w-7xl px-4 pb-12 pt-16 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-[2.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(7,18,28,0.94),rgba(5,10,20,0.98))] px-6 py-14 shadow-[0_34px_120px_rgba(2,8,20,0.3)] sm:px-8 sm:py-16 lg:px-10 [.light_&]:border-sky-100/90 [.light_&]:bg-[linear-gradient(180deg,rgba(249,253,255,0.98),rgba(239,249,246,0.96))] [.light_&]:shadow-[0_24px_70px_rgba(15,23,42,0.06)]">
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(56,189,248,0.1),transparent_24%),radial-gradient(circle_at_84%_16%,rgba(52,211,153,0.08),transparent_22%),linear-gradient(180deg,rgba(255,255,255,0.04),transparent_34%)] [.light_&]:bg-[radial-gradient(circle_at_18%_18%,rgba(56,189,248,0.14),transparent_24%),radial-gradient(circle_at_84%_16%,rgba(16,185,129,0.1),transparent_22%),radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.9),transparent_36%)]" />
@@ -448,7 +453,8 @@ export default function RTX5PlatformPage() {
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      ) : null}
 
       <section className="relative mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-18">
         <div className="pointer-events-none absolute inset-x-8 top-0 -z-10 h-56 rounded-full bg-[radial-gradient(circle,rgba(56,189,248,0.12),transparent_70%)] blur-3xl [.dark_&]:hidden" />

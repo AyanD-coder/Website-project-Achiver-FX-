@@ -456,7 +456,11 @@ function EquitiesCounterStrip({
   );
 }
 
-export default function EquitiesFeatureOrbit() {
+export default function EquitiesFeatureOrbit({
+  compact = false,
+}: {
+  compact?: boolean;
+} = {}) {
   const shouldReduceMotion = useReducedMotion() ?? false;
 
   return (
@@ -493,15 +497,15 @@ export default function EquitiesFeatureOrbit() {
           className="mx-auto max-w-3xl text-center"
         >
           <p className="text-[0.78rem] font-semibold uppercase tracking-[0.34em] text-cyan-100/65 [.light_&]:text-sky-700/70">
-            Trade Equities
+            {compact ? "Equities Workflow" : "Trade Equities"}
           </p>
-          <h1 className="mt-5 bg-gradient-to-b from-white to-white/70 bg-clip-text text-4xl font-bold tracking-tighter text-transparent md:text-6xl [.light_&]:from-slate-950 [.light_&]:to-sky-700">
-            Trade CFD Shares
-          </h1>
+          <h2 className="mt-5 bg-gradient-to-b from-white to-white/70 bg-clip-text text-4xl font-bold tracking-tighter text-transparent md:text-6xl [.light_&]:from-slate-950 [.light_&]:to-sky-700">
+            {compact ? "A clearer way to scan equity opportunities" : "Trade CFD Shares"}
+          </h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-400 [.light_&]:text-slate-600">
-            Trade in the world&apos;s largest companies equities across the UK,
-            EU and the US. We offer popular shares listed on the NYSE, NASDAQ,
-            London Stock Exchange and others
+            {compact
+              ? "Review platform access, pricing, execution, support, and security signals before moving into regional equity markets."
+              : "Trade in the world's largest companies equities across the UK, EU and the US. We offer popular shares listed on the NYSE, NASDAQ, London Stock Exchange and others"}
           </p>
           <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Button

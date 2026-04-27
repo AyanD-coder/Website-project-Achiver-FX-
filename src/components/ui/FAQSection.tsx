@@ -96,8 +96,8 @@ function FAQCard({
       }
       className={`group relative overflow-hidden rounded-3xl border backdrop-blur-lg transition-all duration-300 ${
         isOpen
-          ? "border-cyan-300/30 bg-gradient-to-br from-white/[0.09] to-transparent shadow-[0_0_42px_rgba(56,189,248,0.24)] [.light_&]:border-blue-200 [.light_&]:bg-[linear-gradient(135deg,rgba(255,255,255,0.96),rgba(248,250,252,0.86))] [.light_&]:shadow-[0_16px_34px_rgba(14,165,233,0.12)]"
-          : "border-white/10 bg-gradient-to-br from-white/[0.07] to-transparent shadow-[0_0_30px_rgba(56,189,248,0.15)] [.light_&]:border-gray-200 [.light_&]:bg-[linear-gradient(135deg,rgba(255,255,255,0.94),rgba(248,251,255,0.84))] [.light_&]:shadow-[0_12px_28px_rgba(15,23,42,0.05)]"
+          ? "border-brand-glow/30 bg-gradient-to-br from-white/[0.09] to-transparent shadow-[0_0_42px_var(--color-brand-glow)/0.24] [.light_&]:border-brand-primary/30 [.light_&]:bg-[linear-gradient(135deg,rgba(255,255,255,0.96),rgba(248,250,252,0.86))] [.light_&]:shadow-[0_16px_34px_var(--color-brand-primary)/0.12]"
+          : "border-white/10 bg-gradient-to-br from-white/[0.07] to-transparent shadow-[0_0_30px_var(--color-brand-glow)/0.15] [.light_&]:border-gray-200 [.light_&]:bg-[linear-gradient(135deg,rgba(255,255,255,0.94),rgba(248,251,255,0.84))] [.light_&]:shadow-[0_12px_28px_rgba(15,23,42,0.05)]"
       }`}
     >
       <motion.div
@@ -129,9 +129,9 @@ function FAQCard({
           }}
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.14),transparent_36%)] [.light_&]:bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.12),transparent_38%)]"
         />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-100 [.light_&]:via-sky-300/70" />
-        <div className="pointer-events-none absolute -right-10 top-6 h-24 w-24 rounded-full bg-cyan-300/10 blur-2xl transition-opacity duration-300 group-hover:opacity-100 [.light_&]:bg-sky-300/12" />
-        <div className="pointer-events-none absolute -left-8 bottom-0 h-24 w-24 rounded-full bg-blue-500/10 blur-3xl transition-opacity duration-300 group-hover:opacity-100 [.light_&]:bg-sky-400/10" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-glow/70 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-100 [.light_&]:via-brand-secondary/70" />
+        <div className="pointer-events-none absolute -right-10 top-6 h-24 w-24 rounded-full bg-brand-glow/10 blur-2xl transition-opacity duration-300 group-hover:opacity-100 [.light_&]:bg-brand-secondary/12" />
+        <div className="pointer-events-none absolute -left-8 bottom-0 h-24 w-24 rounded-full bg-brand-primary/10 blur-3xl transition-opacity duration-300 group-hover:opacity-100 [.light_&]:bg-brand-secondary/10" />
 
         <button
           type="button"
@@ -201,10 +201,10 @@ export default function FAQSection() {
 
       <div className="relative z-10 mx-auto max-w-6xl">
         <div className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center rounded-full border border-cyan-300/20 bg-cyan-400/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.3em] text-cyan-200 [.light_&]:border-blue-200 [.light_&]:bg-blue-50 [.light_&]:text-blue-700">
+          <span className="inline-flex items-center rounded-full border border-brand-glow/20 bg-brand-glow/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.3em] text-brand-glow [.light_&]:border-brand-primary/20 [.light_&]:bg-brand-primary/5 [.light_&]:text-brand-primary">
             GET TO KNOW
           </span>
-          <h2 className="mt-6 inline-block px-2 pb-1 bg-gradient-to-b from-white via-cyan-100 to-cyan-400 bg-clip-text text-4xl font-semibold leading-[1.15] tracking-[-0.04em] text-transparent sm:px-3 sm:text-5xl sm:leading-[1.12] [.light_&]:from-[#111827] [.light_&]:via-[#2563EB] [.light_&]:to-[#0EA5E9]">
+          <h2 className="mt-6 inline-block px-2 pb-1 bg-gradient-to-b from-white via-brand-glow to-brand-primary bg-clip-text text-4xl font-semibold leading-[1.15] tracking-[-0.04em] text-transparent sm:px-3 sm:text-5xl sm:leading-[1.12] [.light_&]:from-[#111827] [.light_&]:via-brand-primary [.light_&]:to-brand-secondary">
             Frequently Asked Questions
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/70 sm:text-base [.light_&]:text-slate-600">

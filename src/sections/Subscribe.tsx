@@ -23,7 +23,7 @@ export default function Subscribe() {
               className="flex-grow bg-bg-dark/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-text-secondary focus:outline-none focus:border-brand-glow focus:ring-1 focus:ring-brand-glow transition-all"
               required
             />
-            <Button variant="primary" type="submit" className="whitespace-nowrap px-8">
+            <Button variant="primary" type="submit" className="w-full sm:w-auto whitespace-nowrap px-8">
               Subscribe
             </Button>
           </form>

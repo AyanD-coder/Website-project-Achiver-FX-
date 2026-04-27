@@ -186,12 +186,17 @@ function CompanyBadge({
   );
 }
 
-export default function SharesTradingPage() {
+export default function SharesTradingPage({
+  showHero = true,
+}: {
+  showHero?: boolean;
+} = {}) {
   const [accountType, setAccountType] = useState<AccountType>("standard");
 
   return (
     <div className="w-full">
-      <section className="relative mx-auto w-full max-w-7xl px-4 pb-14 pt-16 sm:px-6 lg:px-8">
+      {showHero ? (
+        <section className="relative mx-auto w-full max-w-7xl px-4 pb-14 pt-16 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-[linear-gradient(180deg,rgba(9,18,32,0.94)_0%,rgba(5,11,21,0.98)_52%,rgba(6,18,26,0.94)_100%)] px-6 py-14 text-center shadow-[0_36px_120px_rgba(2,8,20,0.36)] sm:px-8 sm:py-16 lg:px-12 lg:py-20 [.light_&]:border-sky-100 [.light_&]:bg-[linear-gradient(180deg,rgba(248,252,255,0.98)_0%,rgba(239,246,255,0.96)_52%,rgba(255,255,255,0.98)_100%)] [.light_&]:shadow-[0_22px_70px_rgba(15,23,42,0.06)]">
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(56,189,248,0.14),transparent_24%),radial-gradient(circle_at_84%_16%,rgba(37,99,235,0.14),transparent_22%),radial-gradient(circle_at_50%_0%,rgba(14,165,233,0.12),transparent_30%)] [.light_&]:bg-[radial-gradient(circle_at_18%_18%,rgba(56,189,248,0.14),transparent_24%),radial-gradient(circle_at_84%_16%,rgba(59,130,246,0.12),transparent_22%),radial-gradient(circle_at_50%_0%,rgba(14,165,233,0.1),transparent_30%)]" />
@@ -252,7 +257,8 @@ export default function SharesTradingPage() {
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      ) : null}
 
       <section
         id="popular-shares"

@@ -91,6 +91,28 @@ const downloadBadges: DownloadBadge[] = [
   { label: "Linux", prefix: "Download for", store: "linux" },
 ];
 
+const phoneCandles = [
+  { x: 18, high: 74, low: 136, open: 111, close: 94, up: true },
+  { x: 35, high: 84, low: 145, open: 99, close: 123, up: false },
+  { x: 52, high: 67, low: 127, open: 116, close: 83, up: true },
+  { x: 69, high: 58, low: 116, open: 88, close: 76, up: true },
+  { x: 86, high: 72, low: 142, open: 79, close: 128, up: false },
+  { x: 103, high: 92, low: 152, open: 132, close: 111, up: true },
+  { x: 120, high: 81, low: 139, open: 108, close: 125, up: false },
+  { x: 137, high: 54, low: 124, open: 118, close: 71, up: true },
+  { x: 154, high: 44, low: 108, open: 73, close: 56, up: true },
+  { x: 171, high: 62, low: 126, open: 58, close: 109, up: false },
+  { x: 188, high: 76, low: 142, open: 113, close: 86, up: true },
+];
+
+const phonePositions = [
+  { label: "Balance", value: "10 241.80" },
+  { label: "Equity", value: "10 388.42" },
+  { label: "Free margin", value: "8 914.12" },
+];
+
+const phoneNavItems = ["Quotes", "Chart", "Trade", "History"];
+
 function SectionLabel({
   children,
   className,
@@ -134,97 +156,188 @@ function DeviceFrame({
   );
 }
 
-function ChartPhone({ className }: { className?: string }) {
+function RealisticPhoneScreenshot({ className }: { className?: string }) {
   return (
     <DeviceFrame className={cn("w-[13.6rem]", className)}>
-      <div className="rounded-[2rem] border border-white/8 bg-[linear-gradient(180deg,rgba(10,15,28,0.96),rgba(4,8,18,0.92))] p-3">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-[0.55rem] font-semibold uppercase tracking-[0.28em] text-cyan-100/52">
-              MT5 Live
-            </p>
-            <p className="mt-2 text-sm font-semibold text-white">EUR/USD</p>
-          </div>
-          <div className="rounded-full border border-emerald-400/16 bg-emerald-400/10 px-2.5 py-1 text-[0.58rem] font-semibold uppercase tracking-[0.16em] text-emerald-300">
-            +1.24%
+      <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-[#f8fafc] text-slate-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.92)]">
+        <div className="flex items-center justify-between bg-white px-3 py-2 text-[0.58rem] font-semibold text-slate-900">
+          <span>9:41</span>
+          <div className="flex items-center gap-1">
+            <span className="h-2 w-3 rounded-[2px] border border-slate-900/70" />
+            <span className="h-2 w-2 rounded-full bg-slate-900" />
+            <span className="h-2 w-4 rounded-[2px] bg-emerald-500" />
           </div>
         </div>
 
-        <div className="mt-4 rounded-[1.6rem] border border-white/8 bg-[#040813] p-3">
-          <svg
-            viewBox="0 0 220 280"
-            className="h-60 w-full"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-          >
-            <defs>
-              <linearGradient id="mt5-hero-line" x1="20" y1="24" x2="210" y2="240">
-                <stop stopColor="#22d3ee" />
-                <stop offset="1" stopColor="#2563eb" />
-              </linearGradient>
-              <linearGradient id="mt5-hero-fill" x1="110" y1="60" x2="110" y2="260">
-                <stop stopColor="rgba(56,189,248,0.36)" />
-                <stop offset="1" stopColor="rgba(56,189,248,0)" />
-              </linearGradient>
-            </defs>
-
-            {Array.from({ length: 6 }).map((_, index) => (
-              <line
-                key={`row-${index}`}
-                x1="8"
-                x2="212"
-                y1={34 + index * 38}
-                y2={34 + index * 38}
-                stroke="rgba(148,163,184,0.16)"
-                strokeDasharray="4 7"
-              />
-            ))}
-
-            {Array.from({ length: 5 }).map((_, index) => (
-              <line
-                key={`column-${index}`}
-                y1="16"
-                y2="252"
-                x1={22 + index * 46}
-                x2={22 + index * 46}
-                stroke="rgba(148,163,184,0.1)"
-                strokeDasharray="4 7"
-              />
-            ))}
-
-            <path
-              d="M18 198C34 190 42 170 54 162C70 151 84 156 96 132C110 104 124 72 140 88C154 101 165 138 178 128C190 118 198 82 210 64V252H18V198Z"
-              fill="url(#mt5-hero-fill)"
-            />
-            <path
-              d="M18 198C34 190 42 170 54 162C70 151 84 156 96 132C110 104 124 72 140 88C154 101 165 138 178 128C190 118 198 82 210 64"
-              stroke="url(#mt5-hero-line)"
-              strokeWidth="4"
-              strokeLinecap="round"
-            />
-
-            {[54, 96, 140, 210].map((point, index) => {
-              const pointsY = [162, 132, 88, 64];
-              return (
-                <g key={`${point}-${pointsY[index]}`}>
-                  <circle cx={point} cy={pointsY[index]} r="8" fill="rgba(34,211,238,0.16)" />
-                  <circle cx={point} cy={pointsY[index]} r="4" fill="#cffafe" />
-                </g>
-              );
-            })}
-          </svg>
-        </div>
-
-        <div className="mt-4 grid grid-cols-2 gap-2">
-          {["Trend", "Scalping", "Alerts", "Signals"].map((item) => (
-            <div
-              key={item}
-              className="rounded-xl border border-white/8 bg-white/[0.03] px-2.5 py-2 text-center text-[0.58rem] font-semibold uppercase tracking-[0.18em] text-cyan-100/78"
-            >
-              {item}
+        <div className="border-b border-slate-200 bg-white px-3 pb-3">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-[0.52rem] font-semibold uppercase tracking-[0.24em] text-blue-600/80">
+                MetaTrader 5
+              </p>
+              <p className="mt-1 text-sm font-semibold tracking-[-0.02em]">
+                EURUSD, M15
+              </p>
             </div>
-          ))}
+            <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[0.6rem] font-semibold text-emerald-600">
+              +0.24%
+            </span>
+          </div>
+
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            <div className="rounded-xl bg-red-50 px-3 py-2">
+              <p className="text-[0.5rem] font-semibold uppercase tracking-[0.18em] text-red-500/70">
+                Sell
+              </p>
+              <p className="mt-1 text-sm font-bold text-red-600">1.08462</p>
+            </div>
+            <div className="rounded-xl bg-blue-50 px-3 py-2 text-right">
+              <p className="text-[0.5rem] font-semibold uppercase tracking-[0.18em] text-blue-500/70">
+                Buy
+              </p>
+              <p className="mt-1 text-sm font-bold text-blue-600">1.08478</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-[#f8fafc] px-3 py-3">
+          <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_10px_24px_rgba(15,23,42,0.06)]">
+            <div className="flex items-center justify-between border-b border-slate-100 px-3 py-2">
+              <div className="flex gap-1.5">
+                {["1M", "5M", "15M"].map((item) => (
+                  <span
+                    key={item}
+                    className={cn(
+                      "rounded-md px-1.5 py-1 text-[0.48rem] font-semibold",
+                      item === "15M"
+                        ? "bg-blue-600 text-white"
+                        : "bg-slate-100 text-slate-500",
+                    )}
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+              <span className="text-[0.55rem] font-medium text-slate-500">
+                1.08470
+              </span>
+            </div>
+
+            <div className="relative">
+              <svg
+                viewBox="0 0 220 164"
+                className="h-40 w-full"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <line
+                    key={`phone-row-${index}`}
+                    x1="12"
+                    x2="208"
+                    y1={24 + index * 28}
+                    y2={24 + index * 28}
+                    stroke="#e2e8f0"
+                    strokeDasharray="3 5"
+                  />
+                ))}
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <line
+                    key={`phone-col-${index}`}
+                    x1={24 + index * 42}
+                    x2={24 + index * 42}
+                    y1="12"
+                    y2="148"
+                    stroke="#edf2f7"
+                    strokeDasharray="3 5"
+                  />
+                ))}
+                <path
+                  d="M12 122C32 108 42 116 58 88C74 60 90 64 106 98C122 132 140 68 154 54C170 40 184 78 204 62"
+                  stroke="#2563eb"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  opacity="0.34"
+                />
+                {phoneCandles.map((candle) => {
+                  const color = candle.up ? "#16a34a" : "#dc2626";
+                  const y = Math.min(candle.open, candle.close);
+                  const height = Math.max(Math.abs(candle.open - candle.close), 4);
+
+                  return (
+                    <g key={candle.x}>
+                      <line
+                        x1={candle.x}
+                        x2={candle.x}
+                        y1={candle.high}
+                        y2={candle.low}
+                        stroke={color}
+                        strokeWidth="1.6"
+                      />
+                      <rect
+                        x={candle.x - 4.5}
+                        y={y}
+                        width="9"
+                        height={height}
+                        rx="1.4"
+                        fill={color}
+                      />
+                    </g>
+                  );
+                })}
+                <line x1="12" x2="208" y1="86" y2="86" stroke="#2563eb" strokeDasharray="4 4" />
+                <rect x="160" y="76" width="48" height="18" rx="5" fill="#2563eb" />
+                <text x="184" y="88" textAnchor="middle" fill="white" fontSize="8" fontWeight="700">
+                  1.08470
+                </text>
+              </svg>
+
+              <div className="absolute right-2 top-4 space-y-4 text-right text-[0.48rem] font-medium text-slate-400">
+                <p>1.0860</p>
+                <p>1.0848</p>
+                <p>1.0836</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-3 rounded-2xl border border-slate-200 bg-white p-3 shadow-[0_10px_24px_rgba(15,23,42,0.05)]">
+            <div className="flex items-center justify-between">
+              <p className="text-[0.56rem] font-semibold uppercase tracking-[0.2em] text-slate-500">
+                Trade
+              </p>
+              <p className="text-[0.6rem] font-semibold text-emerald-600">
+                +146.62 USD
+              </p>
+            </div>
+            <div className="mt-2 space-y-1.5">
+              {phonePositions.map((item) => (
+                <div
+                  key={item.label}
+                  className="flex items-center justify-between text-[0.58rem]"
+                >
+                  <span className="text-slate-500">{item.label}</span>
+                  <span className="font-semibold text-slate-900">{item.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-3 grid grid-cols-4 gap-1.5 border-t border-slate-200 pt-2">
+            {phoneNavItems.map((item) => (
+              <div
+                key={item}
+                className={cn(
+                  "rounded-lg px-1 py-1.5 text-center text-[0.5rem] font-semibold",
+                  item === "Chart"
+                    ? "bg-blue-600 text-white"
+                    : "bg-white text-slate-500",
+                )}
+              >
+                {item}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </DeviceFrame>
@@ -492,10 +605,15 @@ function StartStepCard({
   );
 }
 
-export default function MetaTrader5PlatformPage() {
+export default function MetaTrader5PlatformPage({
+  showHero = true,
+}: {
+  showHero?: boolean;
+} = {}) {
   return (
     <div className="w-full">
-      <section className="relative mx-auto w-full max-w-7xl px-4 pb-12 pt-16 sm:px-6 lg:px-8">
+      {showHero ? (
+        <section className="relative mx-auto w-full max-w-7xl px-4 pb-12 pt-16 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-[2.6rem] border border-cyan-300/12 bg-[linear-gradient(180deg,rgba(3,11,28,0.98),rgba(2,8,20,0.96))] px-6 py-10 shadow-[0_34px_120px_rgba(2,8,20,0.34)] sm:px-8 sm:py-12 lg:px-10 [.light_&]:border-sky-100 [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(241,249,255,0.96))] [.light_&]:shadow-[0_24px_70px_rgba(15,23,42,0.07)]">
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(56,189,248,0.12),transparent_24%),radial-gradient(circle_at_82%_12%,rgba(37,99,235,0.18),transparent_22%),linear-gradient(180deg,rgba(255,255,255,0.04),transparent_36%)] [.light_&]:bg-[radial-gradient(circle_at_18%_20%,rgba(56,189,248,0.12),transparent_24%),radial-gradient(circle_at_82%_12%,rgba(37,99,235,0.12),transparent_22%),linear-gradient(180deg,rgba(255,255,255,0.72),transparent_36%)]" />
@@ -530,12 +648,13 @@ export default function MetaTrader5PlatformPage() {
 
             <div className="relative h-[29rem] sm:h-[31rem] lg:h-[33rem]">
               <div className="absolute inset-0 rounded-[2.6rem] bg-[radial-gradient(circle_at_center,rgba(56,189,248,0.18),transparent_52%)] [.light_&]:bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.12),transparent_52%)]" />
-              <ChartPhone className="absolute left-[10%] top-0 -rotate-[11deg]" />
+              <RealisticPhoneScreenshot className="absolute left-[10%] top-0 -rotate-[11deg]" />
               <QuotesPhone className="absolute right-[4%] top-16 rotate-[9deg]" />
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      ) : null}
 
       <section className="relative mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-18">
         <div className="grid items-center gap-10 xl:grid-cols-[1.02fr_0.98fr] xl:gap-14">
@@ -569,7 +688,7 @@ export default function MetaTrader5PlatformPage() {
               </div>
 
               <div className="absolute left-[16%] top-[12%]">
-                <ChartPhone className="w-[15.5rem] -rotate-[13deg]" />
+                <RealisticPhoneScreenshot className="w-[15.5rem] -rotate-[13deg]" />
               </div>
             </div>
           </div>

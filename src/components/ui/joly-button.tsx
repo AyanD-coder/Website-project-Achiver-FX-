@@ -26,10 +26,10 @@ const buttonVariants = cva(
         glow: "relative animate-gradient-x bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 text-white shadow-lg shadow-purple-500/50 before:absolute before:inset-[-2px] before:-z-10 before:rounded-xl before:bg-gradient-to-r before:from-violet-600 before:via-purple-600 before:to-fuchsia-600 before:opacity-75 before:blur-md hover:scale-[1.02] hover:shadow-2xl hover:shadow-purple-500/60 active:scale-[0.98]",
       },
       size: {
-        default: "h-10 px-6 py-2",
-        sm: "h-8 rounded-lg px-4 text-xs",
-        lg: "h-12 rounded-xl px-10 text-base",
-        icon: "h-10 w-10",
+        default: "h-12 px-8 py-3",
+        sm: "h-10 rounded-lg px-4 text-sm",
+        lg: "h-14 rounded-2xl px-12 text-base",
+        icon: "h-12 w-12",
       },
     },
     defaultVariants: {

@@ -36,7 +36,11 @@ const marketChips = [
   { label: "S&P 500", className: "right-14 top-[62%]" },
 ];
 
-export default function IndicesHero() {
+export default function IndicesHero({
+  compact = false,
+}: {
+  compact?: boolean;
+} = {}) {
   const shouldReduceMotion = useReducedMotion();
 
   return (
@@ -58,21 +62,20 @@ export default function IndicesHero() {
           className="mx-auto max-w-xl text-center lg:mx-0 lg:text-left"
         >
           <span className="inline-flex items-center rounded-full border border-cyan-300/18 bg-cyan-400/10 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.3em] text-cyan-100/80 shadow-[0_0_22px_rgba(56,189,248,0.12)] [.light_&]:border-sky-200 [.light_&]:bg-white/85 [.light_&]:text-sky-700 [.light_&]:shadow-[0_14px_30px_rgba(56,189,248,0.12)]">
-            Trade Indices
+            {compact ? "Indices Dashboard" : "Trade Indices"}
           </span>
 
-          <h1 className="mt-6 text-4xl font-semibold leading-[1.05] tracking-[-0.055em] text-white sm:text-5xl lg:text-6xl [.light_&]:text-slate-950">
-            Trade Sectors with{" "}
+          <h2 className="mt-6 text-4xl font-semibold leading-[1.05] tracking-[-0.055em] text-white sm:text-5xl lg:text-6xl [.light_&]:text-slate-950">
+            {compact ? "Track the global sector pulse" : "Trade Sectors with "}
             <span className="bg-gradient-to-r from-sky-300 via-cyan-200 to-sky-500 bg-clip-text text-transparent [.light_&]:from-sky-600 [.light_&]:via-cyan-500 [.light_&]:to-blue-600">
-              Achiever Indices
+              {compact ? "" : "Achiever Indices"}
             </span>
-          </h1>
+          </h2>
 
           <p className="mt-6 text-base leading-8 text-slate-400 sm:text-lg [.light_&]:text-slate-600">
-            Gain broad market exposure by trading global indices. With
-            Achiever, you can access major stock markets worldwide, allowing
-            you to speculate on the performance of entire sectors or economies
-            with a single trade.
+            {compact
+              ? "Use a clean dashboard view to compare global benchmarks, sector movement, and trading-session context."
+              : "Gain broad market exposure by trading global indices. With Achiever, you can access major stock markets worldwide, allowing you to speculate on the performance of entire sectors or economies with a single trade."}
           </p>
 
           <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row lg:items-start">

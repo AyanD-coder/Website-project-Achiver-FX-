@@ -77,8 +77,8 @@ function Counter({
   }, [delay, hasAnimated, start, value]);
 
   return (
-    <div className="group relative flex flex-col items-center justify-center overflow-hidden px-6 py-8 text-center transition-all duration-300 hover:scale-105 hover:bg-white/[0.03] hover:shadow-[0_0_45px_rgba(34,211,238,0.18)] sm:px-8 sm:py-10 [.light_&]:hover:bg-blue-50/80 [.light_&]:hover:shadow-[0_16px_34px_rgba(37,99,235,0.12)]">
-      <div className="absolute inset-x-10 top-1/2 h-24 -translate-y-1/2 rounded-full bg-cyan-400/10 blur-3xl transition duration-300 group-hover:bg-cyan-300/20 [.light_&]:bg-sky-400/10 [.light_&]:group-hover:bg-sky-300/20" />
+    <div className="group relative flex flex-col items-center justify-center overflow-hidden px-6 py-8 text-center transition-all duration-300 hover:scale-105 hover:bg-white/[0.03] hover:shadow-[0_0_45px_var(--color-brand-glow)/0.18] sm:px-8 sm:py-10 [.light_&]:hover:bg-blue-50/80 [.light_&]:hover:shadow-[0_16px_34px_var(--color-brand-primary)/0.12]">
+      <div className="absolute inset-x-10 top-1/2 h-24 -translate-y-1/2 rounded-full bg-brand-glow/10 blur-3xl transition duration-300 group-hover:bg-brand-glow/20 [.light_&]:bg-brand-secondary/10 [.light_&]:group-hover:bg-brand-secondary/20" />
 
       <div className="relative">
         <div className="absolute inset-x-2 top-1/2 h-16 -translate-y-1/2 rounded-full bg-blue-500/15 blur-2xl animate-pulse [.light_&]:bg-blue-500/10" />
@@ -143,7 +143,7 @@ export default function StatsSection() {
                 OVER 35K+ CLIENT
               </p>
 
-              <h2 className="mt-5 bg-gradient-to-r from-blue-400 via-cyan-300 to-sky-200 bg-clip-text text-3xl font-semibold tracking-[-0.05em] text-transparent sm:text-4xl lg:text-5xl [.light_&]:from-[#111827] [.light_&]:via-[#2563EB] [.light_&]:to-[#0EA5E9]">
+              <h2 className="mt-5 bg-gradient-to-r from-brand-primary via-brand-glow to-brand-secondary bg-clip-text text-3xl font-semibold tracking-[-0.05em] text-transparent sm:text-4xl lg:text-5xl [.light_&]:from-[#111827] [.light_&]:via-brand-primary [.light_&]:to-brand-secondary">
                 Trusted &amp; Regulated Forex Brokerage
               </h2>
 

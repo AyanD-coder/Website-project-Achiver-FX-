@@ -2,8 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Gem, ShieldCheck, Wallet, type LucideIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/Button";
-import Footer from "@/sections/Footer";
-import Navbar from "@/sections/Navbar";
+import PageLayout from "@/components/ui/PageLayout";
 
 type MetalQuote = {
   symbol: string;
@@ -179,76 +178,28 @@ function InterlockingMetalsArt() {
   );
 }
 
-function MetallicTowerArt() {
-  const layers = [
-    { top: "0%", left: "18%", width: "44%", height: "2.8rem", style: "from-[#fff3c2] via-[#d9b15f] to-[#6b4d1f]" },
-    { top: "11%", left: "26%", width: "32%", height: "2.8rem", style: "from-[#fff3c2] via-[#b58a46] to-[#6b4d1f]" },
-    { top: "22%", left: "14%", width: "50%", height: "2.6rem", style: "from-[#f8fafc] via-[#8c96a8] to-[#d9dee7]" },
-    { top: "34%", left: "10%", width: "58%", height: "3rem", style: "from-[#fff0bc] via-[#d6a451] to-[#754d19]" },
-    { top: "49%", left: "20%", width: "36%", height: "2.7rem", style: "from-[#fef3c7] via-[#be8f48] to-[#7c531a]" },
-    { top: "63%", left: "8%", width: "60%", height: "2.9rem", style: "from-[#f8fafc] via-[#9ca3af] to-[#e5e7eb]" },
-    { top: "78%", left: "16%", width: "46%", height: "2.7rem", style: "from-[#fde4b0] via-[#d3a05a] to-[#7c5725]" },
-  ];
-
-  return (
-    <div className="relative mx-auto h-[320px] w-full max-w-[360px]">
-      <div className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/8 blur-3xl" />
-      {layers.map((layer, index) => (
-        <div
-          key={index}
-          className={`absolute rounded-[999px] border border-white/10 bg-gradient-to-b ${layer.style} shadow-[0_18px_30px_rgba(15,23,42,0.22)]`}
-          style={{
-            top: layer.top,
-            left: layer.left,
-            width: layer.width,
-            height: layer.height,
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
 export default function PreciousMetalsPage() {
   return (
-    <>
-      <Navbar solidLightModeAtTop />
-      <main className="relative flex min-h-screen flex-1 flex-col overflow-hidden bg-[#040814] pt-24 [.light_&]:bg-[linear-gradient(180deg,#f8fbff_0%,#f8fbff_36%,#ffffff_100%)]">
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,#02050c_0%,#040814_28%,#060b15_66%,#070d17_100%)] [.light_&]:bg-[linear-gradient(180deg,#f8fbff_0%,#f8fbff_34%,#f8fafc_68%,#ffffff_100%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(56,189,248,0.12),transparent_24%),radial-gradient(circle_at_84%_16%,rgba(37,99,235,0.14),transparent_22%),radial-gradient(circle_at_52%_42%,rgba(245,158,11,0.08),transparent_30%)] [.light_&]:bg-[radial-gradient(circle_at_18%_10%,rgba(37,99,235,0.12),transparent_24%),radial-gradient(circle_at_84%_16%,rgba(14,165,233,0.08),transparent_20%),radial-gradient(circle_at_52%_42%,rgba(245,158,11,0.08),transparent_28%)]" />
-        </div>
-
-        <section className="relative mx-auto w-full max-w-7xl px-4 pb-10 pt-12">
-          <div className="grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
-            <div className="relative overflow-hidden rounded-[34px] border border-cyan-300/10 bg-[linear-gradient(180deg,rgba(8,16,30,0.88)_0%,rgba(5,11,24,0.98)_100%)] px-6 py-8 shadow-[0_30px_90px_rgba(2,8,20,0.38)] sm:px-8 sm:py-10 [.light_&]:border-blue-100 [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.92)_0%,rgba(248,250,252,0.98)_100%)] [.light_&]:ring-1 [.light_&]:ring-blue-100/70 [.light_&]:shadow-[0_18px_50px_rgba(15,23,42,0.06)]">
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.12),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(245,158,11,0.08),transparent_34%)] [.light_&]:bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.08),transparent_26%),radial-gradient(circle_at_bottom_right,rgba(245,158,11,0.08),transparent_30%)]" />
-              <div className="relative">
-                <span className="inline-flex items-center rounded-full border border-sky-400/20 bg-sky-400/10 px-4 py-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-sky-200 [.light_&]:border-blue-200 [.light_&]:bg-blue-50 [.light_&]:text-blue-700">
-                  Precious Metals
-                </span>
-                <h1 className="mt-6 max-w-xl bg-gradient-to-b from-white via-cyan-100 to-slate-200 bg-clip-text text-4xl font-bold tracking-tighter text-transparent sm:text-5xl md:text-6xl [.light_&]:from-[#111827] [.light_&]:via-[#2563EB] [.light_&]:to-[#0EA5E9]">
-                  Start Trading with
-                  <br />
-                  Precious Metals
-                </h1>
-                <p className="mt-5 max-w-md text-base leading-7 text-slate-300 [.light_&]:text-slate-600">
-                  Utilize advanced tools and market insights to confidently
-                  start trading precious metals like gold and silver in
-                  today&apos;s dynamic financial markets.
-                </p>
-              </div>
-            </div>
-
-            <div className="relative overflow-hidden rounded-[34px] border border-cyan-300/10 bg-[linear-gradient(180deg,rgba(8,16,30,0.88)_0%,rgba(5,11,24,0.98)_100%)] p-4 shadow-[0_30px_90px_rgba(2,8,20,0.38)] [.light_&]:border-blue-100 [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.92)_0%,rgba(248,250,252,0.98)_100%)] [.light_&]:ring-1 [.light_&]:ring-blue-100/70 [.light_&]:shadow-[0_18px_50px_rgba(15,23,42,0.06)]">
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.08),transparent_30%),radial-gradient(circle_at_bottom,rgba(245,158,11,0.12),transparent_36%)] [.light_&]:bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.08),transparent_26%),radial-gradient(circle_at_bottom,rgba(245,158,11,0.08),transparent_34%)]" />
-              <div className="relative flex min-h-[320px] items-center justify-center">
-                <MetallicTowerArt />
-              </div>
-            </div>
-          </div>
-        </section>
-
+    <PageLayout
+      hero={{
+        eyebrow: "Precious Metals",
+        title: "Start trading with precious metals",
+        description:
+          "Trade gold, silver, palladium, and platinum with platform tools and market insight designed for fast-moving macro conditions.",
+        imageSrc: "/discover/analysis-report.png",
+        imageAlt:
+          "AI generated trading research desk with precious metals market charts.",
+        actions: [
+          { href: "#metals-board", label: "View Metals Board" },
+          { href: "/platform", label: "Explore Platform", variant: "outline" },
+        ],
+        stats: [
+          { value: "Gold", label: "XAUUSD" },
+          { value: "Silver", label: "XAGUSD" },
+          { value: "Metals", label: "Spot CFDs" },
+        ],
+      }}
+    >
         <section className="relative mx-auto w-full max-w-7xl px-4 pb-12 pt-4">
           <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
             <div className="relative overflow-hidden rounded-[34px] border border-cyan-300/10 bg-[linear-gradient(180deg,rgba(8,16,30,0.88)_0%,rgba(5,11,24,0.98)_100%)] p-4 shadow-[0_30px_90px_rgba(2,8,20,0.38)] [.light_&]:border-blue-100 [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.92)_0%,rgba(248,250,252,0.98)_100%)] [.light_&]:ring-1 [.light_&]:ring-blue-100/70 [.light_&]:shadow-[0_18px_50px_rgba(15,23,42,0.06)]">
@@ -443,8 +394,6 @@ export default function PreciousMetalsPage() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
-    </>
+    </PageLayout>
   );
 }

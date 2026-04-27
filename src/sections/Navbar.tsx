@@ -49,10 +49,10 @@ const navData: NavGroup[] = [
   {
     title: "Discover",
     items: [
-      { label: "Education", href: "/tools" },
-      { label: "Blogs", href: "/tools" },
+      { label: "Education", href: "/tools/education" },
+      { label: "Blogs", href: "/tools/blogs" },
       { label: "Trading Tools", href: "/tools" },
-      { label: "Offerings", href: "/tools" },
+      { label: "Offerings", href: "/tools/offerings" },
       { label: "News & Analysis", href: "/tools/analysis-report" },
       { label: "Economic Calendar", href: "/tools/economic-calendar" },
     ]
@@ -61,14 +61,18 @@ const navData: NavGroup[] = [
     title: "Company",
     items: [
       { label: "About Us", href: "/company" },
-      { label: "Career", href: "/company" },
-      { label: "Legal Documents", href: "/company" },
-      { label: "Customer Protection", href: "/company" },
-      { label: "Contact Us", href: "/company" },
+      { label: "Career", href: "/company/career" },
+      { label: "Legal Documents", href: "/company/legal-documents" },
+      { label: "Customer Protection", href: "/company/customer-protection" },
+      { label: "Contact Us", href: "/company/contact-us" },
     ]
   },
   {
-    title: "Promotion",
+    title: "Promotions",
+    href: "/promotions",
+  },
+  {
+    title: "Partnership",
     href: "/partner",
   }
 ];
@@ -306,10 +310,10 @@ export default function Navbar({
           </nav>
           <div className="mt-auto flex flex-col gap-3 border-t border-white/5 pt-6 [.light_&]:border-gray-200">
             <ThemeSwitch />
-            <Button variant="outline" className="w-full">
+            <Button variant="outline" size="lg" className="w-full">
               Login
             </Button>
-            <Button variant="primary" className="w-full">
+            <Button variant="primary" size="lg" className="w-full">
               Register
             </Button>
           </div>

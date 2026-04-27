@@ -9,8 +9,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/Button";
-import Footer from "@/sections/Footer";
-import Navbar from "@/sections/Navbar";
+import PageLayout from "@/components/ui/PageLayout";
 
 type CryptoRow = {
   symbol: string;
@@ -99,41 +98,29 @@ const featureCards: FeatureCard[] = [
 
 export default function CryptoPage() {
   return (
-    <>
-      <Navbar solidLightModeAtTop />
-      <main className="relative flex min-h-screen flex-1 flex-col overflow-hidden bg-[#040814] pt-24 [.light_&]:bg-[linear-gradient(180deg,#f8fbff_0%,#f8fbff_38%,#ffffff_100%)]">
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,#02050c_0%,#040814_28%,#060b15_64%,#070d17_100%)] [.light_&]:bg-[linear-gradient(180deg,#f8fbff_0%,#f8fbff_34%,#f8fafc_68%,#ffffff_100%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(56,189,248,0.12),transparent_24%),radial-gradient(circle_at_82%_16%,rgba(37,99,235,0.14),transparent_22%),radial-gradient(circle_at_50%_38%,rgba(14,165,233,0.08),transparent_30%)] [.light_&]:bg-[radial-gradient(circle_at_20%_10%,rgba(37,99,235,0.12),transparent_24%),radial-gradient(circle_at_82%_16%,rgba(14,165,233,0.08),transparent_20%),radial-gradient(circle_at_50%_38%,rgba(56,189,248,0.06),transparent_30%)]" />
-        </div>
-
-        <section className="relative mx-auto flex w-full max-w-7xl flex-col items-center px-4 pb-12 pt-16 text-center text-white [.light_&]:text-[#111827]">
-          <span className="inline-flex items-center rounded-full border border-sky-400/20 bg-sky-400/10 px-4 py-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-sky-200 [.light_&]:border-blue-200 [.light_&]:bg-blue-50 [.light_&]:text-blue-700">
-            Crypto Markets
-          </span>
-
-          <h1 className="mt-6 max-w-5xl bg-gradient-to-b from-white via-sky-100 to-slate-300 bg-clip-text text-4xl font-bold tracking-tighter text-transparent sm:text-5xl md:text-6xl [.light_&]:from-[#111827] [.light_&]:via-[#1d4ed8] [.light_&]:to-[#0ea5e9]">
-            Discover
-            <br />
-            Crypto Derivatives Trading
-          </h1>
-
-          <p className="mt-5 max-w-2xl text-base leading-7 text-slate-400 [.light_&]:text-slate-600">
-            Trade Crypto derivatives including Bitcoin at real-time prices with
-            unparalleled conditions.
-          </p>
-
-          <div className="mt-8">
-            <Button asChild className="h-12 px-7 text-sm">
-              <Link href="#crypto-prices">
-                Start Trading Forex
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-
-        </section>
-
+    <PageLayout
+      hero={{
+        eyebrow: "Crypto Markets",
+        title: "Discover Crypto Derivatives Trading",
+        description: "Trade Crypto derivatives including Bitcoin at real-time prices with unparalleled conditions.",
+        imageSrc: "/discover/trading-tools.png",
+        imageAlt:
+          "AI generated professional trading toolkit with crypto market dashboard modules.",
+        stats: [
+          { value: "24/7", label: "Trading access" },
+          { value: "1:50", label: "Max leverage" },
+          { value: "Crypto CFDs", label: "Market type" },
+        ],
+        children: (
+          <Button asChild className="h-12 rounded-lg px-7 text-sm">
+            <Link href="#crypto-prices">
+              Start Trading
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
+        ),
+      }}
+    >
         <section
           id="crypto-prices"
           className="relative mx-auto w-full max-w-6xl px-4 pb-20 pt-8"
@@ -295,8 +282,6 @@ export default function CryptoPage() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
-    </>
+    </PageLayout>
   );
 }

@@ -1,6 +1,4 @@
-import Link from "next/link";
 import {
-  ArrowRight,
   BarChart3,
   ChartCandlestick,
   Gift,
@@ -11,8 +9,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/Button";
-import Footer from "@/sections/Footer";
-import Navbar from "@/sections/Navbar";
+import PageLayout from "@/components/ui/PageLayout";
 
 type AccountStat = {
   label: string;
@@ -110,7 +107,7 @@ function AccountTypeCard({
   const Icon = plan.icon;
 
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-[28px] border border-white/10 bg-[linear-gradient(180deg,rgba(10,16,30,0.92)_0%,rgba(5,9,20,0.98)_100%)] p-6 shadow-[0_26px_80px_rgba(2,8,20,0.45)] transition-all duration-300 hover:-translate-y-1 hover:border-sky-400/35 hover:shadow-[0_30px_90px_rgba(14,165,233,0.18)] [.light_&]:border-blue-100 [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,1)_0%,rgba(248,250,252,0.98)_100%)] [.light_&]:ring-1 [.light_&]:ring-blue-100/70 [.light_&]:shadow-[0_14px_36px_rgba(15,23,42,0.07)] [.light_&]:hover:border-blue-200 [.light_&]:hover:ring-blue-200/70 [.light_&]:hover:shadow-[0_20px_48px_rgba(37,99,235,0.14)]">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-[28px] border border-white/10 bg-bg-secondary p-6 shadow-[0_26px_80px_rgba(2,8,20,0.45)] transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary/35 hover:shadow-[0_30px_90px_rgba(14,165,233,0.18)] [.light_&]:border-blue-100 [.light_&]:bg-surface [.light_&]:ring-1 [.light_&]:ring-blue-100/70 [.light_&]:shadow-[0_14px_36px_rgba(15,23,42,0.07)] [.light_&]:hover:border-blue-200 [.light_&]:hover:ring-blue-200/70 [.light_&]:hover:shadow-[0_20px_48px_rgba(37,99,235,0.14)]">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.14),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(37,99,235,0.12),transparent_30%)] opacity-80 [.light_&]:bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.12),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(14,165,233,0.08),transparent_30%),linear-gradient(180deg,rgba(255,255,255,0.4),transparent_44%)]" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sky-300/60 to-transparent [.light_&]:via-blue-300/80" />
       <div className="relative flex h-full flex-col">
@@ -163,39 +160,26 @@ function AccountTypeCard({
 
 export default function AccountTypesPage() {
   return (
-    <>
-      <Navbar solidLightModeAtTop />
-      <main className="relative flex min-h-screen flex-1 flex-col overflow-hidden bg-[#040814] pt-24 [.light_&]:bg-[linear-gradient(180deg,#f8fbff_0%,#f8fbff_36%,#ffffff_100%)]">
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,#02050c_0%,#040814_26%,#060b15_62%,#070d17_100%)] [.light_&]:bg-[linear-gradient(180deg,#f8fbff_0%,#f8fbff_30%,#f3f8ff_62%,#ffffff_100%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(56,189,248,0.13),transparent_24%),radial-gradient(circle_at_82%_14%,rgba(37,99,235,0.14),transparent_22%),radial-gradient(circle_at_50%_40%,rgba(14,165,233,0.08),transparent_32%)] [.light_&]:bg-[radial-gradient(circle_at_18%_12%,rgba(37,99,235,0.14),transparent_24%),radial-gradient(circle_at_82%_14%,rgba(14,165,233,0.1),transparent_20%),radial-gradient(circle_at_50%_40%,rgba(56,189,248,0.08),transparent_30%)]" />
-          <div className="absolute inset-x-0 top-0 h-[420px] bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.12),transparent_58%)] [.light_&]:bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.11),transparent_52%)]" />
-        </div>
-
-        <section className="relative mx-auto flex w-full max-w-7xl flex-col items-center px-4 pb-12 pt-16 text-center text-white [.light_&]:text-[#111827]">
-          <span className="inline-flex items-center rounded-full border border-sky-400/15 bg-sky-400/10 px-4 py-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-sky-200 [.light_&]:border-blue-200 [.light_&]:bg-blue-50 [.light_&]:text-blue-700">
-            Account Types
-          </span>
-
-          <h1 className="mt-6 max-w-4xl bg-gradient-to-b from-white via-sky-100 to-slate-300 bg-clip-text text-4xl font-bold tracking-tighter text-transparent sm:text-5xl md:text-6xl [.light_&]:from-[#111827] [.light_&]:via-[#1d4ed8] [.light_&]:to-[#0ea5e9]">
-            Open Your Account
-          </h1>
-
-          <p className="mt-5 max-w-2xl text-base leading-7 text-slate-400 [.light_&]:text-slate-600">
-            Open an account today to access fair conditions and get everything
-            you need to achieve your trading goals.
-          </p>
-
-          <div className="mt-8">
-            <Button asChild className="h-12 px-7 text-sm">
-              <Link href="#plans">
-                Choose Your Plan
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </section>
-
+    <PageLayout
+      hero={{
+        eyebrow: "Account Types",
+        title: "Open your account",
+        description:
+          "Compare account structures, trading conditions, spreads, commission, and leverage before choosing the setup that fits your goals.",
+        imageSrc: "/discover/offerings.png",
+        imageAlt:
+          "AI generated brokerage offering suite with account cards and market visuals.",
+        actions: [
+          { href: "#plans", label: "Choose Your Plan" },
+          { href: "/platform", label: "Explore Platform", variant: "outline" },
+        ],
+        stats: [
+          { value: "$0", label: "Bonus access" },
+          { value: "1:500", label: "Max leverage" },
+          { value: "6", label: "Account types" },
+        ],
+      }}
+    >
         <section
           id="plans"
           className="relative mx-auto w-full max-w-7xl px-4 pb-10 pt-4"
@@ -239,13 +223,11 @@ export default function AccountTypesPage() {
               </p>
 
               <div className="mt-8">
-                <Button className="h-12 px-7 text-sm">Get Started</Button>
+                <Button className="w-full sm:w-auto h-12 px-7 text-sm">Get Started</Button>
               </div>
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
-    </>
+    </PageLayout>
   );
 }

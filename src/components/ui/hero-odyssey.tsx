@@ -587,10 +587,10 @@ export function HeroSection({ sliderLabelClassName }: HeroSectionProps = {}) {
             Everything you need to trade Forex in one place.
           </motion.p>
 
-          <motion.div variants={itemVariants}>
+          <motion.div variants={itemVariants} className="w-full sm:w-auto">
             <JolyButton
               size="lg"
-              className="rounded-full border text-black"
+              className="w-full sm:w-auto rounded-full border text-black"
               style={ctaButtonStyle}
             >
               GET STARTED TODAY
