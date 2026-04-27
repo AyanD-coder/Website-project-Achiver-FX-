@@ -184,7 +184,7 @@ function CenterVisual({ shouldReduceMotion }: { shouldReduceMotion: boolean }) {
         }}
         className="relative"
       >
-        <div className="absolute -right-10 top-10 w-[12.25rem] rotate-[12deg] rounded-[2rem] border border-cyan-300/14 bg-[linear-gradient(180deg,rgba(13,22,42,0.92),rgba(6,12,24,0.92))] p-3 shadow-[0_28px_60px_rgba(2,8,18,0.34)] [.light_&]:border-sky-200 [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(239,246,255,0.94))] [.light_&]:shadow-[0_20px_44px_rgba(14,165,233,0.1)]">
+        <div className="absolute -right-10 top-10 hidden w-[12.25rem] rotate-[12deg] rounded-[2rem] border border-cyan-300/14 bg-[linear-gradient(180deg,rgba(13,22,42,0.92),rgba(6,12,24,0.92))] p-3 shadow-[0_28px_60px_rgba(2,8,18,0.34)] sm:block [.light_&]:border-sky-200 [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(239,246,255,0.94))] [.light_&]:shadow-[0_20px_44px_rgba(14,165,233,0.1)]">
           <div className="rounded-[1.5rem] border border-white/10 bg-[#050914]/92 p-3 [.light_&]:border-sky-100 [.light_&]:bg-white/90">
             <div className="flex items-center justify-between">
               <p className="text-[0.6rem] font-semibold uppercase tracking-[0.24em] text-cyan-100/55 [.light_&]:text-sky-700/60">

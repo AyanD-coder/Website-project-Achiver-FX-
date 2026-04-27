@@ -61,19 +61,19 @@ function ElasticHueSlider({
 
         <div className="absolute left-0 z-0 h-1 w-full rounded-full bg-gray-700" />
 
-          <div
-            className="absolute left-0 z-10 h-1 rounded-full bg-blue-500"
-            style={{ width: `${thumbPosition}%` }}
-          />
+        <div
+          className="absolute left-0 z-10 h-1 rounded-full bg-blue-500"
+          style={{ width: `${thumbPosition}%` }}
+        />
 
-          <motion.div
-            className="absolute top-1/2 z-30 -translate-x-1/2 -translate-y-1/2"
-            style={{ left: `${thumbPosition}%` }}
-            animate={{ scale: isDragging ? 1.2 : 1 }}
-            transition={{ type: "spring", stiffness: 500, damping: isDragging ? 20 : 30 }}
-          >
-            <div className="h-4 w-4 rounded-full border border-white/40 bg-white shadow-[0_0_24px_rgba(59,130,246,0.75)]" />
-          </motion.div>
+        <motion.div
+          className="absolute top-1/2 z-30 -translate-x-1/2 -translate-y-1/2"
+          style={{ left: `${thumbPosition}%` }}
+          animate={{ scale: isDragging ? 1.2 : 1 }}
+          transition={{ type: "spring", stiffness: 500, damping: isDragging ? 20 : 30 }}
+        >
+          <div className="h-4 w-4 rounded-full border border-white/40 bg-white shadow-[0_0_24px_rgba(59,130,246,0.75)]" />
+        </motion.div>
       </div>
 
       <AnimatePresence mode="wait">
@@ -519,8 +519,8 @@ export function HeroSection({ sliderLabelClassName }: HeroSectionProps = {}) {
   ]);
 
   return (
-    <div className="relative min-h-[115vh] w-full overflow-visible bg-transparent text-white">
-      <div className="relative z-20 mx-auto flex min-h-screen max-w-7xl flex-col px-4 pb-32 pt-28 sm:px-6 sm:pt-32 lg:px-8 lg:pb-44 lg:pt-36">
+    <div className="relative min-h-[104svh] w-full overflow-visible bg-transparent text-white sm:min-h-[115vh]">
+      <div className="relative z-20 mx-auto flex min-h-[96svh] max-w-7xl flex-col px-4 pb-24 pt-28 sm:min-h-screen sm:px-6 sm:pb-32 sm:pt-32 lg:px-8 lg:pb-44 lg:pt-36">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -567,14 +567,14 @@ export function HeroSection({ sliderLabelClassName }: HeroSectionProps = {}) {
           <motion.h1
             variants={itemVariants}
             style={tradeAnywhereStyle}
-            className="mb-2 bg-[linear-gradient(90deg,var(--trade-anywhere-dark-start),var(--trade-anywhere-dark-mid),var(--trade-anywhere-dark-end))] bg-clip-text text-5xl font-extrabold tracking-tight text-transparent drop-shadow-[0_0_28px_rgba(255,255,255,0.08)] md:text-7xl"
+            className="mb-2 bg-[linear-gradient(90deg,var(--trade-anywhere-dark-start),var(--trade-anywhere-dark-mid),var(--trade-anywhere-dark-end))] bg-clip-text text-[2.6rem] font-extrabold tracking-tight text-transparent drop-shadow-[0_0_28px_rgba(255,255,255,0.08)] min-[380px]:text-5xl md:text-7xl"
           >
             Trade Anywhere,
           </motion.h1>
 
           <motion.h2
             variants={itemVariants}
-            className="bg-gradient-to-r from-brand-glow to-brand-primary bg-clip-text pb-3 text-4xl font-bold tracking-tight text-transparent md:text-6xl"
+            className="bg-gradient-to-r from-brand-glow to-brand-primary bg-clip-text pb-3 text-[2.1rem] font-bold tracking-tight text-transparent min-[380px]:text-4xl md:text-6xl"
           >
             Earn Everywhere
           </motion.h2>
@@ -582,7 +582,7 @@ export function HeroSection({ sliderLabelClassName }: HeroSectionProps = {}) {
           <motion.p
             variants={itemVariants}
             style={heroSubtitleStyle}
-            className="mb-9 max-w-2xl text-center text-lg font-medium leading-relaxed text-[color:var(--hero-subtitle-dark)] md:text-xl"
+            className="mb-9 max-w-2xl text-center text-base font-medium leading-relaxed text-[color:var(--hero-subtitle-dark)] md:text-xl"
           >
             Everything you need to trade Forex in one place.
           </motion.p>
@@ -612,7 +612,7 @@ export function HeroSection({ sliderLabelClassName }: HeroSectionProps = {}) {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(8,12,24,0.14),rgba(3,6,16,0.58)_58%,rgba(2,4,12,0.82)_100%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.3)_24%,rgba(0,0,0,0.38)_68%,rgba(0,0,0,0.68)_100%)]" />
 
-        <div className="absolute left-1/2 top-0 h-full w-[125%] -translate-x-1/2 opacity-90">
+        <div className="absolute left-1/2 top-0 h-full w-full -translate-x-1/2 opacity-90 sm:w-[125%]">
           <Lightning
             hue={lightningHue}
             xOffset={0}

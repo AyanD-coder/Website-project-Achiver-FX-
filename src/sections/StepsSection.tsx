@@ -81,9 +81,9 @@ function StepCard({
         shouldReduceMotion
           ? undefined
           : {
-              y: -8,
-              scale: 1.05,
-            }
+            y: -8,
+            scale: 1.05,
+          }
       }
       className="group relative"
     >
@@ -97,7 +97,7 @@ function StepCard({
           {step.num}
         </div>
 
-        <div className="absolute left-6 top-0 -translate-y-1/2 lg:left-1/2 lg:-translate-x-1/2">
+        <div className="absolute left-6 top-1 -translate-y-1/2 lg:left-1/2 lg:-translate-x-1/2">
           <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl border border-cyan-300/20 bg-[linear-gradient(180deg,rgba(9,18,37,0.92),rgba(8,14,28,0.9))] text-cyan-200 shadow-[0_0_30px_rgba(34,211,238,0.18)] backdrop-blur-xl transition-all duration-300 group-hover:border-cyan-300/40 group-hover:text-white group-hover:shadow-[0_0_40px_rgba(56,189,248,0.3)] [.light_&]:border-blue-200 [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.96))] [.light_&]:text-blue-600 [.light_&]:shadow-[0_5px_20px_rgba(37,99,235,0.15)] [.light_&]:group-hover:border-blue-300 [.light_&]:group-hover:text-blue-700 [.light_&]:group-hover:shadow-[0_8px_26px_rgba(14,165,233,0.2)]">
             <div className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(circle,rgba(56,189,248,0.16),transparent_70%)] [.light_&]:bg-[radial-gradient(circle,rgba(37,99,235,0.12),transparent_70%)]" />
             <Icon className="relative h-5 w-5" />
@@ -174,7 +174,7 @@ export default function StepsSection() {
             className="pointer-events-none absolute left-[11%] right-[11%] top-[3.1rem] hidden h-px origin-left bg-gradient-to-r from-cyan-300/0 via-cyan-300/90 to-cyan-300/0 shadow-[0_0_20px_rgba(34,211,238,0.5)] lg:block [.light_&]:via-sky-300/90 [.light_&]:shadow-[0_0_20px_rgba(37,99,235,0.24)]"
           />
 
-          <div className="relative grid grid-cols-1 gap-6 lg:grid-cols-4 lg:gap-5">
+          <div className="relative grid grid-cols-1 gap-y-10 lg:grid-cols-4 lg:gap-5">
             {steps.map((step, index) => (
               <StepCard key={step.num} step={step} index={index} />
             ))}

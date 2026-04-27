@@ -71,7 +71,7 @@ function PromotionCard({
       <div
         className={cn(
           "relative overflow-hidden",
-          isLarge ? "min-h-[320px] lg:w-1/2" : "aspect-[16/10]",
+          isLarge ? "min-h-[240px] sm:min-h-[320px] lg:w-1/2" : "aspect-[16/10]",
         )}
       >
         <Image
@@ -210,7 +210,7 @@ export default function PromotionsPage() {
       <SectionWrapper id="featured-promotions" className="py-14 lg:py-20">
         <div className="mx-auto max-w-3xl text-center">
           <SectionLabel>Featured Offers</SectionLabel>
-          <h2 className="mt-6 text-4xl font-semibold tracking-[-0.05em] text-white sm:text-5xl [.light_&]:text-slate-950">
+          <h2 className="mt-6 text-3xl font-semibold tracking-[-0.05em] text-white sm:text-5xl [.light_&]:text-slate-950">
             Trading bonuses with clearer value.
           </h2>
           <p className="mt-4 text-base leading-8 text-slate-400 [.light_&]:text-slate-600">
@@ -245,7 +245,7 @@ export default function PromotionsPage() {
           <div className="relative grid items-center gap-10 lg:grid-cols-[0.92fr_1.08fr]">
             <div>
               <SectionLabel>Why These Offers</SectionLabel>
-              <h2 className="mt-6 text-4xl font-semibold leading-[1.04] tracking-[-0.05em] text-white sm:text-5xl [.light_&]:text-slate-950">
+              <h2 className="mt-6 text-3xl font-semibold leading-[1.04] tracking-[-0.05em] text-white sm:text-5xl [.light_&]:text-slate-950">
                 Promotional value that stays practical.
               </h2>
               <p className="mt-5 max-w-xl text-base leading-8 text-slate-400 sm:text-lg [.light_&]:text-slate-600">
@@ -304,7 +304,7 @@ export default function PromotionsPage() {
 
           <div className="relative mx-auto max-w-3xl">
             <SectionLabel className="justify-center">Get Started</SectionLabel>
-            <h2 className="mt-6 text-4xl font-semibold tracking-[-0.05em] text-white sm:text-5xl [.light_&]:text-slate-950">
+            <h2 className="mt-6 text-3xl font-semibold tracking-[-0.05em] text-white sm:text-5xl [.light_&]:text-slate-950">
               Start your journey today.
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-400 [.light_&]:text-slate-600">

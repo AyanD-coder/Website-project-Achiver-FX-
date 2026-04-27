@@ -27,7 +27,7 @@ export default function BrandLogo({
         width={600}
         height={111}
         priority={priority}
-        sizes="(max-width: 640px) 190px, (max-width: 1024px) 200px, 228px"
+        sizes="(max-width: 380px) 148px, (max-width: 640px) 170px, (max-width: 1024px) 200px, 228px"
         className={cn(
           "h-auto w-[190px] select-none object-contain",
           withBackplate

@@ -63,16 +63,16 @@ export default function FeaturesGrid() {
   return (
     <SectionWrapper
       id="features"
-      className="relative z-10 !m-0 !-mt-[180px] bg-transparent !p-0 !px-0 !py-0 sm:!-mt-[280px] lg:!-mt-[520px] lg:!p-0 lg:!px-0 lg:!py-0"
+      className="relative z-10 !m-0 !-mt-[90px] bg-transparent !p-0 !px-0 !py-0 sm:!-mt-[220px] lg:!-mt-[520px] lg:!p-0 lg:!px-0 lg:!py-0"
     >
       <section className="relative left-1/2 w-screen max-w-none -translate-x-1/2">
-        <div className="relative flex min-h-[100svh] flex-col overflow-visible rounded-none bg-transparent shadow-none backdrop-blur-none sm:min-h-0 sm:rounded-none sm:bg-transparent sm:shadow-none sm:backdrop-blur-none">
+        <div className="hidden relative md:flex min-h-[86svh] flex-col overflow-visible rounded-none bg-transparent shadow-none backdrop-blur-none sm:min-h-0 sm:rounded-none sm:bg-transparent sm:shadow-none sm:backdrop-blur-none">
           <div className="relative z-0 flex-1 min-h-0">
             <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-24 bg-transparent" />
             <RadialOrbitalTimeline timelineData={timelineData} />
           </div>
 
-          <div className="relative z-20 -mt-20 px-4 pb-8 text-center sm:m-[2px] sm:mt-0 sm:flex sm:flex-col sm:items-center sm:p-[2px]">
+          <div className="relative z-20 -mt-8 px-4 pb-8 text-center sm:m-[2px] sm:mt-0 sm:flex sm:flex-col sm:items-center sm:p-[2px]">
             <h3 className="text-2xl font-semibold text-white [.light_&]:text-black sm:text-3xl sm:[.light_&]:text-white">
               Fuel Your Strategy with Intelligence
             </h3>

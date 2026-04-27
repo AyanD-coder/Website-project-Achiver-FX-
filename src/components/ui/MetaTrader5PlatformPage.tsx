@@ -158,7 +158,9 @@ function DeviceFrame({
 
 function RealisticPhoneScreenshot({ className }: { className?: string }) {
   return (
-    <DeviceFrame className={cn("w-[13.6rem]", className)}>
+    <DeviceFrame
+      className={cn("w-[11.6rem] min-[380px]:w-[12.4rem] sm:w-[13.6rem]", className)}
+    >
       <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-[#f8fafc] text-slate-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.92)]">
         <div className="flex items-center justify-between bg-white px-3 py-2 text-[0.58rem] font-semibold text-slate-900">
           <span>9:41</span>
@@ -354,7 +356,9 @@ function QuotesPhone({ className }: { className?: string }) {
   ];
 
   return (
-    <DeviceFrame className={cn("w-[11.3rem]", className)}>
+    <DeviceFrame
+      className={cn("w-[9.4rem] min-[380px]:w-[10rem] sm:w-[11.3rem]", className)}
+    >
       <div className="rounded-[1.9rem] border border-white/8 bg-white/95 p-3 text-slate-900 shadow-[inset_0_1px_0_rgba(255,255,255,0.92)]">
         <div className="flex items-center justify-between">
           <div>
@@ -623,7 +627,7 @@ export default function MetaTrader5PlatformPage({
           <div className="relative grid items-center gap-8 lg:grid-cols-[0.9fr_1.1fr] xl:gap-14">
             <div className="max-w-xl">
               <SectionLabel>WELCOME TO MT5 PLATFORM</SectionLabel>
-              <h1 className="mt-6 text-4xl font-semibold leading-[1.02] tracking-[-0.06em] text-white sm:text-5xl lg:text-[3.9rem] [.light_&]:text-slate-950">
+              <h1 className="mt-6 text-3xl font-semibold leading-[1.04] tracking-[-0.06em] text-white min-[380px]:text-4xl sm:text-5xl lg:text-[3.9rem] [.light_&]:text-slate-950">
                 Level Up Your Trading
                 <br />
                 with Achievers MT5
@@ -646,10 +650,10 @@ export default function MetaTrader5PlatformPage({
               </div>
             </div>
 
-            <div className="relative h-[29rem] sm:h-[31rem] lg:h-[33rem]">
+            <div className="relative h-[24rem] overflow-hidden sm:h-[31rem] lg:h-[33rem]">
               <div className="absolute inset-0 rounded-[2.6rem] bg-[radial-gradient(circle_at_center,rgba(56,189,248,0.18),transparent_52%)] [.light_&]:bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.12),transparent_52%)]" />
-              <RealisticPhoneScreenshot className="absolute left-[10%] top-0 -rotate-[11deg]" />
-              <QuotesPhone className="absolute right-[4%] top-16 rotate-[9deg]" />
+              <RealisticPhoneScreenshot className="absolute left-2 top-2 -rotate-[8deg] min-[380px]:left-[6%] sm:left-[10%] sm:top-0 sm:-rotate-[11deg]" />
+              <QuotesPhone className="absolute right-1 top-24 rotate-[7deg] min-[380px]:top-20 sm:right-[4%] sm:top-16 sm:rotate-[9deg]" />
             </div>
           </div>
         </div>
@@ -662,7 +666,7 @@ export default function MetaTrader5PlatformPage({
             <div className="pointer-events-none absolute left-10 top-10 h-40 w-40 rounded-full bg-cyan-400/14 blur-3xl [.light_&]:bg-sky-300/22" />
             <div className="pointer-events-none absolute right-12 top-20 h-32 w-32 rounded-full bg-blue-500/12 blur-3xl [.light_&]:bg-blue-300/18" />
 
-            <div className="relative h-[33rem]">
+            <div className="relative h-[29rem] overflow-hidden sm:h-[33rem]">
               <div className="absolute left-4 top-8 rounded-[1.6rem] border border-sky-200 bg-white px-5 py-4 shadow-[0_18px_40px_rgba(37,99,235,0.12)] [.dark_&]:border-cyan-300/16 [.dark_&]:bg-[linear-gradient(180deg,rgba(9,17,32,0.96),rgba(4,8,18,0.98))] [.dark_&]:shadow-[0_20px_50px_rgba(2,8,20,0.22)]">
                 <p className="text-sm font-semibold text-sky-700 [.dark_&]:text-cyan-100">
                   Algorithmic
@@ -687,8 +691,8 @@ export default function MetaTrader5PlatformPage({
                 </p>
               </div>
 
-              <div className="absolute left-[16%] top-[12%]">
-                <RealisticPhoneScreenshot className="w-[15.5rem] -rotate-[13deg]" />
+              <div className="absolute left-1/2 top-[12%] -translate-x-1/2 sm:left-[16%] sm:translate-x-0">
+                <RealisticPhoneScreenshot className="w-[12.4rem] -rotate-[10deg] min-[380px]:w-[13.2rem] sm:w-[15.5rem] sm:-rotate-[13deg]" />
               </div>
             </div>
           </div>

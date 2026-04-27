@@ -75,14 +75,14 @@ export default function RobotShowcase() {
           </div>
           </div>
 
-          <div className="relative min-h-[420px] sm:min-h-[520px]">
+          <div className="relative min-h-[320px] sm:min-h-[520px]">
             <div className="absolute inset-0 hidden rounded-[2.5rem] [.light_&]:block [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(241,245,249,0.88))] [.light_&]:shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_20px_50px_rgba(15,23,42,0.08)]" />
             <div className="absolute inset-0 hidden rounded-[2.5rem] [.light_&]:block [.light_&]:bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.10),transparent_34%),radial-gradient(circle_at_74%_70%,rgba(14,165,233,0.10),transparent_42%)]" />
 
-            <div className="relative h-[420px] overflow-hidden rounded-[2.5rem] bg-transparent sm:h-[520px]">
+            <div className="relative h-[320px] overflow-hidden rounded-[2rem] bg-transparent sm:h-[520px] sm:rounded-[2.5rem]">
               <InteractiveRobotSpline
                 scene={ROBOT_SCENE_URL}
-                className="absolute inset-[-8%] h-[116%] w-[116%]"
+                className="absolute inset-0 h-full w-full"
               />
 
               <div className="pointer-events-none absolute inset-x-0 bottom-0 p-6 sm:p-8">

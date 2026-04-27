@@ -623,7 +623,7 @@ export function DiscoverPage({ page }: { page: DiscoverPageData }) {
 
   return (
     <PageLayout>
-      <section className="relative flex min-h-[78svh] w-full items-end overflow-hidden px-4 pb-12 pt-32 sm:px-6 lg:px-8">
+      <section className="relative flex min-h-[72svh] w-full items-end overflow-hidden px-4 pb-10 pt-28 sm:min-h-[78svh] sm:px-6 sm:pb-12 sm:pt-32 lg:px-8">
           <Image
             src={page.heroImage}
             alt={page.heroImageAlt}
@@ -641,16 +641,16 @@ export function DiscoverPage({ page }: { page: DiscoverPageData }) {
                 {page.eyebrow}
               </Badge>
 
-              <h1 className="mt-6 text-4xl font-semibold leading-[1.04] tracking-normal text-white sm:text-5xl lg:text-6xl">
+              <h1 className="mt-5 max-w-full text-3xl font-semibold leading-[1.06] tracking-normal text-white min-[380px]:text-4xl sm:mt-6 sm:text-5xl lg:text-6xl">
                 {page.title}
               </h1>
 
-              <p className="mt-5 max-w-2xl text-base leading-8 text-white/76 sm:text-lg">
+              <p className="mt-5 max-w-2xl text-sm leading-7 text-white/76 sm:text-base sm:leading-8 lg:text-lg">
                 {page.description}
               </p>
 
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Button asChild className="h-12 rounded-lg px-6 text-sm">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <Button asChild className="min-h-12 w-full rounded-lg px-6 py-3 text-sm sm:w-auto">
                   <Link href={page.primaryCta.href}>
                     {page.primaryCta.label}
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -660,7 +660,7 @@ export function DiscoverPage({ page }: { page: DiscoverPageData }) {
                   <Button
                     asChild
                     variant="outline"
-                    className="h-12 rounded-lg border-white/20 bg-white/10 px-6 text-sm text-white hover:bg-white/16 hover:text-white"
+                    className="min-h-12 w-full rounded-lg border-white/20 bg-white/10 px-6 py-3 text-sm text-white hover:bg-white/16 hover:text-white sm:w-auto"
                   >
                     <Link href={page.secondaryCta.href}>
                       {page.secondaryCta.label}
@@ -669,7 +669,7 @@ export function DiscoverPage({ page }: { page: DiscoverPageData }) {
                 ) : null}
               </div>
 
-              <div className="mt-8 grid max-w-2xl gap-3 sm:grid-cols-3">
+              <div className="mt-8 grid max-w-2xl gap-3 min-[520px]:grid-cols-3">
                 {page.stats.map((stat) => (
                   <HeroStat key={`${stat.value}-${stat.label}`} {...stat} />
                 ))}
@@ -796,7 +796,7 @@ export function DiscoverPage({ page }: { page: DiscoverPageData }) {
                 </p>
               </div>
 
-              <Button asChild className="h-12 rounded-lg px-7 text-sm">
+              <Button asChild className="min-h-12 w-full rounded-lg px-7 py-3 text-sm sm:w-auto">
                 <Link href={page.finalCta.href}>
                   {page.finalCta.label}
                   <ArrowRight className="ml-2 h-4 w-4" />

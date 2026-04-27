@@ -79,7 +79,7 @@ export default function OrbitalFeatures() {
   const CurrentFeatureIcon = currentFeature.icon;
 
   const stageStyle = {
-    "--orbit-radius": "clamp(10rem, 27vw, 17rem)",
+    "--orbit-radius": "clamp(8.2rem, 29vw, 17rem)",
   } as CSSProperties;
 
   const orbitRingStyle = {
@@ -209,7 +209,7 @@ export default function OrbitalFeatures() {
                           setHoveredItem(null);
                           setIsOrbitPaused(false);
                         }}
-                        className={`group relative flex min-w-[10.5rem] items-center justify-center gap-2.5 rounded-full border px-4 py-2.5 text-sm font-medium backdrop-blur-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-300/70 ${isHighlighted
+                        className={`group relative flex min-w-[8rem] items-center justify-center gap-2 rounded-full border px-3 py-2 text-xs font-medium backdrop-blur-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-300/70 sm:min-w-[10.5rem] sm:gap-2.5 sm:px-4 sm:py-2.5 sm:text-sm ${isHighlighted
                             ? "scale-110 border-cyan-400/50 bg-cyan-500/10 text-white shadow-[0_0_20px_rgba(56,189,248,0.6)] [.light_&]:border-blue-300/60 [.light_&]:bg-blue-500/10 [.light_&]:text-[#111827] [.light_&]:shadow-[0_12px_28px_rgba(37,99,235,0.2)]"
                             : "border-white/10 bg-white/5 text-white/80 shadow-[0_0_22px_rgba(56,189,248,0.14)] hover:scale-110 hover:border-cyan-300/40 hover:bg-cyan-400/10 hover:text-white hover:shadow-[0_0_20px_rgba(56,189,248,0.6)] [.light_&]:border-gray-200 [.light_&]:bg-white/82 [.light_&]:text-slate-700 [.light_&]:shadow-[0_10px_24px_rgba(15,23,42,0.06)] [.light_&]:hover:border-blue-300/70 [.light_&]:hover:bg-blue-50/90 [.light_&]:hover:text-[#111827] [.light_&]:hover:shadow-[0_14px_30px_rgba(37,99,235,0.18)]"
                           }`}

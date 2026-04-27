@@ -70,6 +70,9 @@ html.light {
 }
 
 body {
+  min-width: 320px;
+  max-width: 100%;
+  overflow-x: clip;
   background: var(--page-background);
   color: var(--color-text-primary);
   font-family: var(--font-sans);
@@ -81,6 +84,24 @@ body {
     background-color 300ms ease,
     color 300ms ease,
     background-image 300ms ease;
+}
+
+*,
+*::before,
+*::after {
+  min-width: 0;
+}
+
+html {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+img,
+svg,
+canvas,
+video {
+  max-width: 100%;
 }
 
 h1,
@@ -107,6 +128,7 @@ button,
 input,
 textarea,
 label {
+  overflow-wrap: anywhere;
   text-wrap: pretty;
 }
 

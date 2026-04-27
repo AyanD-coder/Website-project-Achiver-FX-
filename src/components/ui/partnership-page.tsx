@@ -218,7 +218,7 @@ export default function PartnershipPage() {
       <SectionWrapper id="partner-programs" className="py-14 lg:py-20">
         <div className="mx-auto max-w-3xl text-center">
           <SectionLabel>Partner Programs</SectionLabel>
-          <h2 className="mt-6 text-4xl font-semibold tracking-[-0.05em] text-white sm:text-5xl [.light_&]:text-slate-950">
+          <h2 className="mt-6 text-3xl font-semibold tracking-[-0.05em] text-white sm:text-5xl [.light_&]:text-slate-950">
             Flexible partnership paths for every goal.
           </h2>
           <p className="mt-4 text-base leading-8 text-slate-400 [.light_&]:text-slate-600">
@@ -244,7 +244,7 @@ export default function PartnershipPage() {
           <div className="relative grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
             <div>
               <SectionLabel>Why Us</SectionLabel>
-              <h2 className="mt-6 text-4xl font-semibold leading-[1.04] tracking-[-0.05em] text-white sm:text-5xl [.light_&]:text-slate-950">
+              <h2 className="mt-6 text-3xl font-semibold leading-[1.04] tracking-[-0.05em] text-white sm:text-5xl [.light_&]:text-slate-950">
                 Built for partners who demand excellence.
               </h2>
               <p className="mt-5 max-w-xl text-base leading-8 text-slate-400 sm:text-lg [.light_&]:text-slate-600">
@@ -294,7 +294,7 @@ export default function PartnershipPage() {
                   <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-300/18 bg-cyan-400/10 text-cyan-100 transition-transform duration-300 group-hover:scale-105 [.light_&]:border-sky-200 [.light_&]:bg-sky-50 [.light_&]:text-sky-700">
                     <benefit.icon className="h-6 w-6" />
                   </div>
-                  <h3 className="text-xl font-semibold text-white [.dark_&]:text-primary">
+                  <h3 className="text-xl font-semibold text-white [.light_&]:text-slate-950">
                     {benefit.title}
                   </h3>
                   <p className="mt-3 text-sm leading-6 text-slate-400 [.light_&]:text-slate-600">
@@ -313,7 +313,7 @@ export default function PartnershipPage() {
 
           <div className="relative mx-auto max-w-3xl">
             <SectionLabel className="justify-center">Partner With Us</SectionLabel>
-            <h2 className="mt-6 text-4xl font-semibold tracking-[-0.05em] text-white sm:text-5xl [.light_&]:text-slate-950">
+            <h2 className="mt-6 text-3xl font-semibold tracking-[-0.05em] text-white sm:text-5xl [.light_&]:text-slate-950">
               Ready to become an Achiever Partner?
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-400 [.light_&]:text-slate-600">

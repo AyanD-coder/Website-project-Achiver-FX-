@@ -39,7 +39,7 @@ interface PageLayoutProps {
 
 function ImageHero({ hero }: { hero: PageHeroProps & { imageSrc: string } }) {
   return (
-    <section className="relative flex min-h-[78svh] w-full items-end overflow-hidden px-4 pb-12 pt-32 sm:px-6 lg:px-8">
+    <section className="relative flex min-h-[72svh] w-full items-end overflow-hidden px-4 pb-10 pt-28 sm:min-h-[78svh] sm:px-6 sm:pb-12 sm:pt-32 lg:px-8">
       <Image
         src={hero.imageSrc}
         alt={hero.imageAlt ?? ""}
@@ -59,25 +59,25 @@ function ImageHero({ hero }: { hero: PageHeroProps & { imageSrc: string } }) {
             </Badge>
           ) : null}
 
-          <h1 className="mt-6 text-4xl font-semibold leading-[1.04] tracking-normal text-white sm:text-5xl lg:text-6xl">
+          <h1 className="mt-5 max-w-full text-3xl font-semibold leading-[1.06] tracking-normal text-white min-[380px]:text-4xl sm:mt-6 sm:text-5xl lg:text-6xl">
             {hero.title}
           </h1>
 
           {hero.description ? (
-            <p className="mt-5 max-w-2xl text-base leading-8 text-white/76 sm:text-lg">
+            <p className="mt-5 max-w-2xl text-sm leading-7 text-white/76 sm:text-base sm:leading-8 lg:text-lg">
               {hero.description}
             </p>
           ) : null}
 
           {hero.actions?.length || hero.children ? (
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               {hero.actions?.map((action) => (
                 <Button
                   key={`${action.href}-${action.label}`}
                   asChild
                   variant={action.variant === "outline" ? "outline" : "primary"}
                   className={cn(
-                    "h-12 w-full rounded-lg px-6 text-sm sm:w-auto",
+                    "min-h-12 w-full rounded-lg px-6 py-3 text-sm sm:w-auto",
                     action.variant === "outline" &&
                       "border-white/20 bg-white/10 text-white hover:bg-white/16 hover:text-white",
                   )}
@@ -95,13 +95,13 @@ function ImageHero({ hero }: { hero: PageHeroProps & { imageSrc: string } }) {
           ) : null}
 
           {hero.stats?.length ? (
-            <div className="mt-8 grid max-w-2xl gap-3 sm:grid-cols-3">
+            <div className="mt-8 grid max-w-2xl gap-3 min-[520px]:grid-cols-3">
               {hero.stats.map((stat) => (
                 <div
                   key={`${stat.value}-${stat.label}`}
                   className="rounded-lg border border-white/14 bg-white/10 px-4 py-3 text-left shadow-[0_14px_34px_rgba(2,8,20,0.2)] backdrop-blur-md"
                 >
-                  <p className="text-xl font-semibold tracking-normal text-white">
+                  <p className="text-lg font-semibold tracking-normal text-white sm:text-xl">
                     {stat.value}
                   </p>
                   <p className="mt-1 text-xs font-semibold uppercase tracking-[0.16em] text-white/64">
@@ -120,19 +120,19 @@ function ImageHero({ hero }: { hero: PageHeroProps & { imageSrc: string } }) {
 function TextHero({ hero }: { hero: PageHeroProps }) {
   return (
     <>
-      <div className="relative z-10 mx-auto w-full max-w-4xl px-4 pb-12 pt-16 text-center sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto w-full max-w-4xl px-4 pb-10 pt-12 text-center sm:px-6 sm:pb-12 sm:pt-16 lg:px-8">
         {hero.eyebrow ? (
           <span className="mb-5 inline-flex items-center rounded-full border border-brand-glow/20 bg-brand-glow/8 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.3em] text-brand-glow [.light_&]:border-brand-primary/20 [.light_&]:bg-brand-primary/8 [.light_&]:text-brand-primary">
             {hero.eyebrow}
           </span>
         ) : null}
 
-        <h1 className="mt-4 bg-gradient-to-b from-text-primary via-text-primary/90 to-text-primary/60 bg-clip-text pb-1 text-4xl font-extrabold tracking-tight text-transparent md:text-6xl [.light_&]:from-[#111827] [.light_&]:via-[#1e3a5f] [.light_&]:to-brand-primary">
+        <h1 className="mt-4 bg-gradient-to-b from-text-primary via-text-primary/90 to-text-primary/60 bg-clip-text pb-1 text-3xl font-extrabold tracking-tight text-transparent sm:text-5xl md:text-6xl [.light_&]:from-[#111827] [.light_&]:via-[#1e3a5f] [.light_&]:to-brand-primary">
           {hero.title}
         </h1>
 
         {hero.description ? (
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-text-secondary [.light_&]:text-slate-600 md:text-lg">
+          <p className="mx-auto mt-6 max-w-2xl text-sm leading-7 text-text-secondary [.light_&]:text-slate-600 sm:text-base sm:leading-8 md:text-lg">
             {hero.description}
           </p>
         ) : null}
@@ -177,7 +177,7 @@ export default function PageLayout({
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute right-0 top-0 -z-10 h-[360px] w-[360px] bg-[radial-gradient(circle,var(--color-brand-primary)/0.10,transparent_68%)] [.light_&]:bg-[radial-gradient(circle,var(--color-brand-secondary)/0.07,transparent_68%)]"
+          className="pointer-events-none absolute right-0 top-0 -z-10 h-[min(360px,100vw)] w-[min(360px,100vw)] bg-[radial-gradient(circle,var(--color-brand-primary)/0.10,transparent_68%)] [.light_&]:bg-[radial-gradient(circle,var(--color-brand-secondary)/0.07,transparent_68%)]"
         />
 
         {hero?.imageSrc ? (

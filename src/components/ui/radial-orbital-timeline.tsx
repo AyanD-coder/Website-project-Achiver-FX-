@@ -262,7 +262,7 @@ export default function RadialOrbitalTimeline({
 
   return (
     <div
-      className="relative flex h-full min-h-[40rem] w-full flex-col items-center justify-center overflow-visible rounded-none bg-transparent shadow-none after:pointer-events-none after:absolute after:inset-0 after:bg-none sm:h-[820px] sm:min-h-0 sm:overflow-visible sm:rounded-none sm:bg-transparent sm:shadow-none sm:after:bg-none lg:h-[960px]"
+      className="relative flex h-full min-h-[34rem] w-full flex-col items-center justify-center overflow-visible rounded-none bg-transparent shadow-none after:pointer-events-none after:absolute after:inset-0 after:bg-none sm:h-[820px] sm:min-h-0 sm:overflow-visible sm:rounded-none sm:bg-transparent sm:shadow-none sm:after:bg-none lg:h-[960px]"
       ref={containerRef}
       onClick={handleContainerClick}
     >
@@ -387,7 +387,7 @@ export default function RadialOrbitalTimeline({
 
                 <div
                   className={`
-                    absolute left-1/2 top-11 w-32 -translate-x-1/2 rounded-full border border-white/10 bg-black/55 px-3 py-1.5 text-center text-[10px] font-semibold leading-4 tracking-[0.12em] text-white/95 shadow-none backdrop-blur-none drop-shadow-none transition-all duration-300 whitespace-normal [.light_&]:border-slate-200/80 [.light_&]:bg-white/96 [.light_&]:text-slate-700 [.light_&]:shadow-none [.light_&]:drop-shadow-none sm:left-0 sm:top-12 sm:w-auto sm:translate-x-0 sm:px-4 sm:text-xs sm:leading-normal sm:tracking-[0.18em] sm:whitespace-nowrap
+                    absolute left-1/2 top-11 w-32 -translate-x-1/2 rounded-full border border-white/10 bg-black/55 px-3 py-1.5 text-center text-[10px] font-semibold leading-4 tracking-[0.12em] text-white/95 shadow-none backdrop-blur-none drop-shadow-none transition-all duration-300 whitespace-normal [.light_&]:border-slate-200/80 [.light_&]:bg-white/96 [.light_&]:text-slate-700 [.light_&]:shadow-none [.light_&]:drop-shadow-none sm:left-0 sm:top-12 sm:w-40 sm:translate-x-0 sm:px-3 sm:text-[11px] sm:leading-4 sm:tracking-[0.12em] sm:whitespace-normal lg:w-auto lg:px-4 lg:text-xs lg:leading-normal lg:tracking-[0.18em] lg:whitespace-nowrap
                     ${isExpanded ? "scale-110 border-white/20 bg-black/70 text-white [.light_&]:border-slate-300 [.light_&]:bg-slate-50 [.light_&]:text-slate-700" : "group-hover:border-white/15 group-hover:bg-black/65 group-hover:text-white [.light_&]:group-hover:border-slate-300/70 [.light_&]:group-hover:bg-slate-50 [.light_&]:group-hover:text-slate-700"}
                   `}
                 >

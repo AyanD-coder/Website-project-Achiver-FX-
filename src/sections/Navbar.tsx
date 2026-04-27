@@ -248,10 +248,10 @@ export default function Navbar({
             }`
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
         <Link href="/" className="relative z-50 flex items-center gap-2">
           <BrandLogo
-            className={`w-[178px] sm:w-[200px] lg:w-[228px] ${
+            className={`w-[148px] min-[380px]:w-[170px] sm:w-[200px] xl:w-[228px] ${
               isScrolled
                 ? "[.light_&]:brightness-[0.16] [.light_&]:contrast-[1.35] [.light_&]:drop-shadow-[0_4px_16px_rgba(37,99,235,0.12)]"
                 : solidLightModeAtTop
@@ -262,7 +262,7 @@ export default function Navbar({
           />
         </Link>
 
-        <nav className="hidden items-center gap-6 xl:gap-8 lg:flex">
+        <nav className="hidden items-center gap-5 xl:flex 2xl:gap-8">
           {navData.map((menu) => (
             <NavItem
               key={menu.title}
@@ -275,7 +275,7 @@ export default function Navbar({
           ))}
         </nav>
 
-        <div className="relative z-50 hidden items-center gap-4 lg:flex">
+        <div className="relative z-50 hidden items-center gap-3 xl:flex">
           <ThemeSwitch />
           <Button variant="outline" className="px-5 py-2.5 text-sm">
             Login
@@ -286,7 +286,7 @@ export default function Navbar({
         </div>
 
         <button
-          className="relative z-50 text-text-secondary transition-colors hover:text-white lg:hidden [.light_&]:text-slate-500 [.light_&]:hover:text-slate-900"
+          className="relative z-50 flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-text-secondary transition-colors hover:text-white xl:hidden [.light_&]:border-slate-200 [.light_&]:bg-white [.light_&]:text-slate-600 [.light_&]:hover:text-slate-900"
           onClick={() => setMobileMenuOpen((open) => !open)}
           aria-label="Toggle mobile menu"
         >
@@ -295,7 +295,7 @@ export default function Navbar({
       </div>
 
       {mobileMenuOpen ? (
-        <div className="absolute left-0 top-full flex max-h-[85vh] w-full flex-col gap-6 overflow-y-auto border-b border-white/5 bg-bg-secondary/95 p-6 shadow-2xl backdrop-blur-xl lg:hidden [.light_&]:border-gray-200 [.light_&]:bg-white/96 [.light_&]:shadow-[0_10px_30px_rgba(0,0,0,0.08)]">
+        <div className="absolute left-0 right-0 top-full flex max-h-[calc(100svh-4rem)] w-full flex-col gap-6 overflow-y-auto border-b border-white/5 bg-bg-secondary/95 p-4 shadow-2xl backdrop-blur-xl sm:p-6 xl:hidden [.light_&]:border-gray-200 [.light_&]:bg-white/96 [.light_&]:shadow-[0_10px_30px_rgba(0,0,0,0.08)]">
           <nav className="flex flex-col gap-4">
             {navData.map((menu) => (
               <NavItem

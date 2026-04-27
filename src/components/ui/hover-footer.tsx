@@ -280,12 +280,10 @@ const socialLinks = [
 function FooterSection({
   title,
   links,
-  isContact = false,
   children
 }: {
   title: string;
   links?: { label: string; href: string }[];
-  isContact?: boolean;
   children?: React.ReactNode;
 }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -333,22 +331,22 @@ function FooterSection({
 
 export default function HoverFooter() {
   return (
-    <footer className="relative m-4 overflow-hidden rounded-[32px] border border-white/10 bg-[#07101f]/55 text-slate-300 shadow-[0_30px_120px_rgba(0,0,0,0.4)] backdrop-blur-2xl md:m-8 [.light_&]:border-gray-200 [.light_&]:bg-white/88 [.light_&]:text-slate-600 [.light_&]:shadow-[0_20px_60px_rgba(14,165,233,0.08)]">
+    <footer className="relative m-3 overflow-hidden rounded-[24px] border border-white/10 bg-[#07101f]/55 text-slate-300 shadow-[0_30px_120px_rgba(0,0,0,0.4)] backdrop-blur-2xl sm:m-4 sm:rounded-[32px] md:m-8 [.light_&]:border-gray-200 [.light_&]:bg-white/88 [.light_&]:text-slate-600 [.light_&]:shadow-[0_20px_60px_rgba(14,165,233,0.08)]">
       <div className="pointer-events-none absolute inset-x-0 bottom-8 z-0 hidden h-0 overflow-visible opacity-40 lg:block [.light_&]:h-[20rem] [.light_&]:overflow-visible [.light_&]:opacity-[0.38]">
         <div className="flex h-full items-end justify-center">
           <BrandLogo className="w-[720px] opacity-[0.24] blur-[0.2px] [.light_&]:brightness-[0.18] [.light_&]:contrast-[1.35]" />
         </div>
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl p-8 md:p-12 lg:p-14">
+      <div className="relative z-10 mx-auto max-w-7xl p-5 sm:p-8 md:p-12 lg:p-14">
         <div className="grid grid-cols-1 gap-0 pb-10 md:grid-cols-2 md:gap-12 lg:grid-cols-3 xl:grid-cols-6 lg:gap-x-8 lg:gap-y-12">
           <div className="mb-12 flex flex-col space-y-6 md:col-span-2 md:mb-0 lg:col-span-3 xl:col-span-2">
-            <BrandLogo className="w-[220px] sm:w-[250px] [.light_&]:brightness-[0.18] [.light_&]:contrast-[1.35]" />
-            <p className="self-center max-w-sm text-sm leading-relaxed text-slate-300/90 [.light_&]:text-slate-600">
+            <BrandLogo className="w-[190px] sm:w-[220px] lg:w-[250px] [.light_&]:brightness-[0.18] [.light_&]:contrast-[1.35]" />
+            <p className="max-w-sm text-sm leading-relaxed text-slate-300/90 [.light_&]:text-slate-600 sm:self-center">
               Here at Achiever Financials Ltd, we provide one of the safest
               online trading platforms to our clients and partners.
             </p>
-            <div className="self-center flex flex-wrap items-center gap-1 sm:gap-2 md:gap-4 2xl:gap-6 pt-4">
+            <div className="flex flex-wrap items-center gap-2 pt-4 sm:self-center md:gap-4 2xl:gap-6">
               {socialLinks.map((item) => (
                 <a
                   key={item.label}
@@ -367,7 +365,7 @@ export default function HoverFooter() {
           ))}
 
           <div className="md:col-span-2 lg:col-span-1 xl:col-span-2">
-            <FooterSection title="Contact Us" isContact>
+            <FooterSection title="Contact Us">
               <ul className="space-y-6 pb-4 sm:pb-0">
                 {contactInfo.map((item) => (
                   <li key={item.text} className="flex items-start gap-3">
@@ -375,12 +373,12 @@ export default function HoverFooter() {
                     {item.href ? (
                       <a
                         href={item.href}
-                        className="text-sm leading-6 text-slate-300/85 transition-colors hover:text-[#3ca2fa] [.light_&]:text-slate-600 [.light_&]:hover:text-blue-600"
+                        className="text-sm leading-6 text-slate-300/85 transition-colors [overflow-wrap:anywhere] hover:text-[#3ca2fa] [.light_&]:text-slate-600 [.light_&]:hover:text-blue-600"
                       >
                         {item.text}
                       </a>
                     ) : (
-                      <span className="text-sm leading-6 text-slate-300/85 [.light_&]:text-slate-600">
+                      <span className="text-sm leading-6 text-slate-300/85 [overflow-wrap:anywhere] [.light_&]:text-slate-600">
                         {item.text}
                       </span>
                     )}

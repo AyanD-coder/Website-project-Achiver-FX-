@@ -2,24 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
-  BadgeCheck,
-  BriefcaseBusiness,
   Building2,
-  CalendarCheck,
   CheckCircle2,
   ClipboardCheck,
-  FileCheck2,
   FileText,
   Globe2,
   Handshake,
   Headphones,
-  Layers,
   LockKeyhole,
   Mail,
   MapPin,
   Phone,
   Scale,
-  SearchCheck,
   ShieldCheck,
   Sparkles,
   Target,
@@ -529,7 +523,7 @@ export function CompanyPage({ page }: { page: CompanyPageData }) {
     <>
       <Navbar />
       <main className="relative flex min-h-screen flex-1 flex-col overflow-hidden bg-bg-dark [.light_&]:bg-surface">
-        <section className="relative flex min-h-[78svh] w-full items-end overflow-hidden px-4 pb-12 pt-32 sm:px-6 lg:px-8">
+        <section className="relative flex min-h-[72svh] w-full items-end overflow-hidden px-4 pb-10 pt-28 sm:min-h-[78svh] sm:px-6 sm:pb-12 sm:pt-32 lg:px-8">
           <Image
             src={page.heroImage}
             alt={page.heroImageAlt}
@@ -552,16 +546,16 @@ export function CompanyPage({ page }: { page: CompanyPageData }) {
                 {page.eyebrow}
               </Badge>
 
-              <h1 className="mt-6 text-4xl font-semibold leading-[1.04] tracking-normal text-white sm:text-5xl lg:text-6xl">
+              <h1 className="mt-5 max-w-full text-3xl font-semibold leading-[1.06] tracking-normal text-white min-[380px]:text-4xl sm:mt-6 sm:text-5xl lg:text-6xl">
                 {page.title}
               </h1>
 
-              <p className="mt-5 max-w-2xl text-base leading-8 text-white/76 sm:text-lg">
+              <p className="mt-5 max-w-2xl text-sm leading-7 text-white/76 sm:text-base sm:leading-8 lg:text-lg">
                 {page.description}
               </p>
 
-              <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                <Button asChild className="w-full sm:w-auto h-12 rounded-lg px-6 text-sm">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <Button asChild className="min-h-12 w-full rounded-lg px-6 py-3 text-sm sm:w-auto">
                   <Link href={page.primaryCta.href}>
                     {page.primaryCta.label}
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -571,7 +565,7 @@ export function CompanyPage({ page }: { page: CompanyPageData }) {
                   <Button
                     asChild
                     variant="outline"
-                    className="w-full sm:w-auto h-12 rounded-lg px-6 text-sm"
+                    className="min-h-12 w-full rounded-lg px-6 py-3 text-sm sm:w-auto"
                   >
                     <Link href={page.secondaryCta.href}>
                       {page.secondaryCta.label}
@@ -580,7 +574,7 @@ export function CompanyPage({ page }: { page: CompanyPageData }) {
                 ) : null}
               </div>
 
-              <div className="mt-8 grid max-w-2xl gap-3 sm:grid-cols-3">
+              <div className="mt-8 grid max-w-2xl gap-3 min-[520px]:grid-cols-3">
                 {page.metrics.map((metric) => (
                   <MetricCard key={`${metric.value}-${metric.label}`} {...metric} />
                 ))}
