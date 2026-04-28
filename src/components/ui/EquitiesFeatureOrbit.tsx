@@ -25,6 +25,10 @@ type Feature = {
   title: string;
 };
 
+type EquitiesFeatureOrbitProps = {
+  compact?: boolean;
+};
+
 const features: Feature[] = [
   {
     number: "01",
@@ -274,11 +278,16 @@ function CenterVisual({ shouldReduceMotion }: { shouldReduceMotion: boolean }) {
   );
 }
 
-export default function EquitiesFeatureOrbit() {
+export default function EquitiesFeatureOrbit({
+  compact = false,
+}: EquitiesFeatureOrbitProps = {}) {
   const shouldReduceMotion = useReducedMotion() ?? false;
 
   return (
-    <section className="relative w-full overflow-hidden px-4 pb-24 pt-10 sm:px-6 sm:pt-12 lg:px-8 lg:pb-28 lg:pt-14">
+    <section
+      data-compact={compact ? "" : undefined}
+      className="relative w-full overflow-hidden px-4 pb-24 pt-10 sm:px-6 sm:pt-12 lg:px-8 lg:pb-28 lg:pt-14"
+    >
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(56,189,248,0.12),transparent_22%),radial-gradient(circle_at_82%_14%,rgba(37,99,235,0.12),transparent_22%),linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0))]" />
         <div className="absolute inset-0 opacity-[0.08] [background-image:linear-gradient(rgba(148,163,184,0.32)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.32)_1px,transparent_1px)] [background-size:4.4rem_4.4rem]" />
