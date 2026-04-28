@@ -1,13 +1,14 @@
-import Navbar from "@/sections/Navbar";
-import Hero from "@/sections/Hero";
-import RobotShowcase from "@/sections/RobotShowcase";
-import FeaturesGrid from "@/sections/FeaturesGrid";
+import dynamic from "next/dynamic";
+const Navbar = dynamic(() => import("@/sections/Navbar"), { ssr: true });
+const Hero = dynamic(() => import("@/sections/Hero"), { ssr: true });
+const RobotShowcase = dynamic(() => import("@/sections/RobotShowcase"), { ssr: false });
+const FeaturesGrid = dynamic(() => import("@/sections/FeaturesGrid"));
 
-import StepsSection from "@/sections/StepsSection";
-import Pricing from "@/sections/Pricing";
-import Testimonials from "@/sections/Testimonials";
-import Subscribe from "@/sections/Subscribe";
-import Footer from "@/sections/Footer";
+const StepsSection = dynamic(() => import("@/sections/StepsSection"));
+const Pricing = dynamic(() => import("@/sections/Pricing"));
+const Testimonials = dynamic(() => import("@/sections/Testimonials"));
+const Subscribe = dynamic(() => import("@/sections/Subscribe"));
+const Footer = dynamic(() => import("@/sections/Footer"));
 import { createPageMetadata } from "@/lib/page-metadata";
 
 export const metadata = createPageMetadata("/");
