@@ -4,9 +4,9 @@ import { Button } from '@/components/ui/Button';
 export default function Subscribe() {
   return (
     <SectionWrapper>
-      <div className="relative grid grid-cols-1 items-center overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-br from-bg-secondary to-bg-dark shadow-2xl lg:grid-cols-2">
+      <div className="relative grid grid-cols-1 items-center overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-br from-[#121826] to-[#0B0F19] shadow-2xl lg:grid-cols-2">
         {/* Glow behind */}
-        <div className="absolute inset-0 bg-brand-primary opacity-5 blur-[120px] [.light_&]:bg-[radial-gradient(circle_at_22%_28%,rgba(37,99,235,0.16),transparent_34%),radial-gradient(circle_at_78%_24%,rgba(14,165,233,0.12),transparent_30%),radial-gradient(circle_at_52%_78%,rgba(56,189,248,0.1),transparent_36%)] [.light_&]:opacity-100 [.light_&]:blur-[96px]"></div>
+        <div className="absolute inset-0 bg-brand-primary opacity-5 blur-[120px]"></div>
 
         <div className="relative z-10 p-6 sm:p-10 lg:p-16">
           <h2 className="mb-6 text-3xl font-extrabold text-white md:text-5xl">
@@ -18,8 +18,11 @@ export default function Subscribe() {
 
           <form className="flex flex-col sm:flex-row gap-3">
             <input
+              id="newsletter-email"
+              name="email"
               type="email" 
               placeholder="Your email address" 
+              autoComplete="email"
               className="min-w-0 flex-grow rounded-xl border border-white/10 bg-bg-dark/50 px-4 py-3 text-white placeholder:text-text-secondary transition-all focus:border-brand-glow focus:outline-none focus:ring-1 focus:ring-brand-glow"
               required
             />

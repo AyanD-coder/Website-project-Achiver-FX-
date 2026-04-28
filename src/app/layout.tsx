@@ -9,11 +9,15 @@ import "./globals.css";
 const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin"],
+  display: "swap",
+  preload: false,
 });
 
 const sora = Sora({
   variable: "--font-sora",
   subsets: ["latin"],
+  display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = defaultMetadata;
@@ -28,6 +32,7 @@ export default function RootLayout({
       lang="en"
       className="light scroll-smooth"
       data-theme="light"
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
       <head>

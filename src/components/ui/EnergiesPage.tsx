@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { useState } from "react";
@@ -130,6 +130,7 @@ export default function EnergiesPage() {
 
   return (
     <PageLayout
+      className="[.light_&]:text-slate-900"
       hero={{
         eyebrow: "Energy Markets",
         title: "Energies Trading",
@@ -165,7 +166,7 @@ export default function EnergiesPage() {
             <h2 className="text-3xl font-semibold tracking-tight text-text-primary [.light_&]:text-[#111827]">
               Energy Commodities
             </h2>
-            <p className="mt-3 text-sm text-text-secondary">
+            <p className="mt-3 text-sm text-text-secondary [.light_&]:text-slate-500">
               The market operates Monday - Friday 00:05 - 23:58 (GMT + 2)
             </p>
 
@@ -176,7 +177,7 @@ export default function EnergiesPage() {
                 className={`rounded-full px-4 py-2 text-sm font-semibold transition-all duration-300 ${
                   pricingMode === "standard"
                     ? "bg-white text-slate-950 shadow-sm [.light_&]:bg-gradient-to-r [.light_&]:from-brand-primary [.light_&]:to-brand-secondary [.light_&]:text-white"
-                    : "text-text-secondary hover:text-text-primary"
+                    : "text-text-secondary hover:text-text-primary [.light_&]:text-slate-600 [.light_&]:hover:text-slate-900"
                 }`}
               >
                 Standard
@@ -187,7 +188,7 @@ export default function EnergiesPage() {
                 className={`rounded-full px-4 py-2 text-sm font-semibold transition-all duration-300 ${
                   pricingMode === "ultra-low-standard"
                     ? "bg-white text-slate-950 shadow-sm [.light_&]:bg-gradient-to-r [.light_&]:from-brand-primary [.light_&]:to-brand-secondary [.light_&]:text-white"
-                    : "text-text-secondary hover:text-text-primary"
+                    : "text-text-secondary hover:text-text-primary [.light_&]:text-slate-600 [.light_&]:hover:text-slate-900"
                 }`}
               >
                 Ultra Low Standard
@@ -199,7 +200,7 @@ export default function EnergiesPage() {
             <div className="overflow-x-auto">
               <table className="min-w-full text-left">
                 <thead className="border-b border-white/8 bg-white/[0.02] [.light_&]:border-blue-100 [.light_&]:bg-slate-50">
-                  <tr className="text-xs uppercase tracking-[0.16em] text-text-secondary">
+                  <tr className="text-xs uppercase tracking-[0.16em] text-text-secondary [.light_&]:text-slate-500">
                     <th className="px-5 py-4 font-semibold">Instrument</th>
                     <th className="px-5 py-4 font-semibold">Name</th>
                     <th className="px-5 py-4 font-semibold">Average Spread</th>
@@ -221,14 +222,14 @@ export default function EnergiesPage() {
                           >
                             {row.badge}
                           </span>
-                          <span className="text-sm font-semibold text-text-primary">
+                          <span className="text-sm font-semibold text-text-primary [.light_&]:text-slate-900">
                             {row.symbol}
                           </span>
                         </div>
                       </td>
-                      <td className="px-5 py-4 text-sm text-text-secondary">{row.name}</td>
-                      <td className="px-5 py-4 text-sm font-semibold text-text-primary">{row.avgSpread}</td>
-                      <td className="px-5 py-4 text-sm font-semibold text-text-primary">{row.lowAsk}</td>
+                      <td className="px-5 py-4 text-sm text-text-secondary [.light_&]:text-slate-600">{row.name}</td>
+                      <td className="px-5 py-4 text-sm font-semibold text-text-primary [.light_&]:text-slate-900">{row.avgSpread}</td>
+                      <td className="px-5 py-4 text-sm font-semibold text-text-primary [.light_&]:text-slate-900">{row.lowAsk}</td>
                       <td className="px-5 py-4 text-sm font-semibold text-brand-success">{row.leverage}</td>
                       <td className="px-5 py-4 text-right">
                         <Button size="sm" className="h-9 px-4 text-xs">Trade</Button>
@@ -241,7 +242,7 @@ export default function EnergiesPage() {
           </div>
 
           <div className="relative mt-8 text-center">
-            <p className="text-sm text-text-secondary">Ready to discover more instruments?</p>
+            <p className="text-sm text-text-secondary [.light_&]:text-slate-500">Ready to discover more instruments?</p>
             <div className="mt-4">
               <Button className="h-11 px-6 text-sm">Register To See More</Button>
             </div>
@@ -258,7 +259,7 @@ export default function EnergiesPage() {
               <h2 className="text-3xl font-semibold tracking-tight text-text-primary [.light_&]:text-[#111827]">
                 Why Trade Energies With Us?
               </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-text-secondary">
+              <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-text-secondary [.light_&]:text-slate-600">
                 Enter the world&apos;s most liquid markets with the confidence of having a leading broker at your side.
               </p>
               <div className="mt-10 grid gap-4 md:grid-cols-2">
@@ -274,8 +275,8 @@ export default function EnergiesPage() {
                           <Icon className="h-5 w-5" strokeWidth={2} />
                         </div>
                         <div>
-                          <h3 className="text-lg font-semibold text-text-primary">{card.title}</h3>
-                          <p className="mt-2 text-sm leading-6 text-text-secondary">{card.description}</p>
+                          <h3 className="text-lg font-semibold text-text-primary [.light_&]:text-slate-900">{card.title}</h3>
+                          <p className="mt-2 text-sm leading-6 text-text-secondary [.light_&]:text-slate-600">{card.description}</p>
                         </div>
                       </div>
                     </article>
@@ -295,10 +296,10 @@ export default function EnergiesPage() {
             <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-brand-glow/20 bg-bg-secondary text-brand-glow [.light_&]:border-blue-200 [.light_&]:bg-blue-50 [.light_&]:text-blue-600">
               <Fuel className="h-7 w-7" strokeWidth={1.9} />
             </div>
-            <h2 className="mt-6 text-3xl font-semibold tracking-tight text-text-primary sm:text-4xl">
+            <h2 className="mt-6 text-3xl font-semibold tracking-tight text-text-primary sm:text-4xl [.light_&]:text-[#111827]">
               Ready to Trade Energies With Us?
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-text-secondary">
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-text-secondary [.light_&]:text-slate-600">
               Join a truly global and regulated broker to explore your trading potential. Open an account within seconds.
             </p>
             <div className="mt-8">

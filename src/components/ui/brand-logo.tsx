@@ -24,9 +24,11 @@ export default function BrandLogo({
       <Image
         src="/achiever-logo-v2.png"
         alt="Achiever FX"
-        width={600}
-        height={111}
+        width={456}
+        height={84}
         priority={priority}
+        loading={priority ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : "auto"}
         sizes="(max-width: 380px) 148px, (max-width: 640px) 170px, (max-width: 1024px) 200px, 228px"
         className={cn(
           "h-auto w-[190px] select-none object-contain",

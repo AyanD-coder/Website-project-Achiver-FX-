@@ -1,3 +1,6 @@
+"use client";
+
+import dynamic from "next/dynamic";
 import { Shield, Zap, Percent } from "lucide-react";
 
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
@@ -8,9 +11,60 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/Card";
-import { InteractiveRobotSpline } from "@/components/ui/interactive-3d-robot";
+import type { InteractiveRobotSplineProps } from "@/components/ui/interactive-3d-robot";
+import { cn } from "@/lib/utils";
 
 const ROBOT_SCENE_URL = "https://prod.spline.design/PyzDhpQ9E5f1E3MT/scene.splinecode";
+
+function RobotSplineDynamicFallback({
+  className,
+}: Pick<InteractiveRobotSplineProps, "className">) {
+  return (
+    <div className={cn("relative h-full w-full overflow-hidden", className)}>
+      <div
+        className={cn(
+          "flex h-full w-full items-center justify-center bg-transparent text-white [.light_&]:text-slate-700",
+        )}
+      >
+        <svg
+          className="mr-3 h-5 w-5 animate-spin text-white [.light_&]:text-blue-600"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <circle
+            className="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="4"
+          />
+          <path
+            className="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 0 1 8-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 0 1 4 12H0c0 3.042 1.135 5.824 3 7.938l2-2.647z"
+          />
+        </svg>
+        <span className="text-sm text-text-secondary [.light_&]:text-slate-500">Loading 3D robot...</span>
+      </div>
+    </div>
+  );
+}
+
+const InteractiveRobotSpline = dynamic<InteractiveRobotSplineProps>(
+  () =>
+    import("@/components/ui/interactive-3d-robot").then(
+      (module) => module.InteractiveRobotSpline,
+    ),
+  {
+    ssr: false,
+    loading: () => (
+      <RobotSplineDynamicFallback className="absolute inset-0 h-full w-full" />
+    ),
+  },
+);
 
 const featureCards = [
   {
@@ -37,13 +91,10 @@ export default function RobotShowcase() {
   return (
     <SectionWrapper id="robot-showcase" className="relative z-30 !m-0 bg-transparent !p-0 !px-0 !py-0 md:!mt-0 md:!pt-0 lg:!mt-0 lg:!p-0 lg:!px-0 lg:!py-0 [.light_&]:bg-transparent">
       <div className="relative">
-        <div className="pointer-events-none absolute inset-0 hidden rounded-[2rem] [.light_&]:block [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.82),rgba(248,250,252,0.96))] [.light_&]:shadow-[0_24px_60px_rgba(15,23,42,0.08)]" />
-        <div className="pointer-events-none absolute inset-0 hidden rounded-[2rem] [.light_&]:block [.light_&]:bg-[radial-gradient(circle_at_top_left,rgba(59,130,246,0.10),transparent_34%),radial-gradient(circle_at_78%_72%,rgba(14,165,233,0.08),transparent_38%)]" />
-
         <div className="relative grid items-center gap-10 rounded-[2rem] p-4 sm:p-6 lg:grid-cols-[0.95fr_1.05fr] lg:p-8">
           <div className="space-y-6">
           <div className="space-y-4">
-            <h2 className="text-3xl font-extrabold tracking-tight text-white md:text-5xl [.light_&]:text-[#111827]">
+            <h2 className="text-3xl font-extrabold tracking-tight text-white md:text-5xl [.light_&]:text-white">
               Power-Packed Forex Features
             </h2>
           </div>
@@ -56,10 +107,10 @@ export default function RobotShowcase() {
                 <Card
                   key={feature.title}
                   variant="outline"
-                  className="group relative flex flex-col items-center justify-start border border-white/0 bg-white/[0.03] shadow-[0_20px_60px_rgba(2,8,23,0.45)] backdrop-blur-2xl transition-all duration-300 hover:z-10 hover:scale-105 hover:border-t hover:border-brand-primary/50 hover:bg-[linear-gradient(180deg,rgba(14,165,233,0.1)_0%,rgba(2,8,23,0)_100%)] hover:shadow-[0_0_40px_rgba(56,189,248,0.1)] [.light_&]:border-slate-200/90 [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(248,250,252,0.92))] [.light_&]:shadow-[0_10px_30px_rgba(15,23,42,0.06)] [.light_&]:hover:border-blue-200/80 [.light_&]:hover:bg-[linear-gradient(180deg,rgba(239,246,255,0.96),rgba(248,250,252,0.92))] [.light_&]:hover:shadow-[0_15px_40px_rgba(14,165,233,0.12)]"
+                  className="group relative flex flex-col items-center justify-start border border-white/0 bg-white/[0.03] shadow-[0_20px_60px_rgba(2,8,23,0.45)] backdrop-blur-2xl transition-[transform,border-color,background-color,box-shadow] duration-300 hover:z-10 hover:scale-105 hover:border-t hover:border-brand-primary/50 hover:bg-[linear-gradient(180deg,rgba(14,165,233,0.1)_0%,rgba(2,8,23,0)_100%)] hover:shadow-[0_0_40px_rgba(56,189,248,0.1)] [.light_&]:border-slate-200/90 [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(248,250,252,0.92))] [.light_&]:shadow-[0_10px_30px_rgba(15,23,42,0.06)] [.light_&]:hover:border-blue-200/80 [.light_&]:hover:bg-[linear-gradient(180deg,rgba(239,246,255,0.96),rgba(248,250,252,0.92))] [.light_&]:hover:shadow-[0_15px_40px_rgba(14,165,233,0.12)]"
                 >
                   <CardHeader className="flex flex-col items-center pb-3 pt-8">
-                    <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-brand-primary/10 text-brand-glow shadow-[0_0_24px_rgba(56,189,248,0.18)] transition-all duration-300 group-hover:border group-hover:border-brand-primary/50 group-hover:bg-brand-primary group-hover:text-white group-hover:shadow-[0_0_30px_rgba(56,189,248,0.5)] [.light_&]:bg-blue-50 [.light_&]:text-blue-600 [.light_&]:shadow-none [.light_&]:group-hover:border-blue-200 [.light_&]:group-hover:bg-blue-600 [.light_&]:group-hover:text-white [.light_&]:group-hover:shadow-[0_12px_28px_rgba(37,99,235,0.18)]">
+                    <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-brand-primary/10 text-brand-glow shadow-[0_0_24px_rgba(56,189,248,0.18)] transition-[background-color,border-color,box-shadow,color] duration-300 group-hover:border group-hover:border-brand-primary/50 group-hover:bg-brand-primary group-hover:text-white group-hover:shadow-[0_0_30px_rgba(56,189,248,0.5)] [.light_&]:bg-blue-50 [.light_&]:text-blue-600 [.light_&]:shadow-none [.light_&]:group-hover:border-blue-200 [.light_&]:group-hover:bg-blue-600 [.light_&]:group-hover:text-white [.light_&]:group-hover:shadow-[0_12px_28px_rgba(37,99,235,0.18)]">
                       <Icon className="h-[22px] w-[22px] transition-transform duration-300 group-hover:scale-125" />
                     </div>
                     <CardTitle className="text-center text-lg font-bold transition-colors duration-300 group-hover:text-white [.light_&]:group-hover:text-slate-900">{feature.title}</CardTitle>
@@ -76,9 +127,6 @@ export default function RobotShowcase() {
           </div>
 
           <div className="relative min-h-[320px] sm:min-h-[520px]">
-            <div className="absolute inset-0 hidden rounded-[2.5rem] [.light_&]:block [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(241,245,249,0.88))] [.light_&]:shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_20px_50px_rgba(15,23,42,0.08)]" />
-            <div className="absolute inset-0 hidden rounded-[2.5rem] [.light_&]:block [.light_&]:bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.10),transparent_34%),radial-gradient(circle_at_74%_70%,rgba(14,165,233,0.10),transparent_42%)]" />
-
             <div className="relative h-[320px] overflow-hidden rounded-[2rem] bg-transparent sm:h-[520px] sm:rounded-[2.5rem]">
               <InteractiveRobotSpline
                 scene={ROBOT_SCENE_URL}

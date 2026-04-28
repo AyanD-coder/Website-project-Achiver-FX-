@@ -86,16 +86,10 @@ export function ReviewsShowcase({
     <SectionWrapper
       id="reviews"
       className={cn("relative overflow-hidden bg-transparent", className)}
-      style={{
-        contentVisibility: "auto",
-        containIntrinsicSize: "1px 1180px",
-        contain: "layout paint style",
-      }}
     >
       <div
         ref={ref}
         className="mx-auto w-full max-w-6xl"
-        style={{ contain: "layout paint style" }}
       >
         <div className="mb-12 flex flex-col items-center justify-center text-center md:mb-16">
           <div className="inline-flex rounded-full border border-brand-primary/25 bg-white/5 px-4 py-1 text-sm font-medium text-brand-glow backdrop-blur-sm [.light_&]:border-blue-200 [.light_&]:bg-white [.light_&]:text-blue-700">
@@ -133,7 +127,7 @@ export function ReviewsShowcase({
                   alt={activeReview.name}
                   width={72}
                   height={72}
-                  quality={70}
+                  quality={75}
                   sizes="72px"
                   className="h-[4.5rem] w-[4.5rem] rounded-2xl border border-white/10 object-cover [.light_&]:border-gray-200"
                 />
@@ -230,7 +224,7 @@ export function ReviewsShowcase({
                       alt={review.name}
                       width={52}
                       height={52}
-                      quality={70}
+                      quality={75}
                       sizes="52px"
                       className="h-13 w-13 rounded-2xl border border-white/10 object-cover [.light_&]:border-gray-200"
                     />
@@ -274,16 +268,17 @@ export function ReviewsShowcase({
                 <Button
                   asChild
                   variant="primary"
-                  className="min-w-[220px] rounded-full px-8"
+                  className="w-full sm:w-auto sm:min-w-[220px] shrink-0 rounded-full px-8 whitespace-nowrap"
                 >
                   <a
                     href={reviewsUrl}
                     target="_blank"
                     rel="noreferrer"
                     aria-label="View all reviews"
+                    className="inline-flex items-center justify-center"
                   >
                     View All Reviews
-                    <ExternalLink className="ml-2 h-4 w-4" />
+                    <ExternalLink className="ml-2 h-4 w-4 shrink-0" />
                   </a>
                 </Button>
               </CardContent>

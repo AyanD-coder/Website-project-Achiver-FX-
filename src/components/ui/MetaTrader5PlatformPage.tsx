@@ -666,7 +666,7 @@ export default function MetaTrader5PlatformPage({
             <div className="pointer-events-none absolute left-10 top-10 h-40 w-40 rounded-full bg-cyan-400/14 blur-3xl [.light_&]:bg-sky-300/22" />
             <div className="pointer-events-none absolute right-12 top-20 h-32 w-32 rounded-full bg-blue-500/12 blur-3xl [.light_&]:bg-blue-300/18" />
 
-            <div className="relative h-[29rem] overflow-hidden sm:h-[33rem]">
+            <div className="relative h-[32rem] sm:h-[36rem] lg:h-[38rem] w-full">
               <div className="absolute left-4 top-8 rounded-[1.6rem] border border-sky-200 bg-white px-5 py-4 shadow-[0_18px_40px_rgba(37,99,235,0.12)] [.dark_&]:border-cyan-300/16 [.dark_&]:bg-[linear-gradient(180deg,rgba(9,17,32,0.96),rgba(4,8,18,0.98))] [.dark_&]:shadow-[0_20px_50px_rgba(2,8,20,0.22)]">
                 <p className="text-sm font-semibold text-sky-700 [.dark_&]:text-cyan-100">
                   Algorithmic
@@ -819,8 +819,8 @@ export default function MetaTrader5PlatformPage({
         id="subscribe-demo"
         className="relative mx-auto w-full max-w-7xl px-4 pb-24 pt-14 sm:px-6 lg:px-8"
       >
-        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-bg-secondary to-bg-dark border border-white/5 shadow-2xl items-center grid grid-cols-1 lg:grid-cols-2">
-          <div className="absolute inset-0 bg-brand-primary opacity-5 blur-[120px] [.light_&]:bg-[radial-gradient(circle_at_22%_28%,rgba(37,99,235,0.16),transparent_34%),radial-gradient(circle_at_78%_24%,rgba(14,165,233,0.12),transparent_30%),radial-gradient(circle_at_52%_78%,rgba(56,189,248,0.1),transparent_36%)] [.light_&]:opacity-100 [.light_&]:blur-[96px]" />
+        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#121826] to-[#0B0F19] border border-white/5 shadow-2xl items-center grid grid-cols-1 lg:grid-cols-2">
+          <div className="absolute inset-0 bg-brand-primary opacity-5 blur-[120px]" />
           <div className="p-10 lg:p-16 relative z-10">
             <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6">
               Stay Ahead of the Market
@@ -831,13 +831,16 @@ export default function MetaTrader5PlatformPage({
             </p>
             <form className="flex flex-col sm:flex-row gap-3">
               <input
+                id="mt5-newsletter-email"
+                name="email"
                 type="email"
                 placeholder="Your email address"
+                autoComplete="email"
                 className="flex-grow bg-bg-dark/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-text-secondary focus:outline-none focus:border-brand-glow focus:ring-1 focus:ring-brand-glow transition-all"
                 required
               />
               <button
-                className="relative inline-flex items-center justify-center font-semibold tracking-[0.01em] transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-glow focus:ring-offset-2 focus:ring-offset-bg-dark disabled:pointer-events-none disabled:opacity-50 before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:bg-[linear-gradient(180deg,rgba(255,255,255,0.16),transparent_46%)] before:opacity-70 border border-white/10 bg-gradient-to-r from-brand-primary to-brand-secondary text-white shadow-[0_12px_32px_rgba(14,165,233,0.24)] hover:-translate-y-0.5 hover:shadow-[0_18px_38px_rgba(56,189,248,0.34)] [.light_&]:border-transparent [.light_&]:from-[#2563EB] [.light_&]:to-[#0EA5E9] [.light_&]:text-white [.light_&]:shadow-[0_10px_26px_rgba(37,99,235,0.24)] [.light_&]:hover:from-[#1D4ED8] [.light_&]:hover:to-[#0284C7] [.light_&]:hover:shadow-[0_14px_34px_rgba(37,99,235,0.3)] h-12 rounded-xl py-3 whitespace-nowrap px-8"
+                className="relative inline-flex items-center justify-center font-semibold tracking-[0.01em] transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-glow focus:ring-offset-2 focus:ring-offset-bg-dark disabled:pointer-events-none disabled:opacity-50 before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:bg-[linear-gradient(180deg,rgba(255,255,255,0.16),transparent_46%)] before:opacity-70 border border-white/10 bg-gradient-to-r from-brand-primary to-brand-secondary text-white shadow-[0_12px_32px_rgba(14,165,233,0.24)] hover:-translate-y-0.5 hover:shadow-[0_18px_38px_rgba(56,189,248,0.34)] h-12 rounded-xl py-3 whitespace-nowrap px-8"
                 type="submit"
               >
                 Subscribe

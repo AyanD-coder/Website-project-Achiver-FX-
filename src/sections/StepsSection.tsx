@@ -151,10 +151,10 @@ export default function StepsSection() {
           </p>
         </div>
 
-        <div className="relative overflow-hidden rounded-[2rem] border border-white/8 bg-[linear-gradient(180deg,rgba(8,14,28,0.94),rgba(3,8,20,0.98))] px-5 py-8 shadow-[0_28px_90px_rgba(2,12,27,0.5)] backdrop-blur-xl sm:px-6 lg:px-8 lg:py-10 [.light_&]:border-blue-100 [.light_&]:bg-white/80 [.light_&]:shadow-[0_12px_30px_rgba(148,163,184,0.14)] [.light_&]:ring-1 [.light_&]:ring-slate-100/80">
+        <div className="relative overflow-hidden rounded-[2rem] border border-white/8 bg-[linear-gradient(180deg,rgba(8,14,28,0.94),rgba(3,8,20,0.98))] px-5 py-8 shadow-[0_28px_90px_rgba(2,12,27,0.5)] backdrop-blur-xl sm:px-6 lg:px-8 lg:py-10 [.light_&]:border-blue-100 [.light_&]:bg-white/80 [.light_&]:bg-none [.light_&]:shadow-[0_12px_30px_rgba(148,163,184,0.14)] [.light_&]:ring-1 [.light_&]:ring-slate-100/80">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.10),transparent_24%),radial-gradient(circle_at_50%_36%,rgba(37,99,235,0.10),transparent_30%)] [.light_&]:bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.08),transparent_24%),radial-gradient(circle_at_50%_36%,rgba(14,165,233,0.05),transparent_30%)]" />
 
-          <div className="pointer-events-none absolute bottom-8 left-7 top-8 w-px bg-white/10 lg:hidden" />
+          <div className="pointer-events-none absolute bottom-8 left-7 top-8 w-px bg-white/10 lg:hidden [.light_&]:bg-blue-100" />
           <motion.div
             aria-hidden
             initial={shouldReduceMotion ? { height: "100%" } : { height: 0 }}
@@ -164,7 +164,7 @@ export default function StepsSection() {
             className="pointer-events-none absolute bottom-8 left-7 top-8 w-px bg-gradient-to-b from-cyan-300/0 via-cyan-300/90 to-cyan-300/0 shadow-[0_0_18px_rgba(34,211,238,0.45)] lg:hidden [.light_&]:via-sky-300/90 [.light_&]:shadow-[0_0_18px_rgba(37,99,235,0.24)]"
           />
 
-          <div className="pointer-events-none absolute left-[11%] right-[11%] top-[3.1rem] hidden h-px bg-white/10 lg:block" />
+          <div className="pointer-events-none absolute left-[11%] right-[11%] top-[3.1rem] hidden h-px bg-white/10 lg:block [.light_&]:bg-blue-100" />
           <motion.div
             aria-hidden
             initial={shouldReduceMotion ? { scaleX: 1 } : { scaleX: 0 }}

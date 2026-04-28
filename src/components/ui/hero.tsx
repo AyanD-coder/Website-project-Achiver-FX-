@@ -54,6 +54,9 @@ export default function MarketOverviewHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
+          <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-1.5 text-xs uppercase tracking-[0.24em] text-cyan-200">
+            Live Multi-Asset Market Overview
+          </span>
           <h1 className="mx-auto mb-6 max-w-5xl text-4xl font-light leading-tight md:text-5xl lg:text-7xl">
             Read Global Market Momentum with{" "}
             <span className="bg-gradient-to-r from-cyan-300 via-sky-400 to-blue-500 bg-clip-text text-transparent">
