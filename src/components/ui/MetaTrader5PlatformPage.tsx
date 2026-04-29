@@ -834,6 +834,7 @@ export default function MetaTrader5PlatformPage({
                 id="mt5-newsletter-email"
                 name="email"
                 type="email"
+                suppressHydrationWarning
                 placeholder="Your email address"
                 autoComplete="email"
                 className="flex-grow bg-bg-dark/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-text-secondary focus:outline-none focus:border-brand-glow focus:ring-1 focus:ring-brand-glow transition-all"
@@ -842,6 +843,7 @@ export default function MetaTrader5PlatformPage({
               <button
                 className="relative inline-flex items-center justify-center font-semibold tracking-[0.01em] transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-glow focus:ring-offset-2 focus:ring-offset-bg-dark disabled:pointer-events-none disabled:opacity-50 before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:bg-[linear-gradient(180deg,rgba(255,255,255,0.16),transparent_46%)] before:opacity-70 border border-white/10 bg-gradient-to-r from-brand-primary to-brand-secondary text-white shadow-[0_12px_32px_rgba(14,165,233,0.24)] hover:-translate-y-0.5 hover:shadow-[0_18px_38px_rgba(56,189,248,0.34)] h-12 rounded-xl py-3 whitespace-nowrap px-8"
                 type="submit"
+                suppressHydrationWarning
               >
                 Subscribe
               </button>

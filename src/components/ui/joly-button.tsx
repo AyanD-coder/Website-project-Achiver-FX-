@@ -64,6 +64,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         <Comp
           className={`${buttonVariants({ variant, size })} ${className || ""}`}
           ref={ref}
+          suppressHydrationWarning
           {...props}
         >
           {children}
@@ -77,6 +78,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <MotionButton
         className={`${buttonVariants({ variant, size })} ${className || ""}`}
         ref={ref}
+        suppressHydrationWarning
         onMouseMove={handleMouseMove}
         whileHover={{ scale: variant === "link" ? 1 : 1.02 }}
         whileTap={{ scale: variant === "link" ? 1 : 0.98 }}

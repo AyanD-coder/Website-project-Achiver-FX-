@@ -193,6 +193,7 @@ export default function OrbitalFeatures() {
                     <div style={counterRotationStyle}>
                       <button
                         type="button"
+                        suppressHydrationWarning
                         aria-pressed={isActive}
                         onClick={() =>
                           setActiveItem((current) =>

@@ -113,25 +113,25 @@ function FeatureCard({
       }}
       whileHover={shouldReduceMotion ? undefined : { y: -8, scale: 1.03 }}
       className={cn(
-        "group relative overflow-hidden rounded-[1.7rem] border border-white/10 bg-white/[0.05] p-5 shadow-[0_24px_52px_rgba(2,8,18,0.32)] backdrop-blur-md transition-all duration-300 hover:border-cyan-300/18 hover:shadow-[0_30px_60px_rgba(14,165,233,0.18)]",
+        "group relative overflow-hidden rounded-[1.7rem] border border-white/10 bg-white/[0.05] p-5 shadow-[0_24px_52px_rgba(2,8,18,0.32)] backdrop-blur-md transition-all duration-300 hover:border-cyan-300/18 hover:shadow-[0_30px_60px_rgba(14,165,233,0.18)] [.light_&]:border-sky-100 [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(239,246,255,0.94))] [.light_&]:shadow-[0_18px_40px_rgba(15,23,42,0.06)] [.light_&]:hover:border-sky-200 [.light_&]:hover:shadow-[0_22px_44px_rgba(14,165,233,0.12)]",
         className,
       )}
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.16),transparent_58%),linear-gradient(180deg,rgba(255,255,255,0.06),transparent_42%)] opacity-90" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/75 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
-      <div className="pointer-events-none absolute -right-10 top-6 h-24 w-24 rounded-full bg-cyan-400/10 blur-3xl transition-opacity duration-300 group-hover:opacity-100" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.16),transparent_58%),linear-gradient(180deg,rgba(255,255,255,0.06),transparent_42%)] opacity-90 [.light_&]:bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.14),transparent_58%),linear-gradient(180deg,rgba(255,255,255,0.78),transparent_42%)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/75 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-100 [.light_&]:via-sky-300/80" />
+      <div className="pointer-events-none absolute -right-10 top-6 h-24 w-24 rounded-full bg-cyan-400/10 blur-3xl transition-opacity duration-300 group-hover:opacity-100 [.light_&]:bg-sky-300/18" />
 
       <div className="relative z-10">
         <div className="flex items-start justify-between gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-300/12 bg-[linear-gradient(180deg,rgba(6,182,212,0.22),rgba(37,99,235,0.14))] text-cyan-100 shadow-[0_0_24px_rgba(56,189,248,0.16)] transition-transform duration-300 group-hover:scale-105">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-300/12 bg-[linear-gradient(180deg,rgba(6,182,212,0.22),rgba(37,99,235,0.14))] text-cyan-100 shadow-[0_0_24px_rgba(56,189,248,0.16)] transition-transform duration-300 group-hover:scale-105 [.light_&]:border-sky-200 [.light_&]:bg-[linear-gradient(180deg,rgba(224,242,254,0.96),rgba(186,230,253,0.9))] [.light_&]:text-sky-700 [.light_&]:shadow-[0_10px_24px_rgba(14,165,233,0.1)]">
             <Icon className="h-5 w-5" />
           </div>
-          <span className="text-[0.64rem] font-semibold uppercase tracking-[0.28em] text-cyan-100/45">
+          <span className="text-[0.64rem] font-semibold uppercase tracking-[0.28em] text-cyan-100/45 [.light_&]:text-sky-700/50">
             {feature.number}
           </span>
         </div>
 
-        <p className="mt-5 text-sm leading-7 text-slate-200">{feature.title}</p>
+        <p className="mt-5 text-sm leading-7 text-slate-200 [.light_&]:text-slate-700">{feature.title}</p>
       </div>
     </motion.article>
   );
@@ -319,13 +319,13 @@ export default function EquitiesFeatureOrbit({
           transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
           className="mx-auto max-w-3xl text-center"
         >
-          <p className="text-[0.78rem] font-semibold uppercase tracking-[0.34em] text-cyan-100/65">
+          <p className="text-[0.78rem] font-semibold uppercase tracking-[0.34em] text-cyan-100/65 [.light_&]:text-sky-700/70">
             Trade Equities
           </p>
-          <h1 className="mt-5 bg-gradient-to-b from-white to-white/70 bg-clip-text text-4xl font-bold tracking-tighter text-transparent md:text-6xl">
+          <h1 className="mt-5 bg-gradient-to-b from-white to-white/70 bg-clip-text text-4xl font-bold tracking-tighter text-transparent md:text-6xl [.light_&]:from-slate-950 [.light_&]:to-slate-700">
             Trade CFD Shares
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-400">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-400 [.light_&]:text-slate-600">
             Trade in the world’s largest companies
             equities across the UK, EU and the US. We
             offer popular shares listed on the NYSE, NASDAQ, London Stock
@@ -345,7 +345,7 @@ export default function EquitiesFeatureOrbit({
             <Button
               asChild
               variant="outline"
-              className="h-12 rounded-full px-7 text-sm text-white hover:scale-[1.03] hover:text-white"
+              className="h-12 rounded-full px-7 text-sm text-white hover:scale-[1.03] hover:text-white [.light_&]:border-slate-300 [.light_&]:bg-white/90 [.light_&]:text-slate-800 [.light_&]:hover:bg-slate-50 [.light_&]:hover:text-slate-900"
             >
               <Link href="/tools/analysis-report">Demo Trading</Link>
             </Button>

@@ -80,6 +80,7 @@ export default function ThemeSwitch({ className = "" }: ThemeSwitchProps) {
   return (
     <button
       type="button"
+      suppressHydrationWarning
       aria-label="Toggle theme"
       aria-pressed={theme === "dark"}
       onClick={toggleTheme}

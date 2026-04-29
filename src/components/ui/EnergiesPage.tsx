@@ -173,6 +173,7 @@ export default function EnergiesPage() {
             <div className="mt-6 inline-flex rounded-full border border-white/10 bg-white/[0.03] p-1 backdrop-blur-sm [.light_&]:border-blue-100 [.light_&]:bg-slate-50">
               <button
                 type="button"
+                suppressHydrationWarning
                 onClick={() => setPricingMode("standard")}
                 className={`rounded-full px-4 py-2 text-sm font-semibold transition-all duration-300 ${
                   pricingMode === "standard"
@@ -184,6 +185,7 @@ export default function EnergiesPage() {
               </button>
               <button
                 type="button"
+                suppressHydrationWarning
                 onClick={() => setPricingMode("ultra-low-standard")}
                 className={`rounded-full px-4 py-2 text-sm font-semibold transition-all duration-300 ${
                   pricingMode === "ultra-low-standard"

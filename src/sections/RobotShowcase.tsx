@@ -126,7 +126,7 @@ export default function RobotShowcase() {
           </div>
           </div>
 
-          <div className="relative min-h-[320px] sm:min-h-[520px]">
+          <div className="relative hidden min-h-[320px] sm:block sm:min-h-[520px]">
             <div className="relative h-[320px] overflow-hidden rounded-[2rem] bg-transparent sm:h-[520px] sm:rounded-[2.5rem]">
               <InteractiveRobotSpline
                 scene={ROBOT_SCENE_URL}

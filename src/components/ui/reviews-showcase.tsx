@@ -183,6 +183,7 @@ export function ReviewsShowcase({
 
               <div className="flex gap-3">
                 <button
+                  suppressHydrationWarning
                   onClick={handlePrev}
                   className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white transition-colors hover:border-brand-glow/40 hover:bg-white/10 [.light_&]:border-gray-200 [.light_&]:bg-white [.light_&]:text-[#111827] [.light_&]:shadow-[0_6px_20px_rgba(0,0,0,0.06)] [.light_&]:hover:border-blue-300 [.light_&]:hover:bg-blue-50"
                   aria-label="Previous review"
@@ -190,6 +191,7 @@ export function ReviewsShowcase({
                   <ChevronLeft className="h-5 w-5" />
                 </button>
                 <button
+                  suppressHydrationWarning
                   onClick={handleNext}
                   className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white transition-colors hover:border-brand-glow/40 hover:bg-white/10 [.light_&]:border-gray-200 [.light_&]:bg-white [.light_&]:text-[#111827] [.light_&]:shadow-[0_6px_20px_rgba(0,0,0,0.06)] [.light_&]:hover:border-blue-300 [.light_&]:hover:bg-blue-50"
                   aria-label="Next review"
@@ -208,6 +210,7 @@ export function ReviewsShowcase({
                 <button
                   key={`${review.name}-${review.role}`}
                   type="button"
+                  suppressHydrationWarning
                   onClick={() => setActive(index)}
                   className={cn(
                     "rounded-2xl border p-4 text-left transition-all duration-300",

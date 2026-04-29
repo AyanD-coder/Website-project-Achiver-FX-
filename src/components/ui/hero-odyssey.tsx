@@ -46,6 +46,7 @@ function ElasticHueSlider({
         <input
           id="hue-slider-native"
           type="range"
+          suppressHydrationWarning
           min={min}
           max={max}
           step={step}

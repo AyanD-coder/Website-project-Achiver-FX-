@@ -21,6 +21,7 @@ export default function Subscribe() {
               id="newsletter-email"
               name="email"
               type="email" 
+              suppressHydrationWarning
               placeholder="Your email address" 
               autoComplete="email"
               className="min-w-0 flex-grow rounded-xl border border-white/10 bg-bg-dark/50 px-4 py-3 text-white placeholder:text-text-secondary transition-all focus:border-brand-glow focus:outline-none focus:ring-1 focus:ring-brand-glow"

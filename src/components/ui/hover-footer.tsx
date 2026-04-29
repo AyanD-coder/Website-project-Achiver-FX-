@@ -291,6 +291,7 @@ function FooterSection({
   return (
     <div className="flex flex-col mb-2 sm:mb-10">
       <button
+        suppressHydrationWarning
         onClick={() => setIsOpen(!isOpen)}
         className="flex w-full items-center justify-between py-4 sm:py-0 sm:mb-6"
       >

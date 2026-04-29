@@ -283,6 +283,7 @@ export default function SharesTradingPage({
                   <button
                     key={type}
                     type="button"
+                    suppressHydrationWarning
                     aria-pressed={accountType === type}
                     onClick={() => setAccountType(type)}
                     className={cn(

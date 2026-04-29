@@ -5,10 +5,12 @@ export default function Contact() {
       <form className="flex flex-col gap-4 w-full max-w-md">
         <input 
           type="email" 
+          suppressHydrationWarning
           placeholder="Your Email" 
           className="p-3 bg-zinc-950 border border-zinc-800 rounded-lg focus:outline-none focus:border-zinc-500 transition-colors text-white"
         />
         <textarea 
+          suppressHydrationWarning
           placeholder="Your Message" 
           rows={4}
           className="p-3 bg-zinc-950 border border-zinc-800 rounded-lg focus:outline-none focus:border-zinc-500 transition-colors text-white"

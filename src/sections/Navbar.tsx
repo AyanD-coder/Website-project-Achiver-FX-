@@ -115,6 +115,7 @@ function NavItem({
     return (
       <div className="flex flex-col border-b border-white/5 pb-2">
         <button
+          suppressHydrationWarning
           onClick={() => setIsOpen((open) => !open)}
           className="flex w-full items-center justify-between py-2 text-base font-medium text-text-primary transition-colors hover:text-brand-glow [.light_&]:text-slate-700 [.light_&]:hover:text-blue-700"
           aria-expanded={isOpen}
@@ -167,6 +168,7 @@ function NavItem({
   return (
     <div className="group relative">
       <button
+        suppressHydrationWarning
         className={`flex items-center gap-1 py-6 text-sm font-medium text-text-secondary transition-colors group-hover:text-white ${
           isScrolled
             ? "[.light_&]:text-slate-700 [.light_&]:group-hover:text-[#111827]"
@@ -286,6 +288,7 @@ export default function Navbar({
         </div>
 
         <button
+          suppressHydrationWarning
           className="relative z-50 flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-text-secondary transition-colors hover:text-white xl:hidden [.light_&]:border-slate-200 [.light_&]:bg-white [.light_&]:text-slate-600 [.light_&]:hover:text-slate-900"
           onClick={() => setMobileMenuOpen((open) => !open)}
           aria-label="Toggle mobile menu"

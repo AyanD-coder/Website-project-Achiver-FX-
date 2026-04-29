@@ -121,6 +121,7 @@ function EquitiesFaqCard({
 
         <button
           type="button"
+          suppressHydrationWarning
           aria-expanded={isOpen}
           aria-controls={contentId}
           onClick={onToggle}
