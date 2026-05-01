@@ -1,4 +1,4 @@
-const { test } = require("@playwright/test");
+import { test } from "@playwright/test";
 
 test("inspect robot spline", async ({ page }) => {
   await page.goto("http://localhost:3000/", { waitUntil: "networkidle" });

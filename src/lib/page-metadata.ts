@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
-const siteUrl = new URL(
+export const siteUrl = new URL(
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://achieverfinancials.com",
 );
 
-const siteName = "Achiever Financials";
+export const siteName = "Achiever Financials";
 const defaultImage = "/discover/offerings.png";
 
-type RoutePath =
+export type RoutePath =
   | "/"
   | "/company"
   | "/company/career"
@@ -250,6 +250,12 @@ export const pageMetadata = {
     keywords: ["trading offerings", "broker services", ...sharedKeywords],
   },
 } satisfies Record<RoutePath, PageMetadataEntry>;
+
+export const pageRoutes = Object.keys(pageMetadata) as RoutePath[];
+
+export function getAbsoluteUrl(path = "/") {
+  return new URL(path, siteUrl).toString();
+}
 
 export function createPageMetadata(path: RoutePath): Metadata {
   const page = pageMetadata[path];

@@ -3,16 +3,61 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import LoadingScreen from "@/components/ui/LoadingScreen";
+import Navbar from "@/sections/Navbar";
+import Hero from "@/sections/Hero";
 
-const Navbar = dynamic(() => import("@/sections/Navbar"), { ssr: true });
-const Hero = dynamic(() => import("@/sections/Hero"), { ssr: true });
-const RobotShowcase = dynamic(() => import("@/sections/RobotShowcase"), { ssr: false });
-const FeaturesGrid = dynamic(() => import("@/sections/FeaturesGrid"));
-const StepsSection = dynamic(() => import("@/sections/StepsSection"));
-const Pricing = dynamic(() => import("@/sections/Pricing"));
-const Testimonials = dynamic(() => import("@/sections/Testimonials"));
-const Subscribe = dynamic(() => import("@/sections/Subscribe"));
-const Footer = dynamic(() => import("@/sections/Footer"));
+function FeaturesGridFallback() {
+  return (
+    <section
+      aria-hidden="true"
+      className="relative z-10 hidden min-h-[720px] w-full md:block lg:min-h-[440px]"
+    />
+  );
+}
+
+function RobotShowcaseFallback() {
+  return (
+    <section
+      aria-hidden="true"
+      className="section-contain relative z-30 w-full px-4 py-0 sm:px-6 lg:px-8"
+    >
+      <div className="mx-auto w-full max-w-7xl">
+        <div className="min-h-[690px] sm:min-h-[620px] lg:min-h-[584px]" />
+      </div>
+    </section>
+  );
+}
+
+const FeaturesGrid = dynamic(() => import("@/sections/FeaturesGrid"), {
+  loading: () => <FeaturesGridFallback />,
+});
+const RobotShowcase = dynamic(() => import("@/sections/RobotShowcase"), {
+  ssr: false,
+  loading: () => <RobotShowcaseFallback />,
+});
+const StepsSection = dynamic(() => import("@/sections/StepsSection"), {
+  loading: () => (
+    <section aria-hidden="true" className="section-contain w-full min-h-[920px] px-4 py-24 sm:px-6 lg:px-8" />
+  ),
+});
+const Pricing = dynamic(() => import("@/sections/Pricing"), {
+  loading: () => (
+    <section aria-hidden="true" className="section-contain w-full min-h-[780px] px-4 py-16 sm:px-6 lg:px-8" />
+  ),
+});
+const Testimonials = dynamic(() => import("@/sections/Testimonials"), {
+  loading: () => (
+    <section aria-hidden="true" className="section-contain w-full min-h-[620px] px-4 py-16 sm:px-6 lg:px-8" />
+  ),
+});
+const Subscribe = dynamic(() => import("@/sections/Subscribe"), {
+  loading: () => (
+    <section aria-hidden="true" className="section-contain w-full min-h-[360px] px-4 py-16 sm:px-6 lg:px-8" />
+  ),
+});
+const Footer = dynamic(() => import("@/sections/Footer"), {
+  loading: () => <footer aria-hidden="true" className="min-h-[360px] w-full" />,
+});
 
 export default function HomeClient() {
   const [isLoading, setIsLoading] = useState(true);

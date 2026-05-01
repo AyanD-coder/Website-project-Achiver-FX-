@@ -27,6 +27,7 @@ export default function BrandLogo({
         width={456}
         height={84}
         priority={priority}
+        unoptimized
         loading={priority ? "eager" : "lazy"}
         fetchPriority={priority ? "high" : "auto"}
         sizes="(max-width: 380px) 148px, (max-width: 640px) 170px, (max-width: 1024px) 200px, 228px"
