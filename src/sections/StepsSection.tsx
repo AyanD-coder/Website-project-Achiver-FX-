@@ -143,7 +143,7 @@ export default function StepsSection() {
 
       <div className="relative mx-auto w-full max-w-7xl">
         <div className="text-center mb-16 lg:mb-20">
-          <h2 className="mb-4 bg-gradient-to-r from-white via-cyan-100 to-cyan-300 bg-clip-text text-3xl font-extrabold text-transparent md:text-5xl [.light_&]:from-[#111827] [.light_&]:via-[#2563EB] [.light_&]:to-[#0EA5E9]">
+          <h2 className="mx-auto mb-4 max-w-4xl bg-gradient-to-r from-white via-cyan-100 to-cyan-300 bg-clip-text pb-1 text-2xl font-extrabold leading-tight text-transparent sm:text-3xl md:text-5xl md:leading-tight [.light_&]:from-[#111827] [.light_&]:via-[#2563EB] [.light_&]:to-[#0EA5E9]">
             Fast Account Opening in 4 Steps
           </h2>
           <p className="text-lg text-text-secondary [.light_&]:text-slate-600">

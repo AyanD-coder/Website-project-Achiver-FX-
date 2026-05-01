@@ -16,7 +16,8 @@ export interface Review {
   name: string;
   role: string;
   text: string;
-  avatar: string;
+  avatar?: string;
+  avatarTone?: "blue" | "cyan" | "emerald" | "amber" | "rose" | "violet";
   rating: number;
 }
 
@@ -29,6 +30,75 @@ interface ReviewsShowcaseProps {
 
 const previewText = (text: string, maxLength = 118) =>
   text.length > maxLength ? `${text.slice(0, maxLength).trimEnd()}...` : text;
+
+const getInitials = (name: string) =>
+  name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase();
+
+const avatarTones: Record<NonNullable<Review["avatarTone"]>, string> = {
+  amber: "from-amber-400 to-orange-500 text-white",
+  blue: "from-blue-500 to-sky-400 text-white",
+  cyan: "from-cyan-400 to-blue-500 text-white",
+  emerald: "from-emerald-400 to-teal-500 text-white",
+  rose: "from-rose-400 to-pink-500 text-white",
+  violet: "from-violet-500 to-indigo-500 text-white",
+};
+
+function ReviewAvatar({
+  review,
+  size,
+}: {
+  review: Review;
+  size: "featured" | "compact";
+}) {
+  const dimensions =
+    size === "featured"
+      ? {
+          className: "h-[4.5rem] w-[4.5rem] rounded-2xl text-xl",
+          imageSize: 72,
+          sizes: "72px",
+        }
+      : {
+          className: "h-13 w-13 rounded-2xl text-sm",
+          imageSize: 52,
+          sizes: "52px",
+        };
+
+  if (review.avatar) {
+    return (
+      <Image
+        src={review.avatar}
+        alt={review.name}
+        width={dimensions.imageSize}
+        height={dimensions.imageSize}
+        quality={75}
+        sizes={dimensions.sizes}
+        className={cn(
+          dimensions.className,
+          "border border-white/10 object-cover [.light_&]:border-gray-200",
+        )}
+      />
+    );
+  }
+
+  return (
+    <div
+      aria-label={review.name}
+      className={cn(
+        dimensions.className,
+        "flex shrink-0 items-center justify-center border border-white/10 bg-gradient-to-br font-bold shadow-[inset_0_1px_0_rgba(255,255,255,0.28)] [.light_&]:border-gray-200",
+        avatarTones[review.avatarTone ?? "blue"],
+      )}
+    >
+      {getInitials(review.name)}
+    </div>
+  );
+}
 
 export function ReviewsShowcase({
   reviews,
@@ -122,15 +192,7 @@ export function ReviewsShowcase({
           <Card className="border-white/10 bg-white/[0.04] shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur-sm [.light_&]:border-gray-200 [.light_&]:bg-white [.light_&]:shadow-[0_16px_40px_rgba(0,0,0,0.08)]">
             <CardHeader className="flex flex-col gap-5 border-b border-white/10 p-6 sm:flex-row sm:items-start sm:justify-between [.light_&]:border-gray-200">
               <div className="flex items-center gap-4">
-                <Image
-                  src={activeReview.avatar}
-                  alt={activeReview.name}
-                  width={72}
-                  height={72}
-                  quality={75}
-                  sizes="72px"
-                  className="h-[4.5rem] w-[4.5rem] rounded-2xl border border-white/10 object-cover [.light_&]:border-gray-200"
-                />
+                <ReviewAvatar review={activeReview} size="featured" />
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-glow [.light_&]:text-blue-600">
                     Featured Review
@@ -200,6 +262,39 @@ export function ReviewsShowcase({
                 </button>
               </div>
             </CardFooter>
+
+            <div className="border-t border-white/10 p-6 [.light_&]:border-gray-200">
+              <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-glow [.light_&]:text-blue-600">
+                    Trusted Feedback
+                  </p>
+                  <h3 className="mt-2 text-xl font-semibold text-white [.light_&]:text-[#111827]">
+                    Read more on Google
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-text-secondary [.light_&]:text-gray-600">
+                    Browse the full review stream in a simpler, faster layout with no heavy stacked animations.
+                  </p>
+                </div>
+
+                <Button
+                  asChild
+                  variant="primary"
+                  className="w-full shrink-0 rounded-full px-8 whitespace-nowrap sm:w-auto sm:min-w-[220px]"
+                >
+                  <a
+                    href={reviewsUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="View all reviews"
+                    className="inline-flex items-center justify-center"
+                  >
+                    View All Reviews
+                    <ExternalLink className="ml-2 h-4 w-4 shrink-0" />
+                  </a>
+                </Button>
+              </div>
+            </div>
           </Card>
 
           <div className="grid gap-4">
@@ -222,15 +317,7 @@ export function ReviewsShowcase({
                   aria-pressed={isActive}
                 >
                   <div className="flex items-start gap-3">
-                    <Image
-                      src={review.avatar}
-                      alt={review.name}
-                      width={52}
-                      height={52}
-                      quality={75}
-                      sizes="52px"
-                      className="h-13 w-13 rounded-2xl border border-white/10 object-cover [.light_&]:border-gray-200"
-                    />
+                    <ReviewAvatar review={review} size="compact" />
 
                     <div className="min-w-0 flex-1">
                       <div className="flex items-start justify-between gap-3">
@@ -253,39 +340,6 @@ export function ReviewsShowcase({
                 </button>
               );
             })}
-
-            <Card className="border-white/10 bg-black/20 shadow-[0_18px_50px_rgba(0,0,0,0.16)] [.light_&]:border-gray-200 [.light_&]:bg-white [.light_&]:shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
-              <CardContent className="flex flex-col gap-5 p-6 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-glow [.light_&]:text-blue-600">
-                    Trusted Feedback
-                  </p>
-                  <h3 className="mt-2 text-xl font-semibold text-white [.light_&]:text-[#111827]">
-                    Read more on Google
-                  </h3>
-                  <p className="mt-2 text-sm leading-6 text-text-secondary [.light_&]:text-gray-600">
-                    Browse the full review stream in a simpler, faster layout with no heavy stacked animations.
-                  </p>
-                </div>
-
-                <Button
-                  asChild
-                  variant="primary"
-                  className="w-full sm:w-auto sm:min-w-[220px] shrink-0 rounded-full px-8 whitespace-nowrap"
-                >
-                  <a
-                    href={reviewsUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="View all reviews"
-                    className="inline-flex items-center justify-center"
-                  >
-                    View All Reviews
-                    <ExternalLink className="ml-2 h-4 w-4 shrink-0" />
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </div>

@@ -44,6 +44,9 @@ const navData: NavGroup[] = [
     items: [
       { label: "MetaTrader 5", href: "/platform/metatrader-5" },
       { label: "RTX 5 Platform", href: "/platform" },
+      { label: "Achiver App", href: "/platform/achiver-app" },
+      { label: "Achiver Connect", href: "/platform/achiver-connect" },
+      { label: "Achiver Web Trader", href: "/platform/achiver-web-trader" },
     ]
   },
   {

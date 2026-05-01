@@ -24,8 +24,8 @@ export default function BrandLogo({
       <Image
         src="/achiever-logo-v2.png"
         alt="Achiever FX"
-        width={456}
-        height={84}
+        width={1200}
+        height={239}
         priority={priority}
         unoptimized
         loading={priority ? "eager" : "lazy"}

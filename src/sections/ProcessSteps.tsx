@@ -12,7 +12,7 @@ export default function ProcessSteps() {
   return (
     <SectionWrapper className="bg-bg-secondary/30 relative">
       <div className="text-center mb-20">
-        <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-4">
+        <h2 className="mx-auto mb-4 max-w-4xl pb-1 text-2xl font-extrabold leading-tight text-white sm:text-3xl md:text-5xl md:leading-tight">
           Fast Account Opening in 4 Steps
         </h2>
         <p className="text-text-secondary text-lg">Start trading on a premium environment in minutes, not days.</p>

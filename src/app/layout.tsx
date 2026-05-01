@@ -35,8 +35,8 @@ const jsonLd = {
       logo: {
         "@type": "ImageObject",
         url: getAbsoluteUrl("/achiever-logo-v2.png"),
-        width: 456,
-        height: 84,
+        width: 1200,
+        height: 239,
       },
       contactPoint: {
         "@type": "ContactPoint",

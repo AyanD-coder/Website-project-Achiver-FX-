@@ -1,8 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-import LoadingScreen from "@/components/ui/LoadingScreen";
 import Navbar from "@/sections/Navbar";
 import Hero from "@/sections/Hero";
 
@@ -60,25 +58,8 @@ const Footer = dynamic(() => import("@/sections/Footer"), {
 });
 
 export default function HomeClient() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Check if user has already seen the loading screen in this session
-    const hasLoaded = sessionStorage.getItem("achiever_has_loaded");
-
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-      if (!hasLoaded) {
-        sessionStorage.setItem("achiever_has_loaded", "true");
-      }
-    }, hasLoaded ? 0 : 3000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <>
-      <LoadingScreen isLoading={isLoading} />
       <Navbar />
       <main className="relative flex flex-1 flex-col items-center overflow-hidden bg-[#040814] [.light_&]:bg-[linear-gradient(135deg,#ffffff_0%,#f8fbff_52%,#f8fafc_100%)]">
         <div className="pointer-events-none absolute inset-0 -z-10">

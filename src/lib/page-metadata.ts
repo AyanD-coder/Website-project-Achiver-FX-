@@ -28,6 +28,9 @@ export type RoutePath =
   | "/markets/shares"
   | "/partner"
   | "/platform"
+  | "/platform/achiver-app"
+  | "/platform/achiver-connect"
+  | "/platform/achiver-web-trader"
   | "/platform/metatrader-5"
   | "/promotions"
   | "/tools"
@@ -192,6 +195,27 @@ export const pageMetadata = {
       "Explore the RTX5 trading platform with desktop, web, and mobile access for multi-asset trading workflows.",
     image: "/discover/offerings.png",
     keywords: ["RTX5 platform", "trading platform", ...sharedKeywords],
+  },
+  "/platform/achiver-app": {
+    title: "Achiver App",
+    description:
+      "Trade on mobile with Achiver App using market watch, chart views, account visibility, and connected platform access.",
+    image: "/discover/trading-tools.png",
+    keywords: ["Achiver App", "mobile trading app", ...sharedKeywords],
+  },
+  "/platform/achiver-connect": {
+    title: "Achiver Connect",
+    description:
+      "Use Achiver Connect as a client hub for account workflows, support access, platform links, and trading resources.",
+    image: "/discover/offerings.png",
+    keywords: ["Achiver Connect", "client portal", ...sharedKeywords],
+  },
+  "/platform/achiver-web-trader": {
+    title: "Achiver Web Trader",
+    description:
+      "Trade directly from a browser with Achiver Web Trader, a flexible no-install workspace for market access and charts.",
+    image: "/discover/analysis-report.png",
+    keywords: ["Achiver Web Trader", "web trading platform", ...sharedKeywords],
   },
   "/platform/metatrader-5": {
     title: "MetaTrader 5 Platform",

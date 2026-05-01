@@ -54,6 +54,19 @@ type DiscoverResource = {
   label: string;
 };
 
+type BlogPost = {
+  excerpt: string;
+  href: string;
+  image: string;
+  title: string;
+};
+
+type DailyReport = {
+  date: string;
+  href: string;
+  title: string;
+};
+
 export type DiscoverPageData = {
   accent: "blue" | "emerald" | "amber";
   description: string;
@@ -71,6 +84,8 @@ export type DiscoverPageData = {
     href: string;
     label: string;
   };
+  blogPosts?: BlogPost[];
+  dailyReports?: DailyReport[];
   resources: DiscoverResource[];
   secondaryCta?: {
     href: string;
@@ -150,6 +165,33 @@ export const discoverPages = {
           "Connect price action to rates, inflation, employment, and risk sentiment.",
       },
     ],
+    dailyReports: [
+      {
+        date: "27 Apr",
+        title: "Technical Analysis Report 27 April",
+        href: "https://acrobat.adobe.com/id/urn:aaid:sc:AP:6122d6d8-fa44-4910-acaa-f5554e34f689",
+      },
+      {
+        date: "28 Apr",
+        title: "Technical Analysis Report 28 April",
+        href: "https://acrobat.adobe.com/id/urn:aaid:sc:AP:afbf1803-c07a-4d74-9887-d7c0f20e80cf",
+      },
+      {
+        date: "29 Apr",
+        title: "Technical Analysis Report 29 April",
+        href: "https://acrobat.adobe.com/id/urn:aaid:sc:AP:d4b18edb-de47-4f1b-8984-9eaea821cdba",
+      },
+      {
+        date: "30 Apr",
+        title: "Technical Analysis Report 30 April",
+        href: "https://acrobat.adobe.com/id/urn:aaid:sc:AP:8cd71f09-543d-44a1-8527-2f624b22e486",
+      },
+      {
+        date: "01 May",
+        title: "Technical Analysis Report 01 May",
+        href: "https://acrobat.adobe.com/id/urn:aaid:sc:AP:3c529fb4-639d-41d6-b8e0-e0209e74ca7e",
+      },
+    ],
     story: {
       kicker: "Research Workflow",
       title: "From headline noise to trade-ready context.",
@@ -219,6 +261,62 @@ export const discoverPages = {
         title: "Fresh Perspectives",
         description:
           "Timely ideas that help you build a broader market vocabulary.",
+      },
+    ],
+    blogPosts: [
+      {
+        title: "FOMC April 2026 Meeting Analysis",
+        excerpt: "FOMC April 2026: Rates held steady amid elevated inflation and notable internal dissent.",
+        href: "https://achieverfinancials.com/fomc-april-2026-meeting-analysis/",
+        image: "https://achieverfinancials.com/wp-content/uploads/2026/04/Gemini_Generated_Image_svf2icsvf2icsvf2-1024x687.png",
+      },
+      {
+        title: "Strait of Hormuz Crisis: Market Impact",
+        excerpt: "Strait of Hormuz crisis: US naval blockade begins and global markets price fresh supply risk.",
+        href: "https://achieverfinancials.com/strait-of-hormuz-crisis/",
+        image: "https://achieverfinancials.com/wp-content/uploads/2026/04/Blue-and-White-Modern-Stock-Market-Analysis-Presentation-1200-x-800-px-1024x683.png",
+      },
+      {
+        title: "FOMC March 2026",
+        excerpt: "FOMC policy update and analysis for March 2026, with key rate and market reaction context.",
+        href: "https://achieverfinancials.com/fomc-march-2026/",
+        image: "https://achieverfinancials.com/wp-content/uploads/2026/03/Blue-and-White-Modern-Stock-Market-Analysis-Presentation-1200-x-800-px-1024x683.png",
+      },
+      {
+        title: "Gold Market Weekly Review.!",
+        excerpt: "Gold market weekly review insights and outlook for traders watching XAU/USD momentum.",
+        href: "https://achieverfinancials.com/gold-market-weekly-review/",
+        image: "https://achieverfinancials.com/wp-content/uploads/2025/11/Untitled-1200-x-800-px-1024x683.png",
+      },
+      {
+        title: "Silver Market 2025 Closure Analysis",
+        excerpt: "Silver (XAG/USD) 2025 closure analysis with market structure and technical context.",
+        href: "https://achieverfinancials.com/silver-market-2025-closure-analysis/",
+        image: "https://achieverfinancials.com/wp-content/uploads/2025/12/www.achieverfinanacials.com-1-1024x683.png",
+      },
+      {
+        title: "Gold Market 2025 Closure Analysis",
+        excerpt: "Gold (XAU/USD) 2025 closure analysis with trend, levels, and market behavior.",
+        href: "https://achieverfinancials.com/2025-gold-market-closure-analysis-report/",
+        image: "https://achieverfinancials.com/wp-content/uploads/2025/12/www.achieverfinanacials.com_-1024x683.png",
+      },
+      {
+        title: "Silver Analysis for Nov 3-7, 2025",
+        excerpt: "Silver forecast and analysis for November 3-7, 2025, with key levels and outlook.",
+        href: "https://achieverfinancials.com/silver-analysis-for-nov-3-7-2025/",
+        image: "https://achieverfinancials.com/wp-content/uploads/2025/11/Blue-and-White-Modern-Stock-Market-Analysis-Presentation-1200-x-800-px-1024x683.png",
+      },
+      {
+        title: "Gold Analysis for Oct 27-31, 2025",
+        excerpt: "Gold's XAU/USD technical pullback review with weekly analysis and market setup.",
+        href: "https://achieverfinancials.com/gold-analysis-for-oct-27-2025/",
+        image: "https://achieverfinancials.com/wp-content/uploads/2025/10/Untitled-1200-x-800-px-1024x683.png",
+      },
+      {
+        title: "Silver Analysis for Oct 13-19, 2025",
+        excerpt: "Silver (XAG/USD) weekly market analysis for October 13-19, 2025.",
+        href: "https://achieverfinancials.com/silver-analysis-for-oct-13-19-2025/",
+        image: "https://achieverfinancials.com/wp-content/uploads/2025/10/Blue-and-White-Modern-Stock-Market-Analysis-Presentation-1200-x-800-px-1-1024x683.png",
       },
     ],
     story: {
@@ -618,6 +716,112 @@ function ResourceItem({
   );
 }
 
+function BlogPostCard({ excerpt, href, image, title }: BlogPost) {
+  return (
+    <article className="group relative overflow-hidden rounded-lg border border-white/10 bg-[#07111f] shadow-[0_22px_70px_rgba(2,8,20,0.22)] transition-all duration-300 hover:-translate-y-1 hover:border-amber-300/35 hover:shadow-[0_28px_80px_rgba(14,23,38,0.34)] [.light_&]:border-slate-200 [.light_&]:bg-white [.light_&]:shadow-[0_14px_34px_rgba(15,23,42,0.09)] [.light_&]:hover:border-amber-200 [.light_&]:hover:shadow-[0_18px_44px_rgba(15,23,42,0.12)]">
+      <Link
+        href={href}
+        target="_blank"
+        rel="noreferrer"
+        aria-label={`Read ${title}`}
+        className="absolute inset-0 z-20"
+      />
+
+      <div className="relative aspect-[1.52/1] overflow-hidden bg-slate-900">
+        <Image
+          src={image}
+          alt=""
+          fill
+          sizes="(min-width: 1024px) 31vw, (min-width: 768px) 46vw, 100vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0)_42%,rgba(2,6,23,0.6)_100%)]" />
+        <div className="absolute left-4 top-4 rounded-full border border-white/20 bg-black/30 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-md">
+          Analysis
+        </div>
+      </div>
+
+      <div className="relative p-5 sm:p-6">
+        <h3 className="line-clamp-2 min-h-[3.25rem] text-lg font-semibold leading-snug tracking-normal text-white transition-colors group-hover:text-amber-100 [.light_&]:text-slate-950 [.light_&]:group-hover:text-blue-700">
+          {title}
+        </h3>
+        <p className="mt-3 line-clamp-2 text-sm leading-6 text-slate-400 [.light_&]:text-slate-600">
+          {excerpt}
+        </p>
+
+        <div className="mt-6 flex items-center justify-between gap-4">
+          <span className="inline-flex h-11 min-w-[9.5rem] items-center justify-center rounded-full bg-[#063e8a] px-5 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(3,46,108,0.22)] transition-colors group-hover:bg-[#0750ad] [.light_&]:bg-blue-700 [.light_&]:group-hover:bg-blue-800">
+            Read More
+          </span>
+          <ArrowRight className="h-5 w-5 text-amber-200 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100 [.light_&]:text-blue-700" />
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function DailyReportsSection({
+  reports,
+  styles,
+}: {
+  reports: DailyReport[];
+  styles: (typeof accentClasses)[DiscoverPageData["accent"]];
+}) {
+  return (
+    <SectionWrapper className="py-16 lg:py-20">
+      <div className="relative overflow-hidden rounded-2xl border border-sky-300/15 bg-[linear-gradient(135deg,rgba(7,17,31,0.98),rgba(5,30,51,0.96)_52%,rgba(3,8,20,0.98))] px-5 py-10 shadow-[0_28px_90px_rgba(2,8,20,0.34)] [.light_&]:border-sky-100 [.light_&]:bg-[linear-gradient(135deg,#ffffff_0%,#eef6ff_54%,#f8fbff_100%)] [.light_&]:shadow-[0_20px_55px_rgba(15,23,42,0.09)] sm:px-8 lg:px-10">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_12%,rgba(56,189,248,0.16),transparent_28%),radial-gradient(circle_at_88%_20%,rgba(37,99,235,0.14),transparent_28%)] [.light_&]:bg-[radial-gradient(circle_at_12%_12%,rgba(37,99,235,0.09),transparent_28%),radial-gradient(circle_at_88%_20%,rgba(14,165,233,0.08),transparent_28%)]" />
+        <div className="pointer-events-none absolute inset-0 opacity-[0.08] [background-image:linear-gradient(rgba(255,255,255,0.32)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.22)_1px,transparent_1px)] [background-size:4rem_4rem] [.light_&]:opacity-[0.16]" />
+
+        <div className="relative mx-auto max-w-3xl text-center">
+          <Badge className={cn("px-4 py-1.5 uppercase tracking-[0.2em]", styles.badge)}>
+            Achiever Financials
+          </Badge>
+          <h2 className="mt-5 text-3xl font-semibold leading-tight tracking-normal text-white sm:text-4xl lg:text-5xl [.light_&]:text-slate-950">
+            Daily Technical Analysis Report
+          </h2>
+          <p className="mt-4 text-base leading-8 text-slate-300 [.light_&]:text-slate-600">
+            Fresh daily reports with technical context, market structure, and
+            key levels for active traders.
+          </p>
+        </div>
+
+        <div className="relative mt-10 grid gap-4">
+          {reports.map((report, index) => (
+            <article
+              key={report.href}
+              className="group grid gap-4 rounded-xl border border-white/10 bg-white/[0.055] p-4 shadow-[0_18px_50px_rgba(2,8,20,0.18)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-sky-300/35 hover:bg-white/[0.075] sm:grid-cols-[auto_minmax(0,1fr)_auto] sm:items-center sm:p-5 [.light_&]:border-slate-200 [.light_&]:bg-white [.light_&]:shadow-[0_12px_30px_rgba(15,23,42,0.06)] [.light_&]:hover:border-sky-200 [.light_&]:hover:shadow-[0_16px_38px_rgba(37,99,235,0.1)]"
+            >
+              <div className="flex h-14 w-14 items-center justify-center rounded-lg border border-sky-300/20 bg-sky-300/10 text-sm font-bold text-sky-100 [.light_&]:border-sky-200 [.light_&]:bg-sky-50 [.light_&]:text-blue-700">
+                {String(index + 1).padStart(2, "0")}
+              </div>
+
+              <div className="min-w-0">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-200 [.light_&]:text-blue-600">
+                  {report.date}
+                </p>
+                <h3 className="mt-2 text-xl font-semibold leading-snug tracking-normal text-white [.light_&]:text-slate-950">
+                  {report.title}
+                </h3>
+              </div>
+
+              <Button
+                asChild
+                className="min-h-12 w-full rounded-full px-6 text-sm sm:w-auto sm:min-w-[150px]"
+              >
+                <Link href={report.href} target="_blank" rel="noreferrer">
+                  View Report
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </article>
+          ))}
+        </div>
+      </div>
+    </SectionWrapper>
+  );
+}
+
 export function DiscoverPage({ page }: { page: DiscoverPageData }) {
   const styles = accentClasses[page.accent];
 
@@ -678,6 +882,9 @@ export function DiscoverPage({ page }: { page: DiscoverPageData }) {
           </div>
         </section>
 
+        {page.dailyReports?.length ? (
+          <DailyReportsSection reports={page.dailyReports} styles={styles} />
+        ) : (
         <SectionWrapper className="py-16 lg:py-20">
           <div className="mx-auto max-w-3xl text-center">
             <Badge
@@ -706,7 +913,44 @@ export function DiscoverPage({ page }: { page: DiscoverPageData }) {
               />
             ))}
           </div>
+
+          {page.blogPosts?.length ? (
+            <div className="mt-14">
+              <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                <div>
+                  <Badge
+                    className={cn(
+                      "px-4 py-1.5 uppercase tracking-[0.2em]",
+                      styles.badge,
+                    )}
+                  >
+                    Latest Reads
+                  </Badge>
+                  <h2 className="mt-5 max-w-3xl text-3xl font-semibold leading-tight tracking-normal text-white sm:text-4xl [.light_&]:text-slate-950">
+                    Market stories, weekly reviews, and event analysis.
+                  </h2>
+                </div>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="min-h-12 rounded-full border-white/15 bg-white/[0.04] px-6 text-sm text-white hover:bg-white/10 hover:text-white md:shrink-0 [.light_&]:border-slate-200 [.light_&]:bg-white [.light_&]:text-slate-800 [.light_&]:hover:bg-slate-50"
+                >
+                  <Link href="https://achieverfinancials.com/category/trading-analysis/" target="_blank" rel="noreferrer">
+                    View All Posts
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+
+              <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                {page.blogPosts.map((post) => (
+                  <BlogPostCard key={post.href} {...post} />
+                ))}
+              </div>
+            </div>
+          ) : null}
         </SectionWrapper>
+        )}
 
         <section className="relative w-full bg-[linear-gradient(180deg,#07111f_0%,#071827_100%)] py-16 [.light_&]:bg-[linear-gradient(180deg,#eef5ff_0%,#ffffff_100%)] lg:py-20">
           <div className="mx-auto grid w-full max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
