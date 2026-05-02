@@ -6,6 +6,15 @@ const rootDirectory = path.dirname(fileURLToPath(import.meta.url));
 
 const nextConfig: NextConfig = {
   devIndicators: false,
+  async redirects() {
+    return [
+      {
+        source: "/company",
+        destination: "/company/about-us",
+        permanent: true,
+      },
+    ];
+  },
   turbopack: {
     root: rootDirectory,
   },

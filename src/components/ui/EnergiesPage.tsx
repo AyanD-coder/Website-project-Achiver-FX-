@@ -136,7 +136,7 @@ export default function EnergiesPage() {
         title: "Energies Trading",
         description:
           "Trade Crude Oil, Brent Oil and Natural Gas. Take advantage of volatility in the energy markets.",
-        imageSrc: "/discover/offerings.png",
+        imageSrc: "/discover/offerings.webp",
         imageAlt:
           "AI generated brokerage offering suite with commodity market visuals and trading modules.",
         stats: [

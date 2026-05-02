@@ -15,7 +15,7 @@ export default function CommoditiesPage() {
         title: "Discover new ways to trade commodities",
         description:
           "Access metals, energy, and agricultural markets with focused tools, transparent pricing, and support built for active traders.",
-        imageSrc: "/discover/offerings.png",
+        imageSrc: "/discover/offerings.webp",
         imageAlt:
           "AI generated brokerage suite with commodity market modules and trading visuals.",
         actions: [

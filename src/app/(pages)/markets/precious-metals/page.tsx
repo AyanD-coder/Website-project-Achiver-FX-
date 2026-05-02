@@ -189,7 +189,7 @@ export default function PreciousMetalsPage() {
         title: "Start trading with precious metals",
         description:
           "Trade gold, silver, palladium, and platinum with platform tools and market insight designed for fast-moving macro conditions.",
-        imageSrc: "/discover/analysis-report.png",
+        imageSrc: "/discover/analysis-report.webp",
         imageAlt:
           "AI generated trading research desk with precious metals market charts.",
         actions: [
@@ -292,7 +292,7 @@ export default function PreciousMetalsPage() {
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-[linear-gradient(180deg,rgba(254,243,199,0.2),rgba(180,83,9,0.28))] text-sm font-bold tracking-[0.12em] text-amber-200 [.light_&]:border-amber-200 [.light_&]:bg-[linear-gradient(180deg,#fff7d6_0%,#fde68a_100%)] [.light_&]:text-amber-700">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-[linear-gradient(180deg,rgba(56,189,248,0.18),rgba(37,99,235,0.28))] text-sm font-bold tracking-[0.12em] text-sky-200 [.light_&]:border-sky-200 [.light_&]:bg-[linear-gradient(180deg,#e0f2fe_0%,#bae6fd_100%)] [.light_&]:text-sky-700">
                         {quote.badge}
                       </div>
                       <div>

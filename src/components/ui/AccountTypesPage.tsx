@@ -166,7 +166,7 @@ export default function AccountTypesPage() {
         title: "Open your account",
         description:
           "Compare account structures, trading conditions, spreads, commission, and leverage before choosing the setup that fits your goals.",
-        imageSrc: "/discover/offerings.png",
+        imageSrc: "/discover/offerings.webp",
         imageAlt:
           "AI generated brokerage offering suite with account cards and market visuals.",
         actions: [

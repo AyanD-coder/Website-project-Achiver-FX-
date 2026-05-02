@@ -44,26 +44,25 @@ const navData: NavGroup[] = [
     items: [
       { label: "MetaTrader 5", href: "/platform/metatrader-5" },
       { label: "RTX 5 Platform", href: "/platform" },
-      { label: "Achiver App", href: "/platform/achiver-app" },
-      { label: "Achiver Connect", href: "/platform/achiver-connect" },
-      { label: "Achiver Web Trader", href: "/platform/achiver-web-trader" },
+      { label: "Achiever App", href: "/platform/achiever-app" },
+      { label: "Achiever Connect", href: "/platform/achiever-connect" },
+      { label: "Achiever Web Trader", href: "/platform/achiever-web-trader" },
     ]
   },
   {
     title: "Discover",
     items: [
-      { label: "Education", href: "/tools/education" },
-      { label: "Blogs", href: "/tools/blogs" },
-      { label: "Trading Tools", href: "/tools" },
-      { label: "Offerings", href: "/tools/offerings" },
-      { label: "News & Analysis", href: "/tools/analysis-report" },
-      { label: "Economic Calendar", href: "/tools/economic-calendar" },
+      { label: "Education", href: "/discover/education" },
+      { label: "Blogs", href: "/discover/blogs" },
+      { label: "News & Analysis", href: "/discover/analysis-report" },
+      { label: "Trading Tools", href: "/discover/trading-tools" },
+      { label: "Economic Calendar", href: "/discover/economic-calendar" },
     ]
   },
   {
     title: "Company",
     items: [
-      { label: "About Us", href: "/company" },
+      { label: "About Us", href: "/company/about-us" },
       { label: "Career", href: "/company/career" },
       { label: "Legal Documents", href: "/company/legal-documents" },
       { label: "Customer Protection", href: "/company/customer-protection" },
@@ -71,12 +70,12 @@ const navData: NavGroup[] = [
     ]
   },
   {
-    title: "Promotions",
-    href: "/promotions",
-  },
-  {
     title: "Partnership",
     href: "/partner",
+  },
+  {
+    title: "Promotions",
+    href: "/promotions",
   }
 ];
 

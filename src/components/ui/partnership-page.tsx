@@ -34,6 +34,7 @@ interface PartnerType {
   image: string;
   points: string[];
   ctaLabel: string;
+  ctaHref?: string;
   accent: "blue" | "emerald" | "violet";
 }
 
@@ -51,6 +52,7 @@ const partnerTypes: PartnerType[] = [
       "Fast and flexible payment options",
     ],
     ctaLabel: "Become an IB",
+    ctaHref: "/partner/introducing-broker",
     accent: "blue",
   },
   {
@@ -66,6 +68,7 @@ const partnerTypes: PartnerType[] = [
       "Monthly payouts with dedicated manager",
     ],
     ctaLabel: "Join as Affiliate",
+    ctaHref: "/partner/affiliate-program",
     accent: "violet",
   },
   {
@@ -155,6 +158,7 @@ function SectionLabel({
 function PartnerProgramCard({
   accent,
   ctaLabel,
+  ctaHref = "/company/contact-us",
   description,
   icon: Icon,
   image,
@@ -202,7 +206,7 @@ function PartnerProgramCard({
         </div>
 
         <Button asChild className="mt-9 h-12 w-full rounded-full text-sm">
-          <Link href="/company/contact-us">
+          <Link href={ctaHref}>
             {ctaLabel}
             <ArrowRight className="ml-2 h-4 w-4" />
           </Link>

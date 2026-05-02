@@ -46,7 +46,7 @@ const benefitCards: BenefitCard[] = [
       "Execute trades with zero latency on our optimized servers.",
     icon: Zap,
     accent:
-      "border-amber-300/26 bg-[linear-gradient(180deg,rgba(245,158,11,0.12),rgba(245,158,11,0.03))] [.light_&]:border-amber-200 [.light_&]:bg-[linear-gradient(180deg,rgba(254,243,199,0.9),rgba(255,255,255,0.88))]",
+      "border-sky-300/26 bg-[linear-gradient(180deg,rgba(56,189,248,0.12),rgba(14,165,233,0.03))] [.light_&]:border-sky-200 [.light_&]:bg-[linear-gradient(180deg,rgba(224,242,254,0.9),rgba(255,255,255,0.88))]",
   },
   {
     title: "Secure & Reliable",
@@ -244,7 +244,7 @@ function PhoneVisual() {
   return (
     <div className="relative mx-auto h-[14rem] w-full max-w-[18rem]">
       <div className="absolute left-1/2 top-6 h-32 w-32 -translate-x-1/2 rounded-full bg-cyan-400/14 blur-3xl [.light_&]:bg-sky-300/28" />
-      <div className="absolute left-5 top-7 h-5 w-5 rotate-12 rounded-md border border-amber-300/40 bg-amber-300/12 [.light_&]:border-amber-300/50 [.light_&]:bg-amber-100/80" />
+      <div className="absolute left-5 top-7 h-5 w-5 rotate-12 rounded-md border border-sky-300/40 bg-sky-300/12 [.light_&]:border-sky-300/50 [.light_&]:bg-sky-100/80" />
       <div className="absolute right-7 top-5 h-4 w-4 rounded-full border border-white/16 bg-white/10 [.light_&]:border-slate-300/50 [.light_&]:bg-white/60" />
       <div className="absolute bottom-7 left-8 h-4 w-4 rounded-full border border-white/16 bg-white/10 [.light_&]:border-slate-300/50 [.light_&]:bg-white/70" />
       <div className="absolute left-1/2 top-4 w-[9.7rem] -translate-x-1/2 -rotate-[18deg] rounded-[2rem] border border-white/12 bg-[linear-gradient(180deg,rgba(11,19,34,0.98),rgba(4,9,18,0.98))] p-[0.38rem] shadow-[0_28px_70px_rgba(2,8,20,0.26)] [.light_&]:border-slate-200/80 [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(226,232,240,0.94))] [.light_&]:shadow-[0_28px_64px_rgba(15,23,42,0.14)]">
@@ -288,7 +288,7 @@ function BrowserVisual() {
       <div className="absolute left-1/2 top-6 w-[16.5rem] -translate-x-1/2 rounded-[1.8rem] border border-white/12 bg-[linear-gradient(180deg,rgba(18,30,54,0.96),rgba(7,15,28,0.98))] p-3 shadow-[0_24px_56px_rgba(2,8,20,0.22)] [.light_&]:border-slate-200/80 [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(239,245,255,0.96))] [.light_&]:shadow-[0_24px_52px_rgba(15,23,42,0.08)]">
         <div className="flex items-center gap-2">
           <span className="h-2.5 w-2.5 rounded-full bg-rose-400/70" />
-          <span className="h-2.5 w-2.5 rounded-full bg-amber-400/70" />
+          <span className="h-2.5 w-2.5 rounded-full bg-sky-400/70" />
           <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/70" />
         </div>
         <div className="mt-3 rounded-[1.2rem] border border-white/8 bg-white/[0.03] p-3 [.light_&]:border-slate-200/70 [.light_&]:bg-white/90">
@@ -504,7 +504,7 @@ export default function RTX5PlatformPage({
               </p>
               <div className="mt-8">
                 <Button asChild className="h-12 rounded-full px-7 text-sm">
-                  <Link href="/company" className="inline-flex items-center gap-2">
+                  <Link href="/company/contact-us" className="inline-flex items-center gap-2">
                     Contact Us
                     <ArrowRight className="h-4 w-4" />
                   </Link>

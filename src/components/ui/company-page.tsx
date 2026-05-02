@@ -23,6 +23,11 @@ import {
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/Button";
+import AboutTrustOverview from "@/components/ui/AboutTrustOverview";
+import CareerPageExperience from "@/components/ui/CareerPageExperience";
+import ContactUsExperience from "@/components/ui/ContactUsExperience";
+import CustomerProtectionExperience from "@/components/ui/CustomerProtectionExperience";
+import LegalDocumentsTrust from "@/components/ui/LegalDocumentsTrust";
 import {
   Card,
   CardDescription,
@@ -57,7 +62,7 @@ export type CompanyPageData = {
   actions?: CompanyAction[];
   description: string;
   details: CompanyCard[];
-  eyebrow: string;
+  eyebrow?: string;
   featureImageAlt: string;
   finalCta: {
     description: string;
@@ -82,10 +87,10 @@ export type CompanyPageData = {
 const accentClasses = {
   amber: {
     badge:
-      "border-amber-300/25 bg-amber-300/12 text-amber-100 [.light_&]:border-amber-200 [.light_&]:bg-amber-50 [.light_&]:text-amber-700",
+      "border-sky-300/25 bg-sky-300/12 text-sky-100 [.light_&]:border-sky-200 [.light_&]:bg-sky-50 [.light_&]:text-sky-700",
     icon:
-      "border-amber-300/18 bg-amber-300/10 text-amber-100 [.light_&]:border-amber-200 [.light_&]:bg-amber-50 [.light_&]:text-amber-700",
-    ring: "group-hover:border-amber-300/30 [.light_&]:group-hover:border-amber-200",
+      "border-sky-300/18 bg-sky-300/10 text-sky-100 [.light_&]:border-sky-200 [.light_&]:bg-sky-50 [.light_&]:text-sky-700",
+    ring: "group-hover:border-sky-300/30 [.light_&]:group-hover:border-sky-200",
   },
   blue: {
     badge:
@@ -110,7 +115,7 @@ export const companyPages = {
     title: "A trading partner built around clarity and access",
     description:
       "Achiever Financials brings markets, platforms, education, and support into a focused environment for traders who want to work with confidence.",
-    heroImage: "/company/about.png",
+    heroImage: "/company/about.webp",
     heroImageAlt:
       "AI generated premium fintech company operations floor with abstract market dashboards.",
     featureImageAlt:
@@ -166,12 +171,12 @@ export const companyPages = {
     },
   },
   career: {
-    accent: "amber",
+    accent: "blue",
     eyebrow: "Career",
     title: "Build meaningful work in global financial markets",
     description:
       "Join a team shaped by client service, technology, market awareness, and the daily discipline of a fast-moving trading business.",
-    heroImage: "/company/career.png",
+    heroImage: "/company/career.webp",
     heroImageAlt:
       "AI generated modern fintech careers workspace with collaborative team energy.",
     featureImageAlt:
@@ -180,7 +185,7 @@ export const companyPages = {
       href: "mailto:support@achieverfinancials.com?subject=Career%20Interest",
       label: "Send Interest",
     },
-    secondaryCta: { href: "/company", label: "About Achiever" },
+    secondaryCta: { href: "/company/about-us", label: "About Achiever" },
     metrics: [
       { value: "Growth", label: "Learning culture" },
       { value: "Markets", label: "Daily exposure" },
@@ -244,7 +249,7 @@ export const companyPages = {
     title: "Talk to the Achiever support team",
     description:
       "Reach the team for account questions, platform help, partnership enquiries, and general support.",
-    heroImage: "/company/contact-us.png",
+    heroImage: "/company/contact-us.webp",
     heroImageAlt:
       "AI generated premium client support desk with abstract communication dashboards.",
     featureImageAlt:
@@ -303,12 +308,12 @@ export const companyPages = {
     },
   },
   customerProtection: {
-    accent: "emerald",
+    accent: "blue",
     eyebrow: "Customer Protection",
     title: "Protection principles for a more confident trading journey",
     description:
       "Understand the controls, disclosures, support routes, and risk-awareness practices that help clients make informed decisions.",
-    heroImage: "/company/customer-protection.png",
+    heroImage: "/company/customer-protection.webp",
     heroImageAlt:
       "AI generated client protection scene with abstract shield architecture and secure account panels.",
     featureImageAlt:
@@ -364,12 +369,11 @@ export const companyPages = {
     },
   },
   legalDocuments: {
-    accent: "amber",
-    eyebrow: "Legal Documents",
+    accent: "blue",
     title: "Key documents for transparent account decisions",
     description:
       "Find the document categories, risk notices, and client information areas that support a clearer trading relationship.",
-    heroImage: "/company/legal-documents.png",
+    heroImage: "/company/legal-documents.webp",
     heroImageAlt:
       "AI generated legal documentation workspace with abstract contracts and compliance panels.",
     featureImageAlt:
@@ -518,6 +522,14 @@ function ActionLinks({
 
 export function CompanyPage({ page }: { page: CompanyPageData }) {
   const styles = accentClasses[page.accent];
+  const isAboutPage = page === companyPages.about;
+  const isCareerPage = page === companyPages.career;
+  const isContactPage = page === companyPages.contact;
+  const isCustomerProtectionPage = page === companyPages.customerProtection;
+  const isLegalDocumentsPage = page === companyPages.legalDocuments;
+  const showHeroEyebrow = Boolean(page.eyebrow);
+  const showSharedCompanySections =
+    !isContactPage && !isCustomerProtectionPage && !isLegalDocumentsPage;
 
   return (
     <>
@@ -537,16 +549,23 @@ export function CompanyPage({ page }: { page: CompanyPageData }) {
 
           <div className="relative mx-auto w-full max-w-7xl">
             <div className="max-w-3xl">
-              <Badge
+              {showHeroEyebrow ? (
+                <Badge
+                  className={cn(
+                    "px-4 py-1.5 uppercase tracking-[0.2em]",
+                    styles.badge,
+                  )}
+                >
+                  {page.eyebrow}
+                </Badge>
+              ) : null}
+
+              <h1
                 className={cn(
-                  "px-4 py-1.5 uppercase tracking-[0.2em]",
-                  styles.badge,
+                  "max-w-full text-3xl font-semibold leading-[1.06] tracking-normal text-white min-[380px]:text-4xl sm:text-5xl lg:text-6xl",
+                  showHeroEyebrow ? "mt-5 sm:mt-6" : "mt-0",
                 )}
               >
-                {page.eyebrow}
-              </Badge>
-
-              <h1 className="mt-5 max-w-full text-3xl font-semibold leading-[1.06] tracking-normal text-white min-[380px]:text-4xl sm:mt-6 sm:text-5xl lg:text-6xl">
                 {page.title}
               </h1>
 
@@ -583,122 +602,136 @@ export function CompanyPage({ page }: { page: CompanyPageData }) {
           </div>
         </section>
 
-        <SectionWrapper className="py-16 lg:py-20">
-          <div className="mx-auto max-w-3xl text-center">
-            <Badge
-              className={cn(
-                "px-4 py-1.5 uppercase tracking-[0.2em]",
-                styles.badge,
-              )}
-            >
-              Company
-            </Badge>
-            <h2 className="mt-5 text-3xl font-semibold tracking-normal text-white sm:text-4xl [.light_&]:text-slate-950">
-              Built to keep client journeys clear.
-            </h2>
-            <p className="mt-4 text-base leading-8 text-slate-400 [.light_&]:text-slate-600">
-              Each company page gives visitors a direct path into the
-              information, support, or documents they are most likely to need.
-            </p>
-          </div>
+        {isAboutPage ? <AboutTrustOverview /> : null}
+        {isCareerPage ? <CareerPageExperience /> : null}
+        {isContactPage ? <ContactUsExperience /> : null}
+        {isCustomerProtectionPage ? <CustomerProtectionExperience /> : null}
+        {isLegalDocumentsPage ? <LegalDocumentsTrust /> : null}
 
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {page.details.map((detail) => (
-              <InfoCard key={detail.title} accent={page.accent} {...detail} />
-            ))}
-          </div>
-        </SectionWrapper>
-
-        <section className="relative w-full bg-bg-secondary/50 py-16 [.light_&]:bg-bg-secondary/30 lg:py-20">
-          <div className="mx-auto grid w-full max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-white/10 shadow-[0_28px_80px_rgba(2,8,20,0.32)] [.light_&]:border-slate-200 [.light_&]:shadow-[0_20px_50px_rgba(15,23,42,0.09)]">
-              <Image
-                src={page.heroImage}
-                alt={page.featureImageAlt}
-                fill
-                sizes="(min-width: 1024px) 48vw, 100vw"
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_34%,rgba(2,6,23,0.54)_100%)]" />
-            </div>
-
-            <div>
+        {showSharedCompanySections ? (
+          <SectionWrapper className="py-16 lg:py-20">
+            <div className="mx-auto max-w-3xl text-center">
               <Badge
                 className={cn(
                   "px-4 py-1.5 uppercase tracking-[0.2em]",
                   styles.badge,
                 )}
               >
-                {page.story.kicker}
-              </Badge>
-              <h2 className="mt-5 text-3xl font-semibold leading-[1.08] tracking-normal text-white sm:text-4xl [.light_&]:text-slate-950">
-                {page.story.title}
-              </h2>
-              <p className="mt-5 max-w-xl text-base leading-8 text-slate-400 [.light_&]:text-slate-600">
-                {page.story.body}
-              </p>
-
-              <div className="mt-7 grid gap-3">
-                {page.story.points.map((point) => (
-                  <div key={point} className="flex items-start gap-3">
-                    <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-sky-300 [.light_&]:text-blue-600" />
-                    <p className="text-sm leading-7 text-slate-300 [.light_&]:text-slate-700">
-                      {point}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <SectionWrapper className="py-16 lg:py-20">
-          <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
-            <div>
-              <Badge
-                className={cn(
-                  "px-4 py-1.5 uppercase tracking-[0.2em]",
-                  styles.badge,
-                )}
-              >
-                Next Steps
+                Company
               </Badge>
               <h2 className="mt-5 text-3xl font-semibold tracking-normal text-white sm:text-4xl [.light_&]:text-slate-950">
-                Choose the path that fits your enquiry.
+                Built to keep client journeys clear.
               </h2>
               <p className="mt-4 text-base leading-8 text-slate-400 [.light_&]:text-slate-600">
-                Company pages are connected so visitors can move quickly
-                between support, documents, protection information, and account
-                exploration.
+                Each company page gives visitors a direct path into the
+                information, support, or documents they are most likely to need.
               </p>
             </div>
 
-            <ActionLinks accent={page.accent} actions={page.actions} />
-          </div>
-        </SectionWrapper>
+            <div className="mt-10 grid gap-5 md:grid-cols-3">
+              {page.details.map((detail) => (
+                <InfoCard key={detail.title} accent={page.accent} {...detail} />
+              ))}
+            </div>
+          </SectionWrapper>
+        ) : null}
 
-        <section className="relative mx-auto w-full max-w-7xl px-4 pb-24 pt-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-lg border border-white/10 bg-[linear-gradient(135deg,rgba(8,15,30,0.98),rgba(4,8,18,0.98))] px-6 py-12 shadow-[0_30px_90px_rgba(2,8,20,0.32)] [.light_&]:border-slate-200 [.light_&]:bg-[linear-gradient(135deg,#ffffff_0%,#f1f7ff_100%)] [.light_&]:shadow-[0_20px_50px_rgba(15,23,42,0.07)] sm:px-10 lg:px-12">
-            <div className="absolute inset-0 opacity-[0.08] [background-image:linear-gradient(rgba(148,163,184,0.34)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.34)_1px,transparent_1px)] [background-size:4rem_4rem] [.light_&]:opacity-[0.12]" />
-            <div className="relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
-              <div className="max-w-2xl">
-                <h2 className="text-3xl font-semibold tracking-normal text-white sm:text-4xl [.light_&]:text-slate-950">
-                  {page.finalCta.title}
+        {!isContactPage ? (
+          <section className="relative w-full bg-bg-secondary/50 py-16 [.light_&]:bg-bg-secondary/30 lg:py-20">
+            <div className="mx-auto grid w-full max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-white/10 shadow-[0_28px_80px_rgba(2,8,20,0.32)] [.light_&]:border-slate-200 [.light_&]:shadow-[0_20px_50px_rgba(15,23,42,0.09)]">
+                <Image
+                  src={page.heroImage}
+                  alt={page.featureImageAlt}
+                  fill
+                  sizes="(min-width: 1024px) 48vw, 100vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_34%,rgba(2,6,23,0.54)_100%)]" />
+              </div>
+
+              <div>
+                <Badge
+                  className={cn(
+                    "px-4 py-1.5 uppercase tracking-[0.2em]",
+                    styles.badge,
+                  )}
+                >
+                  {page.story.kicker}
+                </Badge>
+                <h2 className="mt-5 text-3xl font-semibold leading-[1.08] tracking-normal text-white sm:text-4xl [.light_&]:text-slate-950">
+                  {page.story.title}
+                </h2>
+                <p className="mt-5 max-w-xl text-base leading-8 text-slate-400 [.light_&]:text-slate-600">
+                  {page.story.body}
+                </p>
+
+                <div className="mt-7 grid gap-3">
+                  {page.story.points.map((point) => (
+                    <div key={point} className="flex items-start gap-3">
+                      <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-sky-300 [.light_&]:text-blue-600" />
+                      <p className="text-sm leading-7 text-slate-300 [.light_&]:text-slate-700">
+                        {point}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        ) : null}
+
+        {showSharedCompanySections ? (
+          <SectionWrapper className="py-16 lg:py-20">
+            <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
+              <div>
+                <Badge
+                  className={cn(
+                    "px-4 py-1.5 uppercase tracking-[0.2em]",
+                    styles.badge,
+                  )}
+                >
+                  Next Steps
+                </Badge>
+                <h2 className="mt-5 text-3xl font-semibold tracking-normal text-white sm:text-4xl [.light_&]:text-slate-950">
+                  Choose the path that fits your enquiry.
                 </h2>
                 <p className="mt-4 text-base leading-8 text-slate-400 [.light_&]:text-slate-600">
-                  {page.finalCta.description}
+                  Company pages are connected so visitors can move quickly
+                  between support, documents, protection information, and
+                  account exploration.
                 </p>
               </div>
 
-              <Button asChild className="w-full sm:w-auto h-12 rounded-lg px-7 text-sm">
-                <Link href={page.finalCta.href}>
-                  {page.finalCta.label}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+              <ActionLinks accent={page.accent} actions={page.actions} />
             </div>
-          </div>
-        </section>
+          </SectionWrapper>
+        ) : null}
+
+        {!isContactPage ? (
+          <section className="relative mx-auto w-full max-w-7xl px-4 pb-24 pt-4 sm:px-6 lg:px-8">
+            <div className="relative overflow-hidden rounded-lg border border-white/10 bg-[linear-gradient(135deg,rgba(8,15,30,0.98),rgba(4,8,18,0.98))] px-6 py-12 shadow-[0_30px_90px_rgba(2,8,20,0.32)] [.light_&]:border-slate-200 [.light_&]:bg-[linear-gradient(135deg,#ffffff_0%,#f1f7ff_100%)] [.light_&]:shadow-[0_20px_50px_rgba(15,23,42,0.07)] sm:px-10 lg:px-12">
+              <div className="absolute inset-0 opacity-[0.08] [background-image:linear-gradient(rgba(148,163,184,0.34)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.34)_1px,transparent_1px)] [background-size:4rem_4rem] [.light_&]:opacity-[0.12]" />
+              <div className="relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+                <div className="max-w-2xl">
+                  <h2 className="text-3xl font-semibold tracking-normal text-white sm:text-4xl [.light_&]:text-slate-950">
+                    {page.finalCta.title}
+                  </h2>
+                  <p className="mt-4 text-base leading-8 text-slate-400 [.light_&]:text-slate-600">
+                    {page.finalCta.description}
+                  </p>
+                </div>
+
+                <Button asChild className="w-full sm:w-auto h-12 rounded-lg px-7 text-sm">
+                  <Link href={page.finalCta.href}>
+                    {page.finalCta.label}
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </section>
+        ) : null}
       </main>
       <Footer />
     </>

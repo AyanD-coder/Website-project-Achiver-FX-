@@ -94,7 +94,7 @@ export default function IndicesHero({
               variant="outline"
               className="h-12 rounded-full px-7 text-sm text-white hover:scale-[1.03] hover:text-white [.light_&]:text-slate-700 [.light_&]:hover:text-slate-900"
             >
-              <Link href="/tools/analysis-report">Demo Trading</Link>
+              <Link href="/discover/analysis-report">Demo Trading</Link>
             </Button>
           </div>
 

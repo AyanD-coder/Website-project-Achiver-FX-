@@ -14,7 +14,7 @@ export default function MarketOverviewPage() {
         title: "Explore multi-asset market access",
         description:
           "Move across currencies, metals, indices, equities, energies, and digital assets from one connected Achiever trading environment.",
-        imageSrc: "/discover/offerings.png",
+        imageSrc: "/discover/offerings.webp",
         imageAlt:
           "AI generated brokerage offering suite with abstract market visuals.",
         actions: [

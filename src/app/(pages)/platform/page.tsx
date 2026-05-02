@@ -12,7 +12,7 @@ export default function PlatformPage() {
         title: "Get Flexy Markets RTX5",
         description:
           "Begin trading on a multi-asset platform with professional charting, fast execution, and device continuity across desktop, web, and mobile.",
-        imageSrc: "/discover/offerings.png",
+        imageSrc: "/discover/offerings.webp",
         imageAlt:
           "AI generated brokerage platform suite with market dashboards and trading modules.",
         actions: [

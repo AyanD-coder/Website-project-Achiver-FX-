@@ -106,7 +106,7 @@ export default function CryptoPage() {
         eyebrow: "Crypto Markets",
         title: "Discover Crypto Derivatives Trading",
         description: "Trade Crypto derivatives including Bitcoin at real-time prices with unparalleled conditions.",
-        imageSrc: "/discover/trading-tools.png",
+        imageSrc: "/discover/trading-tools.webp",
         imageAlt:
           "AI generated professional trading toolkit with crypto market dashboard modules.",
         stats: [

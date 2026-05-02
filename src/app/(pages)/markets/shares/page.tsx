@@ -12,7 +12,7 @@ export default function SharesPage() {
         title: "Discover share trading",
         description:
           "Trade shares of leading global companies with competitive conditions, transparent pricing, and market access built for active decision-making.",
-        imageSrc: "/company/about.png",
+        imageSrc: "/company/about.webp",
         imageAlt:
           "AI generated fintech workspace with global share market dashboards.",
         actions: [

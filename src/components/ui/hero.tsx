@@ -70,7 +70,7 @@ export default function MarketOverviewHero() {
 
           <div className="mb-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
-              href="/tools/analysis-report"
+              href="/discover/analysis-report"
               className="neumorphic-button hover:shadow-[0_0_20px_rgba(56,189,248,0.28)] relative inline-flex w-full items-center justify-center overflow-hidden rounded-full border border-white/10 bg-gradient-to-b from-white/10 to-white/5 px-8 py-4 text-white shadow-lg transition-all duration-300 hover:border-cyan-400/30 sm:w-auto"
             >
               View Analysis Report

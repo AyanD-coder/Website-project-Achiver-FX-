@@ -12,7 +12,7 @@ export default function MetaTrader5Page() {
         title: "Level up your trading with Achievers MT5",
         description:
           "Use pro-grade charting, algorithmic trading support, and multi-asset access from one dependable trading workspace.",
-        imageSrc: "/discover/trading-tools.png",
+        imageSrc: "/discover/trading-tools.webp",
         imageAlt:
           "AI generated trading toolkit with platform charts and market modules.",
         actions: [

@@ -26,13 +26,8 @@ import {
 } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
+import { BlogGrid } from "@/components/ui/BlogGrid";
 import { Button } from "@/components/ui/Button";
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/Card";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import PageLayout from "@/components/ui/PageLayout";
 import { cn } from "@/lib/utils";
@@ -54,7 +49,7 @@ type DiscoverResource = {
   label: string;
 };
 
-type BlogPost = {
+export type BlogPost = {
   excerpt: string;
   href: string;
   image: string;
@@ -84,6 +79,7 @@ export type DiscoverPageData = {
     href: string;
     label: string;
   };
+  blogSectionTitle?: string;
   blogPosts?: BlogPost[];
   dailyReports?: DailyReport[];
   resources: DiscoverResource[];
@@ -104,10 +100,10 @@ export type DiscoverPageData = {
 const accentClasses = {
   amber: {
     badge:
-      "border-amber-300/25 bg-amber-300/12 text-amber-100 [.light_&]:border-amber-200 [.light_&]:bg-amber-50 [.light_&]:text-amber-700",
+      "border-sky-300/25 bg-sky-300/12 text-sky-100 [.light_&]:border-sky-200 [.light_&]:bg-sky-50 [.light_&]:text-sky-700",
     icon:
-      "border-amber-300/18 bg-amber-300/10 text-amber-100 [.light_&]:border-amber-200 [.light_&]:bg-amber-50 [.light_&]:text-amber-700",
-    ring: "group-hover:border-amber-300/30 [.light_&]:group-hover:border-amber-200",
+      "border-sky-300/18 bg-sky-300/10 text-sky-100 [.light_&]:border-sky-200 [.light_&]:bg-sky-50 [.light_&]:text-sky-700",
+    ring: "group-hover:border-sky-300/30 [.light_&]:group-hover:border-sky-200",
   },
   blue: {
     badge:
@@ -128,6 +124,192 @@ const accentClasses = {
   { badge: string; icon: string; ring: string }
 >;
 
+const topEducationalSources: BlogPost[] = [
+  {
+    title: "Mobile Trading Dubai: Your Guide to Oil Trading",
+    excerpt: "Introduction to Mobile Trading in Dubai...",
+    href: "https://achieverfinancials.com/mobile-trading-dubai-oil-gold-trading-uae/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/11/Mobile-Trading-Dubai-Your-Guide-to-Oil-Trading-UAE-Gold-Trading-Dubai-1024x683.png",
+  },
+  {
+    title: "Trading Education Dubai: Ensuring Trading Safety UAE with Compliance to Trading Regulations UAE",
+    excerpt: "Introduction to trading education, safety, and regulatory awareness in Dubai.",
+    href: "https://achieverfinancials.com/trading-education-dubai-safety-regulations-uae/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/11/Trading-Education-Dubai-Ensuring-Trading-Safety-UAE-with-Compliance-to-Trading-Regulations-UAE-1024x683.png",
+  },
+  {
+    title: "Dubai Broker License: Top Forex App UAE for Copy Trading UAE",
+    excerpt: "A guide to broker licensing, forex apps, and copy trading access in the UAE.",
+    href: "https://achieverfinancials.com/dubai-broker-license-forex-app-uae-copy-trading/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/11/Dubai-Broker-License-Top-Forex-App-UAE-for-Copy-Trading-UAE-1024x683.png",
+  },
+  {
+    title: "Guide to Index Investment Dubai, FX Broker UAE, and Gas Investments Dubai",
+    excerpt: "Explore index investment, FX broker selection, and gas investment opportunities in Dubai.",
+    href: "https://achieverfinancials.com/index-investment-dubai-fx-broker-uae-gas-investments/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/11/Guide-to-Index-Investment-Dubai-FX-Broker-UAE-and-Gas-Investments-Dubai-1024x683.png",
+  },
+  {
+    title: "Online Trading Dubai: How to Invest in Dubai Equities with Online Stock Trading",
+    excerpt: "A practical overview of online trading and Dubai equities for active investors.",
+    href: "https://achieverfinancials.com/online-trading-dubai-invest-in-dubai-equities/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/10/Online-Trading-Dubai_-How-to-Invest-in-Dubai-Equities-with-Online-Stock-Trading-1024x683.jpg",
+  },
+  {
+    title: "Dubai Stock Market & Dubai Commodities: Choosing the Right Forex Broker in Dubai",
+    excerpt: "How traders can compare forex brokers while watching Dubai stocks and commodities.",
+    href: "https://achieverfinancials.com/dubai-stock-market-forex-broker/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/10/Dubai-Stock-Market-Dubai-Commodities_-Choosing-the-Right-Forex-Broker-in-Dubai-1024x683.jpg",
+  },
+  {
+    title: "Online Trading in Dubai with Achiever Financials: Benefits, Risks & Strategy",
+    excerpt: "Understand the benefits, risks, and strategy basics behind online trading in Dubai.",
+    href: "https://achieverfinancials.com/online-trading-dubai-benefits-risks-strategy/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/10/Online-Trading-in-Dubai-with-Achiever-Financials-Benefits-Risks-Strategy-1024x683.jpg",
+  },
+  {
+    title: "Step-by-Step Guide: How to Open a Forex Account in Dubai with Achiever Financials",
+    excerpt: "A step-by-step guide to opening a forex account and preparing for platform access.",
+    href: "https://achieverfinancials.com/complete-guide-forex-trading-dubai/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/10/Step-by-Step-Guide-How-to-Open-a-Forex-Account-in-Dubai-with-Achiever-Financials-1024x683.jpg",
+  },
+  {
+    title: "Achiever Financials Dubai: Complete Guide to Forex Trading",
+    excerpt: "Dubai often comes to mind when...",
+    href: "https://achieverfinancials.com/forex-trading-dubai-guide/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/10/Achiever-Financials-Dubai-Complete-Guide-to-Forex-Trading-Online-Investing-1024x683.jpg",
+  },
+  {
+    title: "Achiever Financials Review: Best Forex Broker in Dubai",
+    excerpt: "The world of forex trading is...",
+    href: "https://achieverfinancials.com/forex-trading-dubai-achiever-financials/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/10/Achiever-Financials-Review-Best-Forex-Broker-in-Dubai-1024x683.jpg",
+  },
+  {
+    title: "Why Achiever Financials is the Most Trusted Forex Broker in Dubai",
+    excerpt: "Why trust, platform access, and service clarity matter for forex traders in Dubai.",
+    href: "https://achieverfinancials.com/secure-trusted-forex-trading-in-dubai/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/10/Forex-Trading-in-Dubai-Made-Secure-with-Achiever-Financials-1024x683.jpg",
+  },
+  {
+    title: "Dubai Stock Market 2025: Online Trading & Equities Investment Opportunities",
+    excerpt: "Review Dubai stock market themes, online trading access, and equity opportunities.",
+    href: "https://achieverfinancials.com/dubai-stock-market-2025-online-trading-equities/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/09/Dubai-Stock-Market-2025-Online-Trading-Equities-Investment-Opportunities-1024x683.png",
+  },
+  {
+    title: "How to Master Currency Trading in Dubai with the Best FX Broker UAE",
+    excerpt: "Learn how broker choice and disciplined education support currency trading in Dubai.",
+    href: "https://achieverfinancials.com/master-currency-trading-dubai-fx-broker-uae/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/09/How-to-Master-Currency-Trading-in-Dubai-with-the-Best-FX-Broker-UAE-1024x683.jpg",
+  },
+  {
+    title: "Discover the Best Forex Education in Dubai with Achiever Financials Academy",
+    excerpt: "Explore structured forex education for beginners and developing traders in Dubai.",
+    href: "https://achieverfinancials.com/forex-education-dubai-achiever-academy/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/09/Discover-the-Best-Forex-Education-in-Dubai-with-Achiever-Financials-Academy-1024x683.jpg",
+  },
+  {
+    title: "Gold Trading Dubai and Silver Investment Tips from Leading Precious Metals Brokers",
+    excerpt: "Review gold and silver trading considerations with a precious metals broker lens.",
+    href: "https://achieverfinancials.com/gold-trading-dubai-silver-investment-tips/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/09/Gold-Trading-Dubai-Silver-Investment-Tips-1024x683.jpg",
+  },
+  {
+    title: "Forex Broker in Dubai: Your Guide to Safe & Profitable Trading",
+    excerpt: "A guide to choosing a broker and approaching forex trading with better safeguards.",
+    href: "https://achieverfinancials.com/forex-trading-dubai-broker/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/09/Achiever-Financials-Dubai-Trusted-Forex-Broker-in-UAE-1024x683.jpg",
+  },
+  {
+    title: "Why Achiever Financials is the Go-To FX Broker",
+    excerpt: "Currency trading has become one of...",
+    href: "https://achieverfinancials.com/why-achiever-financials-top-fx-broker-uae/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/08/Why-Achiever-Financials-is-the-Go-To-FX-Broker-in-the-UAE-1024x683.jpg",
+  },
+  {
+    title: "Forex Dubai Market Trends 2025: What Traders Need to Know",
+    excerpt: "Key forex market trends and trading context for Dubai-focused traders in 2025.",
+    href: "https://achieverfinancials.com/forex-dubai-market-trends-2025/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/08/Forex-Dubai-Market-Trends-2025-What-Traders-Need-to-Know-1024x683.jpg",
+  },
+  {
+    title: "A Beginner's Guide to Currency Trading in Dubai",
+    excerpt: "Currency trading is also known as...",
+    href: "https://achieverfinancials.com/beginner-guide-forex-trading-dubai-achiever-financials/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/08/A-Beginners-Guide-to-Currency-Trading-in-Dubai-with-Achiever-Financials-1024x683.jpg",
+  },
+  {
+    title: "Start Currency Trading in Dubai with the Leading FX Broker",
+    excerpt: "How new traders can begin currency trading with platform access and broker support.",
+    href: "https://achieverfinancials.com/start-forex-trading-dubai/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/08/Start-Currency-Trading-in-Dubai-with-the-Leading-FX-Broker-1024x683.jpg",
+  },
+  {
+    title: "Why Achiever Financials Is a Trusted Forex Broker in Dubai",
+    excerpt: "Why Dubai traders look for trusted brokerage support, platforms, and clear service.",
+    href: "https://achieverfinancials.com/trusted-forex-broker-dubai/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/08/Trusted-Forex-Broker-in-Dubai-Achiever-Financial-1024x683.jpg",
+  },
+];
+
+const weeklyAnalysisPosts: BlogPost[] = [
+  {
+    title: "FOMC April 2026 Meeting Analysis",
+    excerpt: "FOMC April 2026 : Rates Held Steady Amid...",
+    href: "https://achieverfinancials.com/fomc-april-2026-meeting-analysis/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2026/04/Gemini_Generated_Image_svf2icsvf2icsvf2-1024x687.png",
+  },
+  {
+    title: "Strait of Hormuz Crisis: Market Impact",
+    excerpt: "Strait of Hormuz Crisis: US Naval Blockade Begins...",
+    href: "https://achieverfinancials.com/strait-of-hormuz-crisis/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2026/04/Blue-and-White-Modern-Stock-Market-Analysis-Presentation-1200-x-800-px-1024x683.png",
+  },
+  {
+    title: "FOMC March 2026",
+    excerpt: "FOMC Policy Update & Analysis March 2026 By...",
+    href: "https://achieverfinancials.com/fomc-march-2026/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2026/03/Blue-and-White-Modern-Stock-Market-Analysis-Presentation-1200-x-800-px-1024x683.png",
+  },
+  {
+    title: "Silver Market 2025 Closure Analysis",
+    excerpt: "Silver (XAG/USD) 2025 Closure Analysis.! ...",
+    href: "https://achieverfinancials.com/silver-market-2025-closure-analysis/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/12/www.achieverfinanacials.com-1-1024x683.png",
+  },
+  {
+    title: "Gold Market 2025 Closure Analysis",
+    excerpt: "Gold (XAU/USD) 2025 Closure Analysis.! ...",
+    href: "https://achieverfinancials.com/2025-gold-market-closure-analysis-report/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/12/www.achieverfinanacials.com_-1024x683.png",
+  },
+  {
+    title: "Gold Market Weekly Review.!",
+    excerpt: "Gold Market Weekly Review Insights and Outlook ...",
+    href: "https://achieverfinancials.com/gold-market-weekly-review/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/11/Untitled-1200-x-800-px-1024x683.png",
+  },
+  {
+    title: "Silver Analysis for Nov 3-7, 2025",
+    excerpt: "Silver Forecast and Analysis! November 3, 2025 By...",
+    href: "https://achieverfinancials.com/silver-analysis-for-nov-3-7-2025/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/11/Blue-and-White-Modern-Stock-Market-Analysis-Presentation-1200-x-800-px-1024x683.png",
+  },
+  {
+    title: "Gold Analysis for Oct 27-31, 2025",
+    excerpt: "Gold's (XAU/USD) Technical Pullback...! ...",
+    href: "https://achieverfinancials.com/gold-analysis-for-oct-27-2025/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/10/Untitled-1200-x-800-px-1024x683.png",
+  },
+  {
+    title: "Silver Analysis for Oct 13-19, 2025",
+    excerpt: "Silver (XAG/USD) Weekly Market Analysis.! ...",
+    href: "https://achieverfinancials.com/silver-analysis-for-oct-13-19-2025/",
+    image: "https://achieverfinancials.com/wp-content/uploads/2025/10/Blue-and-White-Modern-Stock-Market-Analysis-Presentation-1200-x-800-px-1-1024x683.png",
+  },
+];
+
 export const discoverPages = {
   analysisReport: {
     accent: "blue",
@@ -135,11 +317,11 @@ export const discoverPages = {
     title: "Market analysis for sharper decisions",
     description:
       "Read practical market commentary, technical context, and event-aware research built for traders who want a cleaner view of what matters next.",
-    heroImage: "/discover/analysis-report.png",
+    heroImage: "/discover/analysis-report.webp",
     heroImageAlt:
       "AI generated market analysis desk with abstract charts and research screens.",
     primaryCta: { href: "/markets/account-types", label: "Open Account" },
-    secondaryCta: { href: "/tools/economic-calendar", label: "View Calendar" },
+    secondaryCta: { href: "/discover/economic-calendar", label: "View Calendar" },
     stats: [
       { value: "Daily", label: "Market notes" },
       { value: "Multi-asset", label: "Coverage" },
@@ -228,16 +410,16 @@ export const discoverPages = {
     },
   },
   blogs: {
-    accent: "amber",
+    accent: "blue",
     eyebrow: "Blogs",
     title: "Trading ideas with useful context",
     description:
       "Explore market explainers, platform tips, and trading perspectives written to make daily decision-making less noisy.",
-    heroImage: "/discover/blogs.png",
+    heroImage: "/discover/blogs.webp",
     heroImageAlt:
       "AI generated editorial trading blog workspace with abstract articles and charts.",
-    primaryCta: { href: "/tools/analysis-report", label: "Read Analysis" },
-    secondaryCta: { href: "/tools/education", label: "Start Learning" },
+    primaryCta: { href: "/discover/analysis-report", label: "Read Analysis" },
+    secondaryCta: { href: "/discover/education", label: "Start Learning" },
     stats: [
       { value: "Guides", label: "For every level" },
       { value: "Ideas", label: "Market themes" },
@@ -263,62 +445,8 @@ export const discoverPages = {
           "Timely ideas that help you build a broader market vocabulary.",
       },
     ],
-    blogPosts: [
-      {
-        title: "FOMC April 2026 Meeting Analysis",
-        excerpt: "FOMC April 2026: Rates held steady amid elevated inflation and notable internal dissent.",
-        href: "https://achieverfinancials.com/fomc-april-2026-meeting-analysis/",
-        image: "https://achieverfinancials.com/wp-content/uploads/2026/04/Gemini_Generated_Image_svf2icsvf2icsvf2-1024x687.png",
-      },
-      {
-        title: "Strait of Hormuz Crisis: Market Impact",
-        excerpt: "Strait of Hormuz crisis: US naval blockade begins and global markets price fresh supply risk.",
-        href: "https://achieverfinancials.com/strait-of-hormuz-crisis/",
-        image: "https://achieverfinancials.com/wp-content/uploads/2026/04/Blue-and-White-Modern-Stock-Market-Analysis-Presentation-1200-x-800-px-1024x683.png",
-      },
-      {
-        title: "FOMC March 2026",
-        excerpt: "FOMC policy update and analysis for March 2026, with key rate and market reaction context.",
-        href: "https://achieverfinancials.com/fomc-march-2026/",
-        image: "https://achieverfinancials.com/wp-content/uploads/2026/03/Blue-and-White-Modern-Stock-Market-Analysis-Presentation-1200-x-800-px-1024x683.png",
-      },
-      {
-        title: "Gold Market Weekly Review.!",
-        excerpt: "Gold market weekly review insights and outlook for traders watching XAU/USD momentum.",
-        href: "https://achieverfinancials.com/gold-market-weekly-review/",
-        image: "https://achieverfinancials.com/wp-content/uploads/2025/11/Untitled-1200-x-800-px-1024x683.png",
-      },
-      {
-        title: "Silver Market 2025 Closure Analysis",
-        excerpt: "Silver (XAG/USD) 2025 closure analysis with market structure and technical context.",
-        href: "https://achieverfinancials.com/silver-market-2025-closure-analysis/",
-        image: "https://achieverfinancials.com/wp-content/uploads/2025/12/www.achieverfinanacials.com-1-1024x683.png",
-      },
-      {
-        title: "Gold Market 2025 Closure Analysis",
-        excerpt: "Gold (XAU/USD) 2025 closure analysis with trend, levels, and market behavior.",
-        href: "https://achieverfinancials.com/2025-gold-market-closure-analysis-report/",
-        image: "https://achieverfinancials.com/wp-content/uploads/2025/12/www.achieverfinanacials.com_-1024x683.png",
-      },
-      {
-        title: "Silver Analysis for Nov 3-7, 2025",
-        excerpt: "Silver forecast and analysis for November 3-7, 2025, with key levels and outlook.",
-        href: "https://achieverfinancials.com/silver-analysis-for-nov-3-7-2025/",
-        image: "https://achieverfinancials.com/wp-content/uploads/2025/11/Blue-and-White-Modern-Stock-Market-Analysis-Presentation-1200-x-800-px-1024x683.png",
-      },
-      {
-        title: "Gold Analysis for Oct 27-31, 2025",
-        excerpt: "Gold's XAU/USD technical pullback review with weekly analysis and market setup.",
-        href: "https://achieverfinancials.com/gold-analysis-for-oct-27-2025/",
-        image: "https://achieverfinancials.com/wp-content/uploads/2025/10/Untitled-1200-x-800-px-1024x683.png",
-      },
-      {
-        title: "Silver Analysis for Oct 13-19, 2025",
-        excerpt: "Silver (XAG/USD) weekly market analysis for October 13-19, 2025.",
-        href: "https://achieverfinancials.com/silver-analysis-for-oct-13-19-2025/",
-        image: "https://achieverfinancials.com/wp-content/uploads/2025/10/Blue-and-White-Modern-Stock-Market-Analysis-Presentation-1200-x-800-px-1-1024x683.png",
-      },
-    ],
+    blogSectionTitle: "Our Weekly Analysis",
+    blogPosts: weeklyAnalysisPosts,
     story: {
       kicker: "Editorial Lens",
       title: "Content built for real trading days.",
@@ -350,7 +478,7 @@ export const discoverPages = {
       title: "Turn reading into a stronger trading routine.",
       description:
         "Move from blog ideas to structured education or deeper market reports whenever you are ready.",
-      href: "/tools/education",
+      href: "/discover/education",
       label: "Explore Education",
     },
   },
@@ -360,11 +488,11 @@ export const discoverPages = {
     title: "Track events before they move markets",
     description:
       "Prepare for inflation releases, rate decisions, jobs data, and other macro events that can reshape volatility across assets.",
-    heroImage: "/discover/economic-calendar.png",
+    heroImage: "/discover/economic-calendar.webp",
     heroImageAlt:
       "AI generated economic calendar dashboard with abstract event timelines and world map accents.",
     primaryCta: { href: "/markets/account-types", label: "Open Account" },
-    secondaryCta: { href: "/tools/analysis-report", label: "Read Analysis" },
+    secondaryCta: { href: "/discover/analysis-report", label: "Read Analysis" },
     stats: [
       { value: "Global", label: "Event coverage" },
       { value: "Impact", label: "Priority signals" },
@@ -431,11 +559,11 @@ export const discoverPages = {
     title: "Build trading knowledge one clear lesson at a time",
     description:
       "Learn market foundations, platform workflows, and risk habits through structured education designed for new and developing traders.",
-    heroImage: "/discover/education.png",
+    heroImage: "/discover/education.webp",
     heroImageAlt:
       "AI generated trading education desk with abstract course cards and charting tablet.",
     primaryCta: { href: "/markets/account-types", label: "Start Trading" },
-    secondaryCta: { href: "/tools/blogs", label: "Read Blogs" },
+    secondaryCta: { href: "/discover/blogs", label: "Read Blogs" },
     stats: [
       { value: "Beginner", label: "Friendly tracks" },
       { value: "Risk-first", label: "Planning habits" },
@@ -461,6 +589,7 @@ export const discoverPages = {
           "Build confidence reading trends, support, resistance, and volatility.",
       },
     ],
+    blogPosts: topEducationalSources,
     story: {
       kicker: "Learning Path",
       title: "A calmer way to learn markets.",
@@ -502,7 +631,7 @@ export const discoverPages = {
     title: "A complete trading suite in one place",
     description:
       "Explore account access, platforms, instruments, insights, and support designed to help traders work with more clarity.",
-    heroImage: "/discover/offerings.png",
+    heroImage: "/discover/offerings.webp",
     heroImageAlt:
       "AI generated brokerage offering suite with abstract product cards and market visuals.",
     primaryCta: { href: "/markets/account-types", label: "Compare Accounts" },
@@ -573,11 +702,11 @@ export const discoverPages = {
     title: "Tools built for daily market decisions",
     description:
       "Use analysis resources, calendar context, platform workflows, and structured watch tools to prepare and act with more confidence.",
-    heroImage: "/discover/trading-tools.png",
+    heroImage: "/discover/trading-tools.webp",
     heroImageAlt:
       "AI generated professional trading toolkit with abstract multi-screen dashboard modules.",
-    primaryCta: { href: "/tools/analysis-report", label: "View Analysis" },
-    secondaryCta: { href: "/tools/economic-calendar", label: "Open Calendar" },
+    primaryCta: { href: "/discover/analysis-report", label: "View Analysis" },
+    secondaryCta: { href: "/discover/economic-calendar", label: "Open Calendar" },
     stats: [
       { value: "Signals", label: "Context tools" },
       { value: "Calendar", label: "Event planning" },
@@ -651,37 +780,6 @@ function HeroStat({ label, value }: DiscoverStat) {
   );
 }
 
-function FeatureCard({ accent, description, icon: Icon, title }: DiscoverFeature & {
-  accent: DiscoverPageData["accent"];
-}) {
-  const styles = accentClasses[accent];
-
-  return (
-    <Card
-      variant="glow"
-      className={cn(
-        "group h-full rounded-lg border-white/10 p-0",
-        styles.ring,
-      )}
-    >
-      <CardHeader className="p-6">
-        <div
-          className={cn(
-            "flex h-12 w-12 items-center justify-center rounded-lg border",
-            styles.icon,
-          )}
-        >
-          <Icon className="h-5 w-5" strokeWidth={1.9} />
-        </div>
-        <CardTitle className="mt-5 text-xl tracking-normal">{title}</CardTitle>
-        <CardDescription className="text-sm leading-6">
-          {description}
-        </CardDescription>
-      </CardHeader>
-    </Card>
-  );
-}
-
 function ResourceItem({
   accent,
   description,
@@ -710,50 +808,6 @@ function ResourceItem({
           <p className="mt-2 text-sm leading-6 text-slate-400 [.light_&]:text-slate-600">
             {description}
           </p>
-        </div>
-      </div>
-    </article>
-  );
-}
-
-function BlogPostCard({ excerpt, href, image, title }: BlogPost) {
-  return (
-    <article className="group relative overflow-hidden rounded-lg border border-white/10 bg-[#07111f] shadow-[0_22px_70px_rgba(2,8,20,0.22)] transition-all duration-300 hover:-translate-y-1 hover:border-amber-300/35 hover:shadow-[0_28px_80px_rgba(14,23,38,0.34)] [.light_&]:border-slate-200 [.light_&]:bg-white [.light_&]:shadow-[0_14px_34px_rgba(15,23,42,0.09)] [.light_&]:hover:border-amber-200 [.light_&]:hover:shadow-[0_18px_44px_rgba(15,23,42,0.12)]">
-      <Link
-        href={href}
-        target="_blank"
-        rel="noreferrer"
-        aria-label={`Read ${title}`}
-        className="absolute inset-0 z-20"
-      />
-
-      <div className="relative aspect-[1.52/1] overflow-hidden bg-slate-900">
-        <Image
-          src={image}
-          alt=""
-          fill
-          sizes="(min-width: 1024px) 31vw, (min-width: 768px) 46vw, 100vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0)_42%,rgba(2,6,23,0.6)_100%)]" />
-        <div className="absolute left-4 top-4 rounded-full border border-white/20 bg-black/30 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-md">
-          Analysis
-        </div>
-      </div>
-
-      <div className="relative p-5 sm:p-6">
-        <h3 className="line-clamp-2 min-h-[3.25rem] text-lg font-semibold leading-snug tracking-normal text-white transition-colors group-hover:text-amber-100 [.light_&]:text-slate-950 [.light_&]:group-hover:text-blue-700">
-          {title}
-        </h3>
-        <p className="mt-3 line-clamp-2 text-sm leading-6 text-slate-400 [.light_&]:text-slate-600">
-          {excerpt}
-        </p>
-
-        <div className="mt-6 flex items-center justify-between gap-4">
-          <span className="inline-flex h-11 min-w-[9.5rem] items-center justify-center rounded-full bg-[#063e8a] px-5 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(3,46,108,0.22)] transition-colors group-hover:bg-[#0750ad] [.light_&]:bg-blue-700 [.light_&]:group-hover:bg-blue-800">
-            Read More
-          </span>
-          <ArrowRight className="h-5 w-5 text-amber-200 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100 [.light_&]:text-blue-700" />
         </div>
       </div>
     </article>
@@ -886,68 +940,8 @@ export function DiscoverPage({ page }: { page: DiscoverPageData }) {
           <DailyReportsSection reports={page.dailyReports} styles={styles} />
         ) : (
         <SectionWrapper className="py-16 lg:py-20">
-          <div className="mx-auto max-w-3xl text-center">
-            <Badge
-              className={cn(
-                "px-4 py-1.5 uppercase tracking-[0.2em]",
-                styles.badge,
-              )}
-            >
-              Discover
-            </Badge>
-            <h2 className="mt-5 text-3xl font-semibold tracking-normal text-white sm:text-4xl [.light_&]:text-slate-950">
-              Built around the way traders prepare.
-            </h2>
-            <p className="mt-4 text-base leading-8 text-slate-400 [.light_&]:text-slate-600">
-              Each page keeps its content focused, practical, and connected to
-              the wider Achiever trading experience.
-            </p>
-          </div>
-
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {page.features.map((feature) => (
-              <FeatureCard
-                key={feature.title}
-                accent={page.accent}
-                {...feature}
-              />
-            ))}
-          </div>
-
           {page.blogPosts?.length ? (
-            <div className="mt-14">
-              <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-                <div>
-                  <Badge
-                    className={cn(
-                      "px-4 py-1.5 uppercase tracking-[0.2em]",
-                      styles.badge,
-                    )}
-                  >
-                    Latest Reads
-                  </Badge>
-                  <h2 className="mt-5 max-w-3xl text-3xl font-semibold leading-tight tracking-normal text-white sm:text-4xl [.light_&]:text-slate-950">
-                    Market stories, weekly reviews, and event analysis.
-                  </h2>
-                </div>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="min-h-12 rounded-full border-white/15 bg-white/[0.04] px-6 text-sm text-white hover:bg-white/10 hover:text-white md:shrink-0 [.light_&]:border-slate-200 [.light_&]:bg-white [.light_&]:text-slate-800 [.light_&]:hover:bg-slate-50"
-                >
-                  <Link href="https://achieverfinancials.com/category/trading-analysis/" target="_blank" rel="noreferrer">
-                    View All Posts
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-
-              <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-                {page.blogPosts.map((post) => (
-                  <BlogPostCard key={post.href} {...post} />
-                ))}
-              </div>
-            </div>
+            <BlogGrid posts={page.blogPosts} title={page.blogSectionTitle} />
           ) : null}
         </SectionWrapper>
         )}

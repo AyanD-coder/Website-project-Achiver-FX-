@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, type LucideIcon } from "lucide-react";
+import { ArrowRight, CheckCircle2, Sparkles, type LucideIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/Button";
 
@@ -8,20 +8,35 @@ type PlatformPoint = {
   title: string;
 };
 
+type PlatformAction = {
+  href: string;
+  label: string;
+  variant?: "primary" | "outline";
+};
+
 type PlatformDetailPageProps = {
+  actions?: PlatformAction[];
   eyebrow: string;
   features: PlatformPoint[];
   icon: LucideIcon;
+  kicker?: string;
   summary: string;
   title: string;
+  workflow?: PlatformPoint[];
 };
 
 export default function PlatformDetailPage({
+  actions = [
+    { href: "/markets/account-types", label: "Open Account" },
+    { href: "/platform", label: "Back to Platforms", variant: "outline" },
+  ],
   eyebrow,
   features,
   icon: Icon,
+  kicker,
   summary,
   title,
+  workflow = [],
 }: PlatformDetailPageProps) {
   return (
     <div className="w-full">
@@ -36,6 +51,12 @@ export default function PlatformDetailPage({
               <p className="mt-7 text-xs font-semibold uppercase tracking-[0.24em] text-sky-200 [.light_&]:text-blue-600">
                 {eyebrow}
               </p>
+              {kicker ? (
+                <p className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-xs font-semibold text-slate-200 [.light_&]:border-slate-200 [.light_&]:bg-white [.light_&]:text-slate-700">
+                  <Sparkles className="h-3.5 w-3.5 text-sky-300 [.light_&]:text-blue-600" />
+                  {kicker}
+                </p>
+              ) : null}
               <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-normal text-white sm:text-4xl [.light_&]:text-slate-950">
                 {title}
               </h2>
@@ -43,19 +64,21 @@ export default function PlatformDetailPage({
                 {summary}
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button asChild className="min-h-12 rounded-full px-7 text-sm">
-                  <Link href="/markets/account-types">
-                    Open Account
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="min-h-12 rounded-full px-7 text-sm"
-                >
-                  <Link href="/platform">Back to Platforms</Link>
-                </Button>
+                {actions.map((action) => (
+                  <Button
+                    key={`${action.href}-${action.label}`}
+                    asChild
+                    variant={action.variant === "outline" ? "outline" : "primary"}
+                    className="min-h-12 rounded-full px-7 text-sm"
+                  >
+                    <Link href={action.href}>
+                      {action.label}
+                      {action.variant === "outline" ? null : (
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      )}
+                    </Link>
+                  </Button>
+                ))}
               </div>
             </div>
           </div>
@@ -77,6 +100,26 @@ export default function PlatformDetailPage({
             ))}
           </div>
         </div>
+
+        {workflow.length ? (
+          <div className="mt-10 rounded-2xl border border-white/10 bg-white/[0.035] p-5 shadow-[0_20px_60px_rgba(2,8,20,0.14)] backdrop-blur-sm [.light_&]:border-slate-200 [.light_&]:bg-white [.light_&]:shadow-[0_12px_32px_rgba(15,23,42,0.06)] sm:p-6">
+            <div className="grid gap-4 md:grid-cols-3">
+              {workflow.map((item, index) => (
+                <article key={item.title} className="relative rounded-xl border border-white/10 bg-black/10 p-5 [.light_&]:border-slate-200 [.light_&]:bg-slate-50">
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-200 [.light_&]:text-blue-600">
+                    Step {index + 1}
+                  </p>
+                  <h3 className="mt-3 text-lg font-semibold text-white [.light_&]:text-slate-950">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-400 [.light_&]:text-slate-600">
+                    {item.description}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        ) : null}
       </section>
     </div>
   );

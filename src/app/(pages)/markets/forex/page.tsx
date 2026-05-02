@@ -15,7 +15,7 @@ export default function ForexPage() {
         title: "Forex Trading",
         description:
           "Trade CFDs on a diverse range of the world's most popular currency pairs. The Forex market is the most volatile and liquid financial market, with a daily turnover exceeding $7.5 trillion.",
-        imageSrc: "/discover/analysis-report.png",
+        imageSrc: "/discover/analysis-report.webp",
         imageAlt:
           "AI generated market analysis desk with abstract currency charts and research screens.",
         actions: [

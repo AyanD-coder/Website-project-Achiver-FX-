@@ -197,18 +197,17 @@ const footerColumns = [
   {
     title: "Discover",
     links: [
-      { label: "Trading Academy", href: "/tools/education" },
-      { label: "Market Blogs", href: "/tools/blogs" },
-      { label: "Trading Tools", href: "/tools" },
-      { label: "Economic Calendar", href: "/tools/economic-calendar" },
-      { label: "Special Offerings", href: "/tools/offerings" },
-      { label: "News & Analysis", href: "/tools/analysis-report" },
+      { label: "Trading Academy", href: "/discover/education" },
+      { label: "Market Blogs", href: "/discover/blogs" },
+      { label: "Trading Tools", href: "/discover/trading-tools" },
+      { label: "Economic Calendar", href: "/discover/economic-calendar" },
+      { label: "News & Analysis", href: "/discover/analysis-report" },
     ],
   },
   {
     title: "Company",
     links: [
-      { label: "About Achiever", href: "/company" },
+      { label: "About Achiever", href: "/company/about-us" },
       { label: "Career", href: "/company/career" },
       { label: "Legal Documents", href: "/company/legal-documents" },
       { label: "Customer Protection", href: "/company/customer-protection" },
@@ -216,13 +215,13 @@ const footerColumns = [
     ],
   },
   {
-    title: "Support",
+    title: "Platform",
     links: [
-      { label: "Latest Promotions", href: "/promotions" },
-      { label: "Partnership Program", href: "/partner" },
-      { label: "RTX 5 Platform", href: "/platform" },
       { label: "MetaTrader 5", href: "/platform/metatrader-5" },
-      { label: "Help Center", href: "/company/contact-us" },
+      { label: "RTX 5 Platform", href: "/platform" },
+      { label: "Achiever App", href: "/platform/achiever-app" },
+      { label: "Achiever Connect", href: "/platform/achiever-connect" },
+      { label: "Achiever Web Trader", href: "/platform/achiever-web-trader" },
     ],
   },
 ];

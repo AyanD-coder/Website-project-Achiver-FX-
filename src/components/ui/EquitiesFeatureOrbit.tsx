@@ -347,7 +347,7 @@ export default function EquitiesFeatureOrbit({
               variant="outline"
               className="h-12 rounded-full px-7 text-sm text-white hover:scale-[1.03] hover:text-white [.light_&]:border-slate-300 [.light_&]:bg-white/90 [.light_&]:text-slate-800 [.light_&]:hover:bg-slate-50 [.light_&]:hover:text-slate-900"
             >
-              <Link href="/tools/analysis-report">Demo Trading</Link>
+              <Link href="/discover/analysis-report">Demo Trading</Link>
             </Button>
           </div>
         </motion.div>

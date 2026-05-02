@@ -14,7 +14,7 @@ export default function EquitiesPage() {
         title: "Trade CFD shares across global markets",
         description:
           "Access popular shares across the UK, EU, and US with competitive pricing, professional platforms, and a connected trading workflow.",
-        imageSrc: "/company/about.png",
+        imageSrc: "/company/about.webp",
         imageAlt:
           "AI generated premium fintech operations floor with abstract market dashboards.",
         actions: [
