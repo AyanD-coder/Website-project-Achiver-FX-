@@ -183,7 +183,7 @@ function FeatureIntroSection() {
         <FadeIn>
           <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-white/10 bg-[#06101d] shadow-[0_28px_80px_rgba(2,8,20,0.32)] [.light_&]:border-slate-200 [.light_&]:bg-white [.light_&]:shadow-[0_20px_50px_rgba(15,23,42,0.09)]">
             <Image
-              src="/achiever-web-trader/webtrader-screens-replacement.jfif"
+              src="/achiever-web-trader/webtrader-screens.webp"
               alt="Desktop and tablet trading screens with clean dark charts and market watchlist."
               fill
               loading="lazy"
