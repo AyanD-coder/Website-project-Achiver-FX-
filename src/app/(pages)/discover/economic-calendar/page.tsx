@@ -1,8 +1,13 @@
-import { DiscoverPage, discoverPages } from "@/components/ui/discover-page";
+import EconomicCalendarPageExperience from "@/components/ui/EconomicCalendarPageExperience";
+import PageLayout from "@/components/ui/PageLayout";
 import { createPageMetadata } from "@/lib/page-metadata";
 
 export const metadata = createPageMetadata("/discover/economic-calendar");
 
 export default function EconomicCalendarPage() {
-  return <DiscoverPage page={discoverPages.economicCalendar} />;
+  return (
+    <PageLayout>
+      <EconomicCalendarPageExperience />
+    </PageLayout>
+  );
 }

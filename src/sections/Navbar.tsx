@@ -284,8 +284,8 @@ export default function Navbar({
           <Button variant="outline" className="px-5 py-2.5 text-sm">
             Login
           </Button>
-          <Button variant="primary" className="px-5 py-2.5 text-sm">
-            Register
+          <Button asChild variant="primary" className="px-5 py-2.5 text-sm">
+            <Link href="/register">Register</Link>
           </Button>
         </div>
 
@@ -318,8 +318,10 @@ export default function Navbar({
             <Button variant="outline" size="lg" className="w-full">
               Login
             </Button>
-            <Button variant="primary" size="lg" className="w-full">
-              Register
+            <Button asChild variant="primary" size="lg" className="w-full">
+              <Link href="/register" onClick={() => setMobileMenuOpen(false)}>
+                Register
+              </Link>
             </Button>
           </div>
         </div>

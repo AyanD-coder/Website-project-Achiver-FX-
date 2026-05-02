@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -590,11 +591,12 @@ export function HeroSection({ sliderLabelClassName }: HeroSectionProps = {}) {
 
           <motion.div variants={itemVariants} className="w-full sm:w-auto">
             <JolyButton
+              asChild
               size="lg"
               className="w-full sm:w-auto rounded-full border text-black"
               style={ctaButtonStyle}
             >
-              GET STARTED TODAY
+              <Link href="/register">GET STARTED TODAY</Link>
             </JolyButton>
           </motion.div>
         </motion.div>

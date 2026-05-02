@@ -333,8 +333,8 @@ export default function CustomerProtectionExperience() {
         title="Protected Capital. Confident Trading Ahead."
         description="Trade with a clearer view of account safeguards, risk controls, and support routes built around practical client protection."
         image={{
-          src: "/company/customer-protection-modern/protection-dashboard.webp",
-          alt: "Dark fintech trading dashboard with charts, coin metrics, analytics, and blue security highlights.",
+          src: "/company/customer-protection-modern/customer-protection-hero-optimized.webp",
+          alt: "Secure customer protection visual with account safeguards and support highlights.",
         }}
         pills={securityPills}
       />
@@ -347,8 +347,8 @@ export default function CustomerProtectionExperience() {
 
       <SplitSection
         image={{
-          src: "/company/customer-protection-modern/security-platform.webp",
-          alt: "Professional dark desktop trading platform interface with candlestick charts and secure account controls.",
+          src: "/company/customer-protection-modern/customer-protection-optimized.webp",
+          alt: "Customer protection visual showing secure trading safeguards and support.",
         }}
         content={{
           title: "Trade Smart. Stay Protected!",

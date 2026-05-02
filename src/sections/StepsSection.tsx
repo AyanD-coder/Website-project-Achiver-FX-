@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import {
   BadgeCheck,
@@ -183,11 +184,14 @@ export default function StepsSection() {
 
         <div className="mt-14 flex justify-center lg:mt-20">
           <Button
+            asChild
             variant="primary"
             className="group relative h-14 overflow-hidden rounded-full px-8 text-base shadow-[0_0_34px_rgba(14,165,233,0.22)] hover:scale-105 hover:shadow-[0_0_46px_rgba(56,189,248,0.34)] sm:px-10 sm:text-lg"
           >
-            <span className="pointer-events-none absolute inset-0 -translate-x-full bg-[linear-gradient(115deg,transparent_20%,rgba(255,255,255,0.34)_50%,transparent_80%)] transition-transform duration-700 group-hover:translate-x-full" />
-            <span className="relative">Open Your Account Now</span>
+            <Link href="/register">
+              <span className="pointer-events-none absolute inset-0 -translate-x-full bg-[linear-gradient(115deg,transparent_20%,rgba(255,255,255,0.34)_50%,transparent_80%)] transition-transform duration-700 group-hover:translate-x-full" />
+              <span className="relative">Open Your Account Now</span>
+            </Link>
           </Button>
         </div>
       </div>

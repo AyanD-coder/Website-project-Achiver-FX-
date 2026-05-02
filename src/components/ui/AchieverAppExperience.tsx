@@ -155,7 +155,7 @@ function AppIntroSection() {
               className="relative mx-auto aspect-[4/5] w-full max-w-[28rem] overflow-hidden rounded-2xl border border-white/10 bg-[#06101d] shadow-[0_28px_80px_rgba(2,8,20,0.34)] [.light_&]:border-slate-200 [.light_&]:bg-white [.light_&]:shadow-[0_20px_50px_rgba(15,23,42,0.09)]"
             >
               <Image
-                src="/achiever-app/app-hero-phone.webp"
+                src="/achiever-app/app-hero-phone-full.webp"
                 alt="Modern smartphone with a dark trading app interface and blue candlestick charts."
                 fill
                 loading="lazy"
