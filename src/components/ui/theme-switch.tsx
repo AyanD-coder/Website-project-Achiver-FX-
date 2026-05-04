@@ -10,6 +10,8 @@ interface ThemeSwitchProps {
 type ThemeMode = "light" | "dark";
 
 const themeStorageKey = "theme";
+const themeHistoryStorageKey = "achiever-theme-before-navigation";
+const authReturnRefreshKey = "achiever-auth-return-refresh";
 const themeChangeEvent = "theme-change";
 
 function getCurrentTheme(): ThemeMode {
@@ -34,10 +36,35 @@ function syncRootTheme(nextTheme: ThemeMode) {
   root.dataset.theme = nextTheme;
 }
 
-function applyTheme(nextTheme: ThemeMode) {
-  syncRootTheme(nextTheme);
-  window.localStorage.setItem(themeStorageKey, nextTheme);
-  window.dispatchEvent(new Event(themeChangeEvent));
+function getStoredTheme(): ThemeMode | null {
+  const storedTheme = window.localStorage.getItem(themeStorageKey);
+
+  if (storedTheme === "dark" || storedTheme === "light") {
+    return storedTheme;
+  }
+
+  const historyTheme = window.sessionStorage.getItem(themeHistoryStorageKey);
+
+  if (historyTheme === "dark" || historyTheme === "light") {
+    return historyTheme;
+  }
+
+  return null;
+}
+
+export function persistCurrentTheme() {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  const currentTheme = getCurrentTheme();
+  window.localStorage.setItem(themeStorageKey, currentTheme);
+  window.sessionStorage.setItem(themeHistoryStorageKey, currentTheme);
+}
+
+export function persistCurrentThemeBeforeAuthNavigation() {
+  persistCurrentTheme();
+  window.sessionStorage.setItem(authReturnRefreshKey, "1");
 }
 
 export default function ThemeSwitch({ className = "" }: ThemeSwitchProps) {
@@ -45,11 +72,7 @@ export default function ThemeSwitch({ className = "" }: ThemeSwitchProps) {
 
   React.useEffect(() => {
     const syncTheme = () => {
-      const storedTheme = window.localStorage.getItem(themeStorageKey);
-      const nextTheme =
-        storedTheme === "dark" || storedTheme === "light"
-          ? storedTheme
-          : getCurrentTheme();
+      const nextTheme = getStoredTheme() ?? getCurrentTheme();
 
       setTheme(nextTheme);
       syncRootTheme(nextTheme);
@@ -61,44 +84,49 @@ export default function ThemeSwitch({ className = "" }: ThemeSwitchProps) {
       }
     };
 
+    const handlePageshow = () => {
+      syncTheme();
+      window.requestAnimationFrame(syncTheme);
+    };
+
+    const handlePagehide = () => {
+      persistCurrentTheme();
+    };
+
     syncTheme();
     window.addEventListener("storage", handleStorage);
     window.addEventListener(themeChangeEvent, syncTheme);
+    window.addEventListener("pageshow", handlePageshow);
+    window.addEventListener("pagehide", handlePagehide);
+    window.addEventListener("beforeunload", handlePagehide);
+    window.addEventListener("focus", syncTheme);
+    document.addEventListener("visibilitychange", syncTheme);
 
     return () => {
       window.removeEventListener("storage", handleStorage);
       window.removeEventListener(themeChangeEvent, syncTheme);
+      window.removeEventListener("pageshow", handlePageshow);
+      window.removeEventListener("pagehide", handlePagehide);
+      window.removeEventListener("beforeunload", handlePagehide);
+      window.removeEventListener("focus", syncTheme);
+      document.removeEventListener("visibilitychange", syncTheme);
     };
   }, []);
 
-  const toggleTheme = React.useCallback(() => {
-    const nextTheme = theme === "light" ? "dark" : "light";
-    setTheme(nextTheme);
-    applyTheme(nextTheme);
-  }, [theme]);
-
   return (
     <button
+      data-theme-toggle
       type="button"
       suppressHydrationWarning
       aria-label="Toggle theme"
       aria-pressed={theme === "dark"}
-      onClick={toggleTheme}
       className={`relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border border-white/12 bg-white/[0.06] text-white shadow-[0_10px_24px_rgba(2,8,18,0.22)] backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/[0.1] hover:shadow-[0_14px_30px_rgba(14,165,233,0.18)] [.light_&]:border-blue-100 [.light_&]:bg-white [.light_&]:text-blue-600 [.light_&]:shadow-[0_10px_24px_rgba(15,23,42,0.08)] [.light_&]:hover:bg-blue-50 [.light_&]:hover:shadow-[0_14px_28px_rgba(37,99,235,0.14)] ${className}`}
     >
       <Sun
-        className={`absolute h-5 w-5 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
-          theme === "light"
-            ? "translate-y-0 scale-100 opacity-100"
-            : "translate-y-5 scale-50 opacity-0"
-        }`}
+        className="absolute h-5 w-5 translate-y-5 scale-50 opacity-0 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] [.light_&]:translate-y-0 [.light_&]:scale-100 [.light_&]:opacity-100"
       />
       <Moon
-        className={`absolute h-5 w-5 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
-          theme === "dark"
-            ? "translate-y-0 scale-100 opacity-100"
-            : "translate-y-5 scale-50 opacity-0"
-        }`}
+        className="absolute h-5 w-5 translate-y-5 scale-50 opacity-0 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] [.dark_&]:translate-y-0 [.dark_&]:scale-100 [.dark_&]:opacity-100"
       />
     </button>
   );

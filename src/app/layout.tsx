@@ -85,12 +85,52 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `(() => {
               try {
-                const stored = window.localStorage.getItem("theme");
-                const theme = stored === "dark" ? "dark" : "light";
-                const root = document.documentElement;
-                root.classList.remove("light", "dark");
-                root.classList.add(theme);
-                root.dataset.theme = theme;
+                const themeKey = "theme";
+                const historyThemeKey = "achiever-theme-before-navigation";
+                const authRefreshKey = "achiever-auth-return-refresh";
+                const themeChangeEvent = "theme-change";
+                const getStoredTheme = () => {
+                  const stored = window.localStorage.getItem(themeKey);
+                  if (stored === "dark" || stored === "light") return stored;
+                  const historyTheme = window.sessionStorage.getItem(historyThemeKey);
+                  if (historyTheme === "dark" || historyTheme === "light") return historyTheme;
+                  return "light";
+                };
+                const syncTheme = (theme) => {
+                  const root = document.documentElement;
+                  root.classList.remove("light", "dark");
+                  root.classList.add(theme);
+                  root.dataset.theme = theme;
+                  window.localStorage.setItem(themeKey, theme);
+                  window.sessionStorage.setItem(historyThemeKey, theme);
+                };
+                const toggleTheme = () => {
+                  const currentTheme = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+                  const nextTheme = currentTheme === "light" ? "dark" : "light";
+                  syncTheme(nextTheme);
+                  window.dispatchEvent(new Event(themeChangeEvent));
+                };
+                const theme = getStoredTheme();
+                syncTheme(theme);
+                if (!window.__achieverThemeToggleReady) {
+                  window.__achieverThemeToggleReady = true;
+                  document.addEventListener("click", (event) => {
+                    const target = event.target;
+                    if (!(target instanceof Element)) return;
+                    if (target.closest("[data-theme-toggle]")) {
+                      toggleTheme();
+                    }
+                  });
+                  window.addEventListener("pageshow", (event) => {
+                    if (window.sessionStorage.getItem(authRefreshKey) === "1") {
+                      window.sessionStorage.removeItem(authRefreshKey);
+                      window.location.reload();
+                      return;
+                    }
+                    window.sessionStorage.removeItem(authRefreshKey);
+                    syncTheme(getStoredTheme());
+                  });
+                }
               } catch {}
             })();`,
           }}

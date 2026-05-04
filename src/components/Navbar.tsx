@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 import BrandLogo from "@/components/ui/brand-logo";
@@ -12,12 +13,24 @@ export default function Navbar() {
     <nav className="w-full fixed top-0 z-50 py-4 px-6 md:px-10 bg-[#020617]/85 backdrop-blur-lg border-b border-white/5 transition-all duration-300">
       <div className="flex items-center justify-between max-w-7xl mx-auto">
         {/* Logo Section */}
-        <div className="flex items-center gap-3 cursor-pointer">
+        <Link
+          href="/"
+          className="flex items-center gap-3"
+          aria-label="Go to home page"
+          onClick={(event) => {
+            if (window.location.pathname !== "/") {
+              return;
+            }
+
+            event.preventDefault();
+            window.location.assign("/");
+          }}
+        >
           <BrandLogo
             className="w-[185px] sm:w-[220px]"
             priority
           />
-        </div>
+        </Link>
         
         {/* Desktop Nav Links */}
         <div className="hidden lg:flex items-center gap-8 text-[13px] font-bold text-slate-300">

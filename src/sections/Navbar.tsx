@@ -6,7 +6,9 @@ import { ChevronDown, Menu, X } from "lucide-react";
 
 import { Button } from "@/components/ui/Button";
 import BrandLogo from "@/components/ui/brand-logo";
-import ThemeSwitch from "@/components/ui/theme-switch";
+import ThemeSwitch, {
+  persistCurrentThemeBeforeAuthNavigation,
+} from "@/components/ui/theme-switch";
 
 interface NavLinkItem {
   label: string;
@@ -78,6 +80,9 @@ const navData: NavGroup[] = [
     href: "/promotions",
   }
 ];
+
+const LOGIN_URL = "https://client.achieverfinancials.com/accounts/signIn";
+const REGISTER_URL = "https://client.achieverfinancials.com/accounts/signUp";
 
 function NavItem({
   title,
@@ -253,7 +258,19 @@ export default function Navbar({
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="relative z-50 flex items-center gap-2">
+        <Link
+          href="/"
+          className="relative z-50 flex items-center gap-2"
+          aria-label="Go to home page"
+          onClick={(event) => {
+            if (window.location.pathname !== "/") {
+              return;
+            }
+
+            event.preventDefault();
+            window.location.assign("/");
+          }}
+        >
           <BrandLogo
             className={`w-[148px] min-[380px]:w-[170px] sm:w-[200px] xl:w-[228px] ${
               isScrolled
@@ -281,11 +298,21 @@ export default function Navbar({
 
         <div className="relative z-50 hidden items-center gap-3 xl:flex">
           <ThemeSwitch />
-          <Button variant="outline" className="px-5 py-2.5 text-sm">
-            Login
+          <Button asChild variant="outline" className="px-5 py-2.5 text-sm">
+            <a
+              href={LOGIN_URL}
+              onClick={persistCurrentThemeBeforeAuthNavigation}
+            >
+              Login
+            </a>
           </Button>
           <Button asChild variant="primary" className="px-5 py-2.5 text-sm">
-            <Link href="/register">Register</Link>
+            <a
+              href={REGISTER_URL}
+              onClick={persistCurrentThemeBeforeAuthNavigation}
+            >
+              Register
+            </a>
           </Button>
         </div>
 
@@ -315,13 +342,27 @@ export default function Navbar({
           </nav>
           <div className="mt-auto flex flex-col gap-3 border-t border-white/5 pt-6 [.light_&]:border-gray-200">
             <ThemeSwitch />
-            <Button variant="outline" size="lg" className="w-full">
-              Login
+            <Button asChild variant="outline" size="lg" className="w-full">
+              <a
+                href={LOGIN_URL}
+                onClick={() => {
+                  persistCurrentThemeBeforeAuthNavigation();
+                  setMobileMenuOpen(false);
+                }}
+              >
+                Login
+              </a>
             </Button>
             <Button asChild variant="primary" size="lg" className="w-full">
-              <Link href="/register" onClick={() => setMobileMenuOpen(false)}>
+              <a
+                href={REGISTER_URL}
+                onClick={() => {
+                  persistCurrentThemeBeforeAuthNavigation();
+                  setMobileMenuOpen(false);
+                }}
+              >
                 Register
-              </Link>
+              </a>
             </Button>
           </div>
         </div>
