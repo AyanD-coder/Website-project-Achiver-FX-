@@ -1,12 +1,13 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 import { Button as JolyButton } from "@/components/ui/joly-button";
 import { useMediaQuery } from "@/lib/useMediaQuery";
+
+const REGISTER_URL = "/register";
 
 interface ElasticHueSliderProps {
   value: number;
@@ -615,7 +616,9 @@ export function HeroSection({ sliderLabelClassName }: HeroSectionProps = {}) {
               className="w-full sm:w-auto rounded-full border text-black"
               style={ctaButtonStyle}
             >
-              <Link href="/register">GET STARTED TODAY</Link>
+              <a href={REGISTER_URL}>
+                GET STARTED TODAY
+              </a>
             </JolyButton>
           </div>
         </div>

@@ -1,5 +1,7 @@
 import { Check, ChevronRight } from "lucide-react";
 
+const REGISTER_URL = "/register";
+
 type AccountPlan = {
   name: string;
   minDeposit: string;
@@ -97,14 +99,14 @@ function PricingCard({ plan }: PricingCardProps) {
         ))}
       </ul>
 
-      <button
-        type="button"
+      <a
+        href={REGISTER_URL}
         suppressHydrationWarning
         className="mt-8 inline-flex h-14 w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#0ea5e9] to-[#1565ff] px-6 text-base font-semibold text-white shadow-[0_10px_26px_rgba(21,101,255,0.18)] transition-transform duration-200 hover:-translate-y-px"
       >
         <span className="leading-5">Open Live Account</span>
         <ChevronRight className="h-4 w-4" strokeWidth={2.5} aria-hidden="true" />
-      </button>
+      </a>
     </article>
   );
 }

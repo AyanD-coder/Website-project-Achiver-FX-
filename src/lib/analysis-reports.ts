@@ -81,7 +81,7 @@ const wordpressReportsEnabled =
   process.env.WORDPRESS_ANALYSIS_REPORTS_ENABLED !== "false";
 
 const wordpressRevalidateSeconds = Number(
-  process.env.WORDPRESS_ANALYSIS_REPORTS_REVALIDATE_SECONDS ?? 900,
+  process.env.WORDPRESS_ANALYSIS_REPORTS_REVALIDATE_SECONDS ?? 300,
 );
 
 function isStringArray(value: unknown): value is string[] {

@@ -1,6 +1,8 @@
 import { SectionWrapper } from '@/components/ui/SectionWrapper';
 import { Button } from '@/components/ui/Button';
 
+const REGISTER_URL = "/register";
+
 const steps = [
   { num: "01", title: "Register", desc: "Create your account in under 60 seconds with simple secure KYC." },
   { num: "02", title: "Verify", desc: "Upload your ID and get approved instantly by our automated system." },
@@ -51,8 +53,10 @@ export default function ProcessSteps() {
       </div>
 
       <div className="mt-20 flex justify-center lg:mt-32">
-        <Button variant="primary" className="px-10 py-4 text-lg hidden lg:block">
-          Open Your Account Now
+        <Button asChild variant="primary" className="px-10 py-4 text-lg hidden lg:block">
+          <a href={REGISTER_URL}>
+            Open Your Account Now
+          </a>
         </Button>
       </div>
     </SectionWrapper>
