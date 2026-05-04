@@ -27,6 +27,12 @@ export type AnalysisReport = {
   title: string;
 };
 
+export type DailyAnalysisReport = {
+  date: string;
+  href: string;
+  title: string;
+};
+
 type WordPressRenderedValue = {
   rendered?: string;
 };
@@ -47,6 +53,10 @@ type WordPressPost = {
   };
 };
 
+type WordPressPage = {
+  content?: WordPressRenderedValue;
+};
+
 const reportsDirectory = path.join(
   process.cwd(),
   "src",
@@ -59,6 +69,13 @@ const defaultWordPressReportsUrl =
 
 const wordpressReportsUrl =
   process.env.WORDPRESS_ANALYSIS_REPORTS_URL ?? defaultWordPressReportsUrl;
+
+const defaultWordPressDailyReportsPageUrl =
+  "https://achieverfinancials.com/wp-json/wp/v2/pages/19458";
+
+const wordpressDailyReportsPageUrl =
+  process.env.WORDPRESS_DAILY_ANALYSIS_PAGE_URL ??
+  defaultWordPressDailyReportsPageUrl;
 
 const wordpressReportsEnabled =
   process.env.WORDPRESS_ANALYSIS_REPORTS_ENABLED !== "false";
@@ -101,6 +118,41 @@ function decodeHtmlEntities(value = "") {
     .replace(/&nbsp;/g, " ")
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'");
+}
+
+function extractDailyReportDate(title: string) {
+  const match = title.match(
+    /Technical\s+Analysis\s+Report\s+(\d{1,2}\s+[A-Za-z]+)/i,
+  );
+
+  return match?.[1] ?? "";
+}
+
+function parseDailyReportsFromElementorContent(
+  contentHtml = "",
+): DailyAnalysisReport[] {
+  const reports: DailyAnalysisReport[] = [];
+  const seenHrefs = new Set<string>();
+  const reportPattern =
+    /<h1[^>]*>\s*(Technical\s+Analysis\s+Report[^<]*)\s*<\/h1>[\s\S]*?<a[^>]*href="([^"]+)"[^>]*>[\s\S]*?View\s+Report/gi;
+
+  for (const match of contentHtml.matchAll(reportPattern)) {
+    const title = decodeHtmlEntities(stripHtml(match[1]));
+    const href = decodeHtmlEntities(match[2]);
+
+    if (!title || !href || seenHrefs.has(href)) {
+      continue;
+    }
+
+    seenHrefs.add(href);
+    reports.push({
+      date: extractDailyReportDate(title),
+      href,
+      title,
+    });
+  }
+
+  return reports;
 }
 
 function parseMarket(value: unknown): AnalysisMarket {
@@ -220,6 +272,33 @@ export async function getWordPressAnalysisReports(): Promise<AnalysisReport[]> {
     return posts
       .map(mapWordPressPostToReport)
       .filter((report): report is AnalysisReport => report !== null);
+  } catch {
+    return [];
+  }
+}
+
+export async function getWordPressDailyAnalysisReports(): Promise<
+  DailyAnalysisReport[]
+> {
+  if (!wordpressReportsEnabled) {
+    return [];
+  }
+
+  try {
+    const response = await fetch(wordpressDailyReportsPageUrl, {
+      next: {
+        revalidate: wordpressRevalidateSeconds,
+        tags: ["analysis-reports"],
+      },
+    });
+
+    if (!response.ok) {
+      return [];
+    }
+
+    const page = (await response.json()) as WordPressPage;
+
+    return parseDailyReportsFromElementorContent(page.content?.rendered);
   } catch {
     return [];
   }

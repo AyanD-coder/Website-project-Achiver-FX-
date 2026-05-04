@@ -1,25 +1,21 @@
 import { DiscoverPage, discoverPages } from "@/components/ui/discover-page";
 import {
-  formatReportDate,
-  getAnalysisReportHref,
-  getAnalysisReports,
+  getWordPressDailyAnalysisReports,
 } from "@/lib/analysis-reports";
 import { createPageMetadata } from "@/lib/page-metadata";
 
 export const metadata = createPageMetadata("/discover/analysis-report");
 
 export default async function AnalysisReportPage() {
-  const dailyReports = (await getAnalysisReports()).map((report) => ({
-    date: formatReportDate(report.date),
-    href: getAnalysisReportHref(report),
-    title: report.title,
-  }));
+  const dailyReports = await getWordPressDailyAnalysisReports();
 
   return (
     <DiscoverPage
       page={{
         ...discoverPages.analysisReport,
-        dailyReports,
+        dailyReports: dailyReports.length
+          ? dailyReports
+          : discoverPages.analysisReport.dailyReports,
       }}
     />
   );

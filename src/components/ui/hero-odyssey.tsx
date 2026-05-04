@@ -445,6 +445,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ sliderLabelClassName }: HeroSectionProps = {}) {
   const [lightningHue, setLightningHue] = useState(220);
+  const [shouldRunLightning, setShouldRunLightning] = useState(false);
   const shouldReduceMotion = useReducedMotion();
   const isMobileViewport = useMediaQuery("(max-width: 767px)");
   const dynamicAccent = {
@@ -520,6 +521,35 @@ export function HeroSection({ sliderLabelClassName }: HeroSectionProps = {}) {
     dynamicAccent.start,
   ]);
 
+  useEffect(() => {
+    if (shouldReduceMotion) {
+      return;
+    }
+
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+    let idleId = 0;
+
+    const startLightning = () => {
+      setShouldRunLightning(true);
+    };
+
+    if ("requestIdleCallback" in window) {
+      idleId = window.requestIdleCallback(startLightning, { timeout: 1200 });
+    } else {
+      timeoutId = globalThis.setTimeout(startLightning, 900);
+    }
+
+    return () => {
+      if (idleId && "cancelIdleCallback" in window) {
+        window.cancelIdleCallback(idleId);
+      }
+
+      if (timeoutId) {
+        globalThis.clearTimeout(timeoutId);
+      }
+    };
+  }, [shouldReduceMotion]);
+
   return (
     <div className="relative min-h-[104svh] w-full overflow-visible bg-transparent text-white sm:min-h-[115vh]">
       <div className="relative z-20 mx-auto flex min-h-[96svh] max-w-7xl flex-col px-4 pb-24 pt-28 sm:min-h-screen sm:px-6 sm:pb-32 sm:pt-32 lg:px-8 lg:pb-44 lg:pt-36">
@@ -543,12 +573,7 @@ export function HeroSection({ sliderLabelClassName }: HeroSectionProps = {}) {
           </motion.div>
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="relative z-30 mx-auto flex max-w-4xl flex-1 flex-col items-center justify-center text-center"
-        >
+        <div className="relative z-30 mx-auto flex max-w-4xl flex-1 flex-col items-center justify-center text-center">
           <ElasticHueSlider
             value={lightningHue}
             onChange={setLightningHue}
@@ -556,40 +581,34 @@ export function HeroSection({ sliderLabelClassName }: HeroSectionProps = {}) {
             labelClassName={sliderLabelClassName}
           />
 
-          <motion.button
-            variants={itemVariants}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          <button
             className="group mb-6 flex items-center space-x-2 rounded-full bg-white/5 px-4 py-2 text-sm backdrop-blur-xl transition-all duration-300 hover:bg-white/10"
           >
             <span>Trade with premium access</span>
             <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-          </motion.button>
+          </button>
 
-          <motion.h1
-            variants={itemVariants}
+          <h1
             style={tradeAnywhereStyle}
             className="mb-2 bg-[linear-gradient(90deg,var(--trade-anywhere-dark-start),var(--trade-anywhere-dark-mid),var(--trade-anywhere-dark-end))] bg-clip-text text-[2.6rem] font-extrabold tracking-tight text-transparent drop-shadow-[0_0_28px_rgba(255,255,255,0.08)] min-[380px]:text-5xl md:text-7xl"
           >
             Trade Anywhere,
-          </motion.h1>
+          </h1>
 
-          <motion.h2
-            variants={itemVariants}
+          <h2
             className="bg-gradient-to-r from-brand-glow to-brand-primary bg-clip-text pb-3 text-[2.1rem] font-bold tracking-tight text-transparent min-[380px]:text-4xl md:text-6xl"
           >
             Earn Everywhere
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            variants={itemVariants}
+          <p
             style={heroSubtitleStyle}
             className="mb-9 max-w-2xl text-center text-base font-medium leading-relaxed text-[color:var(--hero-subtitle-dark)] md:text-xl"
           >
             Everything you need to trade Forex in one place.
-          </motion.p>
+          </p>
 
-          <motion.div variants={itemVariants} className="w-full sm:w-auto">
+          <div className="w-full sm:w-auto">
             <JolyButton
               asChild
               size="lg"
@@ -598,16 +617,11 @@ export function HeroSection({ sliderLabelClassName }: HeroSectionProps = {}) {
             >
               <Link href="/register">GET STARTED TODAY</Link>
             </JolyButton>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        className="pointer-events-none absolute inset-x-0 top-0 -bottom-[36rem] z-0 sm:-bottom-[42rem] lg:-bottom-[56rem]"
-      >
+      <div className="pointer-events-none absolute inset-x-0 top-0 -bottom-[36rem] z-0 sm:-bottom-[42rem] lg:-bottom-[56rem]">
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,5,12,0.92)_0%,rgba(4,8,20,0.72)_38%,rgba(4,8,20,0.38)_75%,rgba(4,8,20,0)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(56,189,248,0.12),transparent_24%),radial-gradient(circle_at_50%_55%,rgba(37,99,235,0.10),transparent_28%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(255,0,140,0.16),transparent_34%),radial-gradient(circle_at_50%_75%,rgba(168,85,247,0.12),transparent_30%)]" />
@@ -622,12 +636,12 @@ export function HeroSection({ sliderLabelClassName }: HeroSectionProps = {}) {
             speed={1.6}
             intensity={0.20}
             size={2.15}
-            active={!shouldReduceMotion}
+            active={shouldRunLightning && !shouldReduceMotion}
             maxFPS={isMobileViewport ? 18 : 30}
           />
         </div>
         <div className="absolute inset-x-0 bottom-0 h-80 bg-transparent" />
-      </motion.div>
+      </div>
     </div>
   );
 }

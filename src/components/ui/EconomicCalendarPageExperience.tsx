@@ -1,6 +1,7 @@
 "use client";
 
-import type { InputHTMLAttributes } from "react";
+import type { InputHTMLAttributes, ReactNode } from "react";
+import { useEffect, useState } from "react";
 import { motion, type Variants } from "framer-motion";
 import {
   ArrowRight,
@@ -21,8 +22,6 @@ import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { cn } from "@/lib/utils";
 
 export { SiteButton as Button };
-
-type Signal = "Buy" | "Sell" | "Hold";
 
 interface HeroStat {
   label: string;
@@ -53,38 +52,8 @@ interface EconomicCalendarTableProps {
   description?: string;
 }
 
-interface MarketWidgetCardProps {
-  symbol: string;
-  name: string;
-  price: string;
-  change: string;
-  stance: Signal;
-  summary: string;
-  levels: string[];
-}
-
-interface NewsFeedItemProps {
-  category: string;
-  headline: string;
-  time: string;
-}
-
-interface NewsFeedProps {
-  title: string;
-  items: NewsFeedItemProps[];
-}
-
-interface MarketDataRow {
-  symbol: string;
-  bid: string;
-  ask: string;
-  change: string;
-  signal: Signal;
-}
-
 interface MarketDataTableProps {
   title: string;
-  rows: MarketDataRow[];
 }
 
 interface CTASectionProps {
@@ -117,6 +86,58 @@ const stagger: Variants = {
 const tradingViewIframeAttributes = {
   allowtransparency: "true",
 } as const;
+
+const stockdioAppKey =
+  process.env.NEXT_PUBLIC_STOCKDIO_APP_KEY ?? "C616805A464B45429FC46CBB62D3FC4E";
+
+const tradingViewPageUri = "achieverfinancials.com/economic-cal/";
+
+type TradingViewWidgetKind = "technical-analysis" | "symbol-info";
+type TradingViewTheme = "dark" | "light";
+
+interface TradingViewLiveWidgetProps {
+  height: number;
+  kind: TradingViewWidgetKind;
+  symbol: string;
+  title: string;
+}
+
+interface StockdioNewsWidgetProps {
+  height: number;
+  iframeId: string;
+  symbol: string;
+  title: string;
+}
+
+const symbolInfoWidgets = [
+  { symbol: "NASDAQ:AAPL", title: "Apple Inc." },
+  { symbol: "OANDA:XAUUSD", title: "Gold" },
+  { symbol: "OANDA:XAGUSD", title: "Silver" },
+] satisfies Array<Pick<TradingViewLiveWidgetProps, "symbol" | "title">>;
+
+function useTradingViewTheme(): TradingViewTheme {
+  const [theme, setTheme] = useState<TradingViewTheme>("dark");
+
+  useEffect(() => {
+    const root = document.documentElement;
+
+    const syncTheme = () => {
+      setTheme(root.classList.contains("light") ? "light" : "dark");
+    };
+
+    syncTheme();
+
+    const observer = new MutationObserver(syncTheme);
+    observer.observe(root, {
+      attributeFilter: ["class", "data-theme"],
+      attributes: true,
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  return theme;
+}
 
 const heroStats: HeroStat[] = [
   { value: "24/5", label: "Market coverage" },
@@ -151,73 +172,6 @@ const topStories: NewsItemProps[] = [
   },
 ];
 
-const marketWidgets: MarketWidgetCardProps[] = [
-  {
-    symbol: "AAPL",
-    name: "Apple Inc.",
-    price: "184.32",
-    change: "+0.82%",
-    stance: "Buy",
-    summary: "Momentum remains constructive while price holds above the short-term support band.",
-    levels: ["Support 181.40", "Pivot 183.20", "Resistance 187.80"],
-  },
-  {
-    symbol: "XAUUSD",
-    name: "Gold",
-    price: "2,342.80",
-    change: "+0.38%",
-    stance: "Hold",
-    summary: "Gold is consolidating near resistance as traders wait for dollar and yield confirmation.",
-    levels: ["Support 2,318", "Pivot 2,336", "Resistance 2,366"],
-  },
-  {
-    symbol: "XAGUSD",
-    name: "Silver",
-    price: "28.44",
-    change: "-0.21%",
-    stance: "Sell",
-    summary: "Silver needs a clean reclaim of the intraday pivot to reduce downside pressure.",
-    levels: ["Support 28.05", "Pivot 28.60", "Resistance 29.20"],
-  },
-];
-
-const newsFeedItems: NewsFeedItemProps[] = [
-  {
-    category: "Forex",
-    headline: "Dollar index pauses after stronger labor-market release.",
-    time: "09:42 GMT",
-  },
-  {
-    category: "Metals",
-    headline: "Gold traders monitor real yields after fresh US data.",
-    time: "09:26 GMT",
-  },
-  {
-    category: "Equities",
-    headline: "US futures hold a narrow range before opening bell.",
-    time: "09:11 GMT",
-  },
-  {
-    category: "Macro",
-    headline: "Risk sentiment improves as energy prices stabilize.",
-    time: "08:58 GMT",
-  },
-  {
-    category: "Asia",
-    headline: "Yen pairs remain active after overnight yield moves.",
-    time: "08:35 GMT",
-  },
-];
-
-const marketRows: MarketDataRow[] = [
-  { symbol: "EURUSD", bid: "1.0842", ask: "1.0844", change: "+0.12%", signal: "Buy" },
-  { symbol: "GBPUSD", bid: "1.2648", ask: "1.2651", change: "+0.05%", signal: "Hold" },
-  { symbol: "USDJPY", bid: "154.82", ask: "154.85", change: "-0.18%", signal: "Sell" },
-  { symbol: "XAUUSD", bid: "2342.6", ask: "2343.1", change: "+0.38%", signal: "Buy" },
-  { symbol: "XAGUSD", bid: "28.43", ask: "28.46", change: "-0.21%", signal: "Sell" },
-  { symbol: "AAPL", bid: "184.30", ask: "184.36", change: "+0.82%", signal: "Buy" },
-];
-
 function SectionHeading({
   title,
   description,
@@ -245,24 +199,100 @@ function SectionHeading({
   );
 }
 
-function SignalBadge({ signal }: { signal: Signal }) {
-  const className =
-    signal === "Buy"
-      ? "border-emerald-300/30 bg-emerald-400/10 text-emerald-200 [.light_&]:text-emerald-700"
-      : signal === "Sell"
-        ? "border-red-300/30 bg-red-400/10 text-red-200 [.light_&]:text-red-700"
-        : "border-amber-300/30 bg-amber-400/10 text-amber-200 [.light_&]:text-amber-700";
+function createTradingViewWidgetSrc({
+  height,
+  kind,
+  symbol,
+  theme,
+}: Pick<TradingViewLiveWidgetProps, "height" | "kind" | "symbol"> & {
+  theme: TradingViewTheme;
+}) {
+  const baseUrl = `https://www.tradingview-widget.com/embed-widget/${kind}/`;
+  const search =
+    kind === "symbol-info" ? `?locale=en&symbol=${encodeURIComponent(symbol)}` : "?locale=en";
+  const config =
+    kind === "technical-analysis"
+      ? {
+          interval: "1m",
+          width: "100%",
+          isTransparent: false,
+          height,
+          symbol,
+          showIntervalTabs: true,
+          displayMode: "single",
+          colorTheme: theme,
+          locale: "en",
+          utm_source: "achieverfinancials.com",
+          utm_medium: "widget",
+          utm_campaign: "technical-analysis",
+          "page-uri": tradingViewPageUri,
+        }
+      : {
+          symbol,
+          width: "100%",
+          colorTheme: theme,
+          isTransparent: false,
+          height,
+          locale: "en",
+          utm_source: "achieverfinancials.com",
+          utm_medium: "widget",
+          utm_campaign: "symbol-info",
+          "page-uri": tradingViewPageUri,
+        };
 
-  return (
-    <span
-      className={cn(
-        "inline-flex min-w-16 items-center justify-center rounded-full border px-3 py-1 text-xs font-semibold",
-        className,
-      )}
-    >
-      {signal}
-    </span>
-  );
+  return `${baseUrl}${search}#${encodeURIComponent(JSON.stringify(config))}`;
+}
+
+function createStockdioNewsSrc({
+  iframeId,
+  symbol,
+}: Pick<StockdioNewsWidgetProps, "iframeId" | "symbol">) {
+  const params = new URLSearchParams({
+    "app-key": stockdioAppKey,
+    symbol,
+    palette: "Financial-Light",
+    title: "News",
+    onload: iframeId,
+  });
+
+  return `https://api.stockdio.com/visualization/financial/charts/v1/News?${params.toString()}`;
+}
+
+function createTradingViewEventsSrc(theme: TradingViewTheme) {
+  const config = {
+    colorTheme: theme,
+    isTransparent: true,
+    width: 970,
+    height: 550,
+    importanceFilter: "0,1",
+    countryFilter: "us",
+    utm_source: "achieverfinancials.com",
+    utm_medium: "widget",
+    utm_campaign: "events",
+    "page-uri": tradingViewPageUri,
+  };
+
+  return `https://www.tradingview-widget.com/embed-widget/events/?locale=en#${encodeURIComponent(JSON.stringify(config))}`;
+}
+
+function createTradingViewScreenerSrc(theme: TradingViewTheme) {
+  const config = {
+    width: "100%",
+    height: 400,
+    defaultColumn: "overview",
+    defaultScreen: "general",
+    market: "forex",
+    showToolbar: true,
+    colorTheme: theme,
+    isTransparent: true,
+    enableScrolling: true,
+    utm_source: "achieverfinancials.com",
+    utm_medium: "widget",
+    utm_campaign: "forexscreener",
+    "page-uri": tradingViewPageUri,
+  };
+
+  return `https://www.tradingview-widget.com/embed-widget/screener/?locale=en#${encodeURIComponent(JSON.stringify(config))}`;
 }
 
 function CalendarVisual() {
@@ -460,9 +490,9 @@ export function NewsTicker({ title, items }: NewsTickerProps) {
     <SectionWrapper className="py-12 sm:py-14 lg:py-16">
       <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
         <SectionHeading title={title} />
-        <p className="max-w-xl text-sm leading-7 text-slate-300/72 [.light_&]:text-slate-600">
+        {/* <p className="max-w-xl text-sm leading-7 text-slate-300/72 [.light_&]:text-slate-600">
           Fast market context from major regions, structured for quick scanning before key releases.
-        </p>
+        </p> */}
       </div>
       <motion.div
         variants={stagger}
@@ -484,6 +514,8 @@ export function EconomicCalendarTable({
   subtitle = "MAJOR UPCOMING EVENTS",
   description = "Get to know trending & important events and updates for your upcoming successful trade.",
 }: EconomicCalendarTableProps) {
+  const tradingViewTheme = useTradingViewTheme();
+
   return (
     <SectionWrapper className="hidden py-12 sm:block sm:py-16 lg:py-20">
       <motion.div
@@ -509,9 +541,10 @@ export function EconomicCalendarTable({
               scrolling="no"
               {...tradingViewIframeAttributes}
               frameBorder="0"
-              src='https://www.tradingview-widget.com/embed-widget/events/?locale=en#%7B%22colorTheme%22%3A%22dark%22%2C%22isTransparent%22%3Atrue%2C%22width%22%3A970%2C%22height%22%3A550%2C%22importanceFilter%22%3A%220%2C1%22%2C%22countryFilter%22%3A%22us%22%2C%22utm_source%22%3A%22achieverfinancials.com%22%2C%22utm_medium%22%3A%22widget%22%2C%22utm_campaign%22%3A%22events%22%2C%22page-uri%22%3A%22achieverfinancials.com%2Feconomic-cal%2F%22%7D'
+              src={createTradingViewEventsSrc(tradingViewTheme)}
               title="events TradingView widget"
               lang="en"
+              key={`events-${tradingViewTheme}`}
               className="block h-full w-full select-none"
             />
           </div>
@@ -521,97 +554,90 @@ export function EconomicCalendarTable({
   );
 }
 
-export function MarketWidgetCard({
-  symbol,
-  name,
-  price,
-  change,
-  stance,
-  summary,
-  levels,
-}: MarketWidgetCardProps) {
+function LiveWidgetFrame({
+  children,
+  height,
+  title,
+}: {
+  children: ReactNode;
+  height: number;
+  title: string;
+}) {
   return (
     <motion.article
       variants={fadeUp}
-      className="rounded-xl border border-sky-300/12 bg-[#08192d] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-sky-300/32 [.light_&]:border-sky-100 [.light_&]:bg-white"
+      className="overflow-hidden rounded-xl border border-sky-300/12 bg-[#08192d] p-3 shadow-[0_18px_50px_rgba(2,8,20,0.18)] transition-all duration-300 hover:-translate-y-1 hover:border-sky-300/32 [.light_&]:border-sky-100 [.light_&]:bg-white [.light_&]:shadow-[0_12px_30px_rgba(15,23,42,0.06)]"
     >
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-200/80 [.light_&]:text-blue-700">
-            {symbol}
-          </p>
-          <h3 className="mt-1 text-lg font-semibold text-white [.light_&]:text-slate-950">
-            {name}
-          </h3>
-        </div>
-        <SignalBadge signal={stance} />
+      <div className="mb-3 flex items-center justify-between gap-3 px-1">
+        <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-sky-100 [.light_&]:text-blue-700">
+          {title}
+        </h3>
+        <span className="rounded-full border border-emerald-300/25 bg-emerald-400/10 px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-[0.12em] text-emerald-200 [.light_&]:text-emerald-700">
+          Live
+        </span>
       </div>
-      <div className="mt-5 flex items-end justify-between gap-4">
-        <div>
-          <p className="text-2xl font-semibold text-white [.light_&]:text-slate-950">{price}</p>
-          <p className={cn("mt-1 text-sm font-semibold", change.startsWith("-") ? "text-red-200 [.light_&]:text-red-600" : "text-emerald-200 [.light_&]:text-emerald-700")}>
-            {change}
-          </p>
-        </div>
-        <div className="flex h-16 w-28 items-end gap-1">
-          {[32, 48, 38, 62, 54, 78, 70, 86].map((height, index) => (
-            <span
-              key={`${symbol}-${height}-${index}`}
-              className="flex-1 rounded-t-sm bg-gradient-to-t from-blue-700 to-cyan-300"
-              style={{ height: `${height}%` }}
-            />
-          ))}
-        </div>
-      </div>
-      <p className="mt-4 text-sm leading-6 text-slate-300/78 [.light_&]:text-slate-600">
-        {summary}
-      </p>
-      <div className="mt-4 grid gap-2">
-        {levels.map((level) => (
-          <span
-            key={level}
-            className="rounded-lg border border-white/8 bg-white/[0.03] px-3 py-2 text-xs font-semibold text-slate-300 [.light_&]:border-slate-200 [.light_&]:bg-slate-50 [.light_&]:text-slate-700"
-          >
-            {level}
-          </span>
-        ))}
+      <div
+        className="relative overflow-hidden rounded-lg bg-white ring-1 ring-white/8 [.light_&]:ring-slate-200"
+        style={{ minHeight: height }}
+      >
+        {children}
       </div>
     </motion.article>
   );
 }
 
-export function NewsFeedItem({ category, headline, time }: NewsFeedItemProps) {
+function TradingViewLiveWidget({
+  height,
+  kind,
+  symbol,
+  title,
+}: TradingViewLiveWidgetProps) {
+  const tradingViewTheme = useTradingViewTheme();
+
   return (
-    <article className="group rounded-lg border border-white/8 bg-white/[0.03] p-4 transition-colors duration-200 hover:border-sky-300/24 hover:bg-sky-300/[0.06] [.light_&]:border-slate-200 [.light_&]:bg-slate-50 [.light_&]:hover:bg-sky-50">
-      <div className="flex items-center justify-between gap-3">
-        <span className="rounded-full border border-sky-300/20 bg-sky-300/10 px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-[0.12em] text-sky-100 [.light_&]:text-blue-700">
-          {category}
-        </span>
-        <span className="text-xs text-slate-400 [.light_&]:text-slate-500">{time}</span>
-      </div>
-      <h3 className="mt-3 text-sm font-semibold leading-6 text-white transition-colors group-hover:text-sky-100 [.light_&]:text-slate-950 [.light_&]:group-hover:text-blue-700">
-        {headline}
-      </h3>
-    </article>
+    <LiveWidgetFrame height={height} title={title}>
+      <iframe
+        scrolling="no"
+        {...tradingViewIframeAttributes}
+        frameBorder="0"
+        src={createTradingViewWidgetSrc({
+          height,
+          kind,
+          symbol,
+          theme: tradingViewTheme,
+        })}
+        title={`${title} ${kind} TradingView widget`}
+        lang="en"
+        key={`${kind}-${symbol}-${tradingViewTheme}`}
+        loading="lazy"
+        className="block h-full w-full select-none"
+        style={{ minHeight: height }}
+      />
+    </LiveWidgetFrame>
   );
 }
 
-export function NewsFeed({ title, items }: NewsFeedProps) {
+function StockdioNewsWidget({
+  height,
+  iframeId,
+  symbol,
+  title,
+}: StockdioNewsWidgetProps) {
   return (
-    <motion.aside
-      variants={fadeUp}
-      className="rounded-xl border border-sky-300/12 bg-[#07182b] p-5 [.light_&]:border-sky-100 [.light_&]:bg-white"
-    >
-      <div className="mb-5 flex items-center justify-between">
-        <h3 className="text-lg font-semibold text-white [.light_&]:text-slate-950">{title}</h3>
-        <Newspaper className="h-5 w-5 text-sky-200 [.light_&]:text-blue-700" />
-      </div>
-      <div className="max-h-[31rem] space-y-3 overflow-y-auto pr-1">
-        {items.map((item) => (
-          <NewsFeedItem key={`${item.category}-${item.headline}`} {...item} />
-        ))}
-      </div>
-    </motion.aside>
+    <LiveWidgetFrame height={height} title={title}>
+      <iframe
+        id={iframeId}
+        frameBorder="0"
+        scrolling="no"
+        width="100%"
+        height={height}
+        src={createStockdioNewsSrc({ iframeId, symbol })}
+        title={`${title} Stockdio news widget`}
+        loading="lazy"
+        className="block w-full"
+        style={{ height }}
+      />
+    </LiveWidgetFrame>
   );
 }
 
@@ -627,65 +653,67 @@ function MarketAnalysisSection() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.16 }}
-        className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr]"
+        className="grid gap-6 xl:grid-cols-[1.08fr_0.92fr]"
       >
-        <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-1">
-          {marketWidgets.map((widget) => (
-            <MarketWidgetCard key={widget.symbol} {...widget} />
-          ))}
+        <div className="grid gap-4 lg:grid-cols-[minmax(0,1.05fr)_minmax(20rem,0.95fr)] xl:grid-cols-1">
+          <TradingViewLiveWidget
+            height={450}
+            kind="technical-analysis"
+            symbol="NASDAQ:AAPL"
+            title="AAPL Technical Analysis"
+          />
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+            {symbolInfoWidgets.map((widget) => (
+              <TradingViewLiveWidget
+                key={widget.symbol}
+                height={238}
+                kind="symbol-info"
+                symbol={widget.symbol}
+                title={widget.title}
+              />
+            ))}
+          </div>
         </div>
-        <NewsFeed title="Latest Market News" items={newsFeedItems} />
+        <div className="xl:sticky xl:top-28 xl:self-start">
+          <StockdioNewsWidget
+            height={960}
+            iframeId="achiever-stockdio-news"
+            symbol="AAPL"
+            title="Latest Market News"
+          />
+        </div>
       </motion.div>
     </SectionWrapper>
   );
 }
 
-export function MarketDataTable({ title, rows }: MarketDataTableProps) {
+export function MarketDataTable({ title }: MarketDataTableProps) {
+  const tradingViewTheme = useTradingViewTheme();
+
   return (
     <SectionWrapper className="py-12 sm:py-16 lg:py-20">
       <SectionHeading
         title={title}
-        description="Clean live-style quotes with bid, ask, net change, and signal status for quick comparison."
+        description="Stay connected with seamless live forex screener updates wherever you trade."
       />
       <motion.div
         variants={fadeUp}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="overflow-hidden rounded-xl border border-sky-300/12 bg-[#07182b] [.light_&]:border-sky-100 [.light_&]:bg-white"
+        className="overflow-hidden rounded-xl border border-sky-300/12 bg-[#07182b] shadow-[0_22px_70px_rgba(2,8,20,0.24)] [.light_&]:border-sky-100 [.light_&]:bg-white [.light_&]:shadow-[0_18px_44px_rgba(15,23,42,0.08)]"
       >
-        <div className="max-h-[28rem] overflow-auto">
-          <table className="w-full min-w-[680px] border-collapse text-left">
-            <thead className="sticky top-0 z-10 bg-[#0B1F3A] text-xs uppercase tracking-[0.16em] text-slate-300 [.light_&]:bg-slate-50 [.light_&]:text-slate-600">
-              <tr>
-                {["Symbol", "Bid", "Ask", "Change", "Signal"].map((column) => (
-                  <th key={column} className="border-b border-white/10 px-5 py-4 font-semibold [.light_&]:border-slate-200">
-                    {column}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-white/8 [.light_&]:divide-slate-100">
-              {rows.map((row) => (
-                <tr
-                  key={row.symbol}
-                  className="transition-colors duration-200 hover:bg-sky-300/[0.07] [.light_&]:hover:bg-sky-50"
-                >
-                  <td className="px-5 py-4 text-sm font-semibold text-white [.light_&]:text-slate-950">
-                    {row.symbol}
-                  </td>
-                  <td className="px-5 py-4 text-sm text-slate-300 [.light_&]:text-slate-700">{row.bid}</td>
-                  <td className="px-5 py-4 text-sm text-slate-300 [.light_&]:text-slate-700">{row.ask}</td>
-                  <td className={cn("px-5 py-4 text-sm font-semibold", row.change.startsWith("-") ? "text-red-200 [.light_&]:text-red-600" : "text-emerald-200 [.light_&]:text-emerald-700")}>
-                    {row.change}
-                  </td>
-                  <td className="px-5 py-4 text-sm">
-                    <SignalBadge signal={row.signal} />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="h-[400px] w-full bg-[#07182b]">
+          <iframe
+            {...tradingViewIframeAttributes}
+            frameBorder="0"
+            src={createTradingViewScreenerSrc(tradingViewTheme)}
+            title="forex screener TradingView widget"
+            lang="en"
+            key={`forex-screener-${tradingViewTheme}`}
+            loading="lazy"
+            className="block h-full w-full select-none"
+          />
         </div>
       </motion.div>
     </SectionWrapper>
@@ -816,7 +844,7 @@ export default function EconomicCalendarPageExperience() {
       <NewsTicker title="Top Stories Around the World" items={topStories} />
       <EconomicCalendarTable title="Watch Economic Calendar" />
       <MarketAnalysisSection />
-      <MarketDataTable title="Cutting-Edge Real-Time Data" rows={marketRows} />
+      <MarketDataTable title="Cutting-Edge Real-Time Data" />
       <CTASection
         title="Get in Touch with Us Right Now"
         description="Speak with our team about platform access, market tools, and how Achiever Financials can support your trading workflow."
