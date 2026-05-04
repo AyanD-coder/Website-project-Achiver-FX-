@@ -218,7 +218,7 @@ const footerColumns = [
     title: "Platform",
     links: [
       { label: "MetaTrader 5", href: "/platform/metatrader-5" },
-      { label: "RTX 5 Platform", href: "/platform" },
+      { label: "RTX 5 Platform", href: "/platform/rtx-5" },
       { label: "Achiever App", href: "/platform/achiever-app" },
       { label: "Achiever Connect", href: "/platform/achiever-connect" },
       { label: "Achiever Web Trader", href: "/platform/achiever-web-trader" },

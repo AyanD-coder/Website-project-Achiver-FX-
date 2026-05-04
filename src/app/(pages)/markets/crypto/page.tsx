@@ -209,7 +209,9 @@ export default function CryptoPage() {
                 Ready to discover more instruments?
               </p>
               <div className="mt-4">
-                <Button className="h-11 px-6 text-sm">Register to See More</Button>
+                <Button asChild className="h-11 px-6 text-sm">
+                  <Link href="/register">Register to See More</Link>
+                </Button>
               </div>
             </div>
           </div>
@@ -280,7 +282,9 @@ export default function CryptoPage() {
               </p>
 
               <div className="mt-8">
-                <Button className="h-12 px-7 text-sm">Start Trading Now</Button>
+                <Button asChild className="h-12 px-7 text-sm">
+                  <Link href="/register">Start Trading Now</Link>
+                </Button>
               </div>
             </div>
           </div>

@@ -17,7 +17,7 @@ export default function MetaTrader5Page() {
           "AI generated trading toolkit with platform charts and market modules.",
         actions: [
           { href: "#get-started", label: "Get Started" },
-          { href: "/platform", label: "View RTX5", variant: "outline" },
+          { href: "/platform/rtx-5", label: "View RTX5", variant: "outline" },
         ],
         stats: [
           { value: "MT5", label: "Platform" },

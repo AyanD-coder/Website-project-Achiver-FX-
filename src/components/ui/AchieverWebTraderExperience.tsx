@@ -80,6 +80,8 @@ const userTypes: Item[] = [
   },
 ];
 
+const WEB_TRADER_TERMINAL_URL = "https://webtrading.achieverfx.com/terminal";
+
 function FadeIn({
   children,
   className,
@@ -144,7 +146,11 @@ function WebTraderHeroSection() {
               </p>
               <div className="mt-8">
                 <Button asChild className="min-h-12 rounded-lg px-7 py-3 text-sm">
-                  <Link href="/markets/account-types">
+                  <Link
+                    href={WEB_TRADER_TERMINAL_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     Trade Now
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
@@ -366,7 +372,11 @@ function FinalCtaSection() {
           </div>
 
           <Button asChild className="min-h-12 w-full rounded-lg px-7 py-3 text-sm sm:w-auto">
-            <Link href="/markets/account-types">
+            <Link
+              href={WEB_TRADER_TERMINAL_URL}
+              target="_blank"
+              rel="noreferrer"
+            >
               Trade Now
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>

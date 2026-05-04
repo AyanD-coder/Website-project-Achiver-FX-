@@ -338,9 +338,11 @@ export default function PreciousMetalsPage() {
                 Start trading with Achiever Financials Ltd
               </p>
               <div className="mt-8">
-                <Button className="h-11 px-6 text-sm">
-                  Register Now
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                <Button asChild className="h-11 px-6 text-sm">
+                  <Link href="/register">
+                    Register Now
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
                 </Button>
               </div>
             </div>

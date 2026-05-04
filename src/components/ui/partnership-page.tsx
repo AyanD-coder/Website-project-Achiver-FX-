@@ -326,7 +326,7 @@ export default function PartnershipPage() {
             </p>
             <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
               <Button asChild className="h-12 rounded-full px-8 text-sm">
-                <Link href="/company/contact-us">
+                <Link href="/register">
                   Register Now
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>

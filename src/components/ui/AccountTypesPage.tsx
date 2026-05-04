@@ -7,6 +7,7 @@ import {
   Zap,
   type LucideIcon,
 } from "lucide-react";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/Button";
 import PageLayout from "@/components/ui/PageLayout";
@@ -150,8 +151,8 @@ function AccountTypeCard({
           </dl>
         </div>
 
-        <Button className="mt-auto h-11 w-full text-sm font-semibold">
-          Select Plan
+        <Button asChild className="mt-auto h-11 w-full text-sm font-semibold">
+          <Link href="/register">Select Plan</Link>
         </Button>
       </div>
     </article>
@@ -223,7 +224,9 @@ export default function AccountTypesPage() {
               </p>
 
               <div className="mt-8">
-                <Button className="w-full sm:w-auto h-12 px-7 text-sm">Get Started</Button>
+                <Button asChild className="h-12 w-full px-7 text-sm sm:w-auto">
+                  <Link href="/register">Get Started</Link>
+                </Button>
               </div>
             </div>
           </div>

@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Flame, TrendingUp, Wheat } from "lucide-react";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/Button";
 
@@ -219,11 +220,13 @@ export default function CommoditiesQuickAccessSection() {
 
               <div className="mt-8">
                 <Button
-                  type="button"
+                  asChild
                   className="h-12 rounded-full px-7 text-sm shadow-[0_16px_38px_rgba(56,189,248,0.24)] hover:scale-[1.03] hover:shadow-[0_22px_44px_rgba(56,189,248,0.32)]"
                 >
-                  Register Now
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  <Link href="/register">
+                    Register Now
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
                 </Button>
               </div>
             </motion.div>

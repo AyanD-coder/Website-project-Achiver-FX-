@@ -121,6 +121,13 @@ const tradingFeatures: TradingFeature[] = [
   },
 ];
 
+const RTX5_APP_PLAY_STORE_URL =
+  "https://play.google.com/store/apps/details?id=com.flexymarkets.app";
+const RTX5_APP_APP_STORE_URL =
+  "https://apps.apple.com/in/app/flexy-markets/id6752637785";
+const RTX5_DESKTOP_INSTALLER_URL =
+  "https://pub-6bfb80885c134037bfac61c8f908209a.r2.dev/RTX-Terminal-Setup-1.0.0.exe";
+
 function SectionBadge({
   children,
   className,
@@ -356,14 +363,18 @@ function PlatformCard({ badge, ctaLabel, description, kind, platform, title }: P
           {isMobile ? (
             <div className="grid gap-3">
               <Link
-                href="#"
+                href={RTX5_APP_APP_STORE_URL}
+                target="_blank"
+                rel="noreferrer"
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/10 bg-[#0f172a] px-5 text-sm font-semibold text-white shadow-[0_12px_26px_rgba(15,23,42,0.16)] [.light_&]:border-slate-300 [.light_&]:bg-white [.light_&]:text-slate-900 [.light_&]:shadow-[0_10px_22px_rgba(15,23,42,0.06)]"
               >
                 <AppStoreIcon className="h-5 w-5" />
                 App Store
               </Link>
               <Link
-                href="#"
+                href={RTX5_APP_PLAY_STORE_URL}
+                target="_blank"
+                rel="noreferrer"
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/10 bg-transparent px-5 text-sm font-semibold text-white [.light_&]:border-slate-300 [.light_&]:bg-white [.light_&]:text-slate-900 [.light_&]:shadow-[0_10px_22px_rgba(15,23,42,0.06)]"
               >
                 <PlayIcon className="h-5 w-5" />
@@ -375,7 +386,12 @@ function PlatformCard({ badge, ctaLabel, description, kind, platform, title }: P
               asChild
               className="h-12 w-full rounded-full text-sm"
             >
-              <Link href="#" className="inline-flex items-center justify-center gap-2">
+              <Link
+                href={isDesktop ? RTX5_DESKTOP_INSTALLER_URL : "/register"}
+                target={isDesktop ? "_blank" : undefined}
+                rel={isDesktop ? "noreferrer" : undefined}
+                className="inline-flex items-center justify-center gap-2"
+              >
                 {isDesktop ? <ArrowRight className="h-4 w-4" /> : <Globe2 className="h-4 w-4" />}
                 {ctaLabel}
               </Link>

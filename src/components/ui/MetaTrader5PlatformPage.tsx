@@ -765,7 +765,7 @@ export default function MetaTrader5PlatformPage({
 
             <div className="mt-8">
               <Button asChild className="h-12 rounded-full px-7 text-sm">
-                <Link href="#subscribe-demo" className="inline-flex items-center gap-2">
+                <Link href="/register" className="inline-flex items-center gap-2">
                   Register Now
                   <ArrowRight className="h-4 w-4" />
                 </Link>

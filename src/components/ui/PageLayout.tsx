@@ -82,7 +82,11 @@ function ImageHero({ hero }: { hero: PageHeroProps & { imageSrc: string } }) {
                       "border-white/20 bg-white/10 text-white hover:bg-white/16 hover:text-white",
                   )}
                 >
-                  <Link href={action.href}>
+                  <Link
+                    href={action.href}
+                    target={action.href.startsWith("http") ? "_blank" : undefined}
+                    rel={action.href.startsWith("http") ? "noreferrer" : undefined}
+                  >
                     {action.label}
                     {action.variant === "outline" ? null : (
                       <ArrowRight className="ml-2 h-4 w-4" />

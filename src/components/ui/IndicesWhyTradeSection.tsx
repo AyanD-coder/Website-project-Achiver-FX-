@@ -392,7 +392,7 @@ export default function IndicesWhyTradeSection() {
                     className="relative z-10 h-12 w-full min-w-[13rem] justify-center rounded-full px-7 text-sm text-white shadow-[0_16px_42px_rgba(56,189,248,0.24)] hover:scale-[1.03] hover:shadow-[0_22px_48px_rgba(56,189,248,0.32)] sm:w-fit sm:shrink-0"
                   >
                     <Link
-                      href="/platform"
+                      href="/register"
                       aria-label="Start trading now on the Achiever platform"
                     >
                       <span>Start Trading Now</span>

@@ -4,6 +4,8 @@ import { createPageMetadata } from "@/lib/page-metadata";
 
 export const metadata = createPageMetadata("/platform/achiever-web-trader");
 
+const WEB_TRADER_TERMINAL_URL = "https://webtrading.achieverfx.com/terminal";
+
 export default function AchieverWebTraderPage() {
   return (
     <PageLayout
@@ -15,7 +17,7 @@ export default function AchieverWebTraderPage() {
         imageSrc: "/discover/analysis-report.webp",
         imageAlt: "Browser trading platform with live charts and market panels.",
         actions: [
-          { href: "/markets/account-types", label: "Start Trading" },
+          { href: WEB_TRADER_TERMINAL_URL, label: "Start Trading" },
           { href: "/platform/metatrader-5", label: "View MT5", variant: "outline" },
         ],
         stats: [

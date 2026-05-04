@@ -246,7 +246,9 @@ export default function EnergiesPage() {
           <div className="relative mt-8 text-center">
             <p className="text-sm text-text-secondary [.light_&]:text-slate-500">Ready to discover more instruments?</p>
             <div className="mt-4">
-              <Button className="h-11 px-6 text-sm">Register To See More</Button>
+              <Button asChild className="h-11 px-6 text-sm">
+                <Link href="/register">Register To See More</Link>
+              </Button>
             </div>
           </div>
         </div>
@@ -305,7 +307,9 @@ export default function EnergiesPage() {
               Join a truly global and regulated broker to explore your trading potential. Open an account within seconds.
             </p>
             <div className="mt-8">
-              <Button className="h-12 px-7 text-sm">Start Trading Now</Button>
+              <Button asChild className="h-12 px-7 text-sm">
+                <Link href="/register">Start Trading Now</Link>
+              </Button>
             </div>
           </div>
         </div>

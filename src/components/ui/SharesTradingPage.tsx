@@ -420,8 +420,10 @@ export default function SharesTradingPage({
                 Ready to discover more instruments?
               </p>
               <div className="mt-4">
-                <Button className="h-11 rounded-full px-6 text-sm">
-                  Register to See More
+                <Button asChild className="h-11 rounded-full px-6 text-sm">
+                  <Link href="/register">
+                    Register to See More
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -500,8 +502,10 @@ export default function SharesTradingPage({
             </p>
 
             <div className="mt-8">
-              <Button className="h-12 rounded-full px-7 text-sm">
-                Start Trading Now
+              <Button asChild className="h-12 rounded-full px-7 text-sm">
+                <Link href="/register">
+                  Start Trading Now
+                </Link>
               </Button>
             </div>
           </div>

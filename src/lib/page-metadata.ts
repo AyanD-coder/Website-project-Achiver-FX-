@@ -34,6 +34,7 @@ export type RoutePath =
   | "/platform/achiever-connect"
   | "/platform/achiever-web-trader"
   | "/platform/metatrader-5"
+  | "/platform/rtx-5"
   | "/promotions"
   | "/discover/analysis-report"
   | "/discover/blogs"
@@ -238,6 +239,13 @@ export const pageMetadata = {
       "Trade with Achievers MT5 using advanced charting, algorithmic trading support, and multi-asset platform access.",
     image: "/discover/trading-tools.webp",
     keywords: ["MetaTrader 5", "MT5 trading platform", ...sharedKeywords],
+  },
+  "/platform/rtx-5": {
+    title: "RTX5 Trading Platform",
+    description:
+      "Explore the RTX5 trading platform with desktop, web, and mobile access for multi-asset trading workflows.",
+    image: "/discover/offerings.webp",
+    keywords: ["RTX5 platform", "trading platform", ...sharedKeywords],
   },
   "/promotions": {
     title: "Promotions",

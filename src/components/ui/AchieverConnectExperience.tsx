@@ -75,6 +75,12 @@ const whyCards: ConnectCard[] = [
   },
 ];
 
+const ACHIEVER_APP_APP_STORE_URL =
+  "https://apps.apple.com/in/app/achiever-fx/id6756777513";
+const ACHIEVER_APP_PLAY_STORE_URL =
+  "https://play.google.com/store/apps/details?id=com.achiever.fx&pcampaignid=web_share";
+const ACHIEVER_CONNECT_URL = "https://social.achieverfx.com/";
+
 function FadeIn({
   children,
   className,
@@ -103,7 +109,11 @@ function StoreButtons() {
   return (
     <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
       <Button asChild className="min-h-12 w-full rounded-lg px-6 py-3 text-sm sm:w-auto">
-        <Link href="/markets/account-types">
+        <Link
+          href={ACHIEVER_APP_APP_STORE_URL}
+          target="_blank"
+          rel="noreferrer"
+        >
           <Download className="mr-2 h-4 w-4" />
           App Store
         </Link>
@@ -113,7 +123,11 @@ function StoreButtons() {
         variant="outline"
         className="min-h-12 w-full rounded-lg border-white/20 bg-white/10 px-6 py-3 text-sm text-white hover:bg-white/16 hover:text-white sm:w-auto [.light_&]:border-slate-200 [.light_&]:bg-white [.light_&]:text-slate-800"
       >
-        <Link href="/markets/account-types">
+        <Link
+          href={ACHIEVER_APP_PLAY_STORE_URL}
+          target="_blank"
+          rel="noreferrer"
+        >
           <Download className="mr-2 h-4 w-4" />
           Google Play
         </Link>
@@ -160,7 +174,11 @@ function ConnectHeroSection() {
               </p>
               <div className="mt-8">
                 <Button asChild className="min-h-12 rounded-lg px-6 py-3 text-sm">
-                  <Link href="/markets/account-types">
+                  <Link
+                    href={ACHIEVER_CONNECT_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     Trade on Achiever Connect
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
@@ -272,7 +290,11 @@ function JourneySection() {
 
       <div className="mt-10 flex justify-center">
         <Button asChild className="min-h-12 rounded-lg px-7 py-3 text-sm">
-          <Link href="/markets/account-types">
+          <Link
+            href={ACHIEVER_CONNECT_URL}
+            target="_blank"
+            rel="noreferrer"
+          >
             Use Achiever Connect
             <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
@@ -365,7 +387,11 @@ function FinalCtaSection() {
           </div>
 
           <Button asChild className="min-h-12 w-full rounded-lg px-7 py-3 text-sm sm:w-auto">
-            <Link href="/markets/account-types">
+            <Link
+              href={ACHIEVER_CONNECT_URL}
+              target="_blank"
+              rel="noreferrer"
+            >
               Trade Now
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
