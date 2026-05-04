@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Gem, ShieldCheck, Wallet, type LucideIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/Button";
@@ -165,22 +166,6 @@ function Sparkline({ points, id }: { points: number[]; id: string }) {
   );
 }
 
-function InterlockingMetalsArt() {
-  return (
-    <div className="relative mx-auto h-[300px] w-full max-w-[360px]">
-      <div className="absolute inset-0 rounded-[2.2rem] bg-[linear-gradient(180deg,rgba(7,16,30,0.9),rgba(5,12,24,0.98))] shadow-[0_28px_70px_rgba(2,8,20,0.42)]" />
-      <div className="absolute left-[-0.5rem] top-8 h-44 w-44 -rotate-[18deg] rounded-[38%] bg-[conic-gradient(from_120deg,#eef2f7_0deg,#7c8798_90deg,#f8fafc_150deg,#0f172a_250deg,#d8dee8_320deg,#eef2f7_360deg)] shadow-[0_18px_34px_rgba(226,232,240,0.18)]">
-        <div className="absolute inset-[16px] rounded-[36%] bg-[#06101d]" />
-      </div>
-      <div className="absolute bottom-4 left-16 h-40 w-40 rotate-[18deg] rounded-[40%] bg-[conic-gradient(from_100deg,#fff4bf_0deg,#f6bf54_100deg,#8c5413_190deg,#ffe29b_280deg,#f3b63e_360deg)] shadow-[0_24px_42px_rgba(245,158,11,0.22)]">
-        <div className="absolute inset-[15px] rounded-[38%] bg-[#071120]" />
-      </div>
-      <div className="absolute right-6 top-5 h-36 w-24 rounded-[999px] bg-[linear-gradient(180deg,#fef3c7_0%,#d4a24a_38%,#6b4d1f_58%,#fef3c7_100%)] opacity-80 blur-[1px]" />
-      <div className="absolute left-20 top-24 h-28 w-28 rounded-full bg-cyan-400/10 blur-3xl" />
-    </div>
-  );
-}
-
 export default function PreciousMetalsPage() {
   return (
     <PageLayout
@@ -204,18 +189,23 @@ export default function PreciousMetalsPage() {
       }}
     >
         <section className="relative mx-auto w-full max-w-7xl px-4 pb-12 pt-4">
-          <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
-            <div className="relative overflow-hidden rounded-[34px] border border-cyan-300/10 bg-[linear-gradient(180deg,rgba(8,16,30,0.88)_0%,rgba(5,11,24,0.98)_100%)] p-4 shadow-[0_30px_90px_rgba(2,8,20,0.38)] [.light_&]:border-blue-100 [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.92)_0%,rgba(248,250,252,0.98)_100%)] [.light_&]:ring-1 [.light_&]:ring-blue-100/70 [.light_&]:shadow-[0_18px_50px_rgba(15,23,42,0.06)]">
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(56,189,248,0.08),transparent_36%),radial-gradient(circle_at_bottom,rgba(245,158,11,0.12),transparent_30%)] [.light_&]:bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.08),transparent_34%),radial-gradient(circle_at_bottom,rgba(245,158,11,0.08),transparent_28%)]" />
-              <div className="relative flex min-h-[300px] items-center justify-center">
-                <InterlockingMetalsArt />
-              </div>
+          <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-stretch">
+            <div className="relative min-h-[360px] overflow-hidden rounded-[34px] border border-cyan-300/10 bg-[#050b16] shadow-[0_30px_90px_rgba(2,8,20,0.38)] sm:min-h-[460px] lg:h-full [.light_&]:border-blue-100 [.light_&]:ring-1 [.light_&]:ring-blue-100/70 [.light_&]:shadow-[0_18px_50px_rgba(15,23,42,0.06)]">
+              <Image
+                src="/markets/precious-metal.png"
+                alt="Gold, silver, and platinum bars with market chart data."
+                fill
+                sizes="(min-width: 1024px) 38vw, 100vw"
+                className="object-cover object-center"
+                priority={false}
+              />
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(2,8,20,0.24),rgba(2,8,20,0.02)),linear-gradient(180deg,rgba(2,8,20,0.08),rgba(2,8,20,0.22))]" />
             </div>
 
             <div className="relative overflow-hidden rounded-[34px] border border-cyan-300/10 bg-[linear-gradient(180deg,rgba(8,16,30,0.88)_0%,rgba(5,11,24,0.98)_100%)] px-6 py-8 shadow-[0_30px_90px_rgba(2,8,20,0.38)] sm:px-8 sm:py-10 [.light_&]:border-blue-100 [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.92)_0%,rgba(248,250,252,0.98)_100%)] [.light_&]:ring-1 [.light_&]:ring-blue-100/70 [.light_&]:shadow-[0_18px_50px_rgba(15,23,42,0.06)]">
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.12),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(245,158,11,0.08),transparent_34%)] [.light_&]:bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.08),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(245,158,11,0.08),transparent_30%)]" />
-              <div className="relative">
-                <span className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-sky-300 [.light_&]:text-blue-700">
+              <div className="relative flex flex-col items-start">
+                <span className="inline-flex items-center rounded-full border border-brand-glow/20 bg-brand-glow/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.3em] text-brand-glow [.light_&]:border-brand-primary/20 [.light_&]:bg-brand-primary/5 [.light_&]:text-brand-primary">
                   Get To Know
                 </span>
                 <h2 className="mt-4 bg-gradient-to-b from-white via-cyan-100 to-slate-200 bg-clip-text text-4xl font-bold tracking-tighter text-transparent sm:text-5xl [.light_&]:from-[#111827] [.light_&]:via-[#2563EB] [.light_&]:to-[#0EA5E9]">

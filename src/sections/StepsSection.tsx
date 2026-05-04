@@ -94,7 +94,7 @@ function StepCard({
         <div className="pointer-events-none absolute inset-0 rounded-[1.9rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.08),transparent_38%,rgba(255,255,255,0.02)_100%)] [.light_&]:bg-[linear-gradient(180deg,rgba(37,99,235,0.05),transparent_38%,rgba(14,165,233,0.02)_100%)]" />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px rounded-full bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent opacity-80 [.light_&]:via-blue-200/90" />
         <div className="pointer-events-none absolute -right-10 top-10 h-24 w-24 rounded-full bg-cyan-400/10 blur-3xl transition-opacity duration-300 group-hover:opacity-100 [.light_&]:bg-sky-400/12" />
-        <div className="pointer-events-none absolute left-10 top-8 text-7xl font-black tracking-[-0.08em] text-white/[0.05] sm:text-8xl [.light_&]:text-blue-100/80 [.light_&]:drop-shadow-[0_0_20px_rgba(191,219,254,0.28)]">
+        <div className="pointer-events-none absolute right-6 top-6 text-7xl font-black tracking-[-0.08em] text-white/[0.05] sm:right-8 sm:text-8xl lg:bottom-5 lg:right-8 lg:top-auto [.light_&]:text-blue-100/80 [.light_&]:drop-shadow-[0_0_20px_rgba(191,219,254,0.28)]">
           {step.num}
         </div>
 

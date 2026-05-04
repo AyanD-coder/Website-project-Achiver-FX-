@@ -202,7 +202,7 @@ export default function FAQSection() {
 
       <div className="relative z-10 mx-auto max-w-6xl">
         <div className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center rounded-full border border-brand-glow/20 bg-brand-glow/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.3em] text-brand-glow [.light_&]:border-brand-primary/20 [.light_&]:bg-brand-primary/5 [.light_&]:text-brand-primary">
+          <span className="mx-auto flex w-fit items-center rounded-full border border-brand-glow/20 bg-brand-glow/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.3em] text-brand-glow [.light_&]:border-brand-primary/20 [.light_&]:bg-brand-primary/5 [.light_&]:text-brand-primary">
             GET TO KNOW
           </span>
           <h2 className="mt-6 inline-block px-2 pb-1 bg-gradient-to-b from-white via-brand-glow to-brand-primary bg-clip-text text-4xl font-semibold leading-[1.15] tracking-[-0.04em] text-transparent sm:px-3 sm:text-5xl sm:leading-[1.12] [.light_&]:from-[#111827] [.light_&]:via-brand-primary [.light_&]:to-brand-secondary">
