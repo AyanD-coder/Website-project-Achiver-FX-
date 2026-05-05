@@ -29,6 +29,7 @@ type StartStep = {
 };
 
 type DownloadBadge = {
+  href: string;
   label: string;
   prefix: string;
   store: "windows" | "apple" | "app-store" | "app-gallery" | "google-play" | "linux";
@@ -83,12 +84,42 @@ const startSteps: StartStep[] = [
 ];
 
 const downloadBadges: DownloadBadge[] = [
-  { label: "Windows", prefix: "Download for", store: "windows" },
-  { label: "Mac OS", prefix: "Download for", store: "apple" },
-  { label: "App Store", prefix: "Download on the", store: "app-store" },
-  { label: "AppGallery", prefix: "Explore it on", store: "app-gallery" },
-  { label: "Google Play", prefix: "Get it on", store: "google-play" },
-  { label: "Linux", prefix: "Download for", store: "linux" },
+  {
+    href: "https://download.terminal.free/cdn/web/achiever.global.markets/mt5/achieverglobalmarkets5setup.exe",
+    label: "Windows",
+    prefix: "Download for",
+    store: "windows",
+  },
+  {
+    href: "https://download.mql5.com/cdn/web/metaquotes.ltd/mt5/MetaTrader5.pkg.zip?utm_source=support.metaquotes.net&utm_campaign=download.mt5.macos",
+    label: "Mac OS",
+    prefix: "Download for",
+    store: "apple",
+  },
+  {
+    href: "https://download.terminal.free/cdn/mobile/mt5/ios?server=AchieverGlobalMarkets-Server",
+    label: "App Store",
+    prefix: "Download on the",
+    store: "app-store",
+  },
+  {
+    href: "https://appgallery.huawei.com/#/app/C102015329",
+    label: "AppGallery",
+    prefix: "Explore it on",
+    store: "app-gallery",
+  },
+  {
+    href: "https://download.terminal.free/cdn/mobile/mt5/android?server=AchieverGlobalMarkets-Server",
+    label: "Google Play",
+    prefix: "Get it on",
+    store: "google-play",
+  },
+  {
+    href: "https://www.mql5.com/en/articles/625?utm_source=www.metaquotes.net&utm_campaign=download.mt5.linux",
+    label: "Linux",
+    prefix: "Download for",
+    store: "linux",
+  },
 ];
 
 const phoneCandles = [
@@ -460,14 +491,14 @@ function DownloadBadgeIcon({ store }: Pick<DownloadBadge, "store">) {
   if (store === "apple" || store === "app-store") {
     return (
       <svg
-        viewBox="0 0 28 28"
+        viewBox="0 0 24 24"
         className="h-7 w-7"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
       >
-        <path d="M18 6.1c-.9 1.1-1.5 2.6-1.4 4.1c1.4.1 2.8-.8 3.7-1.9c.9-1.1 1.5-2.5 1.3-4c-1.3.1-2.8.8-3.6 1.8Z" />
-        <path d="M21.6 14.3c0-2.4 2-3.6 2.1-3.7c-1.1-1.7-2.9-1.9-3.5-1.9c-1.5-.2-2.9.9-3.7.9s-1.9-.9-3.1-.9c-2 0-3.9 1.2-5 3c-2.1 3.8-.5 9.3 1.6 12.4c1 1.5 2.3 3.2 3.9 3.1c1.5-.1 2.1-1 4-1s2.4 1 4 1c1.7 0 2.7-1.5 3.7-3c1.2-1.8 1.8-3.6 1.8-3.7c-.1 0-3.8-1.5-3.8-5.2Z" />
+        <path d="M16.46 1.99c.14 1.25-.36 2.47-1.11 3.34c-.8.94-2.12 1.67-3.37 1.58c-.17-1.2.45-2.48 1.16-3.28c.82-.92 2.24-1.61 3.32-1.64Z" />
+        <path d="M20.12 17.68c-.56 1.29-.83 1.87-1.55 3.01c-1 1.54-2.4 3.46-4.14 3.48c-.78.01-1.31-.21-1.87-.44c-.59-.24-1.21-.5-2.16-.5c-1.01 0-1.66.27-2.28.52c-.53.22-1.03.43-1.74.46c-1.68.06-2.96-1.67-3.96-3.2c-2.78-4.26-3.07-9.25-1.35-11.9c1.22-1.88 3.16-2.98 4.98-2.98c.9 0 1.6.28 2.22.53c.56.22 1.06.42 1.65.42c.52 0 .98-.19 1.54-.42c.65-.27 1.44-.6 2.56-.57c.84.02 3.2.34 4.72 2.56c-.12.07-2.82 1.65-2.79 4.85c.04 3.84 3.38 5.1 3.42 5.12c-.02.08-.12.46-.25 1.04Z" />
       </svg>
     );
   }
@@ -537,9 +568,15 @@ function DownloadBadgeIcon({ store }: Pick<DownloadBadge, "store">) {
   );
 }
 
-function DownloadBadge({ label, prefix, store }: DownloadBadge) {
+function DownloadBadge({ href, label, prefix, store }: DownloadBadge) {
   return (
-    <div className="group flex min-h-[4rem] items-center gap-3 rounded-[1rem] border border-white/10 bg-[#06090f] px-3.5 py-2.5 shadow-[0_14px_34px_rgba(2,8,20,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-300/24 hover:shadow-[0_18px_40px_rgba(14,165,233,0.14)]">
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${prefix} ${label}`}
+      className="group flex min-h-[4rem] items-center gap-3 rounded-[1rem] border border-white/10 bg-[#06090f] px-3.5 py-2.5 shadow-[0_14px_34px_rgba(2,8,20,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-300/24 hover:shadow-[0_18px_40px_rgba(14,165,233,0.14)] focus:outline-none focus:ring-2 focus:ring-cyan-300/60 focus:ring-offset-2 focus:ring-offset-[#050914]"
+    >
       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/[0.04] text-white">
         <DownloadBadgeIcon store={store} />
       </div>
@@ -551,7 +588,7 @@ function DownloadBadge({ label, prefix, store }: DownloadBadge) {
           {label}
         </p>
       </div>
-    </div>
+    </a>
   );
 }
 
@@ -666,33 +703,33 @@ export default function MetaTrader5PlatformPage({
             <div className="pointer-events-none absolute left-10 top-10 h-40 w-40 rounded-full bg-cyan-400/14 blur-3xl [.light_&]:bg-sky-300/22" />
             <div className="pointer-events-none absolute right-12 top-20 h-32 w-32 rounded-full bg-blue-500/12 blur-3xl [.light_&]:bg-blue-300/18" />
 
-            <div className="relative h-[32rem] sm:h-[36rem] lg:h-[38rem] w-full">
-              <div className="absolute left-4 top-8 rounded-[1.6rem] border border-sky-200 bg-white px-5 py-4 shadow-[0_18px_40px_rgba(37,99,235,0.12)] [.dark_&]:border-cyan-300/16 [.dark_&]:bg-[linear-gradient(180deg,rgba(9,17,32,0.96),rgba(4,8,18,0.98))] [.dark_&]:shadow-[0_20px_50px_rgba(2,8,20,0.22)]">
-                <p className="text-sm font-semibold text-sky-700 [.dark_&]:text-cyan-100">
+            <div className="relative h-[27rem] w-full overflow-visible sm:h-[37rem] lg:h-[39rem]">
+              <div className="absolute left-1 top-2 z-20 rounded-[1.1rem] border border-sky-200 bg-white px-3 py-2.5 shadow-[0_18px_40px_rgba(37,99,235,0.12)] min-[380px]:left-2 sm:left-4 sm:top-8 sm:rounded-[1.6rem] sm:px-5 sm:py-4 [.dark_&]:border-cyan-300/16 [.dark_&]:bg-[linear-gradient(180deg,rgba(9,17,32,0.96),rgba(4,8,18,0.98))] [.dark_&]:shadow-[0_20px_50px_rgba(2,8,20,0.22)]">
+                <p className="text-xs font-semibold text-sky-700 sm:text-sm [.dark_&]:text-cyan-100">
                   Algorithmic
                   <br />
                   Trading
                 </p>
               </div>
 
-              <div className="absolute right-8 top-32 rounded-[1.6rem] border border-sky-200 bg-white px-5 py-4 shadow-[0_18px_40px_rgba(37,99,235,0.12)] [.dark_&]:border-cyan-300/16 [.dark_&]:bg-[linear-gradient(180deg,rgba(9,17,32,0.96),rgba(4,8,18,0.98))] [.dark_&]:shadow-[0_20px_50px_rgba(2,8,20,0.22)]">
-                <p className="text-sm font-semibold text-sky-700 [.dark_&]:text-cyan-100">
+              <div className="absolute right-1 top-[6.8rem] z-20 rounded-[1.1rem] border border-sky-200 bg-white px-3 py-2.5 shadow-[0_18px_40px_rgba(37,99,235,0.12)] min-[380px]:right-2 sm:right-4 sm:top-32 sm:rounded-[1.6rem] sm:px-5 sm:py-4 xl:right-8 [.dark_&]:border-cyan-300/16 [.dark_&]:bg-[linear-gradient(180deg,rgba(9,17,32,0.96),rgba(4,8,18,0.98))] [.dark_&]:shadow-[0_20px_50px_rgba(2,8,20,0.22)]">
+                <p className="text-xs font-semibold text-sky-700 sm:text-sm [.dark_&]:text-cyan-100">
                   Technical
                   <br />
                   Indicators
                 </p>
               </div>
 
-              <div className="absolute right-6 bottom-16 rounded-[1.6rem] border border-sky-200 bg-white px-5 py-4 shadow-[0_18px_40px_rgba(37,99,235,0.12)] [.dark_&]:border-cyan-300/16 [.dark_&]:bg-[linear-gradient(180deg,rgba(9,17,32,0.96),rgba(4,8,18,0.98))] [.dark_&]:shadow-[0_20px_50px_rgba(2,8,20,0.22)]">
-                <p className="text-sm font-semibold text-sky-700 [.dark_&]:text-cyan-100">
+              <div className="absolute bottom-6 right-1 z-20 rounded-[1.1rem] border border-sky-200 bg-white px-3 py-2.5 shadow-[0_18px_40px_rgba(37,99,235,0.12)] min-[380px]:right-2 sm:bottom-20 sm:right-4 sm:rounded-[1.6rem] sm:px-5 sm:py-4 xl:right-6 [.dark_&]:border-cyan-300/16 [.dark_&]:bg-[linear-gradient(180deg,rgba(9,17,32,0.96),rgba(4,8,18,0.98))] [.dark_&]:shadow-[0_20px_50px_rgba(2,8,20,0.22)]">
+                <p className="text-xs font-semibold text-sky-700 sm:text-sm [.dark_&]:text-cyan-100">
                   Multi-Asset
                   <br />
                   Support
                 </p>
               </div>
 
-              <div className="absolute left-1/2 top-[12%] -translate-x-1/2 sm:left-[16%] sm:translate-x-0">
-                <RealisticPhoneScreenshot className="w-[12.4rem] -rotate-[10deg] min-[380px]:w-[13.2rem] sm:w-[15.5rem] sm:-rotate-[13deg]" />
+              <div className="absolute left-1/2 top-10 z-10 -translate-x-1/2 sm:left-[14%] sm:top-12 sm:translate-x-0 xl:left-[16%]">
+                <RealisticPhoneScreenshot className="w-[9.2rem] min-[380px]:w-[9.8rem] sm:w-[13.4rem] lg:w-[14.8rem] xl:w-[15.5rem]" />
               </div>
             </div>
           </div>
