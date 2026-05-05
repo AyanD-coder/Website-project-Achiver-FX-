@@ -55,7 +55,6 @@ const navData: NavGroup[] = [
     title: "Discover",
     items: [
       { label: "Education", href: "/discover/education" },
-      { label: "Blogs", href: "/discover/blogs" },
       { label: "News & Analysis", href: "/discover/analysis-report" },
       { label: "Trading Tools", href: "/discover/trading-tools" },
       { label: "Economic Calendar", href: "/discover/economic-calendar" },

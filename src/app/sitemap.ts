@@ -16,7 +16,7 @@ function getChangeFrequency(
   path: string,
 ): MetadataRoute.Sitemap[number]["changeFrequency"] {
   if (path === "/" || path === "/markets" || path === "/discover/trading-tools") return "weekly";
-  if (path === "/discover/blogs" || path === "/discover/analysis-report") return "weekly";
+  if (path === "/discover/analysis-report") return "weekly";
   if (path === "/hero-odyssey") return "yearly";
   return "monthly";
 }

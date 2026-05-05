@@ -9,15 +9,12 @@ import {
   CalendarDays,
   CheckCircle2,
   Clock3,
-  FileText,
   Globe2,
   Layers,
   LineChart,
   Newspaper,
-  PenLine,
   Search,
   ShieldCheck,
-  Sparkles,
   Target,
   TrendingUp,
   Wrench,
@@ -384,6 +381,8 @@ export const discoverPages = {
         "Event risk called out before volatility expands",
       ],
     },
+    blogSectionTitle: "Our Weekly Analysis",
+    blogPosts: weeklyAnalysisPosts,
     resources: [
       {
         icon: BarChart3,
@@ -407,79 +406,6 @@ export const discoverPages = {
         "Use Achiever account types and platform tools to move from analysis to execution with more confidence.",
       href: "/markets/account-types",
       label: "Compare Accounts",
-    },
-  },
-  blogs: {
-    accent: "blue",
-    eyebrow: "Blogs",
-    title: "Trading ideas with useful context",
-    description:
-      "Explore market explainers, platform tips, and trading perspectives written to make daily decision-making less noisy.",
-    heroImage: "/discover/blogs.webp",
-    heroImageAlt:
-      "AI generated editorial trading blog workspace with abstract articles and charts.",
-    primaryCta: { href: "/discover/analysis-report", label: "Read Analysis" },
-    secondaryCta: { href: "/discover/education", label: "Start Learning" },
-    stats: [
-      { value: "Guides", label: "For every level" },
-      { value: "Ideas", label: "Market themes" },
-      { value: "Tips", label: "Platform habits" },
-    ],
-    features: [
-      {
-        icon: PenLine,
-        title: "Practical Articles",
-        description:
-          "Readable posts focused on market behavior, platform use, and trader routines.",
-      },
-      {
-        icon: Target,
-        title: "Strategy Angles",
-        description:
-          "Simple frameworks for thinking about entries, exits, and risk.",
-      },
-      {
-        icon: Sparkles,
-        title: "Fresh Perspectives",
-        description:
-          "Timely ideas that help you build a broader market vocabulary.",
-      },
-    ],
-    blogSectionTitle: "Our Weekly Analysis",
-    blogPosts: weeklyAnalysisPosts,
-    story: {
-      kicker: "Editorial Lens",
-      title: "Content built for real trading days.",
-      body: "The blog experience keeps explanations focused and scan-friendly, so readers can learn a concept, connect it to current markets, and keep moving.",
-      points: [
-        "Plain-language explainers",
-        "Market structure and platform tips",
-        "Risk-aware takeaways at the end of each read",
-      ],
-    },
-    resources: [
-      {
-        icon: FileText,
-        label: "Market Explainers",
-        description: "Break down topics without burying the useful part.",
-      },
-      {
-        icon: BarChart3,
-        label: "Chart Lessons",
-        description: "Understand patterns, levels, and timing cues.",
-      },
-      {
-        icon: ShieldCheck,
-        label: "Risk Notes",
-        description: "Keep trade planning grounded before position sizing.",
-      },
-    ],
-    finalCta: {
-      title: "Turn reading into a stronger trading routine.",
-      description:
-        "Move from blog ideas to structured education or deeper market reports whenever you are ready.",
-      href: "/discover/education",
-      label: "Explore Education",
     },
   },
   economicCalendar: {
@@ -563,7 +489,7 @@ export const discoverPages = {
     heroImageAlt:
       "AI generated trading education desk with abstract course cards and charting tablet.",
     primaryCta: { href: "/markets/account-types", label: "Start Trading" },
-    secondaryCta: { href: "/discover/blogs", label: "Read Blogs" },
+    secondaryCta: { href: "/discover/analysis-report", label: "Read Analysis" },
     stats: [
       { value: "Beginner", label: "Friendly tracks" },
       { value: "Risk-first", label: "Planning habits" },
@@ -780,40 +706,6 @@ function HeroStat({ label, value }: DiscoverStat) {
   );
 }
 
-function ResourceItem({
-  accent,
-  description,
-  icon: Icon,
-  label,
-}: DiscoverResource & {
-  accent: DiscoverPageData["accent"];
-}) {
-  const styles = accentClasses[accent];
-
-  return (
-    <article className="rounded-lg border border-white/10 bg-white/[0.03] p-5 backdrop-blur-sm transition-colors duration-300 hover:border-white/20 [.light_&]:border-slate-200 [.light_&]:bg-white [.light_&]:shadow-[0_12px_30px_rgba(15,23,42,0.05)] [.light_&]:hover:border-sky-200">
-      <div className="flex items-start gap-4">
-        <div
-          className={cn(
-            "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border",
-            styles.icon,
-          )}
-        >
-          <Icon className="h-4 w-4" />
-        </div>
-        <div>
-          <h3 className="text-base font-semibold tracking-normal text-white [.light_&]:text-slate-950">
-            {label}
-          </h3>
-          <p className="mt-2 text-sm leading-6 text-slate-400 [.light_&]:text-slate-600">
-            {description}
-          </p>
-        </div>
-      </div>
-    </article>
-  );
-}
-
 function DailyReportsSection({
   reports,
   styles,
@@ -822,7 +714,7 @@ function DailyReportsSection({
   styles: (typeof accentClasses)[DiscoverPageData["accent"]];
 }) {
   return (
-    <SectionWrapper className="py-16 lg:py-20">
+    <SectionWrapper className="pb-8 pt-16 lg:pb-10 lg:pt-20">
       <div className="relative overflow-hidden rounded-2xl border border-sky-300/15 bg-[linear-gradient(135deg,rgba(7,17,31,0.98),rgba(5,30,51,0.96)_52%,rgba(3,8,20,0.98))] px-5 py-10 shadow-[0_28px_90px_rgba(2,8,20,0.34)] [.light_&]:border-sky-100 [.light_&]:bg-[linear-gradient(135deg,#ffffff_0%,#eef6ff_54%,#f8fbff_100%)] [.light_&]:shadow-[0_20px_55px_rgba(15,23,42,0.09)] sm:px-8 lg:px-10">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_12%,rgba(56,189,248,0.16),transparent_28%),radial-gradient(circle_at_88%_20%,rgba(37,99,235,0.14),transparent_28%)] [.light_&]:bg-[radial-gradient(circle_at_12%_12%,rgba(37,99,235,0.09),transparent_28%),radial-gradient(circle_at_88%_20%,rgba(14,165,233,0.08),transparent_28%)]" />
         <div className="pointer-events-none absolute inset-0 opacity-[0.08] [background-image:linear-gradient(rgba(255,255,255,0.32)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.22)_1px,transparent_1px)] [background-size:4rem_4rem] [.light_&]:opacity-[0.16]" />
@@ -946,80 +838,54 @@ export function DiscoverPage({ page }: { page: DiscoverPageData }) {
         </SectionWrapper>
         )}
 
-        <section className="relative w-full bg-[linear-gradient(180deg,#07111f_0%,#071827_100%)] py-16 [.light_&]:bg-[linear-gradient(180deg,#eef5ff_0%,#ffffff_100%)] lg:py-20">
-          <div className="mx-auto grid w-full max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-white/10 shadow-[0_28px_80px_rgba(2,8,20,0.32)] [.light_&]:border-slate-200 [.light_&]:shadow-[0_20px_50px_rgba(15,23,42,0.09)]">
-              <Image
-                src={page.heroImage}
-                alt=""
-                fill
-                sizes="(min-width: 1024px) 48vw, 100vw"
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_34%,rgba(2,6,23,0.54)_100%)]" />
-            </div>
+        {page.dailyReports?.length && page.blogPosts?.length ? (
+          <SectionWrapper className="pb-16 pt-8 lg:pb-20 lg:pt-10">
+            <BlogGrid posts={page.blogPosts} title={page.blogSectionTitle} />
+          </SectionWrapper>
+        ) : (
+          <section className="relative w-full bg-[linear-gradient(180deg,#07111f_0%,#071827_100%)] py-16 [.light_&]:bg-[linear-gradient(180deg,#eef5ff_0%,#ffffff_100%)] lg:py-20">
+            <div className="mx-auto grid w-full max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-white/10 shadow-[0_28px_80px_rgba(2,8,20,0.32)] [.light_&]:border-slate-200 [.light_&]:shadow-[0_20px_50px_rgba(15,23,42,0.09)]">
+                <Image
+                  src={page.heroImage}
+                  alt=""
+                  fill
+                  sizes="(min-width: 1024px) 48vw, 100vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_34%,rgba(2,6,23,0.54)_100%)]" />
+              </div>
 
-            <div>
-              <Badge
-                className={cn(
-                  "px-4 py-1.5 uppercase tracking-[0.2em]",
-                  styles.badge,
-                )}
-              >
-                {page.story.kicker}
-              </Badge>
-              <h2 className="mt-5 text-3xl font-semibold leading-[1.08] tracking-normal text-white sm:text-4xl [.light_&]:text-slate-950">
-                {page.story.title}
-              </h2>
-              <p className="mt-5 max-w-xl text-base leading-8 text-slate-400 [.light_&]:text-slate-600">
-                {page.story.body}
-              </p>
+              <div>
+                <Badge
+                  className={cn(
+                    "px-4 py-1.5 uppercase tracking-[0.2em]",
+                    styles.badge,
+                  )}
+                >
+                  {page.story.kicker}
+                </Badge>
+                <h2 className="mt-5 text-3xl font-semibold leading-[1.08] tracking-normal text-white sm:text-4xl [.light_&]:text-slate-950">
+                  {page.story.title}
+                </h2>
+                <p className="mt-5 max-w-xl text-base leading-8 text-slate-400 [.light_&]:text-slate-600">
+                  {page.story.body}
+                </p>
 
-              <div className="mt-7 grid gap-3">
-                {page.story.points.map((point) => (
-                  <div key={point} className="flex items-start gap-3">
-                    <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-sky-300 [.light_&]:text-blue-600" />
-                    <p className="text-sm leading-7 text-slate-300 [.light_&]:text-slate-700">
-                      {point}
-                    </p>
-                  </div>
-                ))}
+                <div className="mt-7 grid gap-3">
+                  {page.story.points.map((point) => (
+                    <div key={point} className="flex items-start gap-3">
+                      <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-sky-300 [.light_&]:text-blue-600" />
+                      <p className="text-sm leading-7 text-slate-300 [.light_&]:text-slate-700">
+                        {point}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-
-        <SectionWrapper className="py-16 lg:py-20">
-          <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
-            <div>
-              <Badge
-                className={cn(
-                  "px-4 py-1.5 uppercase tracking-[0.2em]",
-                  styles.badge,
-                )}
-              >
-                Resources
-              </Badge>
-              <h2 className="mt-5 text-3xl font-semibold tracking-normal text-white sm:text-4xl [.light_&]:text-slate-950">
-                What visitors can explore next.
-              </h2>
-              <p className="mt-4 text-base leading-8 text-slate-400 [.light_&]:text-slate-600">
-                Fast paths into the parts of Discover that help traders learn,
-                prepare, and act.
-              </p>
-            </div>
-
-            <div className="grid gap-4 md:grid-cols-3">
-              {page.resources.map((resource) => (
-                <ResourceItem
-                  key={resource.label}
-                  accent={page.accent}
-                  {...resource}
-                />
-              ))}
-            </div>
-          </div>
-        </SectionWrapper>
+          </section>
+        )}
 
         <section className="relative mx-auto w-full max-w-7xl px-4 pb-24 pt-4 sm:px-6 lg:px-8">
           <div className="relative overflow-hidden rounded-lg border border-white/10 bg-[linear-gradient(135deg,rgba(8,15,30,0.98),rgba(4,8,18,0.98))] px-6 py-12 shadow-[0_30px_90px_rgba(2,8,20,0.32)] [.light_&]:border-slate-200 [.light_&]:bg-[linear-gradient(135deg,#ffffff_0%,#f1f7ff_100%)] [.light_&]:shadow-[0_20px_50px_rgba(15,23,42,0.07)] sm:px-10 lg:px-12">

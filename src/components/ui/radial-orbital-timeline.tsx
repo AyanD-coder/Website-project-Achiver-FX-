@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { MouseEvent } from "react";
 import {
@@ -410,14 +411,16 @@ export default function RadialOrbitalTimeline({
 
                       <div className="mt-4 border-t border-white/10 pt-4 [.light_&]:border-gray-200">
                         <Button
+                          asChild
                           variant="primary"
                           className="w-full flex items-center justify-center py-2"
-                          onClick={(event) => {
-                            event.stopPropagation();
-                            window.location.href = item.href || "#";
-                          }}
                         >
-                          Open Link <ArrowRight className="ml-2 h-4 w-4" />
+                          <Link
+                            href={item.href || "/discover/analysis-report"}
+                            onClick={(event) => event.stopPropagation()}
+                          >
+                            Open Link <ArrowRight className="ml-2 h-4 w-4" />
+                          </Link>
                         </Button>
                       </div>
                     </CardContent>

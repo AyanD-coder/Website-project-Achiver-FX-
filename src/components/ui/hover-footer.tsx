@@ -184,34 +184,14 @@ const footerColumns = [
     links: [
       { label: "Overview", href: "/markets/market-overview" },
       { label: "Account Types", href: "/markets/account-types" },
-      { label: "Forex Trading", href: "/markets/forex" },
-      { label: "Crypto CFDs", href: "/markets/crypto" },
-      { label: "Stock Indices", href: "/markets/indices" },
+      { label: "Forex", href: "/markets/forex" },
+      { label: "Crypto", href: "/markets/crypto" },
+      { label: "Indices", href: "/markets/indices" },
       { label: "Equities", href: "/markets/equities" },
       { label: "Commodities", href: "/markets/commodities" },
       { label: "Precious Metals", href: "/markets/precious-metals" },
       { label: "Energies", href: "/markets/energies" },
       { label: "Shares", href: "/markets/shares" },
-    ],
-  },
-  {
-    title: "Discover",
-    links: [
-      { label: "Trading Academy", href: "/discover/education" },
-      { label: "Market Blogs", href: "/discover/blogs" },
-      { label: "Trading Tools", href: "/discover/trading-tools" },
-      { label: "Economic Calendar", href: "/discover/economic-calendar" },
-      { label: "News & Analysis", href: "/discover/analysis-report" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { label: "About Achiever", href: "/company/about-us" },
-      { label: "Career", href: "/company/career" },
-      { label: "Legal Documents", href: "/company/legal-documents" },
-      { label: "Customer Protection", href: "/company/customer-protection" },
-      { label: "Contact Us", href: "/company/contact-us" },
     ],
   },
   {
@@ -222,6 +202,25 @@ const footerColumns = [
       { label: "Achiever App", href: "/platform/achiever-app" },
       { label: "Achiever Connect", href: "/platform/achiever-connect" },
       { label: "Achiever Web Trader", href: "/platform/achiever-web-trader" },
+    ],
+  },
+  {
+    title: "Discover",
+    links: [
+      { label: "Education", href: "/discover/education" },
+      { label: "News & Analysis", href: "/discover/analysis-report" },
+      { label: "Trading Tools", href: "/discover/trading-tools" },
+      { label: "Economic Calendar", href: "/discover/economic-calendar" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "About Us", href: "/company/about-us" },
+      { label: "Career", href: "/company/career" },
+      { label: "Legal Documents", href: "/company/legal-documents" },
+      { label: "Customer Protection", href: "/company/customer-protection" },
+      { label: "Contact Us", href: "/company/contact-us" },
     ],
   },
 ];

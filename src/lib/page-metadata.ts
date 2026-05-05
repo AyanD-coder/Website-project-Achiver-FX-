@@ -37,7 +37,6 @@ export type RoutePath =
   | "/platform/rtx-5"
   | "/promotions"
   | "/discover/analysis-report"
-  | "/discover/blogs"
   | "/discover/economic-calendar"
   | "/discover/education"
   | "/discover/trading-tools";
@@ -269,13 +268,6 @@ export const pageMetadata: Record<RoutePath, PageMetadataEntry> = {
       "Read Achiever Financials market analysis reports with technical context, macro themes, and trade preparation insights.",
     image: "/discover/analysis-report.webp",
     keywords: ["market analysis", "trading news", ...sharedKeywords],
-  },
-  "/discover/blogs": {
-    title: "Trading Blogs",
-    description:
-      "Explore Achiever Financials trading blogs with market explainers, platform tips, and practical trading perspectives.",
-    image: "/discover/blogs.webp",
-    keywords: ["trading blogs", "market explainers", ...sharedKeywords],
   },
   "/discover/economic-calendar": {
     title: "Economic Calendar",
