@@ -47,7 +47,9 @@ function ElasticHueSlider({
       <div className="relative flex h-5 w-full items-center">
         <input
           id="hue-slider-native"
+          name="hero-hue"
           type="range"
+          autoComplete="off"
           suppressHydrationWarning
           min={min}
           max={max}

@@ -317,7 +317,7 @@ export const discoverPages = {
     heroImage: "/discover/analysis-report.webp",
     heroImageAlt:
       "AI generated market analysis desk with abstract charts and research screens.",
-    primaryCta: { href: "/markets/account-types", label: "Open Account" },
+    primaryCta: { href: "/register", label: "Open Account" },
     secondaryCta: { href: "/discover/economic-calendar", label: "View Calendar" },
     stats: [
       { value: "Daily", label: "Market notes" },
@@ -404,8 +404,8 @@ export const discoverPages = {
       title: "Pair research with live market access.",
       description:
         "Use Achiever account types and platform tools to move from analysis to execution with more confidence.",
-      href: "/markets/account-types",
-      label: "Compare Accounts",
+      href: "/register",
+      label: "Create Account",
     },
   },
   economicCalendar: {
@@ -417,7 +417,7 @@ export const discoverPages = {
     heroImage: "/discover/economic-calendar.webp",
     heroImageAlt:
       "AI generated economic calendar dashboard with abstract event timelines and world map accents.",
-    primaryCta: { href: "/markets/account-types", label: "Open Account" },
+    primaryCta: { href: "/register", label: "Open Account" },
     secondaryCta: { href: "/discover/analysis-report", label: "Read Analysis" },
     stats: [
       { value: "Global", label: "Event coverage" },
@@ -488,7 +488,7 @@ export const discoverPages = {
     heroImage: "/discover/education.webp",
     heroImageAlt:
       "AI generated trading education desk with abstract course cards and charting tablet.",
-    primaryCta: { href: "/markets/account-types", label: "Start Trading" },
+    primaryCta: { href: "/register", label: "Start Trading" },
     secondaryCta: { href: "/discover/analysis-report", label: "Read Analysis" },
     stats: [
       { value: "Beginner", label: "Friendly tracks" },
@@ -546,9 +546,9 @@ export const discoverPages = {
     finalCta: {
       title: "Keep learning while you explore the markets.",
       description:
-        "Move from education into account types, platform tools, and market pages when you are ready to compare your next step.",
-      href: "/markets/account-types",
-      label: "View Account Types",
+        "Move from education into market pages, platform tools, and registration when you are ready to take your next step.",
+      href: "/register",
+      label: "Create Account",
     },
   },
   offerings: {
@@ -560,7 +560,7 @@ export const discoverPages = {
     heroImage: "/discover/offerings.webp",
     heroImageAlt:
       "AI generated brokerage offering suite with abstract product cards and market visuals.",
-    primaryCta: { href: "/markets/account-types", label: "Compare Accounts" },
+    primaryCta: { href: "/register", label: "Create Account" },
     secondaryCta: { href: "/platform", label: "Explore Platform" },
     stats: [
       { value: "3000+", label: "Instruments" },
@@ -600,8 +600,8 @@ export const discoverPages = {
     resources: [
       {
         icon: Layers,
-        label: "Account Types",
-        description: "Choose the structure that fits your trading approach.",
+        label: "Registration",
+        description: "Create your account when you are ready to start trading.",
       },
       {
         icon: LineChart,
@@ -618,8 +618,8 @@ export const discoverPages = {
       title: "Explore the Achiever trading environment.",
       description:
         "Start with account types or review the platform to see how the pieces work together.",
-      href: "/markets/account-types",
-      label: "Compare Accounts",
+      href: "/register",
+      label: "Create Account",
     },
   },
   tradingTools: {

@@ -17,7 +17,7 @@ export default function Page() {
           "Trading promotion dashboard with bonus cards and market analytics.",
         actions: [
           { href: "#featured-promotions", label: "View Promotions" },
-          { href: "/markets/account-types", label: "Account Types", variant: "outline" },
+          { href: "/register", label: "Create Account", variant: "outline" },
         ],
         stats: [
           { value: "100%", label: "Trading bonus" },

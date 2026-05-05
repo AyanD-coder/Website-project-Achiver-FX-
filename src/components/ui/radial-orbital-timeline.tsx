@@ -416,7 +416,7 @@ export default function RadialOrbitalTimeline({
                           className="w-full flex items-center justify-center py-2"
                         >
                           <Link
-                            href={item.href || "/discover/analysis-report"}
+                            href={item.href || "/discover/economic-calendar"}
                             onClick={(event) => event.stopPropagation()}
                           >
                             Open Link <ArrowRight className="ml-2 h-4 w-4" />

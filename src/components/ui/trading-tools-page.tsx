@@ -260,7 +260,7 @@ function VpsSection() {
                 variant="outline"
                 className="min-h-12 w-full rounded-lg border-white/20 bg-white/10 px-6 py-3 text-sm text-white hover:bg-white/16 hover:text-white sm:w-auto [.light_&]:border-slate-200 [.light_&]:bg-white [.light_&]:text-slate-800"
               >
-                <Link href="/markets/account-types">Compare Accounts</Link>
+                <Link href="/register">Create Account</Link>
               </Button>
             </div>
           </div>

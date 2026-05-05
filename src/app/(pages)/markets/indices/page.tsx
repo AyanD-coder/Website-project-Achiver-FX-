@@ -18,7 +18,7 @@ export default function IndicesPage() {
         imageAlt:
           "AI generated market analysis desk with global index charts and research screens.",
         actions: [
-          { href: "/markets/account-types", label: "Compare Accounts" },
+          { href: "/register", label: "Create Account" },
           { href: "/discover/analysis-report", label: "Read Analysis", variant: "outline" },
         ],
         stats: [

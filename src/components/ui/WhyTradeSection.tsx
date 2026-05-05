@@ -497,7 +497,7 @@ export default function WhyTradeSection() {
             </p>
             <div className="mt-6 flex justify-center">
               <Button asChild className="w-full sm:w-auto h-12 rounded-full px-7">
-                <Link href="/markets/account-types" className="inline-flex items-center gap-2">
+                <Link href="/markets/market-overview" className="inline-flex items-center gap-2">
                   Explore All
                   <ArrowRight size={16} />
                 </Link>

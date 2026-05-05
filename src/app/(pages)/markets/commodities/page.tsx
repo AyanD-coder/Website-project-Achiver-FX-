@@ -19,7 +19,7 @@ export default function CommoditiesPage() {
         imageAlt:
           "AI generated brokerage suite with commodity market modules and trading visuals.",
         actions: [
-          { href: "/markets/account-types", label: "Compare Accounts" },
+          { href: "/register", label: "Create Account" },
           { href: "/platform", label: "Explore Platform", variant: "outline" },
         ],
         stats: [

@@ -15,7 +15,7 @@ export default function AchieverAppPage() {
         imageSrc: "/discover/trading-tools.webp",
         imageAlt: "Mobile trading app interface with market charts.",
         actions: [
-          { href: "/markets/account-types", label: "Open Account" },
+          { href: "/register", label: "Open Account" },
           { href: "/platform", label: "View Platforms", variant: "outline" },
         ],
         stats: [

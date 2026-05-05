@@ -183,7 +183,6 @@ const footerColumns = [
     title: "Markets",
     links: [
       { label: "Overview", href: "/markets/market-overview" },
-      { label: "Account Types", href: "/markets/account-types" },
       { label: "Forex", href: "/markets/forex" },
       { label: "Crypto", href: "/markets/crypto" },
       { label: "Indices", href: "/markets/indices" },

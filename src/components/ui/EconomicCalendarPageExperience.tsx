@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import type { InputHTMLAttributes, ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { motion, type Variants } from "framer-motion";
@@ -315,10 +316,10 @@ function CalendarVisual() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-200/80 [.light_&]:text-blue-700">
-                Macro desk
+                Desk
               </p>
               <p className="mt-1 text-lg font-semibold text-white [.light_&]:text-slate-950">
-                April Calendar
+                Economic Calendar
               </p>
             </div>
             <span className="rounded-full border border-cyan-300/24 bg-cyan-300/10 px-3 py-1 text-xs font-semibold text-cyan-100 [.light_&]:text-blue-700">
@@ -733,6 +734,7 @@ export function InputField({ label, className, ...props }: InputFieldProps) {
           "h-12 w-full rounded-full border border-sky-300/18 bg-white/[0.06] px-5 text-sm text-white outline-none transition-colors placeholder:text-slate-400 focus:border-sky-300/54 focus:bg-white/[0.08] [.light_&]:border-slate-200 [.light_&]:bg-white [.light_&]:text-slate-950",
           className,
         )}
+        autoComplete="off"
         {...props}
       />
     </label>
@@ -812,18 +814,22 @@ export function CTASection({
             onSubmit={(event) => event.preventDefault()}
           >
             <InputField
+              id="economic-calendar-demo-email"
               type="email"
               name="email"
+              autoComplete="email"
               placeholder={placeholder}
               aria-label="Email address"
               required
             />
             <SiteButton
-              type="submit"
+              asChild
               className="h-12 shrink-0 rounded-full px-6 text-sm shadow-[0_12px_30px_rgba(14,165,233,0.26)] hover:shadow-[0_18px_42px_rgba(56,189,248,0.36)]"
             >
-              {buttonLabel}
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <Link href="/register">
+                {buttonLabel}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
             </SiteButton>
           </form>
         </div>

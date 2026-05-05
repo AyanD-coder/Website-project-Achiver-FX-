@@ -18,7 +18,7 @@ export default function MarketOverviewPage() {
         imageAlt:
           "AI generated brokerage offering suite with abstract market visuals.",
         actions: [
-          { href: "/markets/account-types", label: "Compare Accounts" },
+          { href: "/register", label: "Create Account" },
           { href: "/platform", label: "Explore Platform", variant: "outline" },
         ],
         stats: [

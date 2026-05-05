@@ -16,7 +16,6 @@ export type RoutePath =
   | "/company/legal-documents"
   | "/hero-odyssey"
   | "/markets"
-  | "/markets/account-types"
   | "/markets/commodities"
   | "/markets/crypto"
   | "/markets/energies"
@@ -113,13 +112,6 @@ export const pageMetadata: Record<RoutePath, PageMetadataEntry> = {
       "Explore Achiever Financials markets including forex, crypto, indices, equities, commodities, metals, energies, and shares.",
     image: "/discover/offerings.webp",
     keywords: ["markets", "global trading markets", ...sharedKeywords],
-  },
-  "/markets/account-types": {
-    title: "Account Types",
-    description:
-      "Compare Achiever Financials account types by deposits, spreads, commission, leverage, and trading conditions.",
-    image: "/discover/offerings.webp",
-    keywords: ["account types", "trading accounts", ...sharedKeywords],
   },
   "/markets/commodities": {
     title: "Commodities Trading",

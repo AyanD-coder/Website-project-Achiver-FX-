@@ -27,7 +27,7 @@ type PlatformDetailPageProps = {
 
 export default function PlatformDetailPage({
   actions = [
-    { href: "/markets/account-types", label: "Open Account" },
+    { href: "/register", label: "Open Account" },
     { href: "/platform", label: "Back to Platforms", variant: "outline" },
   ],
   eyebrow,

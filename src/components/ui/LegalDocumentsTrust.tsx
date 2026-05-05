@@ -301,7 +301,7 @@ export default function LegalDocumentsTrust() {
       <TrustHeroCard
         title="Regulations and Licenses"
         description="Review the legal and regulatory information that supports a clearer trading relationship with Achiever Financials Ltd."
-        cta={{ href: "/markets/account-types", label: "Trade With Us" }}
+        cta={{ href: "/register", label: "Trade With Us" }}
         image={{
           src: "/company/legal-trust/trust-badge.webp",
           alt: "Glowing blue fintech security badge seal.",

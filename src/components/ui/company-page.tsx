@@ -120,7 +120,7 @@ export const companyPages = {
       "AI generated premium fintech company operations floor with abstract market dashboards.",
     featureImageAlt:
       "AI generated global financial operations workspace for an online broker.",
-    primaryCta: { href: "/markets/account-types", label: "Explore Accounts" },
+    primaryCta: { href: "/register", label: "Create Account" },
     secondaryCta: { href: "/platform", label: "View Platform" },
     metrics: [
       { value: "Multi-asset", label: "Market access" },
@@ -166,8 +166,8 @@ export const companyPages = {
       title: "Ready to explore the Achiever ecosystem?",
       description:
         "Start with account types, compare platform options, or connect with the team for support.",
-      href: "/markets/account-types",
-      label: "Compare Accounts",
+      href: "/register",
+      label: "Create Account",
     },
   },
   career: {
@@ -358,7 +358,7 @@ export const companyPages = {
     actions: [
       { href: "/company/legal-documents", label: "Risk Disclosure" },
       { href: "/company/contact-us", label: "Raise a Question" },
-      { href: "/markets/account-types", label: "Compare Accounts" },
+      { href: "/register", label: "Create Account" },
     ],
     finalCta: {
       title: "Review the documents before you trade.",

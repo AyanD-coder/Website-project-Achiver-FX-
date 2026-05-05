@@ -19,7 +19,7 @@ export default function ForexPage() {
         imageAlt:
           "AI generated market analysis desk with abstract currency charts and research screens.",
         actions: [
-          { href: "/markets/account-types", label: "Compare Accounts" },
+          { href: "/register", label: "Create Account" },
           { href: "/platform", label: "Explore Platform", variant: "outline" },
         ],
         stats: [

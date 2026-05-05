@@ -313,7 +313,7 @@ export default function PromotionsPage() {
             </p>
             <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
               <Button asChild className="h-12 rounded-full px-8 text-sm">
-                <Link href="/markets/account-types">
+                <Link href="/register">
                   Open Account
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>

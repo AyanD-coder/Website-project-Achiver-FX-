@@ -309,7 +309,7 @@ export default function EquitiesGlobalMarketsSection() {
                 </p>
                 <div className="mt-8 flex justify-center">
                   <Button asChild className="h-12 rounded-full px-7">
-                    <Link href="/markets/account-types" className="inline-flex items-center gap-2">
+                    <Link href="/markets/market-overview" className="inline-flex items-center gap-2">
                       Explore All
                       <ArrowRight className="h-4 w-4" />
                     </Link>
@@ -352,7 +352,7 @@ export default function EquitiesGlobalMarketsSection() {
               </p>
               <div className="mt-7 flex justify-center">
                 <Button asChild className="h-12 rounded-full px-7">
-                  <Link href="/markets/account-types" className="inline-flex items-center gap-2">
+                  <Link href="/markets/market-overview" className="inline-flex items-center gap-2">
                     Explore All
                     <ArrowRight className="h-4 w-4" />
                   </Link>

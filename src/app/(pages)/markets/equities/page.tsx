@@ -18,7 +18,7 @@ export default function EquitiesPage() {
         imageAlt:
           "AI generated premium fintech operations floor with abstract market dashboards.",
         actions: [
-          { href: "/markets/account-types", label: "Compare Accounts" },
+          { href: "/register", label: "Create Account" },
           { href: "/platform", label: "Explore Platform", variant: "outline" },
         ],
         stats: [

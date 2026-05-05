@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { ReactNode } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
@@ -703,34 +704,14 @@ export default function MetaTrader5PlatformPage({
             <div className="pointer-events-none absolute left-10 top-10 h-40 w-40 rounded-full bg-cyan-400/14 blur-3xl [.light_&]:bg-sky-300/22" />
             <div className="pointer-events-none absolute right-12 top-20 h-32 w-32 rounded-full bg-blue-500/12 blur-3xl [.light_&]:bg-blue-300/18" />
 
-            <div className="relative h-[27rem] w-full overflow-visible sm:h-[37rem] lg:h-[39rem]">
-              <div className="absolute left-1 top-2 z-20 rounded-[1.1rem] border border-sky-200 bg-white px-3 py-2.5 shadow-[0_18px_40px_rgba(37,99,235,0.12)] min-[380px]:left-2 sm:left-4 sm:top-8 sm:rounded-[1.6rem] sm:px-5 sm:py-4 [.dark_&]:border-cyan-300/16 [.dark_&]:bg-[linear-gradient(180deg,rgba(9,17,32,0.96),rgba(4,8,18,0.98))] [.dark_&]:shadow-[0_20px_50px_rgba(2,8,20,0.22)]">
-                <p className="text-xs font-semibold text-sky-700 sm:text-sm [.dark_&]:text-cyan-100">
-                  Algorithmic
-                  <br />
-                  Trading
-                </p>
-              </div>
-
-              <div className="absolute right-1 top-[6.8rem] z-20 rounded-[1.1rem] border border-sky-200 bg-white px-3 py-2.5 shadow-[0_18px_40px_rgba(37,99,235,0.12)] min-[380px]:right-2 sm:right-4 sm:top-32 sm:rounded-[1.6rem] sm:px-5 sm:py-4 xl:right-8 [.dark_&]:border-cyan-300/16 [.dark_&]:bg-[linear-gradient(180deg,rgba(9,17,32,0.96),rgba(4,8,18,0.98))] [.dark_&]:shadow-[0_20px_50px_rgba(2,8,20,0.22)]">
-                <p className="text-xs font-semibold text-sky-700 sm:text-sm [.dark_&]:text-cyan-100">
-                  Technical
-                  <br />
-                  Indicators
-                </p>
-              </div>
-
-              <div className="absolute bottom-6 right-1 z-20 rounded-[1.1rem] border border-sky-200 bg-white px-3 py-2.5 shadow-[0_18px_40px_rgba(37,99,235,0.12)] min-[380px]:right-2 sm:bottom-20 sm:right-4 sm:rounded-[1.6rem] sm:px-5 sm:py-4 xl:right-6 [.dark_&]:border-cyan-300/16 [.dark_&]:bg-[linear-gradient(180deg,rgba(9,17,32,0.96),rgba(4,8,18,0.98))] [.dark_&]:shadow-[0_20px_50px_rgba(2,8,20,0.22)]">
-                <p className="text-xs font-semibold text-sky-700 sm:text-sm [.dark_&]:text-cyan-100">
-                  Multi-Asset
-                  <br />
-                  Support
-                </p>
-              </div>
-
-              <div className="absolute left-1/2 top-10 z-10 -translate-x-1/2 sm:left-[14%] sm:top-12 sm:translate-x-0 xl:left-[16%]">
-                <RealisticPhoneScreenshot className="w-[9.2rem] min-[380px]:w-[9.8rem] sm:w-[13.4rem] lg:w-[14.8rem] xl:w-[15.5rem]" />
-              </div>
+            <div className="relative h-[25rem] w-full overflow-hidden rounded-[2rem] sm:h-[35rem] lg:h-[37rem]">
+              <Image
+                src="/platform/premium-mt5-phone-hero.png"
+                alt="Achievers MT5 mobile trading platform with algorithmic trading, technical indicators, and multi-asset support"
+                fill
+                sizes="(min-width: 1280px) 48vw, (min-width: 1024px) 50vw, 100vw"
+                className="object-contain"
+              />
             </div>
           </div>
 
@@ -841,7 +822,7 @@ export default function MetaTrader5PlatformPage({
 
               <div className="mt-8">
                 <Button asChild className="h-12 rounded-full px-7 text-sm">
-                  <Link href="/markets/account-types" className="inline-flex items-center gap-2">
+                  <Link href="/markets/market-overview" className="inline-flex items-center gap-2">
                     Explore All
                     <ArrowRight className="h-4 w-4" />
                   </Link>
