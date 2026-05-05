@@ -46,6 +46,7 @@ type PageMetadataEntry = {
   description: string;
   image?: string;
   keywords?: string[];
+  robots?: Exclude<Metadata["robots"], string>;
   title: string;
 };
 
@@ -57,7 +58,7 @@ const sharedKeywords = [
   "MetaTrader 5",
 ];
 
-export const pageMetadata = {
+export const pageMetadata: Record<RoutePath, PageMetadataEntry> = {
   "/": {
     title: "Achiever Financials | Multi-Asset Trading Platform",
     description:
@@ -253,6 +254,7 @@ export const pageMetadata = {
       "Discover Achiever Financials trading bonuses, promotional offers, rewards, and account programs for eligible clients.",
     image: "/promotions_hero_blue_1777280213507.png",
     keywords: ["trading promotions", "deposit bonus", ...sharedKeywords],
+    robots: { index: false, follow: false },
   },
   "/discover/trading-tools": {
     title: "Trading Tools",
@@ -289,27 +291,50 @@ export const pageMetadata = {
     image: "/discover/education.webp",
     keywords: ["trading education", "learn trading", ...sharedKeywords],
   },
-} satisfies Record<RoutePath, PageMetadataEntry>;
+};
 
 export const pageRoutes = Object.keys(pageMetadata) as RoutePath[];
+
+export const indexedPageRoutes = pageRoutes.filter(
+  (path) => pageMetadata[path].robots?.index !== false,
+);
 
 export function getAbsoluteUrl(path = "/") {
   return new URL(path, siteUrl).toString();
 }
 
+export function stripSiteNameFromTitle(title: string) {
+  const escapedSiteName = siteName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+  return title
+    .replace(new RegExp(`\\s*(?:\\||-|–|—)\\s*${escapedSiteName}\\s*$`, "i"), "")
+    .trim();
+}
+
+export function createMetadataTitle(title: string) {
+  const titleWithoutSuffix = stripSiteNameFromTitle(title);
+
+  if (titleWithoutSuffix !== title) {
+    return titleWithoutSuffix || siteName;
+  }
+
+  if (titleWithoutSuffix.toLowerCase().includes(siteName.toLowerCase())) {
+    return { absolute: titleWithoutSuffix || siteName };
+  }
+
+  return titleWithoutSuffix;
+}
+
 export function createPageMetadata(path: RoutePath): Metadata {
   const page = pageMetadata[path];
   const canonical = path === "/" ? "/" : path;
-  const title =
-    path === "/"
-      ? { absolute: page.title }
-      : page.title;
   const image = page.image ?? defaultImage;
 
   return {
-    title,
+    title: createMetadataTitle(page.title),
     description: page.description,
     keywords: page.keywords ?? sharedKeywords,
+    robots: page.robots,
     alternates: {
       canonical,
     },

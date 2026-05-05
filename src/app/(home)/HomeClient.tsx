@@ -44,6 +44,7 @@ const Pricing = dynamic(() => import("@/sections/Pricing"), {
   ),
 });
 const Testimonials = dynamic(() => import("@/sections/Testimonials"), {
+  ssr: false,
   loading: () => (
     <section aria-hidden="true" className="section-contain w-full min-h-[620px] px-4 py-16 sm:px-6 lg:px-8" />
   ),

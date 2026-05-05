@@ -74,10 +74,6 @@ const navData: NavGroup[] = [
   {
     title: "Partnership",
     href: "/partner",
-  },
-  {
-    title: "Promotions",
-    href: "/promotions",
   }
 ];
 

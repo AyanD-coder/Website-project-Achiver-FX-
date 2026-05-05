@@ -107,8 +107,8 @@ function PromotionCard({
         </div>
 
         <div className="mt-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-          <Button className="h-12 w-full rounded-full px-7 text-sm sm:w-auto">
-            {ctaText}
+          <Button asChild className="h-12 w-full rounded-full px-7 text-sm sm:w-auto">
+            <Link href="/register">{ctaText}</Link>
           </Button>
           <Link
             href="#promotion-terms"

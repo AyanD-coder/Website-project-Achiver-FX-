@@ -193,8 +193,8 @@ export default function CryptoPage() {
                           {row.leverage}
                         </td>
                         <td className="px-5 py-4 text-right">
-                          <Button size="sm" className="h-9 px-4 text-xs">
-                            Trade
+                          <Button asChild size="sm" className="h-9 px-4 text-xs">
+                            <Link href="/register">Trade</Link>
                           </Button>
                         </td>
                       </tr>

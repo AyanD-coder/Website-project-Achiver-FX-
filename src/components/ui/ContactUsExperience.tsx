@@ -42,6 +42,14 @@ type LocationData = {
 
 type SocialIconComponent = ComponentType<{ className?: string }>;
 
+const socialLinks = {
+  facebook: "https://www.facebook.com/people/Achiever-Financials-Ltd/61560611701741/",
+  instagram: "https://www.instagram.com/officialachieverfx/",
+  linkedin: "https://www.linkedin.com/company/achiever-fx/posts/?feedView=all",
+  x: "https://x.com/Achiever_fx",
+  youtube: "https://www.youtube.com/@officialachieverfx",
+};
+
 function FadeIn({
   children,
   className,
@@ -109,6 +117,8 @@ export function SocialIcons({
           key={label}
           href={href}
           aria-label={label}
+          target="_blank"
+          rel="noopener noreferrer"
           className="flex h-11 w-11 items-center justify-center rounded-full border border-sky-300/18 bg-sky-300/10 text-sky-100 shadow-[0_10px_24px_rgba(2,8,20,0.18)] transition-all duration-300 hover:-translate-y-0.5 hover:border-sky-300/35 hover:bg-sky-300/16 hover:text-white hover:shadow-[0_16px_34px_rgba(56,189,248,0.16)] [.light_&]:border-sky-100 [.light_&]:bg-white [.light_&]:text-blue-600 [.light_&]:shadow-[0_10px_24px_rgba(15,23,42,0.06)] [.light_&]:hover:border-sky-200 [.light_&]:hover:bg-blue-600 [.light_&]:hover:text-white [.light_&]:hover:shadow-[0_16px_34px_rgba(37,99,235,0.18)]"
         >
           <Icon className="h-4 w-4" />
@@ -343,11 +353,11 @@ const locations: LocationData[] = [
     phone: "+442032861839",
     phoneHref: "tel:+442032861839",
     socialItems: [
-      { href: "#mauritius-facebook", icon: FacebookIcon, label: "Facebook" },
-      { href: "#mauritius-x", icon: XIcon, label: "X" },
-      { href: "#mauritius-instagram", icon: InstagramIcon, label: "Instagram" },
-      { href: "#mauritius-youtube", icon: YouTubeIcon, label: "YouTube" },
-      { href: "#mauritius-linkedin", icon: LinkedInIcon, label: "LinkedIn" },
+      { href: socialLinks.facebook, icon: FacebookIcon, label: "Facebook" },
+      { href: socialLinks.x, icon: XIcon, label: "X" },
+      { href: socialLinks.instagram, icon: InstagramIcon, label: "Instagram" },
+      { href: socialLinks.youtube, icon: YouTubeIcon, label: "YouTube" },
+      { href: socialLinks.linkedin, icon: LinkedInIcon, label: "LinkedIn" },
     ],
   },
   {
@@ -359,11 +369,11 @@ const locations: LocationData[] = [
     phone: "+1-758-572-5128",
     phoneHref: "tel:+17585725128",
     socialItems: [
-      { href: "#saint-lucia-facebook", icon: FacebookIcon, label: "Facebook" },
-      { href: "#saint-lucia-x", icon: XIcon, label: "X" },
-      { href: "#saint-lucia-instagram", icon: InstagramIcon, label: "Instagram" },
-      { href: "#saint-lucia-youtube", icon: YouTubeIcon, label: "YouTube" },
-      { href: "#saint-lucia-linkedin", icon: LinkedInIcon, label: "LinkedIn" },
+      { href: socialLinks.facebook, icon: FacebookIcon, label: "Facebook" },
+      { href: socialLinks.x, icon: XIcon, label: "X" },
+      { href: socialLinks.instagram, icon: InstagramIcon, label: "Instagram" },
+      { href: socialLinks.youtube, icon: YouTubeIcon, label: "YouTube" },
+      { href: socialLinks.linkedin, icon: LinkedInIcon, label: "LinkedIn" },
     ],
   },
 ];

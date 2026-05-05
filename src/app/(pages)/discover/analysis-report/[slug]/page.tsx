@@ -19,7 +19,8 @@ import {
   getAnalysisReportBySlug,
   getAnalysisReports,
 } from "@/lib/analysis-reports";
-import { siteName, siteUrl } from "@/lib/page-metadata";
+import { createMetadataTitle, siteUrl } from "@/lib/page-metadata";
+import { sanitizeCmsHtml } from "@/lib/sanitize-html";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -39,14 +40,14 @@ export async function generateMetadata({
 
   if (!report) {
     return {
-      title: `Analysis Report | ${siteName}`,
+      title: "Analysis Report",
     };
   }
 
   const url = new URL(`/discover/analysis-report/${report.slug}`, siteUrl);
 
   return {
-    title: `${report.title} | ${siteName}`,
+    title: createMetadataTitle(report.title),
     description: report.summary,
     alternates: {
       canonical: url,
@@ -82,6 +83,10 @@ export default async function AnalysisReportDetailPage({ params }: PageProps) {
   if (!report) {
     notFound();
   }
+
+  const sanitizedContentHtml = report.contentHtml
+    ? sanitizeCmsHtml(report.contentHtml, { demoteH1To: 2 })
+    : undefined;
 
   return (
     <PageLayout
@@ -160,11 +165,11 @@ export default async function AnalysisReportDetailPage({ params }: PageProps) {
             </Button>
           </aside>
 
-          {report.contentHtml ? (
+          {sanitizedContentHtml ? (
             <article className="rounded-2xl border border-white/10 bg-bg-secondary/50 p-6 shadow-[0_22px_60px_rgba(2,8,20,0.18)] [.light_&]:border-slate-200 [.light_&]:bg-white [.light_&]:shadow-[0_12px_32px_rgba(15,23,42,0.06)] sm:p-8">
               <div
-                className="max-w-none text-base leading-8 text-slate-300 [&_*]:max-w-full [&_a]:font-semibold [&_a]:text-sky-200 [&_h1]:mb-5 [&_h1]:text-3xl [&_h1]:font-semibold [&_h1]:leading-tight [&_h1]:text-white [&_h2]:mb-4 [&_h2]:mt-8 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-white [&_h3]:mb-3 [&_h3]:mt-7 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-white [&_li]:my-2 [&_ol]:my-5 [&_ol]:list-decimal [&_ol]:pl-6 [&_p]:my-4 [&_strong]:text-white [&_table]:my-6 [&_table]:block [&_table]:w-full [&_table]:overflow-x-auto [&_td]:border [&_td]:border-white/10 [&_td]:p-3 [&_th]:border [&_th]:border-white/10 [&_th]:bg-white/5 [&_th]:p-3 [&_th]:text-left [&_ul]:my-5 [&_ul]:list-disc [&_ul]:pl-6 [.light_&]:text-slate-700 [.light_&_*]:border-slate-200 [.light_&_a]:text-blue-700 [.light_&_h1]:text-slate-950 [.light_&_h2]:text-slate-950 [.light_&_h3]:text-slate-950 [.light_&_strong]:text-slate-950 [.light_&_th]:bg-slate-50"
-                dangerouslySetInnerHTML={{ __html: report.contentHtml }}
+                className="max-w-none text-base leading-8 text-slate-300 [&_*]:max-w-full [&_a]:font-semibold [&_a]:text-sky-200 [&_h2]:mb-4 [&_h2]:mt-8 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-white [&_h3]:mb-3 [&_h3]:mt-7 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-white [&_li]:my-2 [&_ol]:my-5 [&_ol]:list-decimal [&_ol]:pl-6 [&_p]:my-4 [&_strong]:text-white [&_table]:my-6 [&_table]:block [&_table]:w-full [&_table]:overflow-x-auto [&_td]:border [&_td]:border-white/10 [&_td]:p-3 [&_th]:border [&_th]:border-white/10 [&_th]:bg-white/5 [&_th]:p-3 [&_th]:text-left [&_ul]:my-5 [&_ul]:list-disc [&_ul]:pl-6 [.light_&]:text-slate-700 [.light_&_*]:border-slate-200 [.light_&_a]:text-blue-700 [.light_&_h2]:text-slate-950 [.light_&_h3]:text-slate-950 [.light_&_strong]:text-slate-950 [.light_&_th]:bg-slate-50"
+                dangerouslySetInnerHTML={{ __html: sanitizedContentHtml }}
               />
             </article>
           ) : (

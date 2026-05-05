@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
@@ -24,7 +25,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
-import TradingViewTickerTape from "@/components/ui/TradingViewTickerTape";
 import { cn } from "@/lib/utils";
 
 type CardItem = {
@@ -107,6 +107,19 @@ const platformFeatures: CardItem[] = [
     description: "Support market access with infrastructure made for active sessions.",
   },
 ];
+
+const TradingViewTickerTape = dynamic(
+  () => import("@/components/ui/TradingViewTickerTape"),
+  {
+    ssr: false,
+    loading: () => (
+      <section
+        aria-hidden="true"
+        className="relative min-h-[102px] border-y border-white/10 bg-[#06101d]/80 px-4 py-4 [.light_&]:border-slate-200 [.light_&]:bg-white/80"
+      />
+    ),
+  },
+);
 
 function FadeIn({
   children,

@@ -582,12 +582,13 @@ export function HeroSection({ sliderLabelClassName }: HeroSectionProps = {}) {
             labelClassName={sliderLabelClassName}
           />
 
-          <button
+          <a
+            href={REGISTER_URL}
             className="group mb-6 flex items-center space-x-2 rounded-full bg-white/5 px-4 py-2 text-sm backdrop-blur-xl transition-all duration-300 hover:bg-white/10"
           >
             <span>Trade with premium access</span>
             <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-          </button>
+          </a>
 
           <h1
             style={tradeAnywhereStyle}
@@ -630,7 +631,8 @@ export function HeroSection({ sliderLabelClassName }: HeroSectionProps = {}) {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(255,0,140,0.16),transparent_34%),radial-gradient(circle_at_50%_75%,rgba(168,85,247,0.12),transparent_30%)]" />
         <div className="absolute inset-0 bg-black/56" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(8,12,24,0.14),rgba(3,6,16,0.58)_58%,rgba(2,4,12,0.82)_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.3)_24%,rgba(0,0,0,0.38)_68%,rgba(0,0,0,0.68)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.34)_32%,rgba(0,0,0,0.44)_72%,rgba(0,0,0,0.62)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-[34rem] bg-[linear-gradient(180deg,rgba(2,5,12,0)_0%,rgba(2,5,12,0.36)_36%,rgba(2,5,12,0.82)_72%,#02050c_100%)]" />
 
         <div className="absolute left-1/2 top-0 h-full w-full -translate-x-1/2 opacity-90 sm:w-[125%]">
           <Lightning

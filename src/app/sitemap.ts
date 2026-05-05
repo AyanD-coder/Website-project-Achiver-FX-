@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { getAbsoluteUrl, pageRoutes } from "@/lib/page-metadata";
+import { getAbsoluteUrl, indexedPageRoutes } from "@/lib/page-metadata";
 
 const lastModified = new Date("2026-05-01T00:00:00+05:30");
 
@@ -22,7 +22,7 @@ function getChangeFrequency(
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return pageRoutes.map((path) => ({
+  return indexedPageRoutes.map((path) => ({
     url: getAbsoluteUrl(path),
     lastModified,
     changeFrequency: getChangeFrequency(path),

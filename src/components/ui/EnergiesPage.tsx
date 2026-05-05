@@ -234,7 +234,9 @@ export default function EnergiesPage() {
                       <td className="px-5 py-4 text-sm font-semibold text-text-primary [.light_&]:text-slate-900">{row.lowAsk}</td>
                       <td className="px-5 py-4 text-sm font-semibold text-brand-success">{row.leverage}</td>
                       <td className="px-5 py-4 text-right">
-                        <Button size="sm" className="h-9 px-4 text-xs">Trade</Button>
+                        <Button asChild size="sm" className="h-9 px-4 text-xs">
+                          <Link href="/register">Trade</Link>
+                        </Button>
                       </td>
                     </tr>
                   ))}

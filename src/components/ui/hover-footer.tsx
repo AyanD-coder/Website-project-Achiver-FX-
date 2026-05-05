@@ -246,31 +246,31 @@ const contactInfo = [
 const socialLinks = [
   {
     label: "Facebook",
-    href: "#",
+    href: "https://www.facebook.com/people/Achiever-Financials-Ltd/61560611701741/",
     accent: "text-[#3563a7]",
     icon: FacebookIcon,
   },
   {
     label: "LinkedIn",
-    href: "#",
+    href: "https://www.linkedin.com/company/achiever-fx/posts/?feedView=all",
     accent: "text-[#2a66bc]",
     icon: LinkedInIcon,
   },
   {
     label: "YouTube",
-    href: "#",
+    href: "https://www.youtube.com/@officialachieverfx",
     accent: "text-[#e95b9d]",
     icon: YouTubeIcon,
   },
   {
     label: "Instagram",
-    href: "#",
+    href: "https://www.instagram.com/officialachieverfx/",
     accent: "text-[#7b8fd8]",
     icon: InstagramIcon,
   },
   {
     label: "X",
-    href: "#",
+    href: "https://x.com/Achiever_fx",
     accent: "text-[#4f6fa6]",
     icon: XIcon,
   },
@@ -352,6 +352,8 @@ export default function HoverFooter() {
                   key={item.label}
                   href={item.href}
                   aria-label={item.label}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-xs font-bold uppercase text-slate-900 transition-transform duration-300 hover:-translate-y-0.5 [.light_&]:bg-blue-50 [.light_&]:text-blue-700 [.light_&]:shadow-[0_8px_18px_rgba(37,99,235,0.12)]"
                 >
                   <item.icon className={cn("h-4 w-4", item.accent)} />

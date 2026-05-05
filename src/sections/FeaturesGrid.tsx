@@ -68,7 +68,7 @@ export default function FeaturesGrid() {
       <section className="relative left-1/2 w-screen max-w-none -translate-x-1/2">
         <div className="hidden relative md:flex min-h-[86svh] flex-col overflow-visible rounded-none bg-transparent shadow-none backdrop-blur-none sm:min-h-0 sm:rounded-none sm:bg-transparent sm:shadow-none sm:backdrop-blur-none">
           <div className="relative z-0 flex-1 min-h-0">
-            <div className="pointer-events-none absolute inset-x-0 -top-32 z-10 h-56 bg-transparent md:max-lg:bg-[linear-gradient(180deg,rgba(2,5,12,0)_0%,#02050c_42%,rgba(2,5,12,0)_100%)] lg:top-0 lg:h-24 lg:bg-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 -top-32 z-10 h-56 bg-transparent lg:top-0 lg:h-24" />
             <RadialOrbitalTimeline timelineData={timelineData} />
           </div>
 

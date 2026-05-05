@@ -321,10 +321,11 @@ export default function SharesTradingPage({
                       </div>
                     </div>
                     <Button
+                      asChild
                       size="sm"
                       className="h-9 rounded-full px-4 text-xs"
                     >
-                      Trade
+                      <Link href="/register">Trade</Link>
                     </Button>
                   </div>
 
@@ -402,10 +403,11 @@ export default function SharesTradingPage({
                         </td>
                         <td className="px-5 py-4 text-right">
                           <Button
+                            asChild
                             size="sm"
                             className="h-9 rounded-full px-4 text-xs"
                           >
-                            Trade
+                            <Link href="/register">Trade</Link>
                           </Button>
                         </td>
                       </tr>
