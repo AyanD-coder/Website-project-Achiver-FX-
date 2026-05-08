@@ -397,6 +397,45 @@ function FooterSection({
   );
 }
 
+function LinkColumn({
+  title,
+  links,
+}: {
+  title: string;
+  links: { label: string; href: string }[];
+}) {
+  return (
+    <div className="text-center sm:text-left">
+      <p className="text-sm font-semibold uppercase tracking-wider text-white [.light_&]:text-[#111827]">
+        {title}
+      </p>
+      <ul className="mt-5 space-y-3">
+        {links.map(({ label, href }) => (
+          <li key={label}>
+            {href.startsWith("http") ? (
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-slate-400 transition-colors hover:text-[#3ca2fa] [.light_&]:text-slate-600 [.light_&]:hover:text-blue-600"
+              >
+                {label}
+              </a>
+            ) : (
+              <Link
+                href={href}
+                className="text-sm text-slate-400 transition-colors hover:text-[#3ca2fa] [.light_&]:text-slate-600 [.light_&]:hover:text-blue-600"
+              >
+                {label}
+              </Link>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export default function HoverFooter() {
   return (
     <footer className="relative m-3 overflow-hidden rounded-[24px] border border-white/10 bg-[#07101f]/55 text-slate-300 shadow-[0_30px_120px_rgba(0,0,0,0.4)] backdrop-blur-2xl sm:m-4 sm:rounded-[32px] md:m-8 [.light_&]:border-gray-200 [.light_&]:bg-white/88 [.light_&]:text-slate-600 [.light_&]:shadow-[0_20px_60px_rgba(14,165,233,0.08)]">
@@ -406,98 +445,137 @@ export default function HoverFooter() {
         </div>
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl p-5 sm:p-8 md:p-12 lg:p-14">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 pt-16 pb-6 sm:px-6 lg:px-8 lg:pt-20">
 
-        {/* Row 1 — Logo, tagline, social (centered) */}
-        <div className="mb-10 flex flex-col items-center space-y-5 text-center pb-10 border-b border-white/8 [.light_&]:border-gray-200">
-          <BrandLogo className="w-[190px] sm:w-[220px] lg:w-[250px] [.light_&]:brightness-[0.18] [.light_&]:contrast-[1.35]" />
-          <p className="max-w-sm text-sm leading-relaxed text-slate-300/90 [.light_&]:text-slate-600">
-            Here at Achiever Financials Ltd, we provide one of the safest
-            online trading platforms to our clients and partners.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4">
-            {socialLinks.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                aria-label={item.label}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-xs font-bold uppercase text-slate-900 transition-transform duration-300 hover:-translate-y-0.5 [.light_&]:bg-blue-50 [.light_&]:text-blue-700 [.light_&]:shadow-[0_8px_18px_rgba(37,99,235,0.12)]"
-              >
-                <item.icon className={cn("h-4 w-4", item.accent)} />
-              </a>
-            ))}
+        {/* ── Main grid: company col + 4-col link grid ── */}
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
+
+          {/* Company column */}
+          <div className="flex flex-col items-center sm:items-start">
+            <BrandLogo className="w-[190px] sm:w-[210px] [.light_&]:brightness-[0.18] [.light_&]:contrast-[1.35]" />
+            <p className="mt-6 max-w-xs text-center text-sm leading-relaxed text-slate-400 sm:text-left [.light_&]:text-slate-600">
+              Here at Achiever Financials Ltd, we provide one of the safest
+              online trading platforms to our clients and partners.
+            </p>
+            <ul className="mt-8 flex justify-center gap-3 sm:justify-start">
+              {socialLinks.map((item) => (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    aria-label={item.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20 [.light_&]:bg-blue-50 [.light_&]:hover:bg-blue-100 [.light_&]:shadow-[0_4px_12px_rgba(37,99,235,0.1)]"
+                  >
+                    <item.icon className={cn("h-4 w-4", item.accent)} />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* 4-column link grid */}
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:col-span-2">
+            <LinkColumn
+              title="Markets"
+              links={footerColumns[0].links}
+            />
+            <LinkColumn
+              title="Platform"
+              links={footerColumns[1].links}
+            />
+            <div className="text-center sm:text-left">
+              <LinkColumn
+                title="Tools"
+                links={footerColumns[2].links}
+              />
+              <div className="mt-8">
+                <LinkColumn
+                  title="Partner"
+                  links={footerColumns[4].links}
+                />
+              </div>
+            </div>
+            <div className="text-center sm:text-left">
+              <LinkColumn
+                title="Company"
+                links={footerColumns[3].links}
+              />
+              {/* Contact Us */}
+              <div className="mt-8">
+                <p className="text-sm font-semibold uppercase tracking-wider text-white [.light_&]:text-[#111827]">
+                  Contact Us
+                </p>
+                <ul className="mt-5 space-y-4">
+                  {contactInfo.map((item) => (
+                    <li key={item.text} className="flex items-start justify-center gap-2 sm:justify-start">
+                      <span className="mt-0.5 shrink-0">{item.icon}</span>
+                      {item.href ? (
+                        <a
+                          href={item.href}
+                          className="text-sm text-slate-400 transition-colors [overflow-wrap:anywhere] hover:text-[#3ca2fa] [.light_&]:text-slate-600 [.light_&]:hover:text-blue-600"
+                        >
+                          {item.text}
+                        </a>
+                      ) : (
+                        <span className="text-sm text-slate-400 [overflow-wrap:anywhere] [.light_&]:text-slate-600">
+                          {item.text}
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Row 2 — Quick Links + Contact Us + MT5 */}
-        <div className="grid grid-cols-1 gap-0 pb-10 md:grid-cols-2 md:gap-x-12 xl:grid-cols-12 xl:gap-x-8">
+        {/* ── Documents + MT5 row ── */}
+        <div className="mt-12 border-t border-white/8 pt-10 [.light_&]:border-gray-200">
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
 
-          {/* Quick Links (collapsible per section) */}
-          <div className="xl:col-span-8">
-            <h4 className="mb-2 hidden text-sm font-bold uppercase tracking-wider text-white xl:block [.light_&]:text-[#111827]">
-              Quick Links
-            </h4>
-            {footerColumns.map((section) => (
-              <FooterSection
-                key={section.title}
-                title={section.title}
-                links={section.links.map((l) => ({ label: l.label, href: l.href }))}
-                collapsible
-              />
-            ))}
-          </div>
-
-          {/* Contact Us + Download MT5 */}
-          <div className="md:col-span-2 xl:col-span-4">
-            <FooterSection title="Contact Us">
-              <ul className="space-y-6 pb-4 sm:pb-0">
-                {contactInfo.map((item) => (
-                  <li key={item.text} className="flex items-start gap-3">
-                    <span className="mt-0.5 shrink-0">{item.icon}</span>
-                    {item.href ? (
-                      <a
-                        href={item.href}
-                        className="text-sm leading-6 text-slate-300/85 transition-colors [overflow-wrap:anywhere] hover:text-[#3ca2fa] [.light_&]:text-slate-600 [.light_&]:hover:text-blue-600"
-                      >
-                        {item.text}
-                      </a>
-                    ) : (
-                      <span className="text-sm leading-6 text-slate-300/85 [overflow-wrap:anywhere] [.light_&]:text-slate-600">
-                        {item.text}
-                      </span>
-                    )}
+            {/* Documents */}
+            <div>
+              <p className="mb-5 text-sm font-semibold uppercase tracking-wider text-white [.light_&]:text-[#111827]">
+                Documents
+              </p>
+              <ul className="flex flex-wrap gap-x-8 gap-y-3">
+                {documentLinks.map(({ label, href }) => (
+                  <li key={label}>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-slate-400 transition-colors hover:text-[#3ca2fa] [.light_&]:text-slate-600 [.light_&]:hover:text-blue-600"
+                    >
+                      {label}
+                    </a>
                   </li>
                 ))}
               </ul>
-            </FooterSection>
+            </div>
 
             {/* Download MT5 */}
-            <div className="mt-2 pb-6">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-400 [.light_&]:text-slate-500">
+            <div className="shrink-0">
+              <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-white [.light_&]:text-[#111827]">
                 Download MT5
               </p>
               <div className="mb-4">
-                <img
-                  src="/mt5-image.png"
-                  alt="MetaTrader 5"
-                  className="h-10 w-auto object-contain"
-                />
+                <img src="/mt5-image.png" alt="MetaTrader 5" className="h-9 w-auto object-contain" />
               </div>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-3 gap-2">
                 {mt5Downloads.map((d) => (
                   <a
                     key={d.sub}
                     href={d.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-2 transition-colors hover:border-[#3ca2fa]/40 hover:bg-white/10 [.light_&]:border-gray-200 [.light_&]:bg-gray-50 [.light_&]:hover:border-blue-300 [.light_&]:hover:bg-blue-50"
+                    className="flex items-center gap-2 rounded-lg border border-white/12 bg-white/5 px-2.5 py-2 transition-colors hover:border-[#3ca2fa]/40 hover:bg-white/10 [.light_&]:border-gray-200 [.light_&]:bg-gray-50 [.light_&]:hover:border-blue-300 [.light_&]:hover:bg-blue-50"
                   >
-                    <d.Icon className="h-5 w-5 shrink-0 text-[#3ca2fa] [.light_&]:text-blue-600" />
+                    <d.Icon className="h-4 w-4 shrink-0 text-[#3ca2fa] [.light_&]:text-blue-600" />
                     <div className="flex flex-col">
-                      <span className="text-[9px] leading-tight text-slate-400 [.light_&]:text-slate-500">{d.label}</span>
-                      <span className="text-[11px] font-semibold leading-tight text-white [.light_&]:text-[#111827]">{d.sub}</span>
+                      <span className="text-[8px] leading-tight text-slate-400 [.light_&]:text-slate-500">{d.label}</span>
+                      <span className="text-[10px] font-semibold leading-tight text-white [.light_&]:text-[#111827]">{d.sub}</span>
                     </div>
                   </a>
                 ))}
@@ -506,42 +584,32 @@ export default function HoverFooter() {
           </div>
         </div>
 
-        <div className="space-y-8 border-t border-white/10 pt-10 [.light_&]:border-gray-200">
+        {/* ── Disclaimers ── */}
+        <div className="mt-12 space-y-6 border-t border-white/8 pt-8 [.light_&]:border-gray-200">
           <p className="text-[11px] leading-relaxed text-slate-400/80 [.light_&]:text-slate-500">
             <strong className="font-semibold text-slate-300 [.light_&]:text-[#111827]">Risk Warning:</strong>{" "}
-            An investment in CFD&apos;s may mean investors may lose an amount even
-            greater than their original investment. Anyone wishing to invest in
-            any of the products mentioned should seek their own financial or
-            professional advice. Trading of securities, forex, stock market,
-            commodities, options and futures may not be suitable for everyone
-            and involves the risk of losing part or all of your money.
+            An investment in CFD&apos;s may mean investors may lose an amount even greater than their original investment. Anyone wishing to invest in any of the products mentioned should seek their own financial or professional advice. Trading of securities, forex, stock market, commodities, options and futures may not be suitable for everyone and involves the risk of losing part or all of your money.
           </p>
-
           <p className="text-[11px] leading-relaxed text-slate-400/80 [.light_&]:text-slate-500">
-            Regulated by Mauritius FSC. Achiever Financials Ltd is authorised
-            and regulated by the Mauritius Financial Services Commission with
-            Global Business and Investment Dealer Licence number GB 24203778.
+            Regulated by Mauritius FSC. Achiever Financials Ltd is authorised and regulated by the Mauritius Financial Services Commission with Global Business and Investment Dealer Licence number GB 24203778.
           </p>
-
           <p className="text-[11px] leading-relaxed text-slate-400/80 [.light_&]:text-slate-500">
-            Achiever Global Markets LTD. Registration number 2023-00255 with
-            registered address at Ground Floor, The South Bay Building, Rodney
-            Bay, Gross-Islet Saint Lucia, P.O. box 838, Castries, Saint Lucia.
+            Achiever Global Markets LTD. Registration number 2023-00255 with registered address at Ground Floor, The South Bay Building, Rodney Bay, Gross-Islet Saint Lucia, P.O. box 838, Castries, Saint Lucia.
           </p>
-
           <p className="text-[11px] leading-relaxed text-slate-400/80 [.light_&]:text-slate-500">
-            Regional restrictions: Achiever Financials Ltd / Achiever Global
-            Markets LTD does not provide services to citizens or residents of
-            Cuba, Iraq, Myanmar, North Korea, Sudan and FATF blacklisted
-            countries. The services of Achiever Financials Ltd are not intended
-            for distribution to, or use by, any person in any country or
-            jurisdiction where such distribution or use would be contrary to
-            local law or regulation.
+            Regional restrictions: Achiever Financials Ltd / Achiever Global Markets LTD does not provide services to citizens or residents of Cuba, Iraq, Myanmar, North Korea, Sudan and FATF blacklisted countries.
           </p>
+        </div>
 
-          <div className="border-t border-white/10 pt-5 text-center text-sm text-slate-300 [.light_&]:border-gray-200 [.light_&]:text-slate-600">
-            Copyright (c) {new Date().getFullYear()} Achiever Financials LTD. All
-            rights reserved.
+        {/* ── Bottom bar ── */}
+        <div className="mt-8 border-t border-white/8 pt-6 [.light_&]:border-gray-200">
+          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+            <p className="text-sm text-slate-400 [.light_&]:text-slate-500">
+              All rights reserved.
+            </p>
+            <p className="text-sm text-slate-400 [.light_&]:text-slate-500">
+              &copy; {new Date().getFullYear()} Achiever Financials LTD.
+            </p>
           </div>
         </div>
       </div>
