@@ -51,7 +51,7 @@ function BlogCard({ excerpt, href, image, title }: BlogPost) {
           fill
           loading="lazy"
           sizes="(min-width: 1280px) 384px, (min-width: 768px) 50vw, 100vw"
-          className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+          className="object-contain transition-transform duration-500 ease-out group-hover:scale-105"
         />
       </Link>
 

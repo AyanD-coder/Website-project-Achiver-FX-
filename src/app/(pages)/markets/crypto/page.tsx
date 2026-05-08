@@ -9,68 +9,17 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/Button";
+import CryptoPricesTable from "@/components/ui/CryptoPricesTable";
 import PageLayout from "@/components/ui/PageLayout";
 import { createPageMetadata } from "@/lib/page-metadata";
 
 export const metadata = createPageMetadata("/markets/crypto");
-
-type CryptoRow = {
-  symbol: string;
-  name: string;
-  avgSpread: string;
-  lowAsk: string;
-  leverage: string;
-  accent: string;
-};
 
 type FeatureCard = {
   title: string;
   description: string;
   icon: typeof Activity;
 };
-
-const cryptoRows: CryptoRow[] = [
-  {
-    symbol: "BTCUSD",
-    name: "Bitcoin vs US Dollar",
-    avgSpread: "25.00",
-    lowAsk: "15.00",
-    leverage: "1:50",
-    accent: "from-[#f7931a] to-[#ffb85c]",
-  },
-  {
-    symbol: "ETHUSD",
-    name: "Ethereum vs US Dollar",
-    avgSpread: "1.50",
-    lowAsk: "0.80",
-    leverage: "1:50",
-    accent: "from-[#627eea] to-[#8ea2ff]",
-  },
-  {
-    symbol: "SOLUSD",
-    name: "Solana vs US Dollar",
-    avgSpread: "0.05",
-    lowAsk: "0.03",
-    leverage: "1:20",
-    accent: "from-[#14f195] to-[#9945ff]",
-  },
-  {
-    symbol: "ADAUSD",
-    name: "Cardano vs US Dollar",
-    avgSpread: "0.002",
-    lowAsk: "0.001",
-    leverage: "1:20",
-    accent: "from-[#2a6df4] to-[#7ba7ff]",
-  },
-  {
-    symbol: "XRPUSD",
-    name: "Ripple vs US Dollar",
-    avgSpread: "0.003",
-    lowAsk: "0.002",
-    leverage: "1:20",
-    accent: "from-[#8a94a6] to-[#c4ccd8]",
-  },
-];
 
 const featureCards: FeatureCard[] = [
   {
@@ -131,89 +80,7 @@ export default function CryptoPage() {
           <div className="relative overflow-hidden rounded-[34px] border border-white/8 bg-[linear-gradient(180deg,rgba(8,12,23,0.82)_0%,rgba(5,8,18,0.96)_100%)] px-4 py-8 shadow-[0_32px_100px_rgba(2,8,20,0.4)] backdrop-blur-xl sm:px-6 lg:px-8 [.light_&]:border-blue-100 [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.94)_0%,rgba(248,250,252,0.98)_100%)] [.light_&]:ring-1 [.light_&]:ring-blue-100/70 [.light_&]:shadow-[0_18px_50px_rgba(15,23,42,0.06)]">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.08),transparent_28%),radial-gradient(circle_at_bottom,rgba(37,99,235,0.08),transparent_36%)] [.light_&]:bg-[radial-gradient(circle_at_top,rgba(37,99,235,0.09),transparent_26%),radial-gradient(circle_at_bottom,rgba(14,165,233,0.06),transparent_34%)]" />
 
-            <div className="relative text-center">
-              <h2 className="text-3xl font-semibold tracking-tight text-white [.light_&]:text-[#111827]">
-                Crypto Market Prices
-              </h2>
-              <p className="mt-3 text-sm text-slate-400 [.light_&]:text-slate-600">
-                The market operates Monday - Friday 00:01 - 23:58 (GMT + 2)
-              </p>
-
-              <div className="mt-6 inline-flex rounded-full border border-white/10 bg-white/[0.03] p-1 backdrop-blur-sm [.light_&]:border-blue-100 [.light_&]:bg-slate-50">
-                <span className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-950 shadow-[0_8px_18px_rgba(255,255,255,0.08)] [.light_&]:bg-gradient-to-r [.light_&]:from-[#2563EB] [.light_&]:to-[#0EA5E9] [.light_&]:text-white">
-                  Standard
-                </span>
-                <span className="px-4 py-2 text-sm font-medium text-slate-400 [.light_&]:text-slate-500">
-                  Ultra Low Standard
-                </span>
-              </div>
-            </div>
-
-            <div className="relative mt-8 overflow-hidden rounded-[26px] border border-white/8 bg-slate-950/55 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] [.light_&]:border-blue-100 [.light_&]:bg-white">
-              <div className="overflow-x-auto">
-                <table className="min-w-full text-left">
-                  <thead className="border-b border-white/8 bg-white/[0.02] [.light_&]:border-blue-100 [.light_&]:bg-slate-50">
-                    <tr className="text-xs uppercase tracking-[0.16em] text-slate-400 [.light_&]:text-slate-500">
-                      <th className="px-5 py-4 font-semibold">Instrument</th>
-                      <th className="px-5 py-4 font-semibold">Name</th>
-                      <th className="px-5 py-4 font-semibold">Average Spread</th>
-                      <th className="px-5 py-4 font-semibold">Low Ask</th>
-                      <th className="px-5 py-4 font-semibold">Max Leverage</th>
-                      <th className="px-5 py-4 text-right font-semibold">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {cryptoRows.map((row) => (
-                      <tr
-                        key={row.symbol}
-                        className="border-b border-white/8 last:border-b-0 [.light_&]:border-blue-50"
-                      >
-                        <td className="px-5 py-4">
-                          <div className="flex items-center gap-3">
-                            <span
-                              className={`flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br ${row.accent} text-[10px] font-black tracking-[0.06em] text-white shadow-[0_10px_20px_rgba(15,23,42,0.22)]`}
-                            >
-                              {row.symbol.slice(0, 3)}
-                            </span>
-                            <span className="text-sm font-semibold text-white [.light_&]:text-slate-900">
-                              {row.symbol}
-                            </span>
-                          </div>
-                        </td>
-                        <td className="px-5 py-4 text-sm text-slate-300 [.light_&]:text-slate-600">
-                          {row.name}
-                        </td>
-                        <td className="px-5 py-4 text-sm font-semibold text-white [.light_&]:text-slate-900">
-                          {row.avgSpread}
-                        </td>
-                        <td className="px-5 py-4 text-sm font-semibold text-white [.light_&]:text-slate-900">
-                          {row.lowAsk}
-                        </td>
-                        <td className="px-5 py-4 text-sm font-semibold text-emerald-300 [.light_&]:text-blue-700">
-                          {row.leverage}
-                        </td>
-                        <td className="px-5 py-4 text-right">
-                          <Button asChild size="sm" className="h-9 px-4 text-xs">
-                            <Link href="/register">Trade</Link>
-                          </Button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <div className="relative mt-8 text-center">
-              <p className="text-sm text-slate-400 [.light_&]:text-slate-600">
-                Ready to discover more instruments?
-              </p>
-              <div className="mt-4">
-                <Button asChild className="h-11 px-6 text-sm">
-                  <Link href="/register">Register to See More</Link>
-                </Button>
-              </div>
-            </div>
+            <CryptoPricesTable />
           </div>
         </section>
 

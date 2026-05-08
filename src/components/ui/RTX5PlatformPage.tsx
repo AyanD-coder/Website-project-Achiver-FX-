@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { SVGProps } from "react";
 import type { LucideIcon } from "lucide-react";
@@ -205,78 +206,34 @@ function PlayIcon(props: SVGProps<SVGSVGElement>) {
 
 function MonitorVisual() {
   return (
-    <div className="relative mx-auto h-[14rem] w-full max-w-[18rem]">
+    <div className="relative mx-auto w-full max-w-[18rem]">
       <div className="absolute left-1/2 top-2 h-36 w-36 -translate-x-1/2 rounded-full bg-emerald-300/10 blur-3xl [.light_&]:bg-emerald-300/28" />
-      <div className="relative mx-auto w-[16rem] rounded-[1.6rem] border border-white/14 bg-[linear-gradient(180deg,rgba(16,27,45,0.98),rgba(7,14,24,0.98))] p-3 shadow-[0_26px_60px_rgba(2,8,20,0.24)] [.light_&]:border-slate-200/80 [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(226,232,240,0.94))] [.light_&]:shadow-[0_24px_56px_rgba(15,23,42,0.12)]">
-        <div className="rounded-[1.1rem] border border-white/8 bg-[#05101b] p-3 [.light_&]:border-slate-200/80 [.light_&]:bg-[linear-gradient(180deg,rgba(248,251,255,0.96),rgba(231,239,249,0.94))]">
-          <svg viewBox="0 0 240 120" className="h-28 w-full" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs>
-              <linearGradient id="rtx-desktop-line" x1="16" y1="10" x2="226" y2="98">
-                <stop stopColor="#34d399" />
-                <stop offset="1" stopColor="#38bdf8" />
-              </linearGradient>
-            </defs>
-            {Array.from({ length: 4 }).map((_, index) => (
-              <line
-                key={`desktop-row-${index}`}
-                x1="10"
-                x2="230"
-                y1={20 + index * 24}
-                y2={20 + index * 24}
-                stroke="rgba(148,163,184,0.22)"
-                strokeDasharray="4 8"
-              />
-            ))}
-            <path
-              d="M16 84C36 80 48 52 66 58C84 64 94 26 118 30C140 34 154 74 174 68C194 62 208 34 224 22"
-              stroke="url(#rtx-desktop-line)"
-              strokeWidth="4"
-              strokeLinecap="round"
-            />
-          </svg>
-        </div>
-        <div className="mx-auto mt-3 h-3 w-16 rounded-full bg-white/12 [.light_&]:bg-slate-300/80" />
+      <div className="relative overflow-hidden rounded-[1.4rem] border border-white/14 shadow-[0_26px_60px_rgba(2,8,20,0.32)] [.light_&]:border-slate-200/80 [.light_&]:shadow-[0_24px_56px_rgba(15,23,42,0.12)]">
+        <Image
+          src="/achiever-web-trader/webtrader-dashboard.webp"
+          alt="RTX5 Desktop platform screenshot"
+          width={800}
+          height={500}
+          className="h-auto w-full object-cover"
+        />
       </div>
+      <div className="mx-auto mt-2 h-3 w-16 rounded-full bg-white/12 [.light_&]:bg-slate-300/80" />
     </div>
   );
 }
 
 function PhoneVisual() {
   return (
-    <div className="relative mx-auto h-[14rem] w-full max-w-[18rem]">
+    <div className="relative mx-auto w-full max-w-[11rem]">
       <div className="absolute left-1/2 top-6 h-32 w-32 -translate-x-1/2 rounded-full bg-cyan-400/14 blur-3xl [.light_&]:bg-sky-300/28" />
-      <div className="absolute left-5 top-7 h-5 w-5 rotate-12 rounded-md border border-sky-300/40 bg-sky-300/12 [.light_&]:border-sky-300/50 [.light_&]:bg-sky-100/80" />
-      <div className="absolute right-7 top-5 h-4 w-4 rounded-full border border-white/16 bg-white/10 [.light_&]:border-slate-300/50 [.light_&]:bg-white/60" />
-      <div className="absolute bottom-7 left-8 h-4 w-4 rounded-full border border-white/16 bg-white/10 [.light_&]:border-slate-300/50 [.light_&]:bg-white/70" />
-      <div className="absolute left-1/2 top-4 w-[9.7rem] -translate-x-1/2 -rotate-[18deg] rounded-[2rem] border border-white/12 bg-[linear-gradient(180deg,rgba(11,19,34,0.98),rgba(4,9,18,0.98))] p-[0.38rem] shadow-[0_28px_70px_rgba(2,8,20,0.26)] [.light_&]:border-slate-200/80 [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(226,232,240,0.94))] [.light_&]:shadow-[0_28px_64px_rgba(15,23,42,0.14)]">
-        <div className="rounded-[1.7rem] border border-white/10 bg-[#04101c] p-3 [.light_&]:border-slate-100/90 [.light_&]:bg-[linear-gradient(180deg,rgba(246,250,255,0.98),rgba(225,236,248,0.98))] [.light_&]:shadow-[inset_0_1px_0_rgba(255,255,255,0.86)]">
-          <div className="mx-auto h-1.5 w-14 rounded-full bg-white/10 [.light_&]:bg-slate-400/30" />
-          <svg viewBox="0 0 120 220" className="mt-3 h-44 w-full text-slate-400/20 [.light_&]:text-slate-400/40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs>
-              <linearGradient id="rtx-mobile-line" x1="8" y1="20" x2="104" y2="198">
-                <stop stopColor="#22d3ee" />
-                <stop offset="1" stopColor="#34d399" />
-              </linearGradient>
-            </defs>
-            {Array.from({ length: 5 }).map((_, index) => (
-              <line
-                key={`mobile-row-${index}`}
-                x1="8"
-                x2="110"
-                y1={24 + index * 34}
-                y2={24 + index * 34}
-                stroke="currentColor"
-                strokeDasharray="4 8"
-              />
-            ))}
-            <path
-              d="M12 170C24 164 30 146 42 128C54 110 60 130 72 106C84 82 92 50 106 34"
-              stroke="url(#rtx-mobile-line)"
-              strokeWidth="4"
-              strokeLinecap="round"
-            />
-          </svg>
-        </div>
+      <div className="relative overflow-hidden rounded-[2.2rem] border border-white/12 shadow-[0_28px_70px_rgba(2,8,20,0.30)] [.light_&]:border-slate-200/80 [.light_&]:shadow-[0_28px_64px_rgba(15,23,42,0.14)]">
+        <Image
+          src="/platform/premium-mt5-phone-hero.png"
+          alt="Mobile App screenshot"
+          width={400}
+          height={780}
+          className="h-auto w-full object-cover"
+        />
       </div>
     </div>
   );
@@ -284,30 +241,21 @@ function PhoneVisual() {
 
 function BrowserVisual() {
   return (
-    <div className="relative mx-auto h-[14rem] w-full max-w-[18rem]">
+    <div className="relative mx-auto w-full max-w-[18rem]">
       <div className="absolute right-8 top-1 h-28 w-28 rounded-full bg-blue-400/14 blur-3xl [.light_&]:bg-violet-300/30" />
-      <div className="absolute left-1/2 top-6 w-[16.5rem] -translate-x-1/2 rounded-[1.8rem] border border-white/12 bg-[linear-gradient(180deg,rgba(18,30,54,0.96),rgba(7,15,28,0.98))] p-3 shadow-[0_24px_56px_rgba(2,8,20,0.22)] [.light_&]:border-slate-200/80 [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(239,245,255,0.96))] [.light_&]:shadow-[0_24px_52px_rgba(15,23,42,0.08)]">
-        <div className="flex items-center gap-2">
+      <div className="relative overflow-hidden rounded-[1.6rem] border border-white/12 bg-[linear-gradient(180deg,rgba(18,30,54,0.96),rgba(7,15,28,0.98))] shadow-[0_24px_56px_rgba(2,8,20,0.22)] [.light_&]:border-slate-200/80 [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(239,245,255,0.96))] [.light_&]:shadow-[0_24px_52px_rgba(15,23,42,0.08)]">
+        <div className="flex items-center gap-2 px-3 pt-3">
           <span className="h-2.5 w-2.5 rounded-full bg-rose-400/70" />
           <span className="h-2.5 w-2.5 rounded-full bg-sky-400/70" />
           <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/70" />
         </div>
-        <div className="mt-3 rounded-[1.2rem] border border-white/8 bg-white/[0.03] p-3 [.light_&]:border-slate-200/70 [.light_&]:bg-white/90">
-          <svg viewBox="0 0 220 110" className="h-28 w-full" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs>
-              <linearGradient id="rtx-web-line" x1="12" y1="12" x2="210" y2="82">
-                <stop stopColor="#60a5fa" />
-                <stop offset="1" stopColor="#c084fc" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M18 82C38 72 50 36 74 42C98 48 112 84 136 70C160 56 178 34 202 20"
-              stroke="url(#rtx-web-line)"
-              strokeWidth="4"
-              strokeLinecap="round"
-            />
-          </svg>
-        </div>
+        <Image
+          src="/achiever-web-trader/webtrader-screens.webp"
+          alt="WebTrader screenshot"
+          width={800}
+          height={500}
+          className="mt-2 h-auto w-full object-cover"
+        />
       </div>
     </div>
   );
@@ -331,7 +279,7 @@ function PlatformCard({ badge, ctaLabel, description, kind, platform, title }: P
         )}
       />
       <div className="relative">
-        <div className="min-h-[15rem]">
+        <div className="flex items-center justify-center">
           {isMobile ? <PhoneVisual /> : isDesktop ? <MonitorVisual /> : <BrowserVisual />}
         </div>
 

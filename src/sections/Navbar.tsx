@@ -36,8 +36,6 @@ const navData: NavGroup[] = [
       { label: "Equities", href: "/markets/equities" },
       { label: "Commodities", href: "/markets/commodities" },
       { label: "Precious Metals", href: "/markets/precious-metals" },
-      { label: "Energies", href: "/markets/energies" },
-      { label: "Shares", href: "/markets/shares" },
     ]
   },
   {

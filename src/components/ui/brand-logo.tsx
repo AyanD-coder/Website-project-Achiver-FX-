@@ -22,7 +22,7 @@ export default function BrandLogo({
       )}
     >
       <Image
-        src="/achiever-logo-v2.png"
+        src="/achiever-logo-dark.png"
         alt="Achiever FX"
         width={1200}
         height={239}

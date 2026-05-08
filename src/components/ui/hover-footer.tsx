@@ -4,7 +4,7 @@ import type { SVGProps } from "react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
-import { ChevronDown, Mail, MapPin, Phone } from "lucide-react";
+import { ChevronDown, Mail, MapPin, Phone, Terminal } from "lucide-react";
 
 import BrandLogo from "@/components/ui/brand-logo";
 import { cn } from "@/lib/utils";
@@ -178,6 +178,14 @@ const XIcon = (props: SVGProps<SVGSVGElement>) => (
   </SocialIcon>
 );
 
+const documentLinks = [
+  { label: "Privacy Policy", href: "https://acrobat.adobe.com/id/urn:aaid:sc:AP:9018aec8-f514-43be-bf5f-918dcda37876" },
+  { label: "Risk Disclosure", href: "https://acrobat.adobe.com/id/urn:aaid:sc:AP:9ba39088-5f97-4653-bfa6-02356f4aecde" },
+  { label: "Client Agreement", href: "https://acrobat.adobe.com/id/urn:aaid:sc:AP:6711b228-0545-41a1-bb40-8f05b9257ff4" },
+  { label: "Complaint Handling", href: "https://acrobat.adobe.com/id/urn:aaid:sc:AP:2075fe24-165e-486a-ab09-3492dfbdd951" },
+  { label: "AML Policy", href: "https://acrobat.adobe.com/id/urn:aaid:sc:AP:ffd740b6-5ab7-4bb3-af74-809ad43a1391" },
+];
+
 const footerColumns = [
   {
     title: "Markets",
@@ -189,8 +197,6 @@ const footerColumns = [
       { label: "Equities", href: "/markets/equities" },
       { label: "Commodities", href: "/markets/commodities" },
       { label: "Precious Metals", href: "/markets/precious-metals" },
-      { label: "Energies", href: "/markets/energies" },
-      { label: "Shares", href: "/markets/shares" },
     ],
   },
   {
@@ -204,11 +210,11 @@ const footerColumns = [
     ],
   },
   {
-    title: "Discover",
+    title: "Tools",
     links: [
       { label: "Education", href: "/discover/education" },
-      { label: "News & Analysis", href: "/discover/analysis-report" },
       { label: "Trading Tools", href: "/discover/trading-tools" },
+      { label: "Analysis Report", href: "/discover/analysis-report" },
       { label: "Economic Calendar", href: "/discover/economic-calendar" },
     ],
   },
@@ -217,11 +223,56 @@ const footerColumns = [
     links: [
       { label: "About Us", href: "/company/about-us" },
       { label: "Career", href: "/company/career" },
-      { label: "Legal Documents", href: "/company/legal-documents" },
       { label: "Customer Protection", href: "/company/customer-protection" },
       { label: "Contact Us", href: "/company/contact-us" },
     ],
   },
+  {
+    title: "Partner",
+    links: [
+      { label: "Introducing Broker", href: "/partner/introducing-broker" },
+      { label: "Affiliate Program", href: "/partner/affiliate-program" },
+      { label: "Institutional Liquidity", href: "https://achieverprime.com/" },
+    ],
+  },
+  {
+    title: "Documents",
+    links: documentLinks,
+  },
+];
+
+const AndroidIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+    <path d="M17.523 15.341A5.97 5.97 0 0 0 18 13a5.97 5.97 0 0 0-.477-2.341L19.5 9l-2.5-1.5-.954 1.659A5.97 5.97 0 0 0 12 7a5.97 5.97 0 0 0-4.046 1.659L7 7 4.5 8.5l1.977 1.659A5.97 5.97 0 0 0 6 13a5.97 5.97 0 0 0 .477 2.341L4.5 17l2.5 1.5.954-1.659A5.97 5.97 0 0 0 12 18.5a5.97 5.97 0 0 0 4.046-1.659L17 18.5l2.5-1.5-1.977-1.659ZM10 13.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm4 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
+    <path d="m7.5 5.5 1 1.732A5.96 5.96 0 0 1 12 6.5c1.26 0 2.43.39 3.5 1.04L16.5 5.5l-1.5-2.5h-6L7.5 5.5Z" />
+  </svg>
+);
+
+const WindowsIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+    <path d="M3 12V6.75L9 5.43V12H3ZM10 12V5.24L21 3V12H10ZM3 13H9V19.57L3 18.25V13ZM10 13H21V21L10 18.76V13Z" />
+  </svg>
+);
+
+const AppleIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11Z" />
+  </svg>
+);
+
+const HuaweiIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+    <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2Zm0 3c.828 0 1.5 1.343 1.5 3S12.828 11 12 11s-1.5-1.343-1.5-3S11.172 5 12 5Zm-4.33 2.5c.716-.414 1.94.22 2.68 1.41.74 1.19.74 2.51.024 2.924-.717.414-1.94-.22-2.68-1.41-.74-1.19-.74-2.51-.024-2.924Zm8.66 0c.716.414.716 1.734-.024 2.924-.74 1.19-1.963 1.824-2.68 1.41-.716-.414-.716-1.734.024-2.924.74-1.19 1.963-1.824 2.68-1.41ZM7 13c.828 0 1.5 1.343 1.5 3S7.828 19 7 19s-1.5-1.343-1.5-3S6.172 13 7 13Zm10 0c.828 0 1.5 1.343 1.5 3S17.828 19 17 19s-1.5-1.343-1.5-3S16.172 13 17 13Zm-5 1c.828 0 1.5 1.343 1.5 3S12.828 21 12 21s-1.5-1.343-1.5-3S11.172 14 12 14Z" />
+  </svg>
+);
+
+const mt5Downloads = [
+  { label: "GET IT ON", sub: "Google Play", href: "https://download.terminal.free/cdn/mobile/mt5/android?server=AchieverGlobalMarkets-Server", Icon: AndroidIcon },
+  { label: "Download for", sub: "Windows", href: "https://download.terminal.free/cdn/web/achiever.global.markets/mt5/achieverglobalmarkets5setup.exe", Icon: WindowsIcon },
+  { label: "Download on the", sub: "App Store", href: "https://download.terminal.free/cdn/mobile/mt5/ios?server=AchieverGlobalMarkets-Server", Icon: AppleIcon },
+  { label: "Download for", sub: "Mac OS", href: "https://download.mql5.com/cdn/web/metaquotes.ltd/mt5/MetaTrader5.pkg.zip", Icon: AppleIcon },
+  { label: "Download on", sub: "AppGallery", href: "https://appgallery.huawei.com/#/app/C102015329", Icon: HuaweiIcon },
+  { label: "Download", sub: "for Linux", href: "https://www.mql5.com/en/articles/625", Icon: Terminal },
 ];
 
 const contactInfo = [
@@ -277,20 +328,25 @@ const socialLinks = [
 function FooterSection({
   title,
   links,
-  children
+  children,
+  collapsible = false,
 }: {
   title: string;
   links?: { label: string; href: string }[];
   children?: React.ReactNode;
+  collapsible?: boolean;
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="flex flex-col mb-2 sm:mb-10">
+    <div className="flex flex-col mb-2 sm:mb-4">
       <button
         suppressHydrationWarning
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-center justify-between py-4 sm:py-0 sm:mb-6"
+        className={cn(
+          "flex w-full items-center justify-between py-3 cursor-pointer",
+          collapsible ? "border-b border-white/8 [.light_&]:border-gray-200" : "sm:mb-6"
+        )}
       >
         <h4 className="text-sm font-bold uppercase tracking-wider text-white [.light_&]:text-[#111827]">
           {title}
@@ -298,31 +354,45 @@ function FooterSection({
         <ChevronDown
           size={16}
           className={cn(
-            "text-slate-500 transition-transform duration-300 md:hidden",
+            "text-slate-500 transition-transform duration-300",
+            collapsible ? "block" : "md:hidden",
             isOpen && "rotate-180"
           )}
         />
       </button>
       <div className={cn(
-        "overflow-hidden transition-all duration-300 ease-in-out md:max-h-none sm:opacity-100",
-        isOpen ? "max-h-[500px] opacity-100 mb-6" : "max-h-0 opacity-0 md:mb-0"
+        "overflow-hidden transition-all duration-300 ease-in-out",
+        collapsible
+          ? isOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
+          : cn("md:max-h-none sm:opacity-100", isOpen ? "max-h-[500px] opacity-100 mb-6" : "max-h-0 opacity-0 md:mb-0")
       )}>
         {links ? (
-          <ul className="space-y-3.5 pb-4 md:pb-0">
+          <ul className="space-y-3 py-3 pl-1">
             {links.map((link) => (
               <li key={link.label}>
-                <Link
-                  href={link.href}
-                  className="text-sm text-slate-300/85 transition-colors hover:text-[#3ca2fa] [.light_&]:text-slate-600 [.light_&]:hover:text-blue-600"
-                >
-                  {link.label}
-                </Link>
+                {link.href.startsWith("http") ? (
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-slate-300/85 transition-colors hover:text-[#3ca2fa] [.light_&]:text-slate-600 [.light_&]:hover:text-blue-600"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    href={link.href}
+                    className="text-sm text-slate-300/85 transition-colors hover:text-[#3ca2fa] [.light_&]:text-slate-600 [.light_&]:hover:text-blue-600"
+                  >
+                    {link.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
         ) : children}
       </div>
-      <div className="h-px w-full bg-white/5 sm:hidden" />
+      {!collapsible && <div className="h-px w-full bg-white/5 sm:hidden" />}
     </div>
   );
 }
@@ -337,34 +407,50 @@ export default function HoverFooter() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl p-5 sm:p-8 md:p-12 lg:p-14">
-        <div className="grid grid-cols-1 gap-0 pb-10 md:grid-cols-2 md:gap-12 lg:grid-cols-3 xl:grid-cols-6 lg:gap-x-8 lg:gap-y-12">
-          <div className="mb-12 flex flex-col space-y-6 md:col-span-2 md:mb-0 lg:col-span-3 xl:col-span-2">
-            <BrandLogo className="w-[190px] sm:w-[220px] lg:w-[250px] [.light_&]:brightness-[0.18] [.light_&]:contrast-[1.35]" />
-            <p className="max-w-sm text-sm leading-relaxed text-slate-300/90 [.light_&]:text-slate-600 sm:self-center">
-              Here at Achiever Financials Ltd, we provide one of the safest
-              online trading platforms to our clients and partners.
-            </p>
-            <div className="flex flex-wrap items-center gap-2 pt-4 sm:self-center md:gap-4 2xl:gap-6">
-              {socialLinks.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  aria-label={item.label}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-xs font-bold uppercase text-slate-900 transition-transform duration-300 hover:-translate-y-0.5 [.light_&]:bg-blue-50 [.light_&]:text-blue-700 [.light_&]:shadow-[0_8px_18px_rgba(37,99,235,0.12)]"
-                >
-                  <item.icon className={cn("h-4 w-4", item.accent)} />
-                </a>
-              ))}
-            </div>
+
+        {/* Row 1 — Logo, tagline, social (centered) */}
+        <div className="mb-10 flex flex-col items-center space-y-5 text-center pb-10 border-b border-white/8 [.light_&]:border-gray-200">
+          <BrandLogo className="w-[190px] sm:w-[220px] lg:w-[250px] [.light_&]:brightness-[0.18] [.light_&]:contrast-[1.35]" />
+          <p className="max-w-sm text-sm leading-relaxed text-slate-300/90 [.light_&]:text-slate-600">
+            Here at Achiever Financials Ltd, we provide one of the safest
+            online trading platforms to our clients and partners.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4">
+            {socialLinks.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                aria-label={item.label}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-xs font-bold uppercase text-slate-900 transition-transform duration-300 hover:-translate-y-0.5 [.light_&]:bg-blue-50 [.light_&]:text-blue-700 [.light_&]:shadow-[0_8px_18px_rgba(37,99,235,0.12)]"
+              >
+                <item.icon className={cn("h-4 w-4", item.accent)} />
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Row 2 — Quick Links + Contact Us + MT5 */}
+        <div className="grid grid-cols-1 gap-0 pb-10 md:grid-cols-2 md:gap-x-12 xl:grid-cols-12 xl:gap-x-8">
+
+          {/* Quick Links (collapsible per section) */}
+          <div className="xl:col-span-8">
+            <h4 className="mb-2 hidden text-sm font-bold uppercase tracking-wider text-white xl:block [.light_&]:text-[#111827]">
+              Quick Links
+            </h4>
+            {footerColumns.map((section) => (
+              <FooterSection
+                key={section.title}
+                title={section.title}
+                links={section.links.map((l) => ({ label: l.label, href: l.href }))}
+                collapsible
+              />
+            ))}
           </div>
 
-          {footerColumns.map((section) => (
-            <FooterSection key={section.title} title={section.title} links={section.links} />
-          ))}
-
-          <div className="md:col-span-2 lg:col-span-1 xl:col-span-2">
+          {/* Contact Us + Download MT5 */}
+          <div className="md:col-span-2 xl:col-span-4">
             <FooterSection title="Contact Us">
               <ul className="space-y-6 pb-4 sm:pb-0">
                 {contactInfo.map((item) => (
@@ -386,6 +472,37 @@ export default function HoverFooter() {
                 ))}
               </ul>
             </FooterSection>
+
+            {/* Download MT5 */}
+            <div className="mt-2 pb-6">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-400 [.light_&]:text-slate-500">
+                Download MT5
+              </p>
+              <div className="mb-4">
+                <img
+                  src="/mt5-image.png"
+                  alt="MetaTrader 5"
+                  className="h-10 w-auto object-contain"
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                {mt5Downloads.map((d) => (
+                  <a
+                    key={d.sub}
+                    href={d.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-2 transition-colors hover:border-[#3ca2fa]/40 hover:bg-white/10 [.light_&]:border-gray-200 [.light_&]:bg-gray-50 [.light_&]:hover:border-blue-300 [.light_&]:hover:bg-blue-50"
+                  >
+                    <d.Icon className="h-5 w-5 shrink-0 text-[#3ca2fa] [.light_&]:text-blue-600" />
+                    <div className="flex flex-col">
+                      <span className="text-[9px] leading-tight text-slate-400 [.light_&]:text-slate-500">{d.label}</span>
+                      <span className="text-[11px] font-semibold leading-tight text-white [.light_&]:text-[#111827]">{d.sub}</span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 

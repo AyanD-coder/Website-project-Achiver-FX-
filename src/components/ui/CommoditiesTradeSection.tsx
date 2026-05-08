@@ -19,28 +19,24 @@ const commodityCards: CommodityCard[] = [
     description:
       "Track price swings driven by harvest cycles, weather shifts, and global demand for one of the market's most active soft commodities.",
     icon: Coffee,
-    className: "md:-translate-y-1",
   },
   {
     title: "Sugar",
     description:
       "Access a globally consumed staple shaped by export flows, seasonal production changes, and broader macro supply dynamics.",
     icon: Wheat,
-    className: "md:translate-y-3",
   },
   {
     title: "Cocoa",
     description:
       "Trade a commodity influenced by crop quality, regional output, and demand sentiment across food and consumer markets.",
     icon: Leaf,
-    className: "md:translate-y-4",
   },
   {
     title: "Cotton",
     description:
       "Follow textile-linked pricing moves connected to agricultural output, international trade conditions, and manufacturing demand.",
     icon: Flower2,
-    className: "md:translate-y-1",
   },
 ];
 
@@ -77,7 +73,7 @@ function CommodityCardItem({
       }}
       whileHover={shouldReduceMotion ? undefined : { y: -6, scale: 1.02 }}
       className={cn(
-        "group relative overflow-hidden rounded-[1.7rem] border border-white/10 bg-white/[0.05] p-6 shadow-[0_22px_48px_rgba(14,165,233,0.08)] backdrop-blur-md transition-all duration-300 hover:border-cyan-300/22 hover:shadow-[0_30px_60px_rgba(14,165,233,0.16)] [.light_&]:border-sky-100 [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(239,246,255,0.92))] [.light_&]:shadow-[0_18px_40px_rgba(15,23,42,0.06)] [.light_&]:hover:border-sky-200 [.light_&]:hover:shadow-[0_22px_46px_rgba(14,165,233,0.14)]",
+        "group relative h-full overflow-hidden rounded-[1.7rem] border border-white/10 bg-white/[0.05] p-6 shadow-[0_22px_48px_rgba(14,165,233,0.08)] backdrop-blur-md transition-all duration-300 hover:border-cyan-300/22 hover:shadow-[0_30px_60px_rgba(14,165,233,0.16)] [.light_&]:border-sky-100 [.light_&]:bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(239,246,255,0.92))] [.light_&]:shadow-[0_18px_40px_rgba(15,23,42,0.06)] [.light_&]:hover:border-sky-200 [.light_&]:hover:shadow-[0_22px_46px_rgba(14,165,233,0.14)]",
         card.className,
       )}
     >
@@ -146,13 +142,13 @@ export default function CommoditiesTradeSection({
           </p>
         </div>
 
-        <div className="grid gap-8 xl:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] xl:items-start xl:gap-10">
+        <div className="grid gap-8 xl:grid-rows-[minmax(0,0.92fr)_minmax(0,1.08fr)] xl:items-start xl:gap-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.98, y: 20 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true, amount: 0.35 }}
             transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
-            className="xl:sticky xl:top-32 xl:mt-28"
+            className="mx-auto w-full xl:sticky xl:top-32 xl:mt-28"
           >
             <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(160deg,rgba(8,14,28,0.9),rgba(6,10,22,0.96))] p-7 shadow-[0_30px_80px_rgba(2,8,18,0.34)] sm:p-8 [.light_&]:border-sky-100 [.light_&]:bg-[linear-gradient(160deg,rgba(255,255,255,0.98),rgba(239,246,255,0.94))] [.light_&]:shadow-[0_22px_56px_rgba(15,23,42,0.06)]">
               <div className="pointer-events-none absolute inset-0">
@@ -164,16 +160,16 @@ export default function CommoditiesTradeSection({
 
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-300/90 to-transparent [.light_&]:via-sky-300/90" />
 
-              <div className="relative z-10 space-y-5">
+              <div className="relative z-10 flex flex-col items-center space-y-5 text-center">
                 <span className="inline-flex items-center rounded-full border border-cyan-300/18 bg-cyan-400/10 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.32em] text-cyan-100/80 shadow-[0_0_22px_rgba(56,189,248,0.12)] [.light_&]:border-sky-200 [.light_&]:bg-white/86 [.light_&]:text-sky-700 [.light_&]:shadow-[0_14px_32px_rgba(14,165,233,0.12)]">
                   {compact ? "MARKET TYPES" : "COMMODITIES"}
                 </span>
 
-                <h2 className="max-w-xl text-4xl font-semibold leading-[1.05] tracking-[-0.05em] text-white sm:text-5xl [.light_&]:text-slate-950">
+                <h2 className="text-4xl font-semibold leading-[1.05] tracking-[-0.05em] text-white sm:text-5xl [.light_&]:text-slate-950">
                   {compact ? "Market diversity at your fingertips" : "Trade Commodities With Achiever"}
                 </h2>
 
-                <p className="max-w-xl text-base leading-8 text-slate-400 sm:text-lg [.light_&]:text-slate-600">
+                <p className="text-base leading-8 text-slate-400 sm:text-lg [.light_&]:text-slate-600">
                   Explore market diversity with metals, energy, and agriculture
                   at your fingertips.
                 </p>
@@ -184,7 +180,7 @@ export default function CommoditiesTradeSection({
           <div className="relative">
             <div className="pointer-events-none absolute inset-x-10 top-12 h-[75%] rounded-[2.5rem] bg-[linear-gradient(180deg,rgba(56,189,248,0.14),rgba(37,99,235,0.04))] blur-3xl [.light_&]:bg-[linear-gradient(180deg,rgba(56,189,248,0.16),rgba(59,130,246,0.08))]" />
 
-            <div className="relative grid gap-6 md:grid-cols-2">
+            <div className="relative grid gap-6 md:grid-cols-2 md:grid-rows-2 md:items-stretch">
               {commodityCards.map((card, index) => (
                 <CommodityCardItem
                   key={card.title}

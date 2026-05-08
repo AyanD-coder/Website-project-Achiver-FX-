@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -v \"^ui$\")",
+      "WebFetch(domain:achieverfinancials.com)",
+      "WebFetch(domain:www.metatrader5.com)",
+      "PowerShell(Invoke-WebRequest -Uri \"https://www.metatrader5.com/i/metatrader-5-logo.png\" -OutFile \"c:\\\\Bratamalya\\\\Website-project-Achiver-FX-\\\\public\\\\mt5-logo.png\" -UseBasicParsing)",
+      "PowerShell($f = Get-Item \"c:\\\\Bratamalya\\\\Website-project-Achiver-FX-\\\\public\\\\mt5-logo.png\"; \"$\\($f.Length\\) bytes, $\\($f.LastWriteTime\\)\")"
+    ]
+  }
+}
